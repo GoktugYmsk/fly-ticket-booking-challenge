@@ -1,0 +1,44 @@
+.header-container {
+    position: fixed;
+    width: 100%;
+    z-index: 2;
+    .header-logo {
+        margin-left: 120px;
+        width: 200px;
+    }
+
+
+    .header-bootstrap-container {
+        display: flex;
+        margin-left: 80px;
+        gap: 20px;
+    }
+
+    .header-top-navbar {
+
+        display: flex;
+        align-items: center;
+        background: rgb(192, 192, 192);
+        gap: 20px;
+
+        .header-top-navbar__icon {
+            margin-left: 20px;
+            color: rgb(34, 91, 224);
+        }
+    }
+}
+
+
+.plane {
+    position: fixed;
+    top: 65px;
+    font-size: 40px;
+    transform: translateY(-50%);
+    width: 100px;
+    height: 100px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: left 0.3s ease;
+    z-index: 2;
+}
