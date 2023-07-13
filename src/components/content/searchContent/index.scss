@@ -13,6 +13,7 @@
         display: flex;
         width: 1000px;
         padding: 20px;
+        border-radius: 40px 40px 0 0;
         background: rgb(255, 60, 0);
 
         .SearchContent-container__menu-Item {
@@ -21,10 +22,13 @@
             width: 1000px;
             cursor: pointer;
             background: green;
+            border-radius: 40px 40px 0 0 ;
 
             .SearchContent-container__menu-Item__one {
                 background: rgb(255, 204, 0);
                 width: 250px;
+                border-radius: 40px 0 0 0 ;
+                
             }
 
             .SearchContent-container__menu-Item__two {
@@ -40,6 +44,7 @@
             .SearchContent-container__menu-Item__four {
                 background: rgb(255, 204, 0);
                 width: 250px;
+                border-radius: 0 40px 0 0 ;
             }
         }
 
