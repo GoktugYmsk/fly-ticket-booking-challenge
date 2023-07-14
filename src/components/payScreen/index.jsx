@@ -44,15 +44,6 @@ function PayScreen() {
     setCardName(e.target.value);
   };
 
-  const handleBackSubmit = (e) => {
-    e.preventDefault();
-    console.log('Kart bilgileri:', cardNumber, expiryMonth, expiryYear, cvv);
-  };
-
-  const handleFlipBack = () => {
-    setIsFlipped(false);
-  };
-
   const formatCardNumber = (number) => {
     const formattedNumber = number.replace(/\s/g, '').match(/.{1,4}/g);
     return formattedNumber ? formattedNumber.join(' ') : '';
