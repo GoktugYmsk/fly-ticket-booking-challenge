@@ -12,7 +12,6 @@ function CustomComponent() {
       <Header />
       <Content />
       <Footer />
-      <PayScreen />
     </div>
   )
 }

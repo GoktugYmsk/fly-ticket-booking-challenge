@@ -1,11 +1,124 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
+import './index.scss';
 
 function PayScreen() {
+  const [cardNumber, setCardNumber] = useState('');
+  const [maskedCardNumber, setMaskedCardNumber] = useState('################');
+  const [expiryMonth, setExpiryMonth] = useState('');
+  const [expiryYear, setExpiryYear] = useState('');
+  const [cardName, setCardName] = useState('');
+  const [cvv, setCVV] = useState('');
+  const [isFlipped, setIsFlipped] = useState(false);
+
+  useEffect(() => {
+    if (cardNumber.length === 19 && expiryMonth !== '' && expiryYear !== '' && cardName === 'Göktuğ Yumuşak') {
+      setIsFlipped(true);
+    } else {
+      setIsFlipped(false);
+    }
+  }, [cardNumber, expiryMonth, expiryYear, cardName]);
+
+  const handleCardNumberChange = (e) => {
+    const { value } = e.target;
+    const maskedNumber = maskCardNumber(value);
+    setCardNumber(value);
+    setMaskedCardNumber(maskedNumber);
+  };
+
+  const maskCardNumber = (value) => {
+    const visibleDigits = value.slice(0, 4);
+    const maskedDigits = value.slice(4).replace(/[0-9]/g, '*');
+    const remainingHashes = '################'.slice(value.length);
+    return visibleDigits + maskedDigits + remainingHashes;
+  };
+
+  const handleExpiryMonthChange = (e) => {
+    setExpiryMonth(e.target.value);
+  };
+
+  const handleExpiryYearChange = (e) => {
+    setExpiryYear(e.target.value);
+  };
+
+  const handleCardName = (e) => {
+    setCardName(e.target.value);
+  };
+
+  const handleBackSubmit = (e) => {
+    e.preventDefault();
+    console.log('Kart bilgileri:', cardNumber, expiryMonth, expiryYear, cvv);
+  };
+
+  const handleFlipBack = () => {
+    setIsFlipped(false);
+  };
+
+  const formatCardNumber = (number) => {
+    const formattedNumber = number.replace(/\s/g, '').match(/.{1,4}/g);
+    return formattedNumber ? formattedNumber.join(' ') : '';
+  };
+
+  const generateYears = () => {
+    const currentYear = new Date().getFullYear();
+    const years = [];
+    for (let year = currentYear; year <= 2040; year++) {
+      years.push(year.toString());
+    }
+    return years;
+  };
+
   return (
-    <div>
-      
+    <div className="payScreen-container">
+      <div className="payScreen-container-cardForm">
+        <div className={`payScreen-card ${isFlipped ? 'flipped' : ''}`}>
+          <div className="payScreen-card__front">
+            <div>
+              <label>Kart Numarası:</label>
+              <p className="payScreen-card__front-number">{formatCardNumber(maskedCardNumber)}</p>
+            </div>
+
+            <p>{cardName}</p>
+            <div>
+              <label>Son Kullanma Tarihi:</label>
+              <p>{expiryMonth}/{expiryYear}</p>
+            </div>
+          </div>
+          <div className="payScreen-card__back">
+            <div>
+              <div className="payScreen-card__back__bant" ></div>
+              <input className="payScreen-card__back-input" type="text" placeholder="cvv" value={cvv} onChange={(e) => setCVV(e.target.value)} maxLength="3" />
+            </div>
+          </div>
+        </div>
+        {!isFlipped ? (
+          <div>
+            <input type="text" value={formatCardNumber(cardNumber)} onChange={handleCardNumberChange} maxLength="19" />
+            <div>
+              <select value={expiryMonth} onChange={handleExpiryMonthChange}>
+                <option value="">Ay</option>
+                {Array.from({ length: 12 }, (_, index) => index + 1).map((month) => (
+                  <option value={month.toString().padStart(2, '0')} key={month}>
+                    {month.toString().padStart(2, '0')}
+                  </option>
+                ))}
+              </select>
+              <select value={expiryYear} onChange={handleExpiryYearChange}>
+                <option value="">Yıl</option>
+                {generateYears().map((year) => (
+                  <option value={year} key={year}>
+                    {year}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <input type="text" value={cardName} onChange={handleCardName} placeholder="Kart Üzerindeki İsim" />
+          </div>
+        ) : (
+          <input type="text" placeholder="cvv" value={cvv} onChange={(e) => setCVV(e.target.value)} maxLength="3" />
+        )}
+      </div>
     </div>
-  )
+  );
 }
 
-export default PayScreen
+export default PayScreen;
