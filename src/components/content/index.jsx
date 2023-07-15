@@ -7,10 +7,6 @@ import './index.scss'
 
 function Content() {
 
-    const [countries, setCountries] = useState()
-
-
-
     return (
         <div className='content-container' >
             <CarouselComponent />

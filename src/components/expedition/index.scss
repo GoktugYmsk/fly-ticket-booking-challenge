@@ -1,0 +1,47 @@
+.expedition-container{
+    display: flex;
+    background: rgb(255, 196, 0);
+    flex-direction: column;
+    height: 100vh;
+    .expedition-navbar{
+        display: flex;
+        background: red;
+        align-content: center;
+        height: 100px;
+        width: 100%;
+        nav{
+            img{
+                width: 300px;
+                height: 100px;
+                cursor: pointer;
+            }
+        }
+    }
+    .expedition-container__content{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        background: green;
+        .expedition-container-superEco-box{
+            width: 330px;
+            height: 400px;
+            background: white;
+
+        }
+        .expedition-container-eco-box{
+            width: 330px;
+            height: 400px;
+            background: white;
+        }
+        .expedition-container-opportunity-box{
+            width: 330px;
+            height: 400px;
+            background: white;
+        }
+        .expedition-container-comfortFlex-box{
+            width: 330px;
+            height: 400px;
+            background: white;
+        }
+    }
+}

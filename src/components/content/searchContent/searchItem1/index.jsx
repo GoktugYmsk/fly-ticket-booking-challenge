@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import DateTime from 'react-datetime';
 import { FaExchangeAlt } from 'react-icons/fa';
 import { FaCalendarAlt } from 'react-icons/fa';
@@ -7,12 +7,16 @@ import PassengerPopup from './popup';
 import 'react-datetime/css/react-datetime.css';
 
 import './index.scss';
+import { useNavigate } from 'react-router-dom';
 
 function SearchItem1() {
   const [isRoundTrip, setIsRoundTrip] = useState(false);
-  const [isCalendarOpen, setIsCalendarOpen] = useState(true);
+  const [isCalendarOpen, setIsCalendarOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState(null);
-  const [popup, setPopup] = useState(false)
+  const [ticketAmount, setTicketAmount] = useState({ adults: 1, children: 0, babies: 0 });
+  const [popup, setPopup] = useState(false);
+
+  const navigate = useNavigate()
 
   const handleSwitchChange = () => {
     setIsRoundTrip(!isRoundTrip);
@@ -71,9 +75,9 @@ function SearchItem1() {
     return `${day} ${getMonthName(month)} ${year}`;
   };
 
-  const handleOpenPOpup = () => {
-    setPopup(true)
-  }
+  const handleOpenPopup = () => {
+    setPopup(true);
+  };
 
   const getNextDay = () => {
     const currentDate = new Date();
@@ -104,10 +108,14 @@ function SearchItem1() {
     return monthNames[month - 1];
   };
 
+  const handleTicketClick = () =>{
+    navigate('/expedition')
+  }
+
   return (
     <>
       <div className='searchItem-one__container'>
-        <div className='searchItem-one__container-slider' >
+        <div className='searchItem-one__container-slider'>
           <label className={`switch ${isRoundTrip ? 'switch-right' : 'switch-left'}`}>
             <input
               type='checkbox'
@@ -116,10 +124,9 @@ function SearchItem1() {
             />
             <span className='switch-slider'></span>
           </label>
-          <p>{isRoundTrip ? 'Gidiş-Dönüş' : 'Tek Yön'}</p>
         </div>
-        <div className='searchItem-one__container__content' >
-          <div className='searchItem-one__container-place' >
+        <div className='searchItem-one__container__content'>
+          <div className='searchItem-one__container-place'>
             <p>Nerden</p>
             <FaExchangeAlt />
             <p>Nereye</p>
@@ -133,18 +140,24 @@ function SearchItem1() {
           </div>
           <div>
             <FaCalendarAlt />
-            <p>Tek Yön </p>
+            <p>{isRoundTrip ? 'Gidiş-Dönüş' : 'Tek Yön'}</p>
           </div>
-          <div className='searchItem-one__container-passenger-amount' >
+          <div className='searchItem-one__container-passenger-amount'>
             <h3>Yolcu</h3>
-            <p onClick={handleOpenPOpup} >1 Yetişkin</p>
+            {ticketAmount.adults > 0 && (
+              <p onClick={handleOpenPopup}>{`${ticketAmount.adults} Yetişkin`}</p>
+            )}
+            {ticketAmount.children > 0 && (
+              <p onClick={handleOpenPopup}>{`${ticketAmount.children} Çocuk`}</p>
+            )}
+            {ticketAmount.babies > 0 && (
+              <p onClick={handleOpenPopup}>{`${ticketAmount.babies} Bebek`}</p>
+            )}
           </div>
-          <Button variant="secondary">Ucuz Uçuş Bileti Ara</Button>{' '}
+          <Button onClick={handleTicketClick} variant='secondary'>Ucuz Uçuş Bileti Ara</Button>{' '}
         </div>
       </div>
-      {popup &&
-        <PassengerPopup setPopup={setPopup}/>
-      } 
+      {popup && <PassengerPopup setTicketAmount={setTicketAmount} setPopup={setPopup} />}
     </>
   );
 }

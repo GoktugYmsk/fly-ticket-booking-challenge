@@ -5,6 +5,7 @@ import SearchContent from './components/content/searchContent';
 import PayScreen from './components/payScreen';
 import SignUp from './components/content/register';
 import Login from './components/content/login';
+import Expedition from './components/expedition';
 import './App.css';
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <Route path="/" element={<CustomComponent />} />
         <Route path='/login' element={<Login/>} />
         <Route path='/signup' element={<SignUp/>} />
+        <Route path='/expedition' element={<Expedition/>} />
         <Route path="/search" element={<SearchContent />}/>
         <Route path="/pay-screen" element={<PayScreen />} />
       </Routes>

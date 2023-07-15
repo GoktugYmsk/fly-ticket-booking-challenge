@@ -11,12 +11,14 @@ function PayScreen() {
   const [isFlipped, setIsFlipped] = useState(false);
 
   useEffect(() => {
-    if (cardNumber.length === 19 && expiryMonth !== '' && expiryYear !== '' && cardName === 'Göktuğ Yumuşak') {
+    if (cardNumber.length === 16 && expiryMonth !== '' && expiryYear !== '' && cardName === 'Göktuğ Yumuşak') {
       setIsFlipped(true);
     } else {
       setIsFlipped(false);
     }
   }, [cardNumber, expiryMonth, expiryYear, cardName]);
+
+  console.log(cardName)
 
   const handleCardNumberChange = (e) => {
     const { value } = e.target;
