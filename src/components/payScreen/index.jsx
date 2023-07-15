@@ -20,10 +20,14 @@ function PayScreen() {
 
   const handleCardNumberChange = (e) => {
     const { value } = e.target;
-    const maskedNumber = maskCardNumber(value);
-    setCardNumber(value);
-    setMaskedCardNumber(maskedNumber);
+    const numericValue = value.replace(/\s/g, '');
+    if (!isNaN(numericValue)) {
+      const maskedNumber = maskCardNumber(numericValue);
+      setCardNumber(numericValue);
+      setMaskedCardNumber(maskedNumber);
+    }
   };
+
 
   const maskCardNumber = (value) => {
     const visibleDigits = value.slice(0, 4);

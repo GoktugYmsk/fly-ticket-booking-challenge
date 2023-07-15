@@ -1,6 +1,6 @@
 @import '~react-datepicker/dist/react-datepicker.css';
 
-.SearchItem-one__container {
+.searchItem-one__container {
     .switch {
         position: relative;
         display: inline-block;
@@ -48,9 +48,49 @@
         background-color: #66bb6a;
     }
 
-    .SearchItem-one__container {
+    .searchItem-one__container-passenger-amount {
         display: flex;
-        align-items: center;
+        flex-direction: column;
+        background: pink;
+
+        p {
+            cursor: pointer;
+        }
+       
+    }
+
+
+    .searchItem-one__container__content {
+        display: flex;
+        background: green;
+        height: 150px;
+        justify-content: space-around;
+        color: white;
+
+        button {
+            height: 40px;
+        }
+
+        .searchItem-one__container-place {
+            display: flex;
+            color: white;
+        }
+
+        .travel-date {
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+            justify-content: center;
+            cursor: pointer;
+            background: red;
+            width: 150px;
+
+            .calendar {
+                width: 120px;
+            }
+        }
+
+
     }
 
 
