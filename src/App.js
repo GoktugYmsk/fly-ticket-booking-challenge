@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import CustomComponent from './components/CustomComponent';
 import SearchContent from './components/content/searchContent';
 import PayScreen from './components/payScreen';
@@ -13,13 +13,13 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/" element={<CustomComponent />} />
-        <Route path='/login' element={<Login/>} />
-        <Route path='/signup' element={<SignUp/>} />
-        <Route path='/expedition' element={<Expedition/>} />
-        <Route path="/search" element={<SearchContent />}/>
+        <Route path='/login' element={<Login />} />
+        <Route path='/signup' element={<SignUp />} />
+        <Route path='/expedition' element={<Expedition />} />
+        <Route path="/search" element={<SearchContent />} />
         <Route path="/pay-screen" element={<PayScreen />} />
       </Routes>
-    </div>
+    </div >
   );
 }
 

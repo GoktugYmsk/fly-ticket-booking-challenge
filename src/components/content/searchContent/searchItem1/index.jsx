@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import DateTime from 'react-datetime';
+import PassengerPopup from './popup';
 import { FaExchangeAlt } from 'react-icons/fa';
 import { FaCalendarAlt } from 'react-icons/fa';
-import Button from 'react-bootstrap/Button';
-import PassengerPopup from './popup';
-import 'react-datetime/css/react-datetime.css';
-
-import './index.scss';
 import { useNavigate } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+// import { useDispatch } from 'react-redux';
+import 'react-datetime/css/react-datetime.css';
+import './index.scss';
 
 function SearchItem1() {
   const [isRoundTrip, setIsRoundTrip] = useState(false);
@@ -17,6 +17,9 @@ function SearchItem1() {
   const [popup, setPopup] = useState(false);
 
   const navigate = useNavigate()
+  // const dispatch = useDispatch()
+
+  console.log(ticketAmount)
 
   const handleSwitchChange = () => {
     setIsRoundTrip(!isRoundTrip);
@@ -48,6 +51,7 @@ function SearchItem1() {
     return (
       <div className='calendar'>
         <DateTime
+          required
           value={selectedDate}
           onChange={handleDateChange}
           dateFormat='DD/MM/YYYY'
@@ -108,15 +112,18 @@ function SearchItem1() {
     return monthNames[month - 1];
   };
 
-  const handleTicketClick = () =>{
+  const totalPassenger = ticketAmount.adults + ticketAmount.children + ticketAmount.babies
+
+  const handleTicketClick = () => {
     navigate('/expedition')
+    sessionStorage.setItem('totalPassenger', totalPassenger)
   }
 
   return (
     <>
       <div className='searchItem-one__container'>
         <div className='searchItem-one__container-slider'>
-          <label className={`switch ${isRoundTrip ? 'switch-right' : 'switch-left'}`}>
+          <label className="switch ">
             <input
               type='checkbox'
               checked={isRoundTrip}
@@ -154,7 +161,7 @@ function SearchItem1() {
               <p onClick={handleOpenPopup}>{`${ticketAmount.babies} Bebek`}</p>
             )}
           </div>
-          <Button onClick={handleTicketClick} variant='secondary'>Ucuz Uçuş Bileti Ara</Button>{' '}
+          <Button onClick={handleTicketClick} variant='secondary'>Ucuz Uçuş Bileti Ara</Button>
         </div>
       </div>
       {popup && <PassengerPopup setTicketAmount={setTicketAmount} setPopup={setPopup} />}

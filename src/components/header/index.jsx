@@ -10,12 +10,13 @@ import './index.scss';
 
 function Header() {
   const [planePosition, setPlanePosition] = useState(0);
+  const [inform, setInform] = useState(true)
   const [isLogin, setIsLogin] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       const windowWidth = window.innerWidth;
-      const maxPlanePosition = windowWidth - 100; // Uçağın maksimum konumu (sayfa genişliğine bağlı olarak ayarlayabilirsiniz)
+      const maxPlanePosition = windowWidth - 100;
       const scrollY = window.scrollY;
       const newPosition = (scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * maxPlanePosition;
       setPlanePosition(newPosition);
@@ -54,16 +55,22 @@ function Header() {
     setIsLogin(true);
   };
 
+  const handleCloseInform = () => {
+    setInform(false)
+  }
+
   return (
     <>
       <div className="header-container">
-        <div className="header-top-navbar">
-          <FaBell className="header-top-navbar__icon" />
-          {date}
-          <p>18 Yaş Altı Misafirlerin Suudi Arabistan'a Seyahat Şartı Hakkında</p>
-          <p>Daha Fazla →</p>
-        </div>
-
+        {inform &&
+          <div className="header-top-navbar">
+            <FaBell className="header-top-navbar__icon" />
+            {date}
+            <p>18 Yaş Altı Misafirlerin Suudi Arabistan'a Seyahat Şartı Hakkında</p>
+            <p>Daha Fazla →</p>
+            {/* <p className='header-top-navbar-close' onClick={handleCloseInform} >x</p> */}
+          </div>
+        }
         <Navbar expand="lg" className="bg-body-tertiary">
           <img className="header-logo" src={logo} alt="Logo" />
           <Container className="header-bootstrap-container">

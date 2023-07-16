@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Button from 'react-bootstrap/Button';
 import './index.scss';
 
 function PayScreen() {
@@ -64,6 +65,13 @@ function PayScreen() {
     return years;
   };
 
+  const handleApprovalClick = () => {
+    if (cvv === '001') {
+      alert('Ödeme Başarıyla Tamamlandı')
+    }
+  }
+
+
   return (
     <div className="payScreen-container">
       <div className="payScreen-container-cardForm">
@@ -111,7 +119,10 @@ function PayScreen() {
             <input type="text" value={cardName} onChange={handleCardName} placeholder="Kart Üzerindeki İsim" />
           </div>
         ) : (
-          <input type="text" placeholder="cvv" value={cvv} onChange={(e) => setCVV(e.target.value)} maxLength="3" />
+          <div className='payScreen-container-cvvSide' >
+            <input type="text" placeholder="cvv" value={cvv} onChange={(e) => setCVV(e.target.value)} maxLength="3" />
+            <Button className='approvalButton' onClick={handleApprovalClick} variant='secondary'>Onaylıyor musunuz ?</Button>
+          </div>
         )}
       </div>
     </div>

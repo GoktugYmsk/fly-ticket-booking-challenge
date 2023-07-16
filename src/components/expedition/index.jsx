@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 import './index.scss'
@@ -6,6 +7,8 @@ import './index.scss'
 function Expedition() {
 
     const navigate = useNavigate()
+
+    const totalPassenger = sessionStorage.getItem('totalPassenger')
 
     const handleMainPage = () => {
         navigate('/')
@@ -16,6 +19,7 @@ function Expedition() {
 
     return (
         <div className='expedition-container' >
+            <p>Toplam Yolcu sayısı = {totalPassenger} </p>
             <div className="expedition-navbar" >
                 <nav >
                     <img onClick={handleMainPage} src={logo} />

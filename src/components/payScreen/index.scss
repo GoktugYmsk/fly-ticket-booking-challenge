@@ -57,15 +57,16 @@
     border-radius: 20px;
     padding: 20px;
 
-     .payScreen-card__back__bant{
+    .payScreen-card__back__bant {
         display: flex;
         position: relative;
         bottom: 40px;
         height: 60px;
         background-color: black;
-        width: 500px ;
+        width: 500px;
     }
-    .payScreen-card__back-input{
+
+    .payScreen-card__back-input {
         width: 400px;
     }
 }
@@ -106,4 +107,14 @@
 
 .payScreen-card button[type='button'] {
     background: rgb(65, 94, 134);
+}
+
+.payScreen-container-cvvSide {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .approvalButton {
+        color: black;
+    }
 }

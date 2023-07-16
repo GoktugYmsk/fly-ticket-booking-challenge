@@ -1,0 +1,23 @@
+.searchItem-two__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 260px;
+
+    .searchItem-two__container-form {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        width: 60%;
+
+        .searchItem-two__container-inputBox {
+            input {
+                border-style: none;
+                outline: none;
+                margin-left: 10px;
+                border-radius: 20px;
+            }
+        }
+
+    }
+}

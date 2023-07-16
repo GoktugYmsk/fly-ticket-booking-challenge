@@ -3,6 +3,6 @@ import configure from '../components/configure'
 
 export const store = configureStore({
     reducer: {
-        addTodo: configure,
+        passAmount: configure,
     },
 })

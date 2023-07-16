@@ -52,7 +52,7 @@ function PassengerPopup({ setPopup, setTicketAmount }) {
     }
   };
 
-  const handleAdultChange = (e) =>{
+  const handleAdultChange = (e) => {
     const value = e.target.value;
     if (value >= 1) {
       setAdultCount(value);
@@ -61,11 +61,11 @@ function PassengerPopup({ setPopup, setTicketAmount }) {
     }
   }
 
-  const handleChildChange = (e) =>{
+  const handleChildChange = (e) => {
     setChildCount(e.target.value)
   }
-  
-  const handleBabyChange = (e) =>{
+
+  const handleBabyChange = (e) => {
     setBabyCount(e.target.value)
   }
 
@@ -89,7 +89,7 @@ function PassengerPopup({ setPopup, setTicketAmount }) {
           className="passengerpopup-container__minus-icon"
           onClick={handleChildDecrement}
         />
-        <input type="number" min="0" value={childCount} onChange={handleChildChange}  />
+        <input type="number" min="0" value={childCount} onChange={handleChildChange} />
         <AiOutlinePlusCircle
           className="passengerpopup-container__plus-icon"
           onClick={handleChildIncrement}

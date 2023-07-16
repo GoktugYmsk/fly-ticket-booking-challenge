@@ -1,19 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-    addTask: [],
+    passengerAmount: {},
 }
 
 export const configure = createSlice({
     name: 'control',
     initialState,
     reducers: {
-        setAddTasks: (state, action) => {
-            state.addTask = action.payload;
+        setPassengerAmount: (state, action) => {
+            state.passengerAmount = action.payload;
         },
     }
 })
 
-export const { } = configure.actions
+export const { setPassengerAmount } = configure.actions
 
 export default configure.reducer
