@@ -6,6 +6,7 @@ import PayScreen from './components/payScreen';
 import SignUp from './components/content/register';
 import Login from './components/content/login';
 import Expedition from './components/expedition';
+import FlyCompanies from './components/componies';
 import './App.css';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path='/expedition' element={<Expedition />} />
         <Route path="/search" element={<SearchContent />} />
         <Route path="/pay-screen" element={<PayScreen />} />
+        <Route path="/fly-companies" element={<FlyCompanies />} />
       </Routes>
     </div >
   );

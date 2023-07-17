@@ -364,7 +364,7 @@ const passengerInformation = {
             "legId": 1453617,
             "flightNo": "2S 3002",
             "airlineCode": "2S",
-            "airline": "",
+            "airline": "Pegasus ",
             "depTime": "12:30:00",
             "arrTime": "17:10:00",
             "flightId": "13358874",

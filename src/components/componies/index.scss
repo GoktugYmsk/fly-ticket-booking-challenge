@@ -1,0 +1,44 @@
+.flyCompanies-container {
+    display: flex;
+    background: red;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+
+    .flyCompanies-container-content {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        background: green;
+        padding: 20px;
+        overflow: auto;
+        height: 500px;
+
+        .flyCompanies-container-content-container {
+            .flyCompanies-container__box {
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                cursor: pointer;
+                background: white;
+                margin-top: 30px;
+                height: 100px !important;
+                width: 1000px;
+                gap: 20px;
+            }
+
+        }
+
+        .flyCompanies-container__box-notFound {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            background: white;
+            margin-top: 30px;
+            height: 100px !important;
+            width: 1000px;
+            gap: 20px;
+        }
+
+    }
+}

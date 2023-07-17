@@ -130,6 +130,14 @@
                 flex-direction: column;
                 cursor: pointer;
 
+
+                input {
+                    width: 120px;
+                    outline: none;
+                    border-radius: 20px;
+                    border-style: none;
+                }
+
             }
 
             .searchItem-one__container-place__ports-one hr {
@@ -153,6 +161,7 @@
     width: 200px;
     opacity: 2;
     background: red;
+
 
     p {
         background: rgb(38, 255, 0);
