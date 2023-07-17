@@ -31,9 +31,10 @@ function Header() {
 
   const newDate = new Date();
   const day = newDate.getDate();
-  const month = newDate.getMonth();
+  const month = (newDate.getMonth() + 1).toString().padStart(2, '0');
   const year = newDate.getFullYear();
   const date = day + '.' + month + '.' + year;
+
 
   const logo =
     'https://uploads-ssl.webflow.com/605c9d764f1ef938a009ac98/61e01bfbdd8632a72962edc2_Pinsoft_Yatay_Logo_mavi-for%20animation.svg';

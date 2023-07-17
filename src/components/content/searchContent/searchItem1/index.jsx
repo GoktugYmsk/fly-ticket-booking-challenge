@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DateTime from 'react-datetime';
 import PassengerPopup from './popup';
 import { FaExchangeAlt } from 'react-icons/fa';
 import { FaCalendarAlt } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
+import flightPorts from '../../../../assets/flightPorts';
 import 'react-datetime/css/react-datetime.css';
 import './index.scss';
 
@@ -13,7 +14,13 @@ function SearchItem1() {
   const [isCalendarOpen, setIsCalendarOpen] = useState(true);
   const [selectedDate, setSelectedDate] = useState(null);
   const [ticketAmount, setTicketAmount] = useState({ adults: 1, children: 0, babies: 0 });
+  const [openPorts, setOpenPorts] = useState(false);
+  const [openPortsWhere, setOpenPortsWhere] = useState(false);
   const [popup, setPopup] = useState(false);
+  const [selectedExplanation, setSelectedExplanation] = useState('');
+  const [selectedExplanationRight, setSelectedExplanationRight] = useState('');
+
+  const flightPortsData = flightPorts.ports;
 
   const navigate = useNavigate();
 
@@ -67,14 +74,6 @@ function SearchItem1() {
     );
   };
 
-  // const getFormattedDate = (date) => {
-  //   const day = date.getDate();
-  //   const month = date.getMonth() + 1;
-  //   const year = date.getFullYear();
-
-  //   return `${day} ${getMonthName(month)} ${year}`;
-  // };
-
   const handleOpenPopup = () => {
     setPopup(true);
   };
@@ -110,9 +109,14 @@ function SearchItem1() {
 
   const totalPassenger = ticketAmount.adults + ticketAmount.children + ticketAmount.babies;
 
-  const handleTicketClick = () => {
-    navigate('/expedition');
-    sessionStorage.setItem('totalPassenger', totalPassenger);
+  const navigateToExpedition = () => {
+    if (selectedExplanation && selectedExplanationRight) {
+      sessionStorage.setItem('totalPassenger', totalPassenger);
+      navigate('/expedition');
+    }
+    else {
+      alert('Lütfen nerden ve nereye havaalanlarını seçin.');
+    }
   };
 
   const renderPassengerAmount = () => {
@@ -129,8 +133,7 @@ function SearchItem1() {
     } else if (babyCount > 0) {
       return (
         <>
-          ... Çocuk
-          {babyCount} Bebek
+          {babyCount > 0 && `${babyCount}...`}
         </>
       );
     } else {
@@ -142,6 +145,52 @@ function SearchItem1() {
       );
     }
   };
+
+  useEffect(() => {
+    if (
+      selectedExplanation) {
+      setOpenPortsWhere(true);
+      setOpenPorts(false)
+    }
+  }, [selectedExplanation])
+
+  useEffect(() => {
+    if (selectedExplanationRight) {
+      setOpenPortsWhere(false);
+    }
+  }, [selectedExplanationRight])
+
+  const handlePortOpenClick = () => {
+    setOpenPorts(!openPorts);
+  };
+
+  const handlePortOpenClickRight = () => {
+    setOpenPortsWhere(!openPortsWhere);
+    setOpenPorts(false);
+  };
+
+  const handlePortClick = (explanation) => {
+    setSelectedExplanation(explanation);
+  };
+
+  const handlePortClickRigth = (explanation) => {
+    setSelectedExplanationRight(explanation);
+  };
+
+  const handleOutsideClick = (event) => {
+    if (!event.target.closest('.searchItem-one__container-port')) {
+      setOpenPorts(false);
+      setOpenPortsWhere(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleOutsideClick);
+
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, []);
 
   return (
     <>
@@ -161,9 +210,17 @@ function SearchItem1() {
         </div>
         <div className='searchItem-one__container__content'>
           <div className='searchItem-one__container-place'>
-            <p>Nerden</p>
+            <div onClick={handlePortOpenClick} className='searchItem-one__container-place__ports-one'>
+              <p>Nerden</p>
+              <p>{selectedExplanation}</p>
+              <hr />
+            </div>
             <FaExchangeAlt />
-            <p>Nereye</p>
+            <div onClick={handlePortOpenClickRight} className='searchItem-one__container-place__ports-one'>
+              <p>Nereye</p>
+              <p>{selectedExplanationRight}</p>
+              <hr />
+            </div>
           </div>
           <div className='searchItem-one__container__chose-travelDate'>
             <div className='travel-date' onClick={handleCalendarClick}>
@@ -187,10 +244,30 @@ function SearchItem1() {
               <h2 onClick={handleOpenPopup}>{renderPassengerAmount()}</h2>
             )}
           </div>
-          <Button onClick={handleTicketClick} variant='secondary'>Ucuz Uçuş Bileti Ara</Button>
+          <Button onClick={navigateToExpedition} variant='secondary'>Ucuz Uçuş Bileti Ara</Button>
         </div>
       </div>
       {popup && <PassengerPopup setTicketAmount={setTicketAmount} setPopup={setPopup} />}
+      <div className='searchItem-one__container-port'>
+        {openPorts && (
+          <div className='searchItem-one__container-place__ports'>
+            {flightPortsData.map((port, key) => (
+              <div key={key} onClick={() => handlePortClick(port.explanation)}>
+                <p>{port.explanation}</p>
+              </div>
+            ))}
+          </div>
+        )}
+        {openPortsWhere && (
+          <div className='searchItem-one__container-place__ports-right'>
+            {flightPortsData.map((port, key) => (
+              <div key={key} onClick={() => handlePortClickRigth(port.explanation)}>
+                <p>{port.explanation}</p>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
     </>
   );
 }
