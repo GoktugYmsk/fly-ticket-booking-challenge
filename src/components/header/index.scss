@@ -2,6 +2,7 @@
     position: fixed;
     width: 100%;
     z-index: 2;
+
     .header-logo {
         margin-left: 120px;
         width: 200px;
@@ -25,7 +26,8 @@
             margin-left: 20px;
             color: rgb(34, 91, 224);
         }
-        .header-top-navbar-close{
+
+        .header-top-navbar-close {
             cursor: pointer;
         }
     }

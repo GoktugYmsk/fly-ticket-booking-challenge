@@ -55,9 +55,9 @@ function Header() {
     setIsLogin(true);
   };
 
-  const handleCloseInform = () => {
-    setInform(false)
-  }
+  // const handleCloseInform = () => {
+  //   setInform(false)
+  // }
 
   return (
     <>

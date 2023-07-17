@@ -13,7 +13,7 @@ function SearchItem2() {
       <form className='searchItem-two__container-form' >
         <div className='searchItem-two__container-inputBox'>
           <input type="text" placeholder='Yolcunun Soyadı' />
-          <input type="text" placeholder='Telefon Numarası' />
+          <input type="text" placeholder='Rezervasyon Kodu (PNR)' />
         </div>
         <Button type="submit" variant='secondary'>Devam</Button>
       </form>

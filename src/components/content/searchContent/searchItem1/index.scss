@@ -4,14 +4,10 @@
     .switch {
         position: relative;
         display: inline-block;
-        width: 200px;
+        width: 300px;
         height: 34px;
         background-color: #ccc;
         overflow: hidden;
-
-        p {
-            background: blue;
-        }
     }
 
     .switch input[type='checkbox'] {
@@ -21,35 +17,45 @@
     }
 
     .switch-slider {
+        display: flex;
         position: absolute;
+        align-items: center;
         cursor: pointer;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
-        background-color: #fff;
+        background-color: #ccc;
         -webkit-transition: .4s;
         transition: .4s;
+
+        p {
+            margin-top: 15px;
+            margin-left: 60px;
+        }
+
+
     }
 
     .switch-slider:before {
         position: absolute;
         content: '';
         height: 26px;
-        width: 100px;
+        width: 150px;
         left: 4px;
         bottom: 4px;
-        background-color: #ccc;
+        background-color: #fff;
+        box-shadow: 2px 2px 4px rgb(134, 134, 134);
+        opacity: 0.6;
         -webkit-transition: .4s;
         transition: .4s;
         border-radius: 4px;
     }
 
     .switch input:checked+.switch-slider:before {
-        -webkit-transform: translateX(90px);
-        -ms-transform: translateX(90px);
-        transform: translateX(90px);
-        background-color: #66bb6a;
+        -webkit-transform: translateX(140px);
+        -ms-transform: translateX(140px);
+        transform: translateX(140px);
     }
 
     .searchItem-one__container-passenger-amount {
@@ -57,15 +63,21 @@
         flex-direction: column;
         background: pink;
 
-        p {
+        h3 {
+            font-weight: 350;
+        }
+
+        h2 {
             cursor: pointer;
+            font-size: 20px;
+            font-weight: 720;
         }
 
     }
 
-
     .searchItem-one__container__content {
         display: flex;
+        align-items: center;
         background: green;
         height: 150px;
         justify-content: space-around;
@@ -74,27 +86,45 @@
             height: 40px;
         }
 
-        .searchItem-one__container-place {
+        .searchItem-one__container__chose-travelDate {
             display: flex;
-            color: white;
-        }
-
-        .travel-date {
-            display: flex;
-            flex-direction: column;
-            align-content: center;
-            justify-content: center;
+            justify-content: space-evenly;
             background: red;
-            width: 150px;
-            cursor: pointer;
+            gap: 20px;
+            width: 300px;
 
-            .calendar {
-                width: 120px;
+            .travel-date {
+                display: flex;
+                flex-direction: column;
+                align-content: center;
+                justify-content: center;
+                width: 150px;
+                cursor: pointer;
+
+                .calendar {
+                    width: 120px;
+                }
+            }
+
+            .searchItem-one__container-return {
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                flex-direction: column;
+                width: 150px;
             }
         }
 
 
+
+
+        .searchItem-one__container-place {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            background: red;
+            width: 300px;
+            color: white;
+        }
     }
-
-
 }

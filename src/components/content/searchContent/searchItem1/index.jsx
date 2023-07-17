@@ -5,21 +5,17 @@ import { FaExchangeAlt } from 'react-icons/fa';
 import { FaCalendarAlt } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
-// import { useDispatch } from 'react-redux';
 import 'react-datetime/css/react-datetime.css';
 import './index.scss';
 
 function SearchItem1() {
   const [isRoundTrip, setIsRoundTrip] = useState(false);
-  const [isCalendarOpen, setIsCalendarOpen] = useState(false);
+  const [isCalendarOpen, setIsCalendarOpen] = useState(true);
   const [selectedDate, setSelectedDate] = useState(null);
   const [ticketAmount, setTicketAmount] = useState({ adults: 1, children: 0, babies: 0 });
   const [popup, setPopup] = useState(false);
 
-  const navigate = useNavigate()
-  // const dispatch = useDispatch()
-
-  console.log(ticketAmount)
+  const navigate = useNavigate();
 
   const handleSwitchChange = () => {
     setIsRoundTrip(!isRoundTrip);
@@ -52,7 +48,7 @@ function SearchItem1() {
       <div className='calendar'>
         <DateTime
           required
-          value={selectedDate}
+          value={getNextDay() || selectedDate}
           onChange={handleDateChange}
           dateFormat='DD/MM/YYYY'
           timeFormat={false}
@@ -71,13 +67,13 @@ function SearchItem1() {
     );
   };
 
-  const getFormattedDate = (date) => {
-    const day = date.getDate();
-    const month = date.getMonth() + 1;
-    const year = date.getFullYear();
+  // const getFormattedDate = (date) => {
+  //   const day = date.getDate();
+  //   const month = date.getMonth() + 1;
+  //   const year = date.getFullYear();
 
-    return `${day} ${getMonthName(month)} ${year}`;
-  };
+  //   return `${day} ${getMonthName(month)} ${year}`;
+  // };
 
   const handleOpenPopup = () => {
     setPopup(true);
@@ -112,24 +108,55 @@ function SearchItem1() {
     return monthNames[month - 1];
   };
 
-  const totalPassenger = ticketAmount.adults + ticketAmount.children + ticketAmount.babies
+  const totalPassenger = ticketAmount.adults + ticketAmount.children + ticketAmount.babies;
 
   const handleTicketClick = () => {
-    navigate('/expedition')
-    sessionStorage.setItem('totalPassenger', totalPassenger)
-  }
+    navigate('/expedition');
+    sessionStorage.setItem('totalPassenger', totalPassenger);
+  };
+
+  const renderPassengerAmount = () => {
+    const childCount = ticketAmount.children;
+    const babyCount = ticketAmount.babies;
+
+    if (childCount > 0) {
+      return (
+        <>
+          {childCount > 0 && `${childCount}...`}
+          {babyCount > 0 && ``}
+        </>
+      );
+    } else if (babyCount > 0) {
+      return (
+        <>
+          ... Çocuk
+          {babyCount} Bebek
+        </>
+      );
+    } else {
+      return (
+        <>
+          ... Çocuk
+          ... Bebek
+        </>
+      );
+    }
+  };
 
   return (
     <>
       <div className='searchItem-one__container'>
         <div className='searchItem-one__container-slider'>
-          <label className="switch ">
+          <label className="switch">
             <input
               type='checkbox'
               checked={isRoundTrip}
               onChange={handleSwitchChange}
             />
-            <span className='switch-slider'></span>
+            <span className='switch-slider'>
+              <p>Tek Yön</p>
+              <p>Gidiş Dönüş</p>
+            </span>
           </label>
         </div>
         <div className='searchItem-one__container__content'>
@@ -138,27 +165,26 @@ function SearchItem1() {
             <FaExchangeAlt />
             <p>Nereye</p>
           </div>
-          <div className='travel-date' onClick={handleCalendarClick}>
-            <p>Travel Date</p>
-            <p className='SearchItem-one__container-travelDate'>
-              {selectedDate ? getFormattedDate(selectedDate) : getNextDay()}
-            </p>
-            {isCalendarOpen && renderCalendar()}
-          </div>
-          <div>
-            <FaCalendarAlt />
-            <p>{isRoundTrip ? 'Gidiş-Dönüş' : 'Tek Yön'}</p>
+          <div className='searchItem-one__container__chose-travelDate'>
+            <div className='travel-date' onClick={handleCalendarClick}>
+              <p>Gidiş Tarihi</p>
+              <p className='SearchItem-one__container-travelDate'>
+                {isCalendarOpen && renderCalendar()}
+              </p>
+            </div>
+            <div className='searchItem-one__container-return'>
+              <FaCalendarAlt />
+              <p>{isRoundTrip ? 'Gidiş-Dönüş' : 'Tek Yön'}</p>
+              {isRoundTrip && renderCalendar()}
+            </div>
           </div>
           <div className='searchItem-one__container-passenger-amount'>
             <h3>Yolcu</h3>
             {ticketAmount.adults > 0 && (
-              <p onClick={handleOpenPopup}>{`${ticketAmount.adults} Yetişkin`}</p>
+              <h2 onClick={handleOpenPopup}>{`${ticketAmount.adults} Yetişkin`}</h2>
             )}
-            {ticketAmount.children > 0 && (
-              <p onClick={handleOpenPopup}>{`${ticketAmount.children} Çocuk`}</p>
-            )}
-            {ticketAmount.babies > 0 && (
-              <p onClick={handleOpenPopup}>{`${ticketAmount.babies} Bebek`}</p>
+            {(ticketAmount.children > 0 || ticketAmount.babies > 0) && (
+              <h2 onClick={handleOpenPopup}>{renderPassengerAmount()}</h2>
             )}
           </div>
           <Button onClick={handleTicketClick} variant='secondary'>Ucuz Uçuş Bileti Ara</Button>

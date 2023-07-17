@@ -31,7 +31,6 @@ function PayScreen() {
     }
   };
 
-
   const maskCardNumber = (value) => {
     const visibleDigits = value.slice(0, 4);
     const maskedDigits = value.slice(4).replace(/[0-9]/g, '*');
