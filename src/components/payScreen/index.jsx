@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
+import { useSelector } from 'react-redux';
 import './index.scss';
 
 function PayScreen() {
@@ -10,6 +11,12 @@ function PayScreen() {
   const [cardName, setCardName] = useState('');
   const [cvv, setCVV] = useState('');
   const [isFlipped, setIsFlipped] = useState(false);
+
+  const flightTicket = useSelector((state) => state.passTicket.flightTicket);
+
+  const totalPassenger = sessionStorage.getItem('totalPassenger')
+
+  const totalPrice = flightTicket.priceDetail.basePrice.amount * totalPassenger
 
   useEffect(() => {
     if (cardNumber.length === 16 && expiryMonth !== '' && expiryYear !== '' && cardName === 'Göktuğ Yumuşak') {
@@ -123,6 +130,10 @@ function PayScreen() {
             <Button className='approvalButton' onClick={handleApprovalClick} variant='secondary'>Onaylıyor musunuz ?</Button>
           </div>
         )}
+        <h3 className='payScreen-container-h3' >Toplam {totalPrice} $</h3>
+      </div>
+      <div className='payScreen-container-total' >
+
       </div>
     </div>
   );

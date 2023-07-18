@@ -12,16 +12,25 @@
         justify-content: space-between;
         background: white;
         margin-top: 30px;
-        height: 100px !important;
+        height: 150px !important;
         width: 1040px;
         padding: 30px;
         margin-bottom: 10px;
 
         .flyCompanies-container__box-info-top {
             display: flex;
-            align-items: center;
             flex-direction: column;
             gap: 20px;
+
+            .flyCompanies-container__box-info-top-p {
+                cursor: pointer;
+                color: white;
+                background: red;
+
+                &:hover {
+                    background: rgb(129, 32, 32);
+                }
+            }
 
             .flyCompanies-container__box-info-city {
                 display: flex;

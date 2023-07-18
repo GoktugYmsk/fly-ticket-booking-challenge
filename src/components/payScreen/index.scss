@@ -5,6 +5,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+
+    .payScreen-container-h3 {
+        position: relative;
+        left: 200px;
+        background: red;
+    }
 }
 
 .payScreen-container-cardForm {

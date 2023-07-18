@@ -8,6 +8,9 @@ function SalesScreen() {
 
     const flightTicket = useSelector((state) => state.passTicket.flightTicket);
 
+    const totalPassenger = sessionStorage.getItem('totalPassenger')
+
+
     const navigate = useNavigate()
 
     console.log('flightTicket', flightTicket)
@@ -15,6 +18,10 @@ function SalesScreen() {
     const handlePayScreenClick = () => {
         navigate('/pay-screen')
     }
+
+    const totalPrice = flightTicket.priceDetail.basePrice.amount * totalPassenger
+
+    console.log('totalPrice', totalPrice)
 
     return (
         <div className='salesScreen-container' >
@@ -30,7 +37,11 @@ function SalesScreen() {
                     <p>Fiyat</p>
                     <p>Vergi/Harç</p>
                     <p>Hizmet Bedeli</p>
-                    <p>Toplam</p>
+                    <p>Toplam  </p>
+                </div>
+                {totalPrice} $
+                <div>
+                    {totalPassenger}
                 </div>
                 <div className='salesScreen-container-content__box__passDetail' >
                     <div className='passenger-leftInfo' >
@@ -93,7 +104,7 @@ function SalesScreen() {
                     <p>Detaylara Göz at</p>
                 </div>
             </div>
-            <h4 onClick={handlePayScreenClick} >Ödeme ekranına geç</h4>
+            <h4 className='payScreen-h4' onClick={handlePayScreenClick} >Ödeme ekranına geç</h4>
         </div>
     )
 }

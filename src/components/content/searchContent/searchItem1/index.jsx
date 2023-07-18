@@ -24,7 +24,10 @@ function SearchItem1() {
   const [renderedPorts, setRenderedPorts] = useState([]);
   const [renderedPortsArr, setRenderedPortsArr] = useState([]);
 
+
   const selectedDate = useSelector((state) => state.optionDate.selectedDate);
+
+  console.log('selectedDate', selectedDate)
 
   const flightPortsData = flightPorts.ports;
 
@@ -88,13 +91,19 @@ function SearchItem1() {
 
   const getNextDay = () => {
     const currentDate = new Date();
-    currentDate.setDate(currentDate.getDate() + 1);
+    currentDate.setDate(currentDate.getDate());
     const nextDay = currentDate.getDate();
     const nextMonth = currentDate.getMonth() + 1;
     const nextYear = currentDate.getFullYear();
 
     return `${nextDay} ${getMonthName(nextMonth)} ${nextYear}`;
   };
+
+
+
+  useEffect(() => {
+    dispatch(setSelectedDate(new Date()));
+  }, []);
 
   const getMonthName = (month) => {
     const monthNames = [
@@ -242,11 +251,6 @@ function SearchItem1() {
     ))
     setRenderedPortsArr(updatePortsArr)
   }, [selectedExplanationArrive])
-
-
-  // useEffect(() => {
-  //   sessionStorage.removeItem('filteredPorts')
-  // }, [])
 
   return (
     <>

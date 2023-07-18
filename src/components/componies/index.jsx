@@ -11,10 +11,15 @@ function FlyCompanies() {
     const flightPortArrive = useSelector((state) => state.passFlightPortArrive.flightPortArrive);
     const selectedDate = useSelector((state) => state.optionDate.selectedDate);
     const passengerInfo = useSelector((state) => state.passInfo.passengerInfo);
+    const passengerAmount = useSelector((state) => state.passAmount.passengerAmount);
 
     const dispatch = useDispatch()
 
     const navigate = useNavigate()
+
+    const totalPassenger = passengerInfo.adults + passengerInfo.children + passengerInfo
+
+    console.log('totalPassenger', totalPassenger)
 
     console.log('passengerInfo', passengerInfo)
 
@@ -36,6 +41,9 @@ function FlyCompanies() {
 
     const selectedDateTimestamp = selectedDate instanceof Date ? selectedDate.getTime() : null;
 
+    const handleMainPageClick = () => {
+        navigate('/')
+    }
 
     const handleTicketClick = (ticket) => {
         dispatch(setFlightTicket({ ...ticket, selectedDate: selectedDateTimestamp }));
@@ -46,19 +54,26 @@ function FlyCompanies() {
         <div className='flyCompanies-container'>
             <div className='flyCompanies-container__box-info'>
                 <div className='flyCompanies-container__box-info-top'>
+                    <p className='flyCompanies-container__box-info-top-p' onClick={handleMainPageClick} >YENİDEN UÇUŞ ARA</p>
                     <div className='flyCompanies-container__box-info-city' >
                         <h3>{leavePortExplanation}</h3>
                         <h3>{arrivePortExplanation}</h3>
                     </div>
                     <div className='flyCompanies-container__box-info__date' >
                         <p>Gidiş</p>
-                        {selectedDate.toDateString()}
+                        {selectedDate && selectedDate.toDateString()}
                     </div>
                 </div>
                 <div className='flyCompanies-container__box-info-bottom' >
-                    <p>{passengerInfo.adults} Yetişkin -</p>
-                    <p>{passengerInfo.children} Çocuk -</p>
-                    <p>{passengerInfo.babies} Bebek</p>
+                    <p>{passengerInfo.adults} Yetişkin </p>
+                    {passengerInfo.children > 0 &&
+                        <p> {`  - ${passengerInfo.children}  Çocuk `}</p>
+                    }
+                    {passengerInfo.babies > 0 &&
+                        <p> {` - ${passengerInfo.babies}  Bebek`} </p>
+
+                    }
+
                 </div>
             </div>
             <div className='flyCompanies-container-content'>

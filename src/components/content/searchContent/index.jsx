@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { FaPlaneDeparture, FaMapMarkerAlt, FaPlane, FaHotel } from 'react-icons/fa';
-import { Outlet } from 'react-router-dom';
 
 import SearchItem1 from './searchItem1';
 import SearchItem2 from './searchItem2';
