@@ -24,10 +24,6 @@ a {
   text-decoration: none;
 }
 
-img {
-  width: 100%;
-  display: flex;
-}
 
 body {
   font-family: "Poppins", sans-serif;
@@ -72,17 +68,6 @@ nav {
 }
 
 
-
-.radio_row{
-  margin-left: 15%;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10%;
-}
-
-.radio_group{
-  margin-left: 2%;
-}
 
 
 .path{
