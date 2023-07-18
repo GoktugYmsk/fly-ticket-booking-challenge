@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { AiOutlinePlusCircle, AiOutlineMinusCircle } from 'react-icons/ai';
+import { useDispatch } from 'react-redux';
+import { setPassengerInfo } from '../../../../configure';
 
 import './index.scss';
 
@@ -7,6 +9,8 @@ function PassengerPopup({ setPopup, setTicketAmount }) {
   const [adultCount, setAdultCount] = useState(1);
   const [childCount, setChildCount] = useState(0);
   const [babyCount, setBabyCount] = useState(0);
+
+  const dispatch = useDispatch()
 
   const handleCloseClick = () => {
     setPopup(false);
@@ -19,6 +23,7 @@ function PassengerPopup({ setPopup, setTicketAmount }) {
       babies: babyCount
     };
     console.log(UserTicketAmount);
+    dispatch(setPassengerInfo(UserTicketAmount))
     setTicketAmount(UserTicketAmount);
   }, [adultCount, childCount, babyCount, setTicketAmount]);
 

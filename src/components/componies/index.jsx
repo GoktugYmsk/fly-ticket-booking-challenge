@@ -1,13 +1,24 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import passengerInformation from '../../assets/passenger';
+import flightPorts from '../../assets/flightPorts';
 import './index.scss';
 
 function FlyCompanies() {
     const flightPort = useSelector((state) => state.passFlightPort.flightPort);
     const flightPortArrive = useSelector((state) => state.passFlightPortArrive.flightPortArrive);
+    const selectedDate = useSelector((state) => state.optionDate.selectedDate);
+    const passengerInfo = useSelector((state) => state.passInfo.passengerInfo);
 
-    const filteredDepartureLegs = passengerInformation.departureLegs.filter((item) => {
+    console.log('passengerInfo', passengerInfo)
+
+    const isLeavePort = flightPorts.ports.find((item) => item.code === flightPort);
+    const isArrivePort = flightPorts.ports.find((item) => item.code === flightPortArrive);
+
+    const leavePortExplanation = isLeavePort ? isLeavePort.explanation : '';
+    const arrivePortExplanation = isArrivePort ? isArrivePort.explanation : '';
+
+    const filteredPorts = passengerInformation.departureLegs.filter((item) => {
         return item.depPort === flightPort && item.arrPort === flightPortArrive;
     });
 
@@ -19,9 +30,26 @@ function FlyCompanies() {
 
     return (
         <div className='flyCompanies-container'>
+            <div className='flyCompanies-container__box-info'>
+                <div className='flyCompanies-container__box-info-top'>
+                    <div className='flyCompanies-container__box-info-city' >
+                        <h3>{leavePortExplanation}</h3>
+                        <h3>{arrivePortExplanation}</h3>
+                    </div>
+                    <div className='flyCompanies-container__box-info__date' >
+                        <p>Gidiş</p>
+                        {selectedDate.toDateString()}
+                    </div>
+                </div>
+                <div className='flyCompanies-container__box-info-bottom' >
+                    <p>{passengerInfo.adults} Yetişkin -</p>
+                    <p>{passengerInfo.children} Çocuk -</p>
+                    <p>{passengerInfo.babies} Bebek</p>
+                </div>
+            </div>
             <div className='flyCompanies-container-content'>
-                {filteredDepartureLegs.length > 0 ? (
-                    filteredDepartureLegs.map((item, key) => {
+                {filteredPorts.length > 0 ? (
+                    filteredPorts.map((item, key) => {
                         const depTime = new Date(`1970-01-01T${item.depTime}`);
                         const arrTime = new Date(`1970-01-01T${item.arrTime}`);
                         const flightDuration = new Date(arrTime - depTime);
@@ -63,7 +91,7 @@ function FlyCompanies() {
                     </div>
                 )}
             </div>
-        </div>
+        </div >
     );
 }
 

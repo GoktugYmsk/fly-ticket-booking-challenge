@@ -6,5 +6,7 @@ export const store = configureStore({
         passAmount: configure,
         passFlightPort: configure,
         passFlightPortArrive: configure,
+        optionDate: configure,
+        passInfo: configure,
     },
 })

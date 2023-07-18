@@ -4,29 +4,33 @@ import PassengerPopup from './popup';
 import { FaExchangeAlt } from 'react-icons/fa';
 import { FaCalendarAlt } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Button from 'react-bootstrap/Button';
 import flightPorts from '../../../../assets/flightPorts';
-import { setFlightPort, setFlightPortArrive } from '../../../configure';
+import { setFlightPort, setFlightPortArrive, setSelectedDate } from '../../../configure';
 import 'react-datetime/css/react-datetime.css';
 import './index.scss';
 
 function SearchItem1() {
+  const [popup, setPopup] = useState(false);
+  const [openPorts, setOpenPorts] = useState(false);
   const [isRoundTrip, setIsRoundTrip] = useState(false);
   const [isCalendarOpen, setIsCalendarOpen] = useState(true);
-  const [selectedDate, setSelectedDate] = useState(null);
-  const [ticketAmount, setTicketAmount] = useState({ adults: 1, children: 0, babies: 0 });
-  const [openPorts, setOpenPorts] = useState(false);
   const [openPortsWhere, setOpenPortsWhere] = useState(false);
-  const [popup, setPopup] = useState(false);
   const [selectedExplanation, setSelectedExplanation] = useState('');
+  const [selectedExplanationArrive, setSelectedExplanationArrive] = useState('');
+  const [ticketAmount, setTicketAmount] = useState({ adults: 1, children: 0, babies: 0 });
   const [selectedExplanationRight, setSelectedExplanationRight] = useState('');
+  const [renderedPorts, setRenderedPorts] = useState([]);
+  const [renderedPortsArr, setRenderedPortsArr] = useState([]);
+
+  const selectedDate = useSelector((state) => state.optionDate.selectedDate);
 
   const flightPortsData = flightPorts.ports;
 
   const navigate = useNavigate();
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const handleSwitchChange = () => {
     setIsRoundTrip(!isRoundTrip);
@@ -37,7 +41,11 @@ function SearchItem1() {
   };
 
   const handleDateChange = (date) => {
-    setSelectedDate(date._d);
+    dispatch(setSelectedDate(date._d))
+  };
+
+  const handleOpenPopup = () => {
+    setPopup(true);
   };
 
   const renderCalendar = () => {
@@ -78,10 +86,6 @@ function SearchItem1() {
     );
   };
 
-  const handleOpenPopup = () => {
-    setPopup(true);
-  };
-
   const getNextDay = () => {
     const currentDate = new Date();
     currentDate.setDate(currentDate.getDate() + 1);
@@ -111,17 +115,6 @@ function SearchItem1() {
     return monthNames[month - 1];
   };
 
-  const totalPassenger = ticketAmount.adults + ticketAmount.children + ticketAmount.babies;
-
-  const navigateToExpedition = () => {
-    if (selectedExplanation && selectedExplanationRight) {
-      sessionStorage.setItem('totalPassenger', totalPassenger);
-      navigate('/fly-companies');
-    }
-    else {
-      alert('Lütfen nerden ve nereye havaalanlarını seçin.');
-    }
-  };
 
   const renderPassengerAmount = () => {
     const childCount = ticketAmount.children;
@@ -150,42 +143,37 @@ function SearchItem1() {
     }
   };
 
-  useEffect(() => {
-    if (
-      selectedExplanation) {
-      setOpenPortsWhere(true);
-      setOpenPorts(false)
+  const totalPassenger = ticketAmount.adults + ticketAmount.children + ticketAmount.babies;
+
+  console.log(totalPassenger)
+
+  const navigateToExpedition = () => {
+    if (selectedExplanation && selectedExplanationRight) {
+      sessionStorage.setItem('totalPassenger', totalPassenger);
+      navigate('/fly-companies');
     }
-  }, [selectedExplanation])
-
-  useEffect(() => {
-    if (selectedExplanationRight) {
-      setOpenPortsWhere(false);
+    else {
+      alert('Lütfen nerden ve nereye havaalanlarını seçin.');
     }
-  }, [selectedExplanationRight])
-
-  const handlePortOpenClick = () => {
-    setOpenPorts(!openPorts);
-  };
-
-  const handlePortOpenClickRight = () => {
-    setOpenPortsWhere(!openPortsWhere);
-    setOpenPorts(false);
   };
 
   const handlePortClick = (explanationCode) => {
     const selectedPort = flightPortsData.find((port) => port.code === explanationCode);
     if (selectedPort) {
       setSelectedExplanation(selectedPort.explanation);
-      dispatch(setFlightPort(selectedPort.code))
+      dispatch(setFlightPort(selectedPort.code));
+      setOpenPortsWhere(true);
+      setOpenPorts(false);
     }
   };
 
   const handlePortClickRigth = (explanationCode) => {
     const selectedPortArrive = flightPortsData.find((port) => port.code === explanationCode);
     if (selectedPortArrive) {
+      setSelectedExplanationArrive(selectedPortArrive.explanation)
       dispatch(setFlightPortArrive(selectedPortArrive.code));
       setSelectedExplanationRight(selectedPortArrive.explanation);
+      setOpenPortsWhere(false);
     }
   };
 
@@ -197,12 +185,68 @@ function SearchItem1() {
   };
 
   useEffect(() => {
+    if (selectedExplanationRight) {
+      setOpenPortsWhere(false);
+      setOpenPorts(false);
+    }
+  }, [selectedExplanationRight]);
+
+  useEffect(() => {
+    if (selectedExplanationRight) {
+      setOpenPortsWhere(false);
+    }
+  }, [selectedExplanationRight]);
+
+  const handlePortOpenClick = () => {
+    setOpenPorts(!openPorts);
+  };
+
+  const handlePortOpenClickRight = () => {
+    setOpenPortsWhere(!openPortsWhere);
+    setOpenPorts(false);
+  };
+
+  useEffect(() => {
     document.addEventListener('mousedown', handleOutsideClick);
 
     return () => {
       document.removeEventListener('mousedown', handleOutsideClick);
     };
   }, []);
+
+  useEffect(() => {
+    const inputValue = selectedExplanation.toLowerCase();
+    const filteredPorts = flightPortsData.filter((port) =>
+      port.explanation.toLowerCase().includes(inputValue)
+    );
+
+    const updatedRenderedPorts = filteredPorts.map((port, key) => (
+      <div key={key} onClick={() => handlePortClick(port.code)}>
+        <p>{port.explanation}</p>
+      </div>
+    ));
+
+    setRenderedPorts(updatedRenderedPorts);
+  }, [selectedExplanation]);
+
+
+  useEffect(() => {
+    const inputValueArrive = selectedExplanationArrive.toLocaleLowerCase()
+    const filteredPortsArrive = flightPortsData.filter((port) =>
+      port.explanation.toLowerCase().includes(inputValueArrive));
+
+    const updatePortsArr = filteredPortsArrive.map((port, key) => (
+      <div key={key} onClick={() => handlePortClickRigth(port.code)}>
+        <p>{port.explanation}</p>
+      </div>
+    ))
+    setRenderedPortsArr(updatePortsArr)
+  }, [selectedExplanationArrive])
+
+
+  // useEffect(() => {
+  //   sessionStorage.removeItem('filteredPorts')
+  // }, [])
 
   return (
     <>
@@ -224,13 +268,13 @@ function SearchItem1() {
           <div className='searchItem-one__container-place'>
             <div onClick={handlePortOpenClick} className='searchItem-one__container-place__ports-one'>
               <p>Nerden</p>
-              <p>{selectedExplanation}</p>
+              <input value={selectedExplanation} onChange={(e) => setSelectedExplanation(e.target.value)} />
               <hr />
             </div>
             <FaExchangeAlt />
             <div onClick={handlePortOpenClickRight} className='searchItem-one__container-place__ports-one'>
               <p>Nereye</p>
-              <p>{selectedExplanationRight}</p>
+              <input value={selectedExplanationArrive} onChange={(e) => setSelectedExplanationArrive(e.target.value)} />
               <hr />
             </div>
           </div>
@@ -263,20 +307,12 @@ function SearchItem1() {
       <div className='searchItem-one__container-port'>
         {openPorts && (
           <div className='searchItem-one__container-place__ports'>
-            {flightPortsData.map((port, key) => (
-              <div key={key} onClick={() => handlePortClick(port.code)}>
-                <p>{port.explanation}</p>
-              </div>
-            ))}
+            {renderedPorts}
           </div>
         )}
         {openPortsWhere && (
           <div className='searchItem-one__container-place__ports-right'>
-            {flightPortsData.map((port, key) => (
-              <div key={key} onClick={() => handlePortClickRigth(port.code)}>
-                <p>{port.explanation}</p>
-              </div>
-            ))}
+            {renderedPortsArr}
           </div>
         )}
       </div>
