@@ -8,5 +8,6 @@ export const store = configureStore({
         passFlightPortArrive: configure,
         optionDate: configure,
         passInfo: configure,
+        passTicket: configure,
     },
 })

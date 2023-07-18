@@ -1,14 +1,20 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import passengerInformation from '../../assets/passenger';
 import flightPorts from '../../assets/flightPorts';
+import { setFlightTicket } from '../configure';
 import './index.scss';
+import { useNavigate } from 'react-router-dom';
 
 function FlyCompanies() {
     const flightPort = useSelector((state) => state.passFlightPort.flightPort);
     const flightPortArrive = useSelector((state) => state.passFlightPortArrive.flightPortArrive);
     const selectedDate = useSelector((state) => state.optionDate.selectedDate);
     const passengerInfo = useSelector((state) => state.passInfo.passengerInfo);
+
+    const dispatch = useDispatch()
+
+    const navigate = useNavigate()
 
     console.log('passengerInfo', passengerInfo)
 
@@ -27,6 +33,14 @@ function FlyCompanies() {
         const minutes = time.getUTCMinutes();
         return `${hours} saat ${minutes} dakika`;
     };
+
+    const selectedDateTimestamp = selectedDate instanceof Date ? selectedDate.getTime() : null;
+
+
+    const handleTicketClick = (ticket) => {
+        dispatch(setFlightTicket({ ...ticket, selectedDate: selectedDateTimestamp }));
+        navigate('/sales-screen')
+    }
 
     return (
         <div className='flyCompanies-container'>
@@ -56,7 +70,7 @@ function FlyCompanies() {
 
                         return (
                             <div className='flyCompanies-container-content-container' key={key}>
-                                <div className='flyCompanies-container__box'>
+                                <div onClick={() => handleTicketClick(item)} className='flyCompanies-container__box'>
                                     <div className='flyCompanies-container__box-airline'>
                                         <h4>Havayolu</h4>
                                         <p>{item.airline}</p>
