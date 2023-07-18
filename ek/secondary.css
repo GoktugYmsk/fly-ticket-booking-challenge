@@ -1,0 +1,271 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.section_container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 5rem 1rem;
+}
+
+.section_header {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #333333;
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  width: 100%;
+  display: flex;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: rgb(219, 219, 219);
+}
+
+nav {
+  background-color: #2c3855;
+  
+  margin: auto;
+  padding: 1rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.4);
+}
+
+
+.nav_logo {
+  padding-left: 9%;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #f3f4f6;
+}
+
+.nav_links {
+  padding-right: 9%;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.link a {
+  font-weight: 500;
+  color: #f3f4f6;
+  transition: 0.3s;
+}
+
+.link a:hover {
+  color: #767268;
+}
+
+
+
+.radio_row{
+  margin-left: 15%;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10%;
+}
+
+.radio_group{
+  margin-left: 2%;
+}
+
+
+.path{
+  margin-left: 17%;
+  margin-top: 1rem;
+}
+
+.search_container {
+  margin: 1rem 14rem;
+  height: 8rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 3rem 2rem 2rem 2rem;
+  border-radius: 2rem;
+  background-color: #435681;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.1);
+}
+
+.search_container form {
+  width: 100%;
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+}
+
+.search_container .input_group {
+  width: 100%;
+  position: relative;
+}
+
+.search_container label {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #f3f4f6;
+  pointer-events: none;
+  transition: 0.3s;
+}
+
+.search_container input, select {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 1rem;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  border-bottom: 1px solid #2c3855;
+  color: #f3f4f6;
+}
+
+::placeholder{
+    color:#f3f4f6 ;
+    font-size: large;
+    
+}
+
+.search_container:focus ~ label {
+  font-size: 0.8rem;
+  top: 0;
+}
+
+.search_container .form_group p {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: #f3f4f6;
+}
+
+.search_container .btn , #btn2{
+  padding: 1rem;
+  outline: none;
+  border: none;
+  font-size: 1.5rem;
+  color: white;
+  background-color: #2c3855;
+  border-radius: 100%;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.search_container .btn:hover , #btn2:hover {
+  background-color: #435681;
+}
+
+
+
+
+.flight-container {
+  margin: 1rem 10rem;
+  height: 10rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 3rem 2rem 2rem 2rem;
+  
+  border-radius: 1rem;
+  background-color: rgba(255, 255, 255, 0.7);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.1);
+}
+
+.flight-box {
+  flex: 1;
+  padding: 10px;
+}
+
+.airline-title{
+  font-weight: bold;
+  font-size: large;
+  color: #3d465c;
+}
+.airline{
+  margin-top: 5px;
+  color: #c6a74b;
+  font-size: large;
+}
+
+
+.no-title,.depart-title,.time-title,.arrive-title {
+  font-weight: bold;
+  color: #3d465c;
+}
+
+.no,.depart,.time,.arrive {
+  margin-top: 5px;
+  color: #1f1e21;
+}
+
+.price{
+  color: #1f1e21;
+  font-size:x-large
+}
+
+.flight-box span{
+
+  background-color: #7693d8;
+  padding: 2px;
+  border-radius: 10%;
+}
+
+
+
+.footer {
+    background-color: #f3f4f6;
+    margin-top: 14rem;
+  }
+  
+  .footer_container {
+    display: grid;
+    grid-template-columns: 2fr repeat(3, 1fr);
+    gap: 5rem;
+  }
+  
+  .footer_col h3 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333333;
+  }
+  
+  .footer_col h4 {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333333;
+  }
+  
+  .footer_col p {
+    margin-bottom: 1rem;
+    color: #767268;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .footer_col p:hover {
+    color: #333333;
+  }
+  
+ 
