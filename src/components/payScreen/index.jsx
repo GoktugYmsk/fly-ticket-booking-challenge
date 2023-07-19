@@ -15,6 +15,7 @@ function PayScreen() {
   const [popupActive, setPopupActive] = useState(false)
   const [expiryMonth, setExpiryMonth] = useState('');
   const [selectedOption, setSelectedOption] = useState('');
+  const [pnrNumber, setPnrNumber] = useState('');
   const [maskedCardNumber, setMaskedCardNumber] = useState('################');
 
   const flightTicket = useSelector((state) => state.passTicket.flightTicket);
@@ -78,12 +79,22 @@ function PayScreen() {
     return years;
   };
 
+  const generatePnrNumber = () => {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let pnr = '';
+    for (let i = 0; i < 6; i++) {
+      pnr += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    setPnrNumber(pnr);
+  };
+
   const handleApprovalClick = () => {
     if (cvv === '001') {
-      setPopupActive(true)
-      setPopup(true)
+      setPopupActive(true);
+      setPopup(true);
+      generatePnrNumber();
     }
-  }
+  };
 
 
   const handleMainPage = () => {
@@ -213,7 +224,7 @@ function PayScreen() {
             <Toast.Body>
               <div className='popup-content' >
                 <p>Satın alma işlemini başarıyla tamamladınız!</p>
-                <p>PNR NO: A812N</p>
+                <p>PNR NO: {pnrNumber}</p>
                 <div className='popup-content-button' >
                   <button onClick={handleMainPage} >Anasayfaya Dön</button>
                   <button  >uçuş Bilgilerimi Görüntüle</button>

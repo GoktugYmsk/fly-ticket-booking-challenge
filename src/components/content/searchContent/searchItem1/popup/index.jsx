@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { AiOutlinePlusCircle, AiOutlineMinusCircle } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
 import { setPassengerInfo } from '../../../../configure';
+import Button from '@mui/material/Button';
+import { Input } from '@mui/material';
 
 import './index.scss';
 
@@ -82,7 +84,7 @@ function PassengerPopup({ setPopup, setTicketAmount }) {
           className="passengerpopup-container__minus-icon"
           onClick={handleAdultDecrement}
         />
-        <input type="number" min="1" value={adultCount} onChange={handleAdultChange} />
+        <Input type="number" min="1" value={adultCount} onChange={handleAdultChange} />
         <AiOutlinePlusCircle
           className="passengerpopup-container__plus-icon"
           onClick={handleAdultIncrement}
@@ -94,7 +96,7 @@ function PassengerPopup({ setPopup, setTicketAmount }) {
           className="passengerpopup-container__minus-icon"
           onClick={handleChildDecrement}
         />
-        <input type="number" min="0" value={childCount} onChange={handleChildChange} />
+        <Input type="number" min="0" value={childCount} onChange={handleChildChange} />
         <AiOutlinePlusCircle
           className="passengerpopup-container__plus-icon"
           onClick={handleChildIncrement}
@@ -106,13 +108,13 @@ function PassengerPopup({ setPopup, setTicketAmount }) {
           className="passengerpopup-container__minus-icon"
           onClick={handleBabyDecrement}
         />
-        <input type="number" min="0" value={babyCount} onChange={handleBabyChange} />
+        <Input type="number" min="0" value={babyCount} onChange={handleBabyChange} />
         <AiOutlinePlusCircle
           className="passengerpopup-container__plus-icon"
           onClick={handleBabyIncrement}
         />
       </div>
-      <button onClick={handleCloseClick}>Tamam</button>
+      <Button onClick={handleCloseClick}>Tamam</Button>
     </div>
   );
 }
