@@ -1,127 +1,198 @@
-.payScreen-container {
-    background: rgb(65, 94, 134);
+.payScreen__container-navbar {
+    nav {
+        display: flex;
+        width: 100%;
+        background: rgb(74, 204, 255);
+
+        img {
+            width: 300px;
+            height: 100px;
+            cursor: pointer;
+        }
+    }
+
+    .payScreen__container-navbar-alt {
+        display: flex;
+
+        h3 {
+            margin-left: 100px;
+        }
+    }
+}
+
+.payScreen__container-opacity {
+    opacity: 0.2;
+}
+
+.payScreen-container-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: red;
     height: 100vh;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
 
-    .payScreen-container-h3 {
+    .payScreen-container__paySide {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 120px;
+        width: 100%;
+
+        .payScreen-container-h3 {
+            font-size: 20px;
+            background: red;
+        }
+
+    }
+
+    .payScreen-container-cardForm {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        height: 600px;
+        width: 650px;
+        margin-top: 160px;
+        padding: 20px;
+        background: white;
+
+        .payScreen-container-cardForm-frontContent {
+            display: flex;
+            gap: 20px;
+            position: relative;
+            bottom: 100px;
+        }
+
+        .payScreen-container-box__installment {
+            display: flex;
+            position: relative;
+            flex-direction: column;
+            right: 140px;
+            bottom: 80px;
+
+            .payScreen-container-box__installment-inputGroup {
+                display: flex;
+                gap: 30px;
+            }
+        }
+
+        .payScreen-container-cardForm-check {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 40px;
+        }
+    }
+
+    .payScreen-card {
         position: relative;
-        left: 200px;
-        background: red;
+        bottom: 150px;
+        width: 500px;
+        height: 300px;
+        perspective: 1000px;
     }
-}
 
-.payScreen-container-cardForm {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    height: 400px;
-    width: 650px;
-    background: white;
-}
-
-.payScreen-card {
-    position: relative;
-    bottom: 150px;
-    width: 500px;
-    height: 300px;
-    perspective: 1000px;
-}
-
-.payScreen-card__front,
-.payScreen-card__back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    transition: transform 0.8s;
-}
-
-.payScreen-card__front {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background: rgb(13, 7, 85);
-    border-radius: 20px;
-    padding: 20px;
-
-    .payScreen-card__front-number {
-        font-size: 20px;
+    .payScreen-card__front,
+    .payScreen-card__back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        color: white;
+        backface-visibility: hidden;
+        transition: transform 0.8s;
     }
-}
 
-.payScreen-card__back {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background: rgb(13, 7, 85);
-    transform: rotateY(180deg);
-    border-radius: 20px;
-    padding: 20px;
+    .payScreen-card__front {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: rgb(13, 7, 85);
+        border-radius: 20px;
+        padding: 20px;
 
-    .payScreen-card__back__bant {
+        .payScreen-card__front-number {
+            font-size: 20px;
+        }
+    }
+
+    .payScreen-card__back {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: rgb(13, 7, 85);
+        transform: rotateY(180deg);
+        border-radius: 20px;
+        padding: 20px;
+
+        .payScreen-card__back__bant {
+            display: flex;
+            position: relative;
+            bottom: 40px;
+            height: 60px;
+            background-color: black;
+            width: 500px;
+        }
+
+        .payScreen-card__back-input {
+            width: 400px;
+        }
+    }
+
+
+    .payScreen-card.flipped .payScreen-card__front {
+        transform: rotateY(180deg);
+    }
+
+    .payScreen-card.flipped .payScreen-card__back {
+        transform: rotateY(0deg);
+    }
+
+    .payScreen-card form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .payScreen-card label {
+        margin-bottom: 10px;
+    }
+
+    .payScreen-card input {
+        width: 100%;
+        padding: 5px;
+        margin-bottom: 10px;
+    }
+
+    .payScreen-card button {
+        padding: 10px 20px;
+        background: rgb(0, 123, 255);
+        color: white;
+        border: none;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+
+    .payScreen-card button[type='button'] {
+        background: rgb(65, 94, 134);
+    }
+
+    .payScreen-container-cvvSide {
         display: flex;
         position: relative;
-        bottom: 40px;
-        height: 60px;
-        background-color: black;
-        width: 500px;
+        bottom: 120px;
     }
 
-    .payScreen-card__back-input {
-        width: 400px;
-    }
 }
 
-
-.payScreen-card.flipped .payScreen-card__front {
-    transform: rotateY(180deg);
-}
-
-.payScreen-card.flipped .payScreen-card__back {
-    transform: rotateY(0deg);
-}
-
-.payScreen-card form {
+.toast-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+    position: fixed;
+    top: 50%;
+    left: 40%;
+    background: red;
 
-.payScreen-card label {
-    margin-bottom: 10px;
-}
-
-.payScreen-card input {
-    width: 100%;
-    padding: 5px;
-    margin-bottom: 10px;
-}
-
-.payScreen-card button {
-    padding: 10px 20px;
-    background: rgb(0, 123, 255);
-    color: white;
-    border: none;
-    cursor: pointer;
-    margin-top: 10px;
-}
-
-.payScreen-card button[type='button'] {
-    background: rgb(65, 94, 134);
-}
-
-.payScreen-container-cvvSide {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-
-    .approvalButton {
-        color: black;
+    .popup-content {
+        background: red;
     }
 }
