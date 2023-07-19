@@ -1,22 +1,27 @@
-import React from 'react'
-import { useSelector } from 'react-redux';
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-
+import { setPassSurname } from '../configure';
 import './index.scss'
 
 function SalesScreen() {
-
+    const [surname, setSurname] = useState('')
     const flightTicket = useSelector((state) => state.passTicket.flightTicket);
 
     const totalPassenger = sessionStorage.getItem('totalPassenger')
 
-
+    const dispatch = useDispatch()
     const navigate = useNavigate()
 
     console.log('flightTicket', flightTicket)
 
     const handlePayScreenClick = () => {
+        dispatch(setPassSurname(surname))
         navigate('/pay-screen')
+    }
+
+    const handleSurnameChange = (e) => {
+        setSurname(e.target.value)
     }
 
     const totalPrice = flightTicket.priceDetail.basePrice.amount * totalPassenger
@@ -51,7 +56,7 @@ function SalesScreen() {
                     </div>
                     <div className='passenger-rightInfo' >
                         <input placeholder='İsim ' />
-                        <input placeholder='Soyisim' />
+                        <input onChange={handleSurnameChange} placeholder='Soyisim' />
                         <input placeholder='Doğum Tarihi' />
                         <input placeholder='TC Kimlik no' />
                         <div className='passenger-rightInfo-detail' >

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Toast from 'react-bootstrap/Toast';
 import Button from '@mui/material/Button';
+import { setPnrCode } from '../configure';
 import './index.scss';
 
 function PayScreen() {
@@ -19,8 +20,13 @@ function PayScreen() {
   const [maskedCardNumber, setMaskedCardNumber] = useState('################');
 
   const flightTicket = useSelector((state) => state.passTicket.flightTicket);
+  const pnrCode = useSelector((state) => state.passCheck.pnrCode);
+
+  console.log('denemePnr', pnrCode)
 
   const navigate = useNavigate()
+
+  const dispatch = useDispatch()
 
   const totalPassenger = sessionStorage.getItem('totalPassenger')
 
@@ -86,6 +92,7 @@ function PayScreen() {
       pnr += characters.charAt(Math.floor(Math.random() * characters.length));
     }
     setPnrNumber(pnr);
+    dispatch(setPnrCode(pnr))
   };
 
   const handleApprovalClick = () => {

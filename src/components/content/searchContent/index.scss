@@ -23,8 +23,6 @@
             cursor: pointer;
             border-radius: 40px 40px 0 0;
 
-
-
             .SearchContent-container__menu-Item__one {
                 background: rgb(255, 204, 0);
                 width: 250px;
@@ -40,6 +38,7 @@
                 background: rgb(255, 204, 0);
                 width: 250px;
                 opacity: 0.6;
+
                 &:hover {
                     background: rgb(255, 179, 0);
                 }
@@ -49,6 +48,7 @@
                 background: rgb(255, 204, 0);
                 width: 250px;
                 opacity: 0.6;
+
                 &:hover {
                     background: rgb(255, 179, 0);
                 }
@@ -59,6 +59,7 @@
                 width: 250px;
                 border-radius: 0 40px 0 0;
                 opacity: 0.6;
+
                 &:hover {
                     background: rgb(255, 179, 0);
                 }

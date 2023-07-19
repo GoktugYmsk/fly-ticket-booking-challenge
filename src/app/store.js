@@ -9,5 +9,6 @@ export const store = configureStore({
         optionDate: configure,
         passInfo: configure,
         passTicket: configure,
+        passCheck: configure,
     },
 })
