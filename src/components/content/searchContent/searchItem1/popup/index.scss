@@ -1,3 +1,9 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .passengerpopup-container{
     display: flex;
     position: relative;
@@ -5,16 +11,19 @@
     align-items: center;
     left: 630px;
     width: 320px;
-    background: red;
+    background: rgb(120, 132, 161);
+    color: white;
+    border-radius: 10px;
 
     button{
         width: 100px;
         border-style: none;
+        color: white;
     }
 
     .passengerpopup-container-p{
         width: 200px;
-        font-weight: 600;
+        font-weight: 400;
     }
     .passengerpopup-container__plus-icon{
         cursor: pointer;
@@ -32,6 +41,7 @@
             width: 40px;
             height: 40px;
             outline: none;
+            color: white;
         }
     }
     .passengerpopup-container__child{
@@ -43,6 +53,7 @@
             width: 40px;
             height: 40px;
             outline: none;
+            color: white;
         }
     }
     .passengerpopup-container__baby{
@@ -54,6 +65,7 @@
             width: 40px;
             height: 40px;
             outline: none;
+            color: white;
         }
     }
 }
