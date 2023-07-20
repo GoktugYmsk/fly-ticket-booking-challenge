@@ -9,6 +9,7 @@ function ShoppingSummary() {
     const flightTicket = useSelector((state) => state.passTicket.flightTicket);
     const passengerInfo = useSelector((state) => state.passInfo.passengerInfo);
     const passSurname = useSelector((state) => state.passCheck.passSurname);
+    const passName = useSelector((state) => state.passCheck.passName);
 
     const navigate = useNavigate()
 
@@ -46,6 +47,8 @@ function ShoppingSummary() {
                     </div>
 
                     <div className='shoppingSummary-container-box__list-top' >
+                        <p>Adı: {passName}</p>
+                        <p>Soyadı: {passSurname}</p>
                         <p>{passengerInfo.adults} Yetişkin </p>
                         {passengerInfo.children > 0 &&
                             <p> {`  - ${passengerInfo.children}  Çocuk `}</p>

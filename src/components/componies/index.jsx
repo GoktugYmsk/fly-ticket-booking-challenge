@@ -40,6 +40,7 @@ function FlyCompanies() {
     };
 
     const selectedDateTimestamp = selectedDate instanceof Date ? selectedDate.getTime() : null;
+    const selectedDateFormatted = selectedDate instanceof Date ? selectedDate.toDateString() : '';
 
     const handleMainPageClick = () => {
         navigate('/')
@@ -61,7 +62,7 @@ function FlyCompanies() {
                     </div>
                     <div className='flyCompanies-container__box-info__date' >
                         <p>Gidiş</p>
-                        {selectedDate && selectedDate.toDateString()}
+                        {selectedDateFormatted}
                     </div>
                 </div>
                 <div className='flyCompanies-container__box-info-bottom' >

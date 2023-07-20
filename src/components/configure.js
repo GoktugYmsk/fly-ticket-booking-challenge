@@ -7,6 +7,7 @@ const initialState = {
     selectedDate: '',
     passengerInfo: {},
     flightTicket: '',
+    passName: '',
     passSurname: '',
     pnrCode: '',
 }
@@ -39,9 +40,12 @@ export const configure = createSlice({
         setPnrCode: (state, action) => {
             state.pnrCode = action.payload;
         },
+        setPassName: (state, action) => {
+            state.passName = action.payload;
+        },
     }
 })
 
-export const { setPassengerAmount, setFlightPort, setFlightPortArrive, setSelectedDate, setPassengerInfo, setFlightTicket, setPassSurname, setPnrCode } = configure.actions
+export const { setPassengerAmount, setFlightPort, setFlightPortArrive, setSelectedDate, setPassengerInfo, setFlightTicket, setPassSurname, setPnrCode, setPassName } = configure.actions
 
 export default configure.reducer

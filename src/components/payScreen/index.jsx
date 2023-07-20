@@ -109,6 +109,10 @@ function PayScreen() {
     navigate('/')
   }
 
+  const handleSummaryClick = () => {
+    navigate('/shopping-summary')
+  }
+
 
   const logo =
     'https://uploads-ssl.webflow.com/605c9d764f1ef938a009ac98/61e01bfbdd8632a72962edc2_Pinsoft_Yatay_Logo_mavi-for%20animation.svg';
@@ -234,7 +238,7 @@ function PayScreen() {
                 <p>PNR NO: {pnrNumber}</p>
                 <div className='popup-content-button' >
                   <button onClick={handleMainPage} >Anasayfaya Dön</button>
-                  <button  >uçuş Bilgilerimi Görüntüle</button>
+                  <button onClick={handleSummaryClick} >uçuş Bilgilerimi Görüntüle</button>
                 </div>
               </div>
             </Toast.Body>

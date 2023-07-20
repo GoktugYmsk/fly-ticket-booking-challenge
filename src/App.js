@@ -8,6 +8,7 @@ import Login from './components/content/login';
 import Expedition from './components/expedition';
 import FlyCompanies from './components/componies';
 import SalesScreen from './components/salesScreen';
+import ShoppingSummary from './components/content/shoppingSummary';
 import './App.css';
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route path="/pay-screen" element={<PayScreen />} />
         <Route path="/fly-companies" element={<FlyCompanies />} />
         <Route path="/sales-screen" element={<SalesScreen />} />
+        <Route path="/shopping-summary" element={<ShoppingSummary />} />
       </Routes>
     </div >
   );

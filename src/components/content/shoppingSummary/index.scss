@@ -1,0 +1,64 @@
+.shoppingSummary-container {
+    display: flex;
+    flex-direction: column;
+
+    .shoppingSummary__container-navbar {
+        nav {
+            display: flex;
+            width: 100%;
+            background: rgb(74, 204, 255);
+
+            img {
+                width: 300px;
+                height: 100px;
+                cursor: pointer;
+            }
+        }
+
+        .shoppingSummary__container-navbar-alt {
+            display: flex;
+
+            h3 {
+                margin-left: 100px;
+            }
+        }
+    }
+
+    .shoppingSummary-container-box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background: red;
+        height: 100vh;
+
+        h4 {
+            cursor: pointer;
+
+            &:hover {
+                background: green;
+            }
+        }
+    }
+
+    .shoppingSummary-container-box__list {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        height: 300px;
+        width: 80%;
+        background: green;
+
+        .shoppingSummary-container-box__list-top {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+
+            p {
+                font-size: 30px;
+            }
+        }
+    }
+}
