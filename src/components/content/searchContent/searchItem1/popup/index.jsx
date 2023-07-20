@@ -19,14 +19,14 @@ function PassengerPopup({ setPopup, setTicketAmount }) {
   };
 
   useEffect(() => {
-    const UserTicketAmount = {
+    const userTicketAmount = {
       adults: adultCount,
       children: childCount,
       babies: babyCount
     };
-    console.log(UserTicketAmount);
-    dispatch(setPassengerInfo(UserTicketAmount))
-    setTicketAmount(UserTicketAmount);
+    console.log(userTicketAmount);
+    dispatch(setPassengerInfo(userTicketAmount))
+    setTicketAmount(userTicketAmount);
   }, [adultCount, childCount, babyCount, setTicketAmount]);
 
   const handleAdultIncrement = () => {

@@ -1,3 +1,25 @@
+.sales__container-navbar {
+    nav {
+        display: flex;
+        width: 100%;
+        background: rgb(74, 204, 255);
+
+        img {
+            width: 300px;
+            height: 100px;
+            cursor: pointer;
+        }
+    }
+
+    .sales__container-navbar-alt {
+        display: flex;
+
+        h3 {
+            margin-left: 100px;
+        }
+    }
+}
+
 .salesScreen-container {
     display: flex;
     align-items: center;
