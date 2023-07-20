@@ -109,8 +109,7 @@ function SalesScreen() {
         <nav>
             <div className="nav_logo">Some Booking Inc.</div>
             <ul className="nav_links">
-                <li className="link"><a href="#">Home</a></li>
-                    {/*onclick handle main page ekle*/}
+                <li className="link" onClick={handleMainPage}><a href="#">Home</a></li>
                 <li className="link"><a href="#">Book</a></li>
                 <li className="link"><a href="#">Blog</a></li>
                 <li className="link"><a href="#">Contact Us</a></li>
@@ -163,11 +162,11 @@ function SalesScreen() {
                 </div>
             </div>
             <div className="flight-box">
-                <div className="no-title">First Name:</div>
+                <div className="no-title" onClick={handleNameChange}>First Name:</div>
                 <div className="no"><input type="text" id="first-name" name="first-name" required/></div>
             </div>
             <div className="flight-box">
-                <div className="depart-title">Last Name:</div>
+                <div className="depart-title" onClick={handleSurnameChange}>Last Name:</div>
                 <div className="depart"><input type="text" id="last-name" name="last-name" required/></div>
             </div>
             <div className="flight-box">
