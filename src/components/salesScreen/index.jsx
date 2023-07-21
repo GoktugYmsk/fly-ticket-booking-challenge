@@ -5,13 +5,14 @@ import { setPassName, setPassSurname, setPassengerInfo } from '../configure';
 import './index.scss';
 
 function SalesScreen() {
-    const [name, setName] = useState('');
-    const [surname, setSurname] = useState('');
+    const [name, setName] = useState([]);
+    const [surname, setSurname] = useState([]);
     const [adultCount, setAdultCount] = useState(1);
     const [childCount, setChildCount] = useState(0);
     const [babyCount, setBabyCount] = useState(0);
     const flightTicket = useSelector((state) => state.passTicket.flightTicket);
     const passengerInfo = useSelector((state) => state.passInfo.passengerInfo);
+    const passName = useSelector((state) => state.passCheck.passName);
 
     const totalPassenger = sessionStorage.getItem('totalPassenger');
 
@@ -21,17 +22,20 @@ function SalesScreen() {
     console.log('flightTicket', flightTicket);
 
     const handlePayScreenClick = () => {
-        dispatch(setPassName(name));
-        dispatch(setPassSurname(surname));
+        const combinedNames = passName.concat(name);
+        dispatch(setPassName(combinedNames));
+        dispatch(setPassSurname([...surname]));
         navigate('/pay-screen');
     };
 
     const handleSurnameChange = (e) => {
-        setSurname(e.target.value);
+        const updateName = [...e.target.value, name]
+        setSurname(updateName);
     };
 
     const handleNameChange = (e) => {
-        setName(e.target.value);
+        const updateSurname = [...e.target.value, surname]
+        setName(updateSurname);
     };
 
     const totalPrice = flightTicket.priceDetail.basePrice.amount * totalPassenger;

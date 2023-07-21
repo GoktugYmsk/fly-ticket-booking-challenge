@@ -11,9 +11,11 @@ function ShoppingSummary() {
     const passSurname = useSelector((state) => state.passCheck.passSurname);
     const passName = useSelector((state) => state.passCheck.passName);
 
+    console.log('passName', passName)
+
     const navigate = useNavigate()
 
-    console.log('flightTicket', flightTicket)
+    console.log('passengerInfo', passengerInfo)
 
     const totalPassenger = sessionStorage.getItem('totalPassenger')
 
@@ -47,7 +49,7 @@ function ShoppingSummary() {
                     </div>
 
                     <div className='shoppingSummary-container-box__list-top' >
-                        <p>Adı: {passName}</p>
+                        <p>Adı: {passName}  </p>
                         <p>Soyadı: {passSurname}</p>
                         <p>{passengerInfo.adults} Yetişkin </p>
                         {passengerInfo.children > 0 &&

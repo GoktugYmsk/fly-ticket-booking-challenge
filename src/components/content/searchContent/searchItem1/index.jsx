@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from 'react-bootstrap/Button';
 import flightPorts from '../../../../assets/flightPorts';
-import { setFlightPort, setFlightPortArrive, setSelectedDate } from '../../../configure';
+import { setFlightPort, setFlightPortArrive, setSelectedDate, setReturnDate } from '../../../configure';
 import 'react-datetime/css/react-datetime.css';
 import './index.scss';
 
@@ -24,10 +24,10 @@ function SearchItem1() {
   const [renderedPorts, setRenderedPorts] = useState([]);
   const [renderedPortsArr, setRenderedPortsArr] = useState([]);
 
-
   const selectedDate = useSelector((state) => state.optionDate.selectedDate);
+  const returnDate = useSelector((state) => state.optionDate.returnDate);
 
-  console.log('selectedDate', selectedDate)
+  console.log('selectedDate', returnDate)
 
   const flightPortsData = flightPorts.ports;
 
@@ -46,6 +46,10 @@ function SearchItem1() {
   const handleDateChange = (date) => {
     dispatch(setSelectedDate(date._d))
   };
+
+  const handleDateChangeArrive = (date) => {
+    dispatch(setReturnDate(date._d))
+  }
 
   const handleOpenPopup = () => {
     setPopup(true);
@@ -89,6 +93,44 @@ function SearchItem1() {
     );
   };
 
+  const renderCalendarRight = () => {
+    const currentMonth = new Date().getMonth() + 1;
+    const nextMonth = currentMonth === 12 ? 1 : currentMonth + 1;
+
+    const isValidDate = (current) => {
+      const currentDate = new Date();
+      const currentMonth = currentDate.getMonth() + 1;
+      const nextMonth = currentMonth === 12 ? 1 : currentMonth + 1;
+
+      return (
+        current.toDate().getMonth() === currentMonth - 1 ||
+        current.toDate().getMonth() === nextMonth - 1
+      ) && current.toDate() >= currentDate;
+    };
+
+    return (
+      <div className='calendar'>
+        <DateTime
+          required
+          value={getNextDay() || selectedDate}
+          onChange={handleDateChangeArrive}
+          dateFormat='DD/MM/YYYY'
+          timeFormat={false}
+          closeOnSelect
+          viewMode='months'
+          isValidDate={isValidDate}
+          renderMonth={(props, month, year) => (
+            <div {...props}>
+              {month === currentMonth || month === nextMonth ? (
+                <div>{`${month}/${year}`}</div>
+              ) : null}
+            </div>
+          )}
+        />
+      </div>
+    );
+  };
+
   const getNextDay = () => {
     const currentDate = new Date();
     currentDate.setDate(currentDate.getDate());
@@ -98,8 +140,6 @@ function SearchItem1() {
 
     return `${nextDay} ${getMonthName(nextMonth)} ${nextYear}`;
   };
-
-
 
   useEffect(() => {
     dispatch(setSelectedDate(new Date()));
@@ -123,7 +163,6 @@ function SearchItem1() {
 
     return monthNames[month - 1];
   };
-
 
   const renderPassengerAmount = () => {
     const childCount = ticketAmount.children;
@@ -292,7 +331,7 @@ function SearchItem1() {
             <div className='searchItem-one__container-return'>
               <FaCalendarAlt />
               <p>{isRoundTrip ? 'Gidiş-Dönüş' : 'Tek Yön'}</p>
-              {isRoundTrip && renderCalendar()}
+              {isRoundTrip && renderCalendarRight()}
             </div>
           </div>
           <div className='searchItem-one__container-passenger-amount'>
