@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import passengerInformation from '../../assets/passenger';
 import flightPorts from '../../assets/flightPorts';
@@ -9,19 +9,12 @@ import { useNavigate } from 'react-router-dom';
 function FlyCompanies() {
     const flightPort = useSelector((state) => state.passFlightPort.flightPort);
     const flightPortArrive = useSelector((state) => state.passFlightPortArrive.flightPortArrive);
-    const selectedDate = useSelector((state) => state.optionDate.selectedDate);
     const passengerInfo = useSelector((state) => state.passInfo.passengerInfo);
-    const passengerAmount = useSelector((state) => state.passAmount.passengerAmount);
+    const selectedDate = useSelector((state) => state.optionDateDepp.selectedDate);
+    const returnDate = useSelector((state) => state.optionDateArr.returnDate);
 
-    const dispatch = useDispatch()
-
-    const navigate = useNavigate()
-
-    const totalPassenger = passengerInfo.adults + passengerInfo.children + passengerInfo
-
-    console.log('totalPassenger', totalPassenger)
-
-    console.log('passengerInfo', passengerInfo)
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const isLeavePort = flightPorts.ports.find((item) => item.code === flightPort);
     const isArrivePort = flightPorts.ports.find((item) => item.code === flightPortArrive);
@@ -40,41 +33,55 @@ function FlyCompanies() {
     };
 
     const selectedDateTimestamp = selectedDate instanceof Date ? selectedDate.getTime() : null;
-    const selectedDateFormatted = selectedDate instanceof Date ? selectedDate.toDateString() : '';
+
+    const [formattedSelectedDate, setFormattedSelectedDate] = useState('');
+    const [formattedReturnDate, setFormattedReturnDate] = useState('');
+
+    useEffect(() => {
+        const selectedDateFormatted = selectedDate instanceof Date ? selectedDate.toDateString() : '';
+        setFormattedSelectedDate(selectedDateFormatted);
+
+        const returnDateFormatted = returnDate instanceof Date ? returnDate.toDateString() : '';
+        setFormattedReturnDate(returnDateFormatted);
+    }, [selectedDate, returnDate]);
 
     const handleMainPageClick = () => {
-        navigate('/')
-    }
+        navigate('/');
+    };
 
     const handleTicketClick = (ticket) => {
         dispatch(setFlightTicket({ ...ticket, selectedDate: selectedDateTimestamp }));
-        navigate('/sales-screen')
-    }
+        navigate('/sales-screen');
+    };
 
     return (
         <div className='flyCompanies-container'>
             <div className='flyCompanies-container__box-info'>
                 <div className='flyCompanies-container__box-info-top'>
-                    <p className='flyCompanies-container__box-info-top-p' onClick={handleMainPageClick} >YENİDEN UÇUŞ ARA</p>
-                    <div className='flyCompanies-container__box-info-city' >
+                    <p className='flyCompanies-container__box-info-top-p' onClick={handleMainPageClick}>
+                        YENİDEN UÇUŞ ARA
+                    </p>
+                    <div className='flyCompanies-container__box-info-city'>
                         <h3>{leavePortExplanation}</h3>
                         <h3>{arrivePortExplanation}</h3>
                     </div>
-                    <div className='flyCompanies-container__box-info__date' >
-                        <p>Gidiş</p>
-                        {selectedDateFormatted}
+                    <div className='flyCompanies-container__box-info__date'>
+                        <div className='flyCompanies-container__box-info__date-depp'>
+                            <p>Gidiş</p>
+                            {formattedSelectedDate}
+                        </div>
+                        {returnDate && (
+                            <div className='flyCompanies-container__box-info__date-return'>
+                                <p>Dönüş</p>
+                                {formattedReturnDate}
+                            </div>
+                        )}
                     </div>
                 </div>
-                <div className='flyCompanies-container__box-info-bottom' >
+                <div className='flyCompanies-container__box-info-bottom'>
                     <p>{passengerInfo.adults} Yetişkin </p>
-                    {passengerInfo.children > 0 &&
-                        <p> {`  - ${passengerInfo.children}  Çocuk `}</p>
-                    }
-                    {passengerInfo.babies > 0 &&
-                        <p> {` - ${passengerInfo.babies}  Bebek`} </p>
-
-                    }
-
+                    {passengerInfo.children > 0 && <p> {`  - ${passengerInfo.children}  Çocuk `}</p>}
+                    {passengerInfo.babies > 0 && <p> {` - ${passengerInfo.babies}  Bebek`} </p>}
                 </div>
             </div>
             <div className='flyCompanies-container-content'>
@@ -121,7 +128,7 @@ function FlyCompanies() {
                     </div>
                 )}
             </div>
-        </div >
+        </div>
     );
 }
 

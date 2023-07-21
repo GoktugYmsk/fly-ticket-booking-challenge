@@ -24,8 +24,8 @@ function SearchItem1() {
   const [renderedPorts, setRenderedPorts] = useState([]);
   const [renderedPortsArr, setRenderedPortsArr] = useState([]);
 
-  const selectedDate = useSelector((state) => state.optionDate.selectedDate);
-  const returnDate = useSelector((state) => state.optionDate.returnDate);
+  const selectedDate = useSelector((state) => state.optionDateDepp.selectedDate);
+  const returnDate = useSelector((state) => state.optionDateArr.returnDate);
 
   console.log('selectedDate', returnDate)
 

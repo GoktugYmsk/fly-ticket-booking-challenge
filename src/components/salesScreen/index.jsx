@@ -5,51 +5,48 @@ import { setPassName, setPassSurname, setPassengerInfo } from '../configure';
 import './index.scss';
 
 function SalesScreen() {
-    const [name, setName] = useState([]);
-    const [surname, setSurname] = useState([]);
     const [adultCount, setAdultCount] = useState(1);
     const [childCount, setChildCount] = useState(0);
     const [babyCount, setBabyCount] = useState(0);
     const flightTicket = useSelector((state) => state.passTicket.flightTicket);
     const passengerInfo = useSelector((state) => state.passInfo.passengerInfo);
     const passName = useSelector((state) => state.passCheck.passName);
+    const passSurname = useSelector((state) => state.passCheck.passSurname);
+
+    console.log('passName', passName)
 
     const totalPassenger = sessionStorage.getItem('totalPassenger');
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    console.log('flightTicket', flightTicket);
+    const handleNameChange = (e, passengerIndex) => {
+        const newName = e.target.value;
+        const currentPassNames = [...passName];
+        currentPassNames[passengerIndex - 1] = newName;
+        dispatch(setPassName(currentPassNames));
+    };
+
+    const handleSurnameChange = (e, passengerIndex) => {
+        const newSurname = e.target.value;
+        const currentPassSurnames = [...passSurname];
+        currentPassSurnames[passengerIndex - 1] = newSurname;
+        dispatch(setPassSurname(currentPassSurnames));
+    }
 
     const handlePayScreenClick = () => {
-        const combinedNames = passName.concat(name);
-        dispatch(setPassName(combinedNames));
-        dispatch(setPassSurname([...surname]));
         navigate('/pay-screen');
     };
 
-    const handleSurnameChange = (e) => {
-        const updateName = [...e.target.value, name]
-        setSurname(updateName);
-    };
-
-    const handleNameChange = (e) => {
-        const updateSurname = [...e.target.value, surname]
-        setName(updateSurname);
-    };
-
     const totalPrice = flightTicket.priceDetail.basePrice.amount * totalPassenger;
-
-    console.log('totalPrice', totalPrice);
 
     const renderPassengerDetails = () => {
         const passengerDetails = [];
         const passengerCounts = [passengerInfo.adults, passengerInfo.children, passengerInfo.babies];
 
-        console.log('passengerCounts', passengerCounts)
-
         for (let i = 0; i < passengerCounts.length; i++) {
             for (let j = 1; j <= passengerCounts[i]; j++) {
+                const passengerIndex = passengerCounts.slice(0, i).reduce((acc, count) => acc + count, 0) + j;
                 let passengerType = '';
                 switch (i) {
                     case 0:
@@ -66,15 +63,15 @@ function SalesScreen() {
                 }
 
                 passengerDetails.push(
-                    <div key={j} className='salesScreen-container-content__box__passDetail'>
+                    <div key={passengerIndex} className='salesScreen-container-content__box__passDetail'>
                         <div className='passenger-leftInfo'>
                             <h3>{`${j}. ${passengerType}`}</h3>
                             <input type='radio' />
                             <input type='radio' />
                         </div>
                         <div className='passenger-rightInfo'>
-                            <input onChange={handleNameChange} placeholder='İsim ' />
-                            <input onChange={handleSurnameChange} placeholder='Soyisim' />
+                            <input onChange={(e) => handleNameChange(e, passengerIndex)} placeholder='İsim' />
+                            <input onChange={(e) => handleSurnameChange(e, passengerIndex)} placeholder='Soyisim' />
                             <input placeholder='Doğum Tarihi' />
                             <input placeholder='TC Kimlik no' />
                             <div className='passenger-rightInfo-detail'>
@@ -96,22 +93,20 @@ function SalesScreen() {
     };
 
     const handleMainPage = () => {
-        dispatch(setPassengerInfo(userTicketAmount))
-        navigate('/')
-    }
-
+        dispatch(setPassengerInfo(userTicketAmount));
+        navigate('/');
+    };
 
     const logo =
         'https://uploads-ssl.webflow.com/605c9d764f1ef938a009ac98/61e01bfbdd8632a72962edc2_Pinsoft_Yatay_Logo_mavi-for%20animation.svg';
 
-
     return (
         <>
-            <div className="sales__container-navbar" >
-                <nav >
+            <div className='sales__container-navbar'>
+                <nav>
                     <img onClick={handleMainPage} src={logo} />
                 </nav>
-                <div className='sales__container-navbar-alt' >
+                <div className='sales__container-navbar-alt'>
                     <h3>Ödeme Bilgileri</h3>
                 </div>
             </div>

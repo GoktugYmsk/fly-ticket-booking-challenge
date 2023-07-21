@@ -9,7 +9,8 @@ const rootReducer = combineReducers({
     passAmount: configure,
     passFlightPort: configure,
     passFlightPortArrive: configure,
-    optionDate: configure,
+    optionDateDepp: configure,
+    optionDateArr: configure,
     passInfo: configure,
     passTicket: configure,
     passCheck: configure,
@@ -18,7 +19,7 @@ const rootReducer = combineReducers({
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist: ['passAmount', 'passFlightPort', 'passFlightPortArrive', 'optionDate', 'passInfo', 'passTicket', 'passCheck'],
+    whitelist: ['passAmount', 'passFlightPort', 'passFlightPortArrive', 'optionDateDepp', 'optionDateArr', 'passInfo', 'passTicket', 'passCheck'],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

@@ -4,12 +4,12 @@ const initialState = {
     passengerAmount: {},
     flightPort: '',
     flightPortArrive: null,
-    selectedDate: '',
     passengerInfo: {},
     flightTicket: '',
     passName: [],
     passSurname: [],
-    pnrCode: '',
+    pnrCode: [],
+    selectedDate: '',
     returnDate: '',
 }
 
