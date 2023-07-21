@@ -7,47 +7,48 @@ import './third.css';
 import './secondary.css';
 
 function SalesScreen() {
-    const [name, setName] = useState('');
-    const [surname, setSurname] = useState('');
     const [adultCount, setAdultCount] = useState(1);
     const [childCount, setChildCount] = useState(0);
     const [babyCount, setBabyCount] = useState(0);
     const flightTicket = useSelector((state) => state.passTicket.flightTicket);
     const passengerInfo = useSelector((state) => state.passInfo.passengerInfo);
+    const passName = useSelector((state) => state.passCheck.passName);
+    const passSurname = useSelector((state) => state.passCheck.passSurname);
+
+    console.log('passName', passName)
 
     const totalPassenger = sessionStorage.getItem('totalPassenger');
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    console.log('flightTicket', flightTicket);
+    const handleNameChange = (e, passengerIndex) => {
+        const newName = e.target.value;
+        const currentPassNames = [...passName];
+        currentPassNames[passengerIndex - 1] = newName;
+        dispatch(setPassName(currentPassNames));
+    };
+
+    const handleSurnameChange = (e, passengerIndex) => {
+        const newSurname = e.target.value;
+        const currentPassSurnames = [...passSurname];
+        currentPassSurnames[passengerIndex - 1] = newSurname;
+        dispatch(setPassSurname(currentPassSurnames));
+    }
 
     const handlePayScreenClick = () => {
-        dispatch(setPassName(name));
-        dispatch(setPassSurname(surname));
         navigate('/pay-screen');
     };
 
-    const handleSurnameChange = (e) => {
-        setSurname(e.target.value);
-    };
-
-    const handleNameChange = (e) => {
-        setName(e.target.value);
-    };
-
     const totalPrice = flightTicket.priceDetail.basePrice.amount * totalPassenger;
-
-    console.log('totalPrice', totalPrice);
 
     const renderPassengerDetails = () => {
         const passengerDetails = [];
         const passengerCounts = [passengerInfo.adults, passengerInfo.children, passengerInfo.babies];
 
-        console.log('passengerCounts', passengerCounts)
-
         for (let i = 0; i < passengerCounts.length; i++) {
             for (let j = 1; j <= passengerCounts[i]; j++) {
+                const passengerIndex = passengerCounts.slice(0, i).reduce((acc, count) => acc + count, 0) + j;
                 let passengerType = '';
                 switch (i) {
                     case 0:
@@ -64,7 +65,7 @@ function SalesScreen() {
                 }
 
                 passengerDetails.push(
-                    <div key={j} className='salesScreen-container-content__box__passDetail'>
+                    <div key={passengerIndex} className='salesScreen-container-content__box__passDetail'>
                         <div className='passenger-leftInfo'>
                             <h3>{`${j}. ${passengerType}`}</h3>
                             <input type='radio' />
@@ -94,14 +95,12 @@ function SalesScreen() {
     };
 
     const handleMainPage = () => {
-        dispatch(setPassengerInfo(userTicketAmount))
-        navigate('/')
-    }
-
+        dispatch(setPassengerInfo(userTicketAmount));
+        navigate('/');
+    };
 
     const logo =
         'https://uploads-ssl.webflow.com/605c9d764f1ef938a009ac98/61e01bfbdd8632a72962edc2_Pinsoft_Yatay_Logo_mavi-for%20animation.svg';
-
 
     return (
         <>
@@ -159,6 +158,7 @@ function SalesScreen() {
                         <option value="female">Female</option>
                         <option value="other">Other</option>
                     </select>
+
                 </div>
             </div>
             <div className="flight-box">

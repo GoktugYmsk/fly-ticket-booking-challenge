@@ -40,9 +40,18 @@
 
             .flyCompanies-container__box-info__date {
                 display: flex;
-                height: 20px;
-                opacity: 2;
-                gap: 30px;
+                gap: 40px;
+
+
+                .flyCompanies-container__box-info__date-depp {
+                    display: flex;
+                    gap: 30px;
+                }
+
+                .flyCompanies-container__box-info__date-return {
+                    display: flex;
+                    gap: 30px;
+                }
             }
         }
 

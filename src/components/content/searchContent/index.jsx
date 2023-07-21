@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaPlaneDeparture, FaMapMarkerAlt, FaPlane, FaHotel } from 'react-icons/fa';
+import { setPassName, setPassSurname } from '../../configure';
 
 import SearchItem1 from './searchItem1';
 import SearchItem2 from './searchItem2';
@@ -7,9 +8,12 @@ import SearchItem3 from './searchItem3';
 import SearchItem4 from './searchItem4';
 
 import './index.scss';
+import { useDispatch } from 'react-redux';
 
 function SearchContent() {
   const [selectedItem, setSelectedItem] = useState('one');
+
+  const dispatch = useDispatch()
 
   const handleItemClick = (item) => {
     setSelectedItem(item);
@@ -25,6 +29,11 @@ function SearchContent() {
   } else if (selectedItem === 'four') {
     content = <SearchItem4 />;
   }
+
+  // useEffect(() => {
+  //   dispatch(setPassName(''))
+  //   dispatch(setPassSurname(''))
+  // }, [])
 
   return (
     <div className='SearchContent-container'>

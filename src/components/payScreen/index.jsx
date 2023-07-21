@@ -21,6 +21,7 @@ function PayScreen() {
 
   const flightTicket = useSelector((state) => state.passTicket.flightTicket);
   const pnrCode = useSelector((state) => state.passCheck.pnrCode);
+  const passSurname = useSelector((state) => state.passCheck.passSurname);
 
   console.log('denemePnr', pnrCode)
 
@@ -91,17 +92,26 @@ function PayScreen() {
     for (let i = 0; i < 6; i++) {
       pnr += characters.charAt(Math.floor(Math.random() * characters.length));
     }
-    setPnrNumber(pnr);
-    dispatch(setPnrCode(pnr))
+    return pnr; // Oluşturulan pnrCode'u döndürün
   };
+
 
   const handleApprovalClick = () => {
     if (cvv === '001') {
       setPopupActive(true);
       setPopup(true);
-      generatePnrNumber();
+
+      // Her yolcu için pnrCode oluştur ve Redux deposuna kaydet
+      const pnrCodes = [];
+      for (let passengerIndex = 1; passengerIndex <= totalPassenger; passengerIndex++) {
+        const pnrCode = generatePnrNumber();
+        pnrCodes.push(pnrCode);
+      }
+
+      dispatch(setPnrCode(pnrCodes)); // Tüm pnrCode'ları Redux deposuna kaydet
     }
   };
+
 
 
   const handleMainPage = () => {
@@ -233,14 +243,19 @@ function PayScreen() {
         <div className="toast-container">
           <Toast onClose={() => setPopup(false)} show={popup} >
             <Toast.Body>
-              <div className='popup-content' >
+              <div className="popup-content">
                 <p>Satın alma işlemini başarıyla tamamladınız!</p>
-                <p>PNR NO: {pnrNumber}</p>
-                <div className='popup-content-button' >
-                  <button onClick={handleMainPage} >Anasayfaya Dön</button>
-                  <button onClick={handleSummaryClick} >uçuş Bilgilerimi Görüntüle</button>
+                {pnrCode.map((item, key) => (
+                  <p key={key}>
+                    Soy isim: {passSurname[key]}, PNR NO: {item}
+                  </p>
+                ))}
+                <div className="popup-content-button">
+                  <button onClick={handleMainPage}>Anasayfaya Dön</button>
+                  <button onClick={handleSummaryClick}>uçuş Bilgilerimi Görüntüle</button>
                 </div>
               </div>
+
             </Toast.Body>
           </Toast>
         </div>

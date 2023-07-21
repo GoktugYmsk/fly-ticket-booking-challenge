@@ -9,7 +9,7 @@ import Expedition from './components/expedition';
 import FlyCompanies from './components/componies';
 import SalesScreen from './components/salesScreen';
 import ShoppingSummary from './components/content/shoppingSummary';
-import './App.css';
+import './App.css'
 
 function App() {
   return (
