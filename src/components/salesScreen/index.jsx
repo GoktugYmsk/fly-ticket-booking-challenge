@@ -65,28 +65,67 @@ function SalesScreen() {
                 }
 
                 passengerDetails.push(
-                    <div key={passengerIndex} className='salesScreen-container-content__box__passDetail'>
+                    <div key={passengerIndex} className="flight-container">
                         <div className='passenger-leftInfo'>
                             <h3>{`${j}. ${passengerType}`}</h3>
-                            <input type='radio' />
-                            <input type='radio' />
                         </div>
                         <div className="flight-box">
-                            <input onChange={handleNameChange} placeholder='İsim ' />
-                            <input onChange={handleSurnameChange} placeholder='Soyisim' />
-                            <input placeholder='Doğum Tarihi' />
-                            <input placeholder='TC Kimlik no' />
-                            <div className='passenger-rightInfo-detail'>
-                                <input type='radio' />
-                                <p>TC vatandaşı değilim</p>
+                            <div className="flight-box">
+                                <div className="no-title">First Name:</div>
+                                <div className="no"><input OnChange={(e) => handleNameChange(e, passengerIndex)}  type="text" id="first-name" name="first-name" required/></div>
                             </div>
+                            <div className="flight-box">
+                                <div className="depart-title">Last Name:</div>
+                                <div className="depart"><input OnChange={(e) => handleSurnameChange(e, passengerIndex)} type="text" id="last-name" name="last-name" required/></div>
+                            </div>
+                            {/* <div className="flight-box">
+                                <div className="time-title">ID Number:</div>
+                                <div className="time"><input type="text" id="id-number" name="id-number" required/></div>
+                          </div>
+                                <div className="flight-box">
+                                <div className="arrive-title">Birth Date:</div>
+                                <div className="arrive"><input type="date" id="birth-date" name="birth-date" required/></div>
+                            </div> */}
+                            
                         </div>
+
                     </div>
                 );
             }
         }
         return passengerDetails;
     };
+
+    // <div className="flight-container">
+    //         <div className="flight-box">
+    //             <div className="airline-title">Gender:</div>
+    //             <div className="airline">
+    //                 <select id="gender" name="gender" required>
+    //                     <option value="" selected disabled>Select Gender</option>
+    //                     <option value="male">Male</option>
+    //                     <option value="female">Female</option>
+    //                     <option value="other">Other</option>
+    //                 </select>
+
+    //             </div>
+    //         </div>
+    //         <div className="flight-box">
+    //             <div className="no-title" onClick={handleNameChange}>First Name:</div>
+    //             <div className="no"><input type="text" id="first-name" name="first-name" required/></div>
+    //         </div>
+    //         <div className="flight-box">
+    //             <div className="depart-title" onClick={handleSurnameChange}>Last Name:</div>
+    //             <div className="depart"><input type="text" id="last-name" name="last-name" required/></div>
+    //         </div>
+    //         <div className="flight-box">
+    //             <div className="time-title">ID Number:</div>
+    //             <div className="time"><input type="text" id="id-number" name="id-number" required/></div>
+    //         </div>
+    //         <div className="flight-box">
+    //             <div className="arrive-title">Birth Date:</div>
+    //             <div className="arrive"><input type="date" id="birth-date" name="birth-date" required/></div>
+    //         </div>
+    //     </div>
 
     const userTicketAmount = {
         adults: adultCount,
@@ -148,36 +187,7 @@ function SalesScreen() {
         </div>
 
         <h3>Passenger Information</h3>
-        <div className="flight-container">
-            <div className="flight-box">
-                <div className="airline-title">Gender:</div>
-                <div className="airline">
-                    <select id="gender" name="gender" required>
-                        <option value="" selected disabled>Select Gender</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                        <option value="other">Other</option>
-                    </select>
-
-                </div>
-            </div>
-            <div className="flight-box">
-                <div className="no-title" onClick={handleNameChange}>First Name:</div>
-                <div className="no"><input type="text" id="first-name" name="first-name" required/></div>
-            </div>
-            <div className="flight-box">
-                <div className="depart-title" onClick={handleSurnameChange}>Last Name:</div>
-                <div className="depart"><input type="text" id="last-name" name="last-name" required/></div>
-            </div>
-            <div className="flight-box">
-                <div className="time-title">ID Number:</div>
-                <div className="time"><input type="text" id="id-number" name="id-number" required/></div>
-            </div>
-            <div className="flight-box">
-                <div className="arrive-title">Birth Date:</div>
-                <div className="arrive"><input type="date" id="birth-date" name="birth-date" required/></div>
-            </div>
-        </div>
+        {renderPassengerDetails()}
 
         <h3>Contact Information</h3>
         <div className="flight-container larger-container">
