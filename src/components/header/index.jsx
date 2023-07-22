@@ -63,27 +63,27 @@ function Header() {
   return (
     <>
       <div className="header-container">
-        
+
         <nav class="header-navbar">
-      <div class="nav_logo">Some Booking Inc.</div>
-      <ul class="nav_links">
-        <Nav.Link href="#home">Home</Nav.Link>
-        <Nav.Link href="#link">Link</Nav.Link>
-        <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+          <div class="nav_logo">Some Booking Inc.</div>
+          <ul class="nav_links">
+            <Nav.Link href="#home">Home</Nav.Link>
+            <Nav.Link href="#link">Link</Nav.Link>
+            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-        </NavDropdown>
-        <Nav.Link onClick={handleLogin}>Login</Nav.Link>
-      </ul>
-    </nav>
+            </NavDropdown>
+            <Nav.Link onClick={handleLogin}>Login</Nav.Link>
+          </ul>
+        </nav>
         <div className="plane" style={{ transform: `translateX(${planePosition}px)` }}>
           <FaPlaneDeparture />
         </div>
       </div>
-      {isLogin && <Login />}
+      {isLogin && <Login setIsLogin={setIsLogin} />}
     </>
   );
 }

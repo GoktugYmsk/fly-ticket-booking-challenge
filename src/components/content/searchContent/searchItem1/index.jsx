@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import DateTime from 'react-datetime';
 import PassengerPopup from './popup';
 import { FaExchangeAlt } from 'react-icons/fa';
-import { FaCalendarAlt,FaArrowRight } from 'react-icons/fa';
 import { PiMagnifyingGlassBold } from 'react-icons/pi';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,7 +10,6 @@ import flightPorts from '../../../../assets/flightPorts';
 import { setFlightPort, setFlightPortArrive, setSelectedDate, setReturnDate, setPassName, setPassSurname, setPnrCode } from '../../../configure';
 import 'react-datetime/css/react-datetime.css';
 import './index.scss';
-import { Placeholder } from 'react-bootstrap';
 
 function SearchItem1() {
   const [popup, setPopup] = useState(false);
@@ -316,7 +314,7 @@ function SearchItem1() {
           <div className='searchItem-one__container-place'>
             <div onClick={handlePortOpenClick} className='searchItem-one__container-place__ports-one'>
               <p></p>
-              <input placeholder="From" value={selectedExplanation} onChange={(e) => setSelectedExplanation(e.target.value) } />
+              <input placeholder="From" value={selectedExplanation} onChange={(e) => setSelectedExplanation(e.target.value)} />
               <hr />
             </div>
             <FaExchangeAlt />
@@ -334,9 +332,9 @@ function SearchItem1() {
               </p>
             </div>
             <div className='searchItem-one__container-return'>
-             
+
               <p className='searchItem-one__container-return-p'>{isRoundTrip ? 'Return' : ''}
-              {isRoundTrip && renderCalendarRight()}
+                {isRoundTrip && renderCalendarRight()}
               </p>
             </div>
           </div>
@@ -349,7 +347,7 @@ function SearchItem1() {
               <h2 onClick={handleOpenPopup}>{renderPassengerAmount()}</h2>
             )}
           </div>
-          <Button className='searchItem-one__search-button' onClick={navigateToExpedition} variant='secondary'><PiMagnifyingGlassBold/></Button>
+          <Button className='searchItem-one__search-button' onClick={navigateToExpedition} variant='secondary'><PiMagnifyingGlassBold /></Button>
         </div>
       </div>
       {popup && <PassengerPopup setTicketAmount={setTicketAmount} setPopup={setPopup} />}

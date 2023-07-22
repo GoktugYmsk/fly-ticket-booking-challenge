@@ -167,7 +167,6 @@ function SalesScreen() {
                     <div className="info-value">{totalPrice}</div>
                 </div>
             </div>
-            {renderPassengerDetails()}
             <div className='salesScreen-container-content__box__invoice'>
                 <h4>Fatura Bilgileri</h4>
                 <div className='salesScreen-container-content__box__invoice-input'>

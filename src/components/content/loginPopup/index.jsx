@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import "./index.scss";
 
-const LoginPopup = () => {
+const LoginPopup = ({ setIsLogin }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -28,6 +28,21 @@ const LoginPopup = () => {
   const handleSignup = () => {
     navigate('/Signup')
   }
+
+  const handleOutsideClick = (event) => {
+    if (!event.target.closest('.login__container-popup')) {
+      setIsLogin(false)
+    }
+  }
+
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleOutsideClick);
+
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, []);
 
   return (
     <>

@@ -3,7 +3,7 @@
 
 
 .searchItem-one__container {
-    
+
     .switch {
         position: relative;
         display: inline-block;
@@ -38,9 +38,9 @@
             padding-top: 15px;
             padding-right: 20px;
             padding-left: 30px;
-            
+
         }
-       
+
 
 
     }
@@ -61,10 +61,10 @@
         align-items: center;
         justify-content: center;
 
-        p{
+        p {
             margin-left: 30px;
         }
-        
+
     }
 
     .switch input:checked+.switch-slider:before {
@@ -76,12 +76,12 @@
     .searchItem-one__container-passenger-amount {
         display: flex;
         flex-direction: column;
-        
-        p{
+
+        p {
             font-weight: bold;
             margin-bottom: 25px;
         }
-        
+
 
         h2 {
             cursor: pointer;
@@ -98,7 +98,7 @@
         height: 150px;
         justify-content: space-around;
 
-       
+
 
         .searchItem-one__container__chose-travelDate {
             display: flex;
@@ -106,10 +106,10 @@
             gap: 20px;
             width: 300px;
 
-            p{
+            p {
                 font-weight: bold;
                 margin-bottom: 18px;
-                
+
             }
 
             .SearchItem-one__container-travelDate {
@@ -119,8 +119,8 @@
                 justify-content: center;
                 width: 130px;
                 cursor: pointer;
-                
-                
+
+
                 .calendar {
                     width: 125px;
                 }
@@ -132,17 +132,17 @@
                 justify-content: space-around;
                 width: 130px;
                 margin-left: 30px;
-                
 
-                
-               
-                .calendar{
+
+
+
+                .calendar {
                     margin-top: 18px;
                     width: 125px;
-                    
+
                 }
 
-                p{
+                p {
                     margin-bottom: 18px;
                 }
             }
@@ -155,11 +155,11 @@
             display: flex;
             align-items: center;
             justify-content: space-around;
-      
+
             width: 300px;
             color: black;
 
-            p{
+            p {
                 font-weight: bold;
             }
 
@@ -179,7 +179,7 @@
                     border-radius: 0;
                     color: #333333;
 
-                    &::placeholder{
+                    &::placeholder {
                         color: black;
                     }
                 }
@@ -191,13 +191,13 @@
                 opacity: 999;
                 width: 100px;
                 border: none;
-                
+
             }
         }
     }
 
 
-    .searchItem-one__search-button{
+    .searchItem-one__search-button {
         margin-bottom: 25px;
         height: 70px;
         width: 70px;
@@ -211,11 +211,11 @@
         cursor: pointer;
         transition: 0.3s;
 
-        &:hover{
+        &:hover {
             background-color: #536aa0;
         }
-    
-    
+
+
     }
 }
 
@@ -226,13 +226,13 @@
     align-items: center;
     flex-direction: column !important;
     overflow: auto;
-    height: auto;
+    height: 200px;
     width: 200px;
     opacity: 2;
     background: white;
     border-radius: 10px;
     padding-top: 10px;
-   
+
 
 
     p {
@@ -249,7 +249,7 @@
     left: 200px;
     flex-direction: column !important;
     overflow: auto;
-    height: auto;
+    height: 200px;
     width: 200px;
     opacity: 2;
     background: white;
@@ -262,7 +262,3 @@
         cursor: pointer;
     }
 }
-
-
-
-

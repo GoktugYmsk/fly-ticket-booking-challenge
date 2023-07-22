@@ -75,6 +75,20 @@ function PassengerPopup({ setPopup, setTicketAmount }) {
   const handleBabyChange = (e) => {
     setBabyCount(e.target.value)
   }
+  const handleOutsideClick = (event) => {
+    if (!event.target.closest('.passengerpopup-container')) {
+      setPopup(false)
+    }
+  }
+
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleOutsideClick);
+
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, []);
 
   return (
     <div className="passengerpopup-container">

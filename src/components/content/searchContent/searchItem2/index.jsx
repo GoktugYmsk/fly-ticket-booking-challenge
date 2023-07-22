@@ -22,15 +22,12 @@ function SearchItem2() {
   };
 
   const handleControlClick = () => {
-    // Filtrelenmiş pnrCode ve passSurname dizileri oluştur
     const passSurnameFilter = passSurname.map((item) => item);
     const pnrCodeFilter = pnrCode.map((item) => item);
 
-    // Kullanıcının girdiği soyadı ve PNR kodunu alıp dizi içinde var mı kontrol edelim
     const isSurnameMatched = passSurnameFilter.includes(surname);
     const isPnrMatched = pnrCodeFilter.includes(pnr);
 
-    // Eşleşme durumuna göre mesajları gösterelim
     if (isSurnameMatched && isPnrMatched) {
       alert('Yolcu bilgileri bulundu');
     } else if (!isSurnameMatched) {
@@ -42,10 +39,6 @@ function SearchItem2() {
 
   return (
     <div className='searchItem-two__container'>
-      <div className='searchItem-two__container-info'>
-        <h5></h5>
-        <p></p>
-      </div>
       <form className='searchItem-two__container-form'>
         <div className='searchItem-two__container-inputBox'>
           <input onChange={handleSurnameChange} type="text" placeholder='Last Name' />
