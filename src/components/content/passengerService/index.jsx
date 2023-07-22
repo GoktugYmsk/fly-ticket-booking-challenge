@@ -5,7 +5,7 @@ import './index.scss'
 function PassengerService() {
   return (
     <div className='passengerService-container' >
-      passengerServive
+      
     </div>
   )
 }

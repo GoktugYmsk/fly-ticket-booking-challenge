@@ -1,12 +1,14 @@
 @import '~react-datepicker/dist/react-datepicker.css';
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
+
 
 .searchItem-one__container {
+    
     .switch {
         position: relative;
         display: inline-block;
         width: 300px;
         height: 34px;
-        background-color: #ccc;
         overflow: hidden;
     }
 
@@ -25,14 +27,20 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background-color: #ccc;
+        border-radius: 1rem;
+        background-color: #b6b6b6;
         -webkit-transition: .4s;
         transition: .4s;
+        align-items: center;
+        justify-content: center;
 
         p {
-            margin-top: 15px;
-            margin-left: 60px;
+            padding-top: 15px;
+            padding-right: 20px;
+            padding-left: 30px;
+            
         }
+       
 
 
     }
@@ -44,12 +52,19 @@
         width: 150px;
         left: 4px;
         bottom: 4px;
-        background-color: #fff;
+        background-color: #ffffff;
         box-shadow: 2px 2px 4px rgb(134, 134, 134);
         opacity: 0.6;
         -webkit-transition: .4s;
         transition: .4s;
-        border-radius: 4px;
+        border-radius: 1rem;
+        align-items: center;
+        justify-content: center;
+
+        p{
+            margin-left: 30px;
+        }
+        
     }
 
     .switch input:checked+.switch-slider:before {
@@ -61,16 +76,18 @@
     .searchItem-one__container-passenger-amount {
         display: flex;
         flex-direction: column;
-        background: pink;
-
-        h3 {
-            font-weight: 350;
+        
+        p{
+            font-weight: bold;
+            margin-bottom: 25px;
         }
+        
 
         h2 {
             cursor: pointer;
-            font-size: 20px;
-            font-weight: 720;
+            font-size: 15px;
+            font-weight: 320;
+            margin-bottom: 32px;
         }
 
     }
@@ -78,31 +95,34 @@
     .searchItem-one__container__content {
         display: flex;
         align-items: center;
-        background: green;
         height: 150px;
         justify-content: space-around;
 
-        button {
-            height: 40px;
-        }
+       
 
         .searchItem-one__container__chose-travelDate {
             display: flex;
             justify-content: space-evenly;
-            background: red;
             gap: 20px;
             width: 300px;
 
-            .travel-date {
+            p{
+                font-weight: bold;
+                margin-bottom: 18px;
+                
+            }
+
+            .SearchItem-one__container-travelDate {
                 display: flex;
                 flex-direction: column;
                 align-content: center;
                 justify-content: center;
-                width: 150px;
+                width: 130px;
                 cursor: pointer;
-
+                
+                
                 .calendar {
-                    width: 120px;
+                    width: 125px;
                 }
             }
 
@@ -110,7 +130,21 @@
                 display: flex;
                 align-items: center;
                 justify-content: space-around;
-                width: 150px;
+                width: 130px;
+                margin-left: 30px;
+                
+
+                
+               
+                .calendar{
+                    margin-top: 18px;
+                    width: 125px;
+                    
+                }
+
+                p{
+                    margin-bottom: 18px;
+                }
             }
         }
 
@@ -121,9 +155,13 @@
             display: flex;
             align-items: center;
             justify-content: space-around;
-            background: red;
+      
             width: 300px;
-            color: white;
+            color: black;
+
+            p{
+                font-weight: bold;
+            }
 
             .searchItem-one__container-place__ports-one {
                 display: flex;
@@ -134,8 +172,16 @@
                 input {
                     width: 120px;
                     outline: none;
-                    border-radius: 20px;
                     border-style: none;
+                    border: none;
+                    background-color: transparent;
+                    border-bottom: 1px solid black;
+                    border-radius: 0;
+                    color: #333333;
+
+                    &::placeholder{
+                        color: black;
+                    }
                 }
 
             }
@@ -145,9 +191,31 @@
                 opacity: 999;
                 width: 100px;
                 border: none;
-                background-color: rgb(255, 255, 255);
+                
             }
         }
+    }
+
+
+    .searchItem-one__search-button{
+        margin-bottom: 25px;
+        height: 70px;
+        width: 70px;
+        padding: 0.5rem;
+        padding-bottom: 0.75rem;
+        outline: none;
+        border: none;
+        font-size: 1.7rem;
+        background-color: #2c3855;
+        border-radius: 100%;
+        cursor: pointer;
+        transition: 0.3s;
+
+        &:hover{
+            background-color: #536aa0;
+        }
+    
+    
     }
 }
 
@@ -158,14 +226,17 @@
     align-items: center;
     flex-direction: column !important;
     overflow: auto;
-    height: 200px;
+    height: auto;
     width: 200px;
     opacity: 2;
-    background: red;
+    background: white;
+    border-radius: 10px;
+    padding-top: 10px;
+   
 
 
     p {
-        background: rgb(38, 255, 0);
+        background: white;
         width: 100vh;
         cursor: pointer;
     }
@@ -178,14 +249,20 @@
     left: 200px;
     flex-direction: column !important;
     overflow: auto;
-    height: 200px;
+    height: auto;
     width: 200px;
     opacity: 2;
-    background: red;
+    background: white;
+    border-radius: 10px;
+    padding-top: 10px;
 
     p {
-        background: rgb(38, 255, 0);
+        background: white;
         width: 100vh;
         cursor: pointer;
     }
 }
+
+
+
+

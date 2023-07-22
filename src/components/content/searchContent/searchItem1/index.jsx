@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import DateTime from 'react-datetime';
 import PassengerPopup from './popup';
 import { FaExchangeAlt } from 'react-icons/fa';
-import { FaCalendarAlt } from 'react-icons/fa';
+import { FaCalendarAlt,FaArrowRight } from 'react-icons/fa';
+import { PiMagnifyingGlassBold } from 'react-icons/pi';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from 'react-bootstrap/Button';
@@ -10,6 +11,7 @@ import flightPorts from '../../../../assets/flightPorts';
 import { setFlightPort, setFlightPortArrive, setSelectedDate, setReturnDate, setPassName, setPassSurname, setPnrCode } from '../../../configure';
 import 'react-datetime/css/react-datetime.css';
 import './index.scss';
+import { Placeholder } from 'react-bootstrap';
 
 function SearchItem1() {
   const [popup, setPopup] = useState(false);
@@ -305,48 +307,49 @@ function SearchItem1() {
               onChange={handleSwitchChange}
             />
             <span className='switch-slider'>
-              <p>Tek Yön</p>
-              <p>Gidiş Dönüş</p>
+              <p>One-Way</p>
+              <p>Round-Trip</p>
             </span>
           </label>
         </div>
         <div className='searchItem-one__container__content'>
           <div className='searchItem-one__container-place'>
             <div onClick={handlePortOpenClick} className='searchItem-one__container-place__ports-one'>
-              <p>Nerden</p>
-              <input value={selectedExplanation} onChange={(e) => setSelectedExplanation(e.target.value)} />
+              <p></p>
+              <input placeholder="From" value={selectedExplanation} onChange={(e) => setSelectedExplanation(e.target.value) } />
               <hr />
             </div>
             <FaExchangeAlt />
             <div onClick={handlePortOpenClickRight} className='searchItem-one__container-place__ports-one'>
-              <p>Nereye</p>
-              <input value={selectedExplanationArrive} onChange={(e) => setSelectedExplanationArrive(e.target.value)} />
+              <p></p>
+              <input placeholder="To" value={selectedExplanationArrive} onChange={(e) => setSelectedExplanationArrive(e.target.value)} />
               <hr />
             </div>
           </div>
           <div className='searchItem-one__container__chose-travelDate'>
             <div className='travel-date' onClick={handleCalendarClick}>
-              <p>Gidiş Tarihi</p>
+              <p>Depart</p>
               <p className='SearchItem-one__container-travelDate'>
                 {isCalendarOpen && renderCalendar()}
               </p>
             </div>
             <div className='searchItem-one__container-return'>
-              <FaCalendarAlt />
-              <p>{isRoundTrip ? 'Gidiş-Dönüş' : 'Tek Yön'}</p>
+             
+              <p className='searchItem-one__container-return-p'>{isRoundTrip ? 'Return' : ''}
               {isRoundTrip && renderCalendarRight()}
+              </p>
             </div>
           </div>
           <div className='searchItem-one__container-passenger-amount'>
-            <h3>Yolcu</h3>
+            <p>Passengers</p>
             {ticketAmount.adults > 0 && (
-              <h2 onClick={handleOpenPopup}>{`${ticketAmount.adults} Yetişkin`}</h2>
+              <h2 onClick={handleOpenPopup}>{`${ticketAmount.adults} Adult`}</h2>
             )}
             {(ticketAmount.children > 0 || ticketAmount.babies > 0) && (
               <h2 onClick={handleOpenPopup}>{renderPassengerAmount()}</h2>
             )}
           </div>
-          <Button onClick={navigateToExpedition} variant='secondary'>Ucuz Uçuş Bileti Ara</Button>
+          <Button className='searchItem-one__search-button' onClick={navigateToExpedition} variant='secondary'><PiMagnifyingGlassBold/></Button>
         </div>
       </div>
       {popup && <PassengerPopup setTicketAmount={setTicketAmount} setPopup={setPopup} />}
