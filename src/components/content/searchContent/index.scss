@@ -1,10 +1,14 @@
 .SearchContent-container {
-    height: 400px;
+    height: 320px;
     width: 1000px;
-    background: rgb(61, 255, 90);
     position: relative;
     bottom: 200px;
     border-radius: 40px;
+    background-color: rgba(255, 255, 255, 0.75);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.1);
+  
 
     .SearchContent-container__menu {
         position: relative;
@@ -12,61 +16,77 @@
         justify-content: space-around;
         display: flex;
         width: 1000px;
-        padding: 20px;
-        border-radius: 40px 40px 0 0;
-        background: rgb(255, 60, 0);
+        padding-bottom: 30px;
+        
+        
+        
+       
 
         .SearchContent-container__menu-Item {
             display: flex;
             align-items: center;
             width: 1000px;
             cursor: pointer;
-            border-radius: 40px 40px 0 0;
+            color: white;
+            
+
+            
+
+
 
             .SearchContent-container__menu-Item__one {
-                background: rgb(255, 204, 0);
+                background: #536aa0;
                 width: 250px;
                 border-radius: 40px 0 0 0;
                 opacity: 0.6;
+                transition: 0.3s;
+                padding-top: 5px;
 
                 &:hover {
-                    background: rgb(255, 179, 0);
+                    background: #475b8a;
                 }
             }
 
             .SearchContent-container__menu-Item__two {
-                background: rgb(255, 204, 0);
+                background: #536aa0;
                 width: 250px;
                 opacity: 0.6;
+                transition: 0.3s;
+                padding-top: 5px;
 
                 &:hover {
-                    background: rgb(255, 179, 0);
+                    background: #475b8a;
                 }
             }
 
             .SearchContent-container__menu-Item__three {
-                background: rgb(255, 204, 0);
+                background: #536aa0;
                 width: 250px;
                 opacity: 0.6;
+                transition: 0.3s;
+                padding-top: 5px;
 
                 &:hover {
-                    background: rgb(255, 179, 0);
+                    background: #475b8a;
                 }
             }
 
             .SearchContent-container__menu-Item__four {
-                background: rgb(255, 204, 0);
+                background: #536aa0;
                 width: 250px;
                 border-radius: 0 40px 0 0;
                 opacity: 0.6;
+                transition: 0.3s;
+                padding-top: 5px;
 
                 &:hover {
-                    background: rgb(255, 179, 0);
+                    background: #475b8a;
                 }
             }
         }
 
         .SearchContent-container__icon {
+            color: rgb(224, 224, 224);
             font-size: 20px;
         }
 

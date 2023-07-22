@@ -3,7 +3,7 @@ import React from 'react'
 function SearchItem4() {
     return (
         <div>
-            <p>Araç Kiralama / Konaklama</p>
+            <p>Car Rental / Hotels</p>
         </div>
     )
 }

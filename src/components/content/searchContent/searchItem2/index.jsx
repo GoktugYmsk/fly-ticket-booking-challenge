@@ -43,15 +43,15 @@ function SearchItem2() {
   return (
     <div className='searchItem-two__container'>
       <div className='searchItem-two__container-info'>
-        <h5>Online Check-In Yap</h5>
-        <p>Havaalanında sıra bekleme, zaman kazan.</p>
+        <h5></h5>
+        <p></p>
       </div>
       <form className='searchItem-two__container-form'>
         <div className='searchItem-two__container-inputBox'>
-          <input onChange={handleSurnameChange} type="text" placeholder='Yolcunun Soyadı' />
-          <input onChange={handlePnrChange} type="text" placeholder='Rezervasyon Kodu (PNR)' />
+          <input onChange={handleSurnameChange} type="text" placeholder='Last Name' />
+          <input onChange={handlePnrChange} type="text" placeholder='PNR Code' />
         </div>
-        <Button onClick={handleControlClick} type="button" variant='secondary'>Devam</Button>
+        <Button className='searchItem-two__container-button' onClick={handleControlClick} type="button" variant='secondary'>Continue</Button>
       </form>
     </div>
   );

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FaPlaneDeparture, FaMapMarkerAlt, FaPlane, FaHotel } from 'react-icons/fa';
+import { FaPlaneDeparture, FaMapMarkerAlt, FaPlane, FaHotel, FaCheck, FaCheckCircle } from 'react-icons/fa';
 import { setPassName, setPassSurname } from '../../configure';
 
 import SearchItem1 from './searchItem1';
@@ -44,13 +44,13 @@ function SearchContent() {
             onClick={() => handleItemClick('one')}
           >
             <FaPlaneDeparture className='SearchContent-container__icon' />
-            <p>Ucuz Uçak Bileti Ara</p>
+            <p>Search For Flights</p>
           </div>
           <div
             className={`SearchContent-container__menu-Item__two ${selectedItem === 'two' ? 'SearchContent-container-item__active' : ''}`}
             onClick={() => handleItemClick('two')}
           >
-            <FaMapMarkerAlt className='SearchContent-container__icon' />
+            <FaCheck className='SearchContent-container__icon' />
             <p>Online Check-In</p>
           </div>
           <div
@@ -58,14 +58,14 @@ function SearchContent() {
             onClick={() => handleItemClick('three')}
           >
             <FaPlane className='SearchContent-container__icon' />
-            <p>Uçuşunu Yönet</p>
+            <p>Control Your Flight</p>
           </div>
           <div
             className={`SearchContent-container__menu-Item__four ${selectedItem === 'four' ? 'SearchContent-container-item__active' : ''}`}
             onClick={() => handleItemClick('four')}
           >
             <FaHotel className='SearchContent-container__icon' />
-            <p>Araç Kiralama / Konaklama</p>
+            <p>Car Rental / Hotels</p>
           </div>
         </div>
       </div>

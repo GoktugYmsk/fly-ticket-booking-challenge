@@ -79,7 +79,7 @@ function PassengerPopup({ setPopup, setTicketAmount }) {
   return (
     <div className="passengerpopup-container">
       <div className="passengerpopup-container__adult">
-        <p className="passengerpopup-container-p">Yetişkin</p>
+        <p className="passengerpopup-container-p">Adult</p>
         <AiOutlineMinusCircle
           className="passengerpopup-container__minus-icon"
           onClick={handleAdultDecrement}
@@ -91,7 +91,7 @@ function PassengerPopup({ setPopup, setTicketAmount }) {
         />
       </div>
       <div className="passengerpopup-container__child">
-        <p className="passengerpopup-container-p">Çocuk (2-12 Yaş)</p>
+        <p className="passengerpopup-container-p">Child (2-12 Years)</p>
         <AiOutlineMinusCircle
           className="passengerpopup-container__minus-icon"
           onClick={handleChildDecrement}
@@ -103,7 +103,7 @@ function PassengerPopup({ setPopup, setTicketAmount }) {
         />
       </div>
       <div className="passengerpopup-container__baby">
-        <p className="passengerpopup-container-p">Bebek (0-2 Yaş)</p>
+        <p className="passengerpopup-container-p">Infant (0-2 Years)</p>
         <AiOutlineMinusCircle
           className="passengerpopup-container__minus-icon"
           onClick={handleBabyDecrement}
@@ -114,7 +114,7 @@ function PassengerPopup({ setPopup, setTicketAmount }) {
           onClick={handleBabyIncrement}
         />
       </div>
-      <Button onClick={handleCloseClick}>Tamam</Button>
+      <Button onClick={handleCloseClick}>Apply</Button>
     </div>
   );
 }
