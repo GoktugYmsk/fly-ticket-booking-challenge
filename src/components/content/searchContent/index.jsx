@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { FaPlaneDeparture, FaMapMarkerAlt, FaPlane, FaHotel } from 'react-icons/fa';
-import { setPassName, setPassSurname } from '../../configure';
+import { setPassName, setPassSurname, setRefreshPassenger } from '../../configure';
 
 import SearchItem1 from './searchItem1';
 import SearchItem2 from './searchItem2';
@@ -8,9 +8,12 @@ import SearchItem3 from './searchItem3';
 import SearchItem4 from './searchItem4';
 
 import './index.scss';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 function SearchContent() {
+  const [adultCount, setAdultCount] = useState(1);
+  const [childCount, setChildCount] = useState(0);
+  const [babyCount, setBabyCount] = useState(0);
   const [selectedItem, setSelectedItem] = useState('one');
 
   const dispatch = useDispatch()
@@ -34,6 +37,17 @@ function SearchContent() {
   //   dispatch(setPassName(''))
   //   dispatch(setPassSurname(''))
   // }, [])
+
+
+  const userTicketAmount = {
+    adults: adultCount,
+    children: childCount,
+    babies: babyCount
+  };
+
+  useEffect(() => {
+    dispatch(setRefreshPassenger(userTicketAmount))
+  }, [])
 
   return (
     <div className='SearchContent-container'>

@@ -16,7 +16,6 @@ function PayScreen() {
   const [popupActive, setPopupActive] = useState(false)
   const [expiryMonth, setExpiryMonth] = useState('');
   const [selectedOption, setSelectedOption] = useState('');
-  const [pnrNumber, setPnrNumber] = useState('');
   const [maskedCardNumber, setMaskedCardNumber] = useState('################');
 
   const flightTicket = useSelector((state) => state.passTicket.flightTicket);
@@ -92,7 +91,7 @@ function PayScreen() {
     for (let i = 0; i < 6; i++) {
       pnr += characters.charAt(Math.floor(Math.random() * characters.length));
     }
-    return pnr; // Oluşturulan pnrCode'u döndürün
+    return pnr;
   };
 
 
@@ -100,15 +99,13 @@ function PayScreen() {
     if (cvv === '001') {
       setPopupActive(true);
       setPopup(true);
-
-      // Her yolcu için pnrCode oluştur ve Redux deposuna kaydet
       const pnrCodes = [];
       for (let passengerIndex = 1; passengerIndex <= totalPassenger; passengerIndex++) {
         const pnrCode = generatePnrNumber();
         pnrCodes.push(pnrCode);
       }
 
-      dispatch(setPnrCode(pnrCodes)); // Tüm pnrCode'ları Redux deposuna kaydet
+      dispatch(setPnrCode(pnrCodes));
     }
   };
 

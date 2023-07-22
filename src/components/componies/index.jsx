@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import passengerInformation from '../../assets/passenger';
 import flightPorts from '../../assets/flightPorts';
 import { setFlightTicket } from '../configure';
+import { setPassengerInfo } from '../configure';
 import './index.scss';
 import { useNavigate } from 'react-router-dom';
 
@@ -12,6 +13,7 @@ function FlyCompanies() {
     const passengerInfo = useSelector((state) => state.passInfo.passengerInfo);
     const selectedDate = useSelector((state) => state.optionDateDepp.selectedDate);
     const returnDate = useSelector((state) => state.optionDateArr.returnDate);
+    const refreshPassenger = useSelector((state) => state.refreshPass.refreshPassenger);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -46,6 +48,7 @@ function FlyCompanies() {
     }, [selectedDate, returnDate]);
 
     const handleMainPageClick = () => {
+        dispatch(setPassengerInfo(refreshPassenger));
         navigate('/');
     };
 

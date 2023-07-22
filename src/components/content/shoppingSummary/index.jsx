@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, } from 'react-router-dom';
-import { setPassName } from '../../configure';
+import { setPassName, setPassengerInfo } from '../../configure';
 
 import './index.scss';
 
@@ -10,6 +10,7 @@ function ShoppingSummary() {
     const passengerInfo = useSelector((state) => state.passInfo.passengerInfo);
     const passSurname = useSelector((state) => state.passCheck.passSurname);
     const passName = useSelector((state) => state.passCheck.passName);
+    const refreshPassenger = useSelector((state) => state.refreshPass.refreshPassenger);
 
     const navigate = useNavigate();
     const dispatch = useDispatch()
@@ -23,6 +24,7 @@ function ShoppingSummary() {
 
     const handleMainPage = () => {
         dispatch(setPassName(''))
+        dispatch(setPassengerInfo(refreshPassenger))
         navigate('/');
     };
 

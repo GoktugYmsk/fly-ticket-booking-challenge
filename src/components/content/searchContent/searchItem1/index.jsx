@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from 'react-bootstrap/Button';
 import flightPorts from '../../../../assets/flightPorts';
-import { setFlightPort, setFlightPortArrive, setSelectedDate, setReturnDate } from '../../../configure';
+import { setFlightPort, setFlightPortArrive, setSelectedDate, setReturnDate, setPassName, setPassSurname, setPnrCode } from '../../../configure';
 import 'react-datetime/css/react-datetime.css';
 import './index.scss';
 
@@ -197,6 +197,9 @@ function SearchItem1() {
 
   const navigateToExpedition = () => {
     if (selectedExplanation && selectedExplanationRight) {
+      dispatch(setPnrCode(''))
+      dispatch(setPassName(''))
+      dispatch(setPassSurname(''))
       sessionStorage.setItem('totalPassenger', totalPassenger);
       navigate('/fly-companies');
     }
