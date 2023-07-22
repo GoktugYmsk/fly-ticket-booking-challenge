@@ -6,10 +6,11 @@ import './index.scss'
 function CarouselComponent() {
     return (
         <Carousel className='carousel__container' >
+            
             <Carousel.Item>
-                <img
+                <img 
                     className="d-block w-100"
-                    src="https://picsum.photos/id/220/1600/600"
+                    src="https://www.strath.ac.uk/professionalservices/media/ps/estatesmanagement/images/1600x600/plane.jpg"
                     alt="First slide"
                 />
                 <Carousel.Caption>
@@ -20,7 +21,7 @@ function CarouselComponent() {
             <Carousel.Item>
                 <img
                     className="d-block w-100"
-                    src="https://picsum.photos/id/221/1600/600"
+                    src="https://picsum.photos/id/218/1600/600"
                     alt="Second slide"
                 />
 
@@ -32,7 +33,7 @@ function CarouselComponent() {
             <Carousel.Item>
                 <img
                     className="d-block w-100"
-                    src="https://picsum.photos/id/222/1600/600"
+                    src="https://picsum.photos/id/229/1600/600"
                     alt="Third slide"
                 />
 
@@ -43,6 +44,23 @@ function CarouselComponent() {
                     </p>
                 </Carousel.Caption>
             </Carousel.Item>
+
+            <Carousel.Item>
+                <img
+                    className="d-block w-100"
+                    src="https://picsum.photos/id/238/1600/600"
+                    alt="Fourth slide"
+                />
+
+                <Carousel.Caption>
+                    <h3>Fourth slide label</h3>
+                    <p>
+                        Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+                    </p>
+                </Carousel.Caption>
+            </Carousel.Item>
+           
+          
         </Carousel>
     );
 }

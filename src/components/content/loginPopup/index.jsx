@@ -34,7 +34,7 @@ const LoginPopup = () => {
       <div className="login__container-popup ">
         <form onSubmit={handleLogin}>
           <div className="form-group mb-3">
-            <label htmlFor="email">E-mail</label>
+            <label htmlFor="email">Email</label>
             <input type="email" id="email" className="form-control" value={email} onChange={handleUserChange} required />
           </div>
           <div className="form-group mb-3">
@@ -56,7 +56,7 @@ const LoginPopup = () => {
           </div>
           <br />
           <div>
-            <p>Don't have an account? <span onClick={handleSignup} className="signup-button" >Sign Up</span></p>
+            <p>Don't have an account ? <span onClick={handleSignup} className="signup-button" >Sign Up</span></p>
           </div>
         </form>
       </div>

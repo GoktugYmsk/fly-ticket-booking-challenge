@@ -1,35 +1,60 @@
-.login__container-navbar {
-    nav {
-        display: flex;
-        width: 100%;
-        background: rgb(74, 204, 255);
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
 
-        img {
-            width: 300px;
-            height: 100px;
-            cursor: pointer;
-        }
-    }
-}
+
 
 .login__container {
-    display: flex;
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: rgb(219, 219, 219);
+    border-radius: 12px;
+    justify-content: center;
     align-items: center;
-    align-items: center;
-    flex-direction: column;
-    background: rgb(59, 181, 229);
-    height: 100vh;
+    box-shadow: 3px 3px 30px rgba(0, 0, 0, 0.1);
+    font-family: "Poppins", sans-serif;
+
+    h2 {
+        margin-top: 0;
+        color: #2c3855;
+    }
 
     .login__container-form {
-        width: 400px;
+        margin-top: 40px;
+        align-items: center;
+        justify-content: center;
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 0;
+            margin-left: 75px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            font-size: 16px;
+            margin-left: 80px;
+            margin-bottom: 40px;
+            border: none;
+            background-color: transparent;
+            border-bottom: 1px solid black;
+            border-radius: 0;
+        }
     }
+    .login-button{
+        border-radius: 4px;
+        margin-bottom: 20px;
+    }
+
+  
 
     .signup-button {
         cursor: pointer;
-        color: rgb(165, 236, 255);
+        color: rgb(0, 121, 154);
 
         &:hover {
-            color: rgb(36, 174, 213);
+            color: rgb(0, 162, 207);
         }
     }
 }
