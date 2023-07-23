@@ -16,6 +16,10 @@ function SearchContent() {
   const [babyCount, setBabyCount] = useState(0);
   const [selectedItem, setSelectedItem] = useState('one');
 
+  const passName = useSelector((state) => state.passCheck.passName);
+
+  console.log('passName', passName)
+
   const dispatch = useDispatch()
 
   const handleItemClick = (item) => {

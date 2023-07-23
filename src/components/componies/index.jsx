@@ -8,6 +8,10 @@ import './index.scss';
 import { useNavigate } from 'react-router-dom';
 
 function FlyCompanies() {
+
+    const [formattedSelectedDate, setFormattedSelectedDate] = useState('');
+    const [formattedReturnDate, setFormattedReturnDate] = useState('');
+
     const flightPort = useSelector((state) => state.passFlightPort.flightPort);
     const flightPortArrive = useSelector((state) => state.passFlightPortArrive.flightPortArrive);
     const passengerInfo = useSelector((state) => state.passInfo.passengerInfo);
@@ -36,8 +40,6 @@ function FlyCompanies() {
 
     const selectedDateTimestamp = selectedDate instanceof Date ? selectedDate.getTime() : null;
 
-    const [formattedSelectedDate, setFormattedSelectedDate] = useState('');
-    const [formattedReturnDate, setFormattedReturnDate] = useState('');
 
     useEffect(() => {
         const selectedDateFormatted = selectedDate instanceof Date ? selectedDate.toDateString() : '';
@@ -52,8 +54,8 @@ function FlyCompanies() {
         navigate('/');
     };
 
-    const handleTicketClick = (ticket) => {
-        dispatch(setFlightTicket({ ...ticket, selectedDate: selectedDateTimestamp }));
+    const handleTicketClick = (item) => {
+        dispatch(setFlightTicket({ ...item, selectedDate: selectedDateTimestamp }));
         navigate('/sales-screen');
     };
 
@@ -73,7 +75,7 @@ function FlyCompanies() {
                             <p>Gidiş</p>
                             {formattedSelectedDate}
                         </div>
-                        {returnDate && (
+                        {formattedReturnDate && (
                             <div className='flyCompanies-container__box-info__date-return'>
                                 <p>Dönüş</p>
                                 {formattedReturnDate}

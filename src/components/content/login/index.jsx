@@ -30,8 +30,8 @@ const LoginPopup = () => {
     const handleSignup = () => {
         navigate('/Signup')
     }
-    
-    const handleMainPage = () =>{
+
+    const handleMainPage = () => {
         navigate('/')
     }
 
@@ -42,25 +42,25 @@ const LoginPopup = () => {
 
     return (
         <>
-              <nav class="header-navbar">
-           <div class="nav_logo">Some Booking Inc.</div>
-      <ul class="nav_links">
-        <Nav.Link href="#home">Home</Nav.Link>
-        <Nav.Link href="#link">Link</Nav.Link>
-        <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-        </NavDropdown>
-        <Nav.Link onClick={handleLogin}>Login</Nav.Link>
-        
-      </ul>
-    </nav>
+            <nav class="header-navbar">
+                <div class="nav_logo">Some Booking Inc.</div>
+                <ul class="nav_links">
+                    <Nav.Link onClick={handleMainPage}>Home</Nav.Link>
+                    <Nav.Link href="#link">Link</Nav.Link>
+                    <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+                        <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+                        <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
+                        <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                        <NavDropdown.Divider />
+                        <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+                    </NavDropdown>
+                    <Nav.Link onClick={handleLogin}>Login</Nav.Link>
+
+                </ul>
+            </nav>
 
             <div className="login__container ">
-            <h2>Login</h2>
+                <h2>Login</h2>
                 <form className="login__container-form" onSubmit={handleLogin}>
                     <div className="form-group mb-3">
                         <label htmlFor="email">Email</label>
@@ -83,9 +83,9 @@ const LoginPopup = () => {
                             Login
                         </button>
                     </div>
-                 
-                        <p>Don't have an account ? <span onClick={handleSignup} className="signup-button" >Sign Up</span></p>
-                    
+
+                    <p>Don't have an account ? <span onClick={handleSignup} className="signup-button" >Sign Up</span></p>
+
                 </form>
             </div>
         </>

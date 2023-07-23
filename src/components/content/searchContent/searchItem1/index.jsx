@@ -49,10 +49,15 @@ function SearchItem1() {
 
   const handleDateChangeArrive = (date) => {
     dispatch(setReturnDate(date._d))
-  }
+  };
 
   const handleOpenPopup = () => {
     setPopup(true);
+  };
+  const handleExchangeClick = () => {
+    const changePort = selectedExplanation;
+    setSelectedExplanation(selectedExplanationArrive);
+    setSelectedExplanationArrive(changePort);
   };
 
   const renderCalendar = () => {
@@ -69,6 +74,26 @@ function SearchItem1() {
         current.toDate().getMonth() === nextMonth - 1
       ) && current.toDate() >= currentDate;
     };
+
+    // 3 ay için
+
+    // const isValidDate = (current) => {
+    //   const currentDate = new Date();
+    //   const currentMonth = currentDate.getMonth() + 1;
+    //   const currentYear = currentDate.getFullYear();
+
+    //   const nextThreeMonthsDate = new Date();
+    //   nextThreeMonthsDate.setMonth(nextThreeMonthsDate.getMonth() + 3);
+
+    //   const currentMonthYear = current.toDate().getFullYear();
+    //   const currentMonthNum = current.toDate().getMonth() + 1;
+
+    //   return (
+    //     (currentMonthYear > currentYear || (currentMonthYear === currentYear && currentMonthNum >= currentMonth)) &&
+    //     current.toDate() >= currentDate &&
+    //     current.toDate() <= nextThreeMonthsDate
+    //   );
+    // };
 
     return (
       <div className='calendar'>
@@ -195,7 +220,7 @@ function SearchItem1() {
 
   console.log(totalPassenger)
 
-  const navigateToExpedition = () => {
+  const navigateToCompanies = () => {
     if (selectedExplanation && selectedExplanationRight) {
       dispatch(setPnrCode(''))
       dispatch(setPassName(''))
@@ -242,12 +267,6 @@ function SearchItem1() {
     }
   }, [selectedExplanationRight]);
 
-  useEffect(() => {
-    if (selectedExplanationRight) {
-      setOpenPortsWhere(false);
-    }
-  }, [selectedExplanationRight]);
-
   const handlePortOpenClick = () => {
     setOpenPorts(!openPorts);
   };
@@ -279,7 +298,6 @@ function SearchItem1() {
 
     setRenderedPorts(updatedRenderedPorts);
   }, [selectedExplanation]);
-
 
   useEffect(() => {
     const inputValueArrive = selectedExplanationArrive.toLocaleLowerCase()
@@ -313,13 +331,11 @@ function SearchItem1() {
         <div className='searchItem-one__container__content'>
           <div className='searchItem-one__container-place'>
             <div onClick={handlePortOpenClick} className='searchItem-one__container-place__ports-one'>
-              <p></p>
               <input placeholder="From" value={selectedExplanation} onChange={(e) => setSelectedExplanation(e.target.value)} />
               <hr />
             </div>
-            <FaExchangeAlt />
+            <FaExchangeAlt className='exchangeIcon' onClick={handleExchangeClick} />
             <div onClick={handlePortOpenClickRight} className='searchItem-one__container-place__ports-one'>
-              <p></p>
               <input placeholder="To" value={selectedExplanationArrive} onChange={(e) => setSelectedExplanationArrive(e.target.value)} />
               <hr />
             </div>
@@ -332,7 +348,6 @@ function SearchItem1() {
               </p>
             </div>
             <div className='searchItem-one__container-return'>
-
               <p className='searchItem-one__container-return-p'>{isRoundTrip ? 'Return' : ''}
                 {isRoundTrip && renderCalendarRight()}
               </p>
@@ -347,7 +362,9 @@ function SearchItem1() {
               <h2 onClick={handleOpenPopup}>{renderPassengerAmount()}</h2>
             )}
           </div>
-          <Button className='searchItem-one__search-button' onClick={navigateToExpedition} variant='secondary'><PiMagnifyingGlassBold /></Button>
+          <Button className='searchItem-one__search-button' onClick={navigateToCompanies} variant='secondary'>
+            <PiMagnifyingGlassBold />
+          </Button>
         </div>
       </div>
       {popup && <PassengerPopup setTicketAmount={setTicketAmount} setPopup={setPopup} />}

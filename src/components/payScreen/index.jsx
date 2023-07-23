@@ -16,6 +16,7 @@ function PayScreen() {
   const [popupActive, setPopupActive] = useState(false)
   const [expiryMonth, setExpiryMonth] = useState('');
   const [selectedOption, setSelectedOption] = useState('');
+  const [isAgreementChecked, setIsAgreementChecked] = useState(false);
   const [maskedCardNumber, setMaskedCardNumber] = useState('################');
 
   const flightTicket = useSelector((state) => state.passTicket.flightTicket);
@@ -94,9 +95,12 @@ function PayScreen() {
     return pnr;
   };
 
+  const handleAgreementChange = () => {
+    setIsAgreementChecked(!isAgreementChecked);
+  };
 
   const handleApprovalClick = () => {
-    if (cvv === '001') {
+    if (cvv === '001' && isAgreementChecked) {
       setPopupActive(true);
       setPopup(true);
       const pnrCodes = [];
@@ -107,9 +111,13 @@ function PayScreen() {
 
       dispatch(setPnrCode(pnrCodes));
     }
+    else if (cvv != '001') {
+      alert('cvv kodunu kontrol ediniz')
+    }
+    else if (!isAgreementChecked) {
+      alert('Pinsoft işlem kurallarınız kabul ediniz !')
+    }
   };
-
-
 
   const handleMainPage = () => {
     setPopupActive(false)
@@ -225,7 +233,10 @@ function PayScreen() {
                 </div>
               </div>
               <div className='payScreen-container-cardForm-check' >
-                <input type='checkbox' />
+                <input type='checkbox'
+                  checked={isAgreementChecked}
+                  onChange={handleAgreementChange}
+                />
                 <p>Pinsoft işlem kurallarını okudum ve Kabul ediyorum</p>
               </div>
               <div className='payScreen-container__paySide' >
