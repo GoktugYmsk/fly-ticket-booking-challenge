@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Toast from 'react-bootstrap/Toast';
 import Button from '@mui/material/Button';
+import Footer from '../footer';
 import { setPnrCode } from '../configure';
 import './index.scss';
 
@@ -149,15 +150,13 @@ function PayScreen() {
             <div className="payScreen-container-cardForm">
               <div className={`payScreen-card ${isFlipped ? 'flipped' : ''}`}>
                 <div className="payScreen-card__front">
-                  <div>
-                    <label>Kart Numarası:</label>
-                    <p className="payScreen-card__front-number">{formatCardNumber(maskedCardNumber)}</p>
-                  </div>
-
-                  <p>{cardName}</p>
-                  <div>
-                    <label>Son Kullanma Tarihi:</label>
-                    <p>{expiryMonth}/{expiryYear}</p>
+                  <p className="payScreen-card__front-number">{formatCardNumber(maskedCardNumber)}</p>
+                  <div className='payScreen-card__front-top' >
+                    <p className='payScreen-card__front-top__number' >{cardName}</p>
+                    <div className='payScreen-card__front-bottom' >
+                      <label>Son Kullanma Tarihi:</label>
+                      <p>{expiryMonth}/{expiryYear}</p>
+                    </div>
                   </div>
                 </div>
                 <div className="payScreen-card__back">
@@ -171,9 +170,9 @@ function PayScreen() {
                 <div className='payScreen-container-cardForm-frontContent' >
                   <input type="text" value={formatCardNumber(cardNumber)} onChange={handleCardNumberChange} placeholder="Kart Numarası" maxLength="19" />
                   <input type="text" value={cardName} onChange={handleCardName} placeholder="Kart Üzerindeki İsim" />
-                  <div>
+                  <div className='payScreen-container-cardForm-frontContent-mounth' >
                     <select value={expiryMonth} onChange={handleExpiryMonthChange}>
-                      <option value="">Ay</option>
+                      <option>Ay</option>
                       {Array.from({ length: 12 }, (_, index) => index + 1).map((month) => (
                         <option value={month.toString().padStart(2, '0')} key={month}>
                           {month.toString().padStart(2, '0')}
@@ -233,7 +232,7 @@ function PayScreen() {
                 </div>
               </div>
               <div className='payScreen-container-cardForm-check' >
-                <input type='checkbox'
+                <input className='payScreen-container-cardForm-checkBox' type='checkbox'
                   checked={isAgreementChecked}
                   onChange={handleAgreementChange}
                 />
@@ -250,24 +249,27 @@ function PayScreen() {
       {popup && (
         <div className="toast-container">
           <Toast onClose={() => setPopup(false)} show={popup} >
-            <Toast.Body>
-              <div className="popup-content">
+            <Toast.Body className='popup-content' >
+              <div className="popup-content__box">
                 <p>Satın alma işlemini başarıyla tamamladınız!</p>
                 {pnrCode.map((item, key) => (
-                  <p key={key}>
-                    Soy isim: {passSurname[key]}, PNR NO: {item}
-                  </p>
+                  <div className='popup-content__box-pnr' key={key}>
+                    <p>Soyisim: {passSurname[key]}</p>
+                    <p>PNR NO: {item}</p>
+                  </div>
                 ))}
                 <div className="popup-content-button">
-                  <button onClick={handleMainPage}>Anasayfaya Dön</button>
-                  <button onClick={handleSummaryClick}>uçuş Bilgilerimi Görüntüle</button>
+                  <Button className='popup-content-button__main' onClick={handleMainPage}>Anasayfaya Dön</Button>
+                  <Button className='popup-content-button__summary' onClick={handleSummaryClick}>uçuş Bilgilerimi Görüntüle</Button>
                 </div>
               </div>
-
             </Toast.Body>
           </Toast>
         </div>
       )}
+      <div className={`footerContainer ${popupActive ? 'footer-opacity' : ''} `} >
+        <Footer />
+      </div>
     </>
   );
 }
