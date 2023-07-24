@@ -313,8 +313,10 @@
         height: 200px;
         border-radius: 10px;
 
+
         .popup-content__box-pnr {
             display: flex;
+            justify-content: space-between;
         }
 
         .popup-content-button {
