@@ -154,7 +154,7 @@ function PayScreen() {
                   <div className='payScreen-card__front-top' >
                     <p className='payScreen-card__front-top__number' >{cardName}</p>
                     <div className='payScreen-card__front-bottom' >
-                      <label>Son Kullanma Tarihi:</label>
+                      <label >Son Kullanma Tarihi:</label>
                       <p>{expiryMonth}/{expiryYear}</p>
                     </div>
                   </div>
@@ -180,7 +180,7 @@ function PayScreen() {
                       ))}
                     </select>
                     <select value={expiryYear} onChange={handleExpiryYearChange}>
-                      <option value="">Yıl</option>
+                      <option >Yıl</option>
                       {generateYears().map((year) => (
                         <option value={year} key={year}>
                           {year}
@@ -232,10 +232,16 @@ function PayScreen() {
                 </div>
               </div>
               <div className='payScreen-container-cardForm-check' >
-                <input className='payScreen-container-cardForm-checkBox' type='checkbox'
-                  checked={isAgreementChecked}
-                  onChange={handleAgreementChange}
-                />
+                <div className='payScreen-container-cardForm-check-control'>
+                  <input
+                    className='payScreen-container-cardForm-checkBox'
+                    type='checkbox'
+                    checked={isAgreementChecked}
+                    onChange={handleAgreementChange}
+                  />
+
+                </div>
+
                 <p>Pinsoft işlem kurallarını okudum ve Kabul ediyorum</p>
               </div>
               <div className='payScreen-container__paySide' >
