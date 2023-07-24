@@ -1,17 +1,31 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import { useSelector } from 'react-redux';
+import flightPorts from '../../../../assets/flightPorts';
 
 import './index.scss';
 
 function SearchItem2() {
-  const [surname, setSurname] = useState('');
   const [pnr, setPnr] = useState('');
+  const [info, setInfo] = useState(false)
+  const [surname, setSurname] = useState('');
 
-  const passSurname = useSelector((state) => state.passCheck.passSurname);
+  // const passName = useSelector((state) => state.passCheck.passName);
   const pnrCode = useSelector((state) => state.passCheck.pnrCode);
+  const passSurname = useSelector((state) => state.passCheck.passSurname);
+  const flightPort = useSelector((state) => state.passFlightPort.flightPort);
+  const selectedDate = useSelector((state) => state.optionDateDepp.selectedDate);
+  const flightPortArrive = useSelector((state) => state.passFlightPortArrive.flightPortArrive);
+
+  const isLeavePort = flightPorts.ports.find((item) => item.code === flightPort);
+  const isArrivePort = flightPorts.ports.find((item) => item.code === flightPortArrive);
+
+  const leavePortExplanation = isLeavePort ? isLeavePort.explanation : '';
+  const arrivePortExplanation = isArrivePort ? isArrivePort.explanation : '';
 
   console.log('passunasoc', passSurname);
+
+  const selectedDateFormatted = selectedDate instanceof Date ? selectedDate.toDateString() : '';
 
   const handleSurnameChange = (e) => {
     setSurname(e.target.value);
@@ -22,17 +36,14 @@ function SearchItem2() {
   };
 
   const handleControlClick = () => {
-    // Filtrelenmiş pnrCode ve passSurname dizileri oluştur
     const passSurnameFilter = passSurname.map((item) => item);
     const pnrCodeFilter = pnrCode.map((item) => item);
 
-    // Kullanıcının girdiği soyadı ve PNR kodunu alıp dizi içinde var mı kontrol edelim
     const isSurnameMatched = passSurnameFilter.includes(surname);
     const isPnrMatched = pnrCodeFilter.includes(pnr);
 
-    // Eşleşme durumuna göre mesajları gösterelim
     if (isSurnameMatched && isPnrMatched) {
-      alert('Yolcu bilgileri bulundu');
+      setInfo(!info)
     } else if (!isSurnameMatched) {
       alert('Soyadı bilginizi kontrol ediniz');
     } else if (!isPnrMatched) {
@@ -42,16 +53,23 @@ function SearchItem2() {
 
   return (
     <div className='searchItem-two__container'>
-      <div className='searchItem-two__container-info'>
-        <h5>Online Check-In Yap</h5>
-        <p>Havaalanında sıra bekleme, zaman kazan.</p>
-      </div>
       <form className='searchItem-two__container-form'>
         <div className='searchItem-two__container-inputBox'>
-          <input onChange={handleSurnameChange} type="text" placeholder='Yolcunun Soyadı' />
-          <input onChange={handlePnrChange} type="text" placeholder='Rezervasyon Kodu (PNR)' />
+          <input onChange={handleSurnameChange} type="text" placeholder='Last Name' />
+          <input onChange={handlePnrChange} type="text" placeholder='PNR Code' />
         </div>
-        <Button onClick={handleControlClick} type="button" variant='secondary'>Devam</Button>
+        <Button className='searchItem-two__container-button' onClick={handleControlClick} type="button" variant='secondary'>Continue</Button>
+        {info &&
+          <div className='searchItem-two__container__ports' >
+            <h3>{leavePortExplanation}</h3>
+            <h3>{arrivePortExplanation}</h3>
+            {selectedDateFormatted}
+          </div>
+
+        }
+        {/* {passName.map((name, index) => (
+          <p key={index}>Adı: {name}</p>
+        ))} */}
       </form>
     </div>
   );

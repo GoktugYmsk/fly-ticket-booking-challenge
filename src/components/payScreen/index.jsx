@@ -16,7 +16,7 @@ function PayScreen() {
   const [popupActive, setPopupActive] = useState(false)
   const [expiryMonth, setExpiryMonth] = useState('');
   const [selectedOption, setSelectedOption] = useState('');
-  const [pnrNumber, setPnrNumber] = useState('');
+  const [isAgreementChecked, setIsAgreementChecked] = useState(false);
   const [maskedCardNumber, setMaskedCardNumber] = useState('################');
 
   const flightTicket = useSelector((state) => state.passTicket.flightTicket);
@@ -92,27 +92,32 @@ function PayScreen() {
     for (let i = 0; i < 6; i++) {
       pnr += characters.charAt(Math.floor(Math.random() * characters.length));
     }
-    return pnr; // Oluşturulan pnrCode'u döndürün
+    return pnr;
   };
 
+  const handleAgreementChange = () => {
+    setIsAgreementChecked(!isAgreementChecked);
+  };
 
   const handleApprovalClick = () => {
-    if (cvv === '001') {
+    if (cvv === '001' && isAgreementChecked) {
       setPopupActive(true);
       setPopup(true);
-
-      // Her yolcu için pnrCode oluştur ve Redux deposuna kaydet
       const pnrCodes = [];
       for (let passengerIndex = 1; passengerIndex <= totalPassenger; passengerIndex++) {
         const pnrCode = generatePnrNumber();
         pnrCodes.push(pnrCode);
       }
 
-      dispatch(setPnrCode(pnrCodes)); // Tüm pnrCode'ları Redux deposuna kaydet
+      dispatch(setPnrCode(pnrCodes));
+    }
+    else if (cvv != '001') {
+      alert('cvv kodunu kontrol ediniz')
+    }
+    else if (!isAgreementChecked) {
+      alert('Pinsoft işlem kurallarınız kabul ediniz !')
     }
   };
-
-
 
   const handleMainPage = () => {
     setPopupActive(false)
@@ -228,7 +233,10 @@ function PayScreen() {
                 </div>
               </div>
               <div className='payScreen-container-cardForm-check' >
-                <input type='checkbox' />
+                <input type='checkbox'
+                  checked={isAgreementChecked}
+                  onChange={handleAgreementChange}
+                />
                 <p>Pinsoft işlem kurallarını okudum ve Kabul ediyorum</p>
               </div>
               <div className='payScreen-container__paySide' >

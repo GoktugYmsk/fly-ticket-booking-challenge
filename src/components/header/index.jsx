@@ -63,41 +63,27 @@ function Header() {
   return (
     <>
       <div className="header-container">
-        {inform &&
-          <div className="header-top-navbar">
-            <FaBell className="header-top-navbar__icon" />
-            {date}
-            <p>18 Yaş Altı Misafirlerin Suudi Arabistan'a Seyahat Şartı Hakkında</p>
-            <p>Daha Fazla →</p>
-            {/* <p className='header-top-navbar-close' onClick={handleCloseInform} >x</p> */}
-          </div>
-        }
-        <Navbar expand="lg" className="bg-body-tertiary">
-          <img className="header-logo" src={logo} alt="Logo" />
-          <Container className="header-bootstrap-container">
-            <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="me-auto">
-                <Nav.Link href="#home">Home</Nav.Link>
-                <Nav.Link href="#link">Link</Nav.Link>
-                <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                  <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-                </NavDropdown>
-                <Nav.Link onClick={handleLogin}>Giriş Yap</Nav.Link>
-              </Nav>
-            </Navbar.Collapse>
-          </Container>
-        </Navbar>
+
+        <nav class="header-navbar">
+          <div class="nav_logo">Some Booking Inc.</div>
+          <ul class="nav_links">
+            <Nav.Link href="#home">Home</Nav.Link>
+            <Nav.Link href="#link">Link</Nav.Link>
+            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+            </NavDropdown>
+            <Nav.Link onClick={handleLogin}>Login</Nav.Link>
+          </ul>
+        </nav>
         <div className="plane" style={{ transform: `translateX(${planePosition}px)` }}>
           <FaPlaneDeparture />
         </div>
       </div>
-      {isLogin && <Login />}
+      {isLogin && <Login setIsLogin={setIsLogin} />}
     </>
   );
 }

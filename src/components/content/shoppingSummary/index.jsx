@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, } from 'react-router-dom';
-import { setPassName } from '../../configure';
+import { setPassName, setPassengerInfo } from '../../configure';
 
 import './index.scss';
 
@@ -10,6 +10,7 @@ function ShoppingSummary() {
     const passengerInfo = useSelector((state) => state.passInfo.passengerInfo);
     const passSurname = useSelector((state) => state.passCheck.passSurname);
     const passName = useSelector((state) => state.passCheck.passName);
+    const refreshPassenger = useSelector((state) => state.refreshPass.refreshPassenger);
 
     const navigate = useNavigate();
     const dispatch = useDispatch()
@@ -22,7 +23,7 @@ function ShoppingSummary() {
         'https://uploads-ssl.webflow.com/605c9d764f1ef938a009ac98/61e01bfbdd8632a72962edc2_Pinsoft_Yatay_Logo_mavi-for%20animation.svg';
 
     const handleMainPage = () => {
-        dispatch(setPassName(''))
+        dispatch(setPassengerInfo(refreshPassenger))
         navigate('/');
     };
 

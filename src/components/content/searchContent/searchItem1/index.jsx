@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import DateTime from 'react-datetime';
 import PassengerPopup from './popup';
 import { FaExchangeAlt } from 'react-icons/fa';
-import { FaCalendarAlt } from 'react-icons/fa';
+import { PiMagnifyingGlassBold } from 'react-icons/pi';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from 'react-bootstrap/Button';
 import flightPorts from '../../../../assets/flightPorts';
-import { setFlightPort, setFlightPortArrive, setSelectedDate, setReturnDate } from '../../../configure';
+import { setFlightPort, setFlightPortArrive, setSelectedDate, setReturnDate, setPassName, setPassSurname, setPnrCode } from '../../../configure';
 import 'react-datetime/css/react-datetime.css';
 import './index.scss';
 
@@ -49,10 +49,15 @@ function SearchItem1() {
 
   const handleDateChangeArrive = (date) => {
     dispatch(setReturnDate(date._d))
-  }
+  };
 
   const handleOpenPopup = () => {
     setPopup(true);
+  };
+  const handleExchangeClick = () => {
+    const changePort = selectedExplanation;
+    setSelectedExplanation(selectedExplanationArrive);
+    setSelectedExplanationArrive(changePort);
   };
 
   const renderCalendar = () => {
@@ -69,6 +74,26 @@ function SearchItem1() {
         current.toDate().getMonth() === nextMonth - 1
       ) && current.toDate() >= currentDate;
     };
+
+    // 3 ay için
+
+    // const isValidDate = (current) => {
+    //   const currentDate = new Date();
+    //   const currentMonth = currentDate.getMonth() + 1;
+    //   const currentYear = currentDate.getFullYear();
+
+    //   const nextThreeMonthsDate = new Date();
+    //   nextThreeMonthsDate.setMonth(nextThreeMonthsDate.getMonth() + 3);
+
+    //   const currentMonthYear = current.toDate().getFullYear();
+    //   const currentMonthNum = current.toDate().getMonth() + 1;
+
+    //   return (
+    //     (currentMonthYear > currentYear || (currentMonthYear === currentYear && currentMonthNum >= currentMonth)) &&
+    //     current.toDate() >= currentDate &&
+    //     current.toDate() <= nextThreeMonthsDate
+    //   );
+    // };
 
     return (
       <div className='calendar'>
@@ -195,8 +220,11 @@ function SearchItem1() {
 
   console.log(totalPassenger)
 
-  const navigateToExpedition = () => {
+  const navigateToCompanies = () => {
     if (selectedExplanation && selectedExplanationRight) {
+      dispatch(setPnrCode(''))
+      dispatch(setPassName(''))
+      dispatch(setPassSurname(''))
       sessionStorage.setItem('totalPassenger', totalPassenger);
       navigate('/fly-companies');
     }
@@ -239,12 +267,6 @@ function SearchItem1() {
     }
   }, [selectedExplanationRight]);
 
-  useEffect(() => {
-    if (selectedExplanationRight) {
-      setOpenPortsWhere(false);
-    }
-  }, [selectedExplanationRight]);
-
   const handlePortOpenClick = () => {
     setOpenPorts(!openPorts);
   };
@@ -277,7 +299,6 @@ function SearchItem1() {
     setRenderedPorts(updatedRenderedPorts);
   }, [selectedExplanation]);
 
-
   useEffect(() => {
     const inputValueArrive = selectedExplanationArrive.toLocaleLowerCase()
     const filteredPortsArrive = flightPortsData.filter((port) =>
@@ -302,48 +323,48 @@ function SearchItem1() {
               onChange={handleSwitchChange}
             />
             <span className='switch-slider'>
-              <p>Tek Yön</p>
-              <p>Gidiş Dönüş</p>
+              <p>One-Way</p>
+              <p>Round-Trip</p>
             </span>
           </label>
         </div>
         <div className='searchItem-one__container__content'>
           <div className='searchItem-one__container-place'>
             <div onClick={handlePortOpenClick} className='searchItem-one__container-place__ports-one'>
-              <p>Nerden</p>
-              <input value={selectedExplanation} onChange={(e) => setSelectedExplanation(e.target.value)} />
+              <input placeholder="From" value={selectedExplanation} onChange={(e) => setSelectedExplanation(e.target.value)} />
               <hr />
             </div>
-            <FaExchangeAlt />
+            <FaExchangeAlt className='exchangeIcon' onClick={handleExchangeClick} />
             <div onClick={handlePortOpenClickRight} className='searchItem-one__container-place__ports-one'>
-              <p>Nereye</p>
-              <input value={selectedExplanationArrive} onChange={(e) => setSelectedExplanationArrive(e.target.value)} />
+              <input placeholder="To" value={selectedExplanationArrive} onChange={(e) => setSelectedExplanationArrive(e.target.value)} />
               <hr />
             </div>
           </div>
           <div className='searchItem-one__container__chose-travelDate'>
             <div className='travel-date' onClick={handleCalendarClick}>
-              <p>Gidiş Tarihi</p>
+              <p>Depart</p>
               <p className='SearchItem-one__container-travelDate'>
                 {isCalendarOpen && renderCalendar()}
               </p>
             </div>
             <div className='searchItem-one__container-return'>
-              <FaCalendarAlt />
-              <p>{isRoundTrip ? 'Gidiş-Dönüş' : 'Tek Yön'}</p>
-              {isRoundTrip && renderCalendarRight()}
+              <p className='searchItem-one__container-return-p'>{isRoundTrip ? 'Return' : ''}
+                {isRoundTrip && renderCalendarRight()}
+              </p>
             </div>
           </div>
           <div className='searchItem-one__container-passenger-amount'>
-            <h3>Yolcu</h3>
+            <p>Passengers</p>
             {ticketAmount.adults > 0 && (
-              <h2 onClick={handleOpenPopup}>{`${ticketAmount.adults} Yetişkin`}</h2>
+              <h2 onClick={handleOpenPopup}>{`${ticketAmount.adults} Adult`}</h2>
             )}
             {(ticketAmount.children > 0 || ticketAmount.babies > 0) && (
               <h2 onClick={handleOpenPopup}>{renderPassengerAmount()}</h2>
             )}
           </div>
-          <Button onClick={navigateToExpedition} variant='secondary'>Ucuz Uçuş Bileti Ara</Button>
+          <Button className='searchItem-one__search-button' onClick={navigateToCompanies} variant='secondary'>
+            <PiMagnifyingGlassBold />
+          </Button>
         </div>
       </div>
       {popup && <PassengerPopup setTicketAmount={setTicketAmount} setPopup={setPopup} />}

@@ -3,15 +3,21 @@ import { useDispatch, useSelector } from 'react-redux';
 import passengerInformation from '../../assets/passenger';
 import flightPorts from '../../assets/flightPorts';
 import { setFlightTicket } from '../configure';
+import { setPassengerInfo } from '../configure';
 import './index.scss';
 import { useNavigate } from 'react-router-dom';
 
 function FlyCompanies() {
+
+    const [formattedSelectedDate, setFormattedSelectedDate] = useState('');
+    const [formattedReturnDate, setFormattedReturnDate] = useState('');
+
     const flightPort = useSelector((state) => state.passFlightPort.flightPort);
     const flightPortArrive = useSelector((state) => state.passFlightPortArrive.flightPortArrive);
     const passengerInfo = useSelector((state) => state.passInfo.passengerInfo);
     const selectedDate = useSelector((state) => state.optionDateDepp.selectedDate);
     const returnDate = useSelector((state) => state.optionDateArr.returnDate);
+    const refreshPassenger = useSelector((state) => state.refreshPass.refreshPassenger);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -34,8 +40,6 @@ function FlyCompanies() {
 
     const selectedDateTimestamp = selectedDate instanceof Date ? selectedDate.getTime() : null;
 
-    const [formattedSelectedDate, setFormattedSelectedDate] = useState('');
-    const [formattedReturnDate, setFormattedReturnDate] = useState('');
 
     useEffect(() => {
         const selectedDateFormatted = selectedDate instanceof Date ? selectedDate.toDateString() : '';
@@ -46,11 +50,12 @@ function FlyCompanies() {
     }, [selectedDate, returnDate]);
 
     const handleMainPageClick = () => {
+        dispatch(setPassengerInfo(refreshPassenger));
         navigate('/');
     };
 
-    const handleTicketClick = (ticket) => {
-        dispatch(setFlightTicket({ ...ticket, selectedDate: selectedDateTimestamp }));
+    const handleTicketClick = (item) => {
+        dispatch(setFlightTicket({ ...item, selectedDate: selectedDateTimestamp }));
         navigate('/sales-screen');
     };
 
@@ -70,7 +75,7 @@ function FlyCompanies() {
                             <p>Gidiş</p>
                             {formattedSelectedDate}
                         </div>
-                        {returnDate && (
+                        {formattedReturnDate && (
                             <div className='flyCompanies-container__box-info__date-return'>
                                 <p>Dönüş</p>
                                 {formattedReturnDate}
