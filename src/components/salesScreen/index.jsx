@@ -38,7 +38,6 @@ function SalesScreen() {
     };
 
     const totalPrice = flightTicket.priceDetail.basePrice.amount * totalPassenger;
-
     const renderPassengerDetails = () => {
         const passengerDetails = [];
         const passengerCounts = [passengerInfo.adults, passengerInfo.children, passengerInfo.babies];
