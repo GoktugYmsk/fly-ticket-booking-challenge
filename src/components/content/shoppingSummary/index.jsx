@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, } from 'react-router-dom';
 import { setPassName, setPassengerInfo } from '../../configure';
@@ -15,9 +15,11 @@ function ShoppingSummary() {
     const navigate = useNavigate();
     const dispatch = useDispatch()
 
+
     console.log(passName);
 
     const totalPassenger = sessionStorage.getItem('totalPassenger');
+    const totalPrice = flightTicket.priceDetail.basePrice.amount * totalPassenger;
 
     const logo =
         'https://uploads-ssl.webflow.com/605c9d764f1ef938a009ac98/61e01bfbdd8632a72962edc2_Pinsoft_Yatay_Logo_mavi-for%20animation.svg';
@@ -48,20 +50,41 @@ function ShoppingSummary() {
                         <p> Toplam: {totalPassenger} Yolcu </p>
                     </div>
 
-                    <div className='shoppingSummary-container-box__list-top'>
-                        {passName.map((name, index) => (
-                            <p key={index}>Adı: {name}</p>
-                        ))}
-                        {passSurname.map((surname, index) => (
-                            <p key={index}>Soyadı: {surname}</p>
-                        ))}
-                        <p>{passengerInfo.adults} Yetişkin </p>
-                        {passengerInfo.children > 0 && (
-                            <p> {`  - ${passengerInfo.children}  Çocuk `}</p>
-                        )}
-                        {passengerInfo.babies > 0 && (
-                            <p> {` - ${passengerInfo.babies}  Bebek`} </p>
-                        )}
+                    <div className='shoppingSummary-container-box__list-bottom'>
+                        <div className='shoppingSummary-container-box__list-name' >
+                            <div className='name' >
+                                {passName.map((name, index) => (
+                                    <div className='name-flex' >
+                                        <p>Adı:</p>
+                                        <p key={index}> {name}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                        <div className='shoppingSummary-container-box__list-surName' >
+                            <div className='surname'  >
+                                {passSurname.map((surname, index) => (
+                                    <div className='surname-flex' >
+                                        <p>Soyadı:</p>
+                                        <p key={index}> {surname}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                    </div>
+                    <div className='shoppingSummary-container-box__list-passenger' >
+                        <p>{totalPrice} $</p>
+                        <div className='shoppingSummary-container-box__list-passengerInfo' >
+                            <p>{passengerInfo.adults} Yetişkin </p>
+                            {passengerInfo.children > 0 && (
+                                <p> {`  - ${passengerInfo.children}  Çocuk `}</p>
+                            )}
+                            {passengerInfo.babies > 0 && (
+                                <p> {` - ${passengerInfo.babies}  Bebek`} </p>
+                            )}
+
+                        </div>
                     </div>
                 </div>
             </div>
