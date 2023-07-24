@@ -10,7 +10,7 @@ function SearchItem2() {
   const [info, setInfo] = useState(false)
   const [surname, setSurname] = useState('');
 
-  // const passName = useSelector((state) => state.passCheck.passName);
+  const passName = useSelector((state) => state.passCheck.passName);
   const pnrCode = useSelector((state) => state.passCheck.pnrCode);
   const passSurname = useSelector((state) => state.passCheck.passSurname);
   const flightPort = useSelector((state) => state.passFlightPort.flightPort);
@@ -23,7 +23,7 @@ function SearchItem2() {
   const leavePortExplanation = isLeavePort ? isLeavePort.explanation : '';
   const arrivePortExplanation = isArrivePort ? isArrivePort.explanation : '';
 
-  console.log('passunasoc', passSurname);
+  console.log('passunasoc', passSurname, pnrCode);
 
   const selectedDateFormatted = selectedDate instanceof Date ? selectedDate.toDateString() : '';
 
@@ -42,14 +42,20 @@ function SearchItem2() {
     const isSurnameMatched = passSurnameFilter.includes(surname);
     const isPnrMatched = pnrCodeFilter.includes(pnr);
 
-    if (isSurnameMatched && isPnrMatched) {
-      setInfo(!info)
+    const isIndexMatched = passSurname.length === pnrCode.length &&
+      passSurname.findIndex((item, index) => item === surname && pnrCode[index] === pnr) !== -1;
+
+    if (isSurnameMatched && isPnrMatched && isIndexMatched) {
+      setInfo(true)
     } else if (!isSurnameMatched) {
       alert('Soyadı bilginizi kontrol ediniz');
     } else if (!isPnrMatched) {
       alert('PNR kodunuzu kontrol ediniz');
+    } else if (!isIndexMatched) {
+      alert('Soyadı ve PNR kodunuzu kontrol ediniz');
     }
   };
+
 
   return (
     <div className='searchItem-two__container'>
@@ -64,12 +70,20 @@ function SearchItem2() {
             <h3>{leavePortExplanation}</h3>
             <h3>{arrivePortExplanation}</h3>
             {selectedDateFormatted}
+            {passName.map((name, index) => {
+              if (passSurname[index] === surname && pnrCode[index] === pnr) {
+                return (
+                  <div key={index}>
+                    <p>Adı: {name}</p>
+                    <p>Soyadı: {surname}</p>
+                  </div>
+                );
+              } else {
+                return null;
+              }
+            })}
           </div>
-
         }
-        {/* {passName.map((name, index) => (
-          <p key={index}>Adı: {name}</p>
-        ))} */}
       </form>
     </div>
   );
