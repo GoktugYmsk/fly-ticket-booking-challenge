@@ -67,25 +67,25 @@ function SalesScreen() {
                 passengerDetails.push(
                     <div key={passengerIndex} className="flight-container">
                         <div className='passenger-leftInfo'>
-                            <h3>{`${j}. ${passengerType}`}</h3>
+                            <h4>{`${j}. ${passengerType}`}</h4>
                         </div>
-                        <div className="flight-box">
-                            <div className="flight-box">
+                        <div className="flight-box" style={{ display: 'flex' }}>
+                            <div className="flight-box" style={{ flex: 1 }}>
                                 <div className="no-title">First Name:</div>
                                 <div className="no"><input OnChange={(e) => handleNameChange(e, passengerIndex)}  type="text" id="first-name" name="first-name" required/></div>
                             </div>
-                            <div className="flight-box">
+                        <div className="flight-box" style={{ flex: 1 }}>
                                 <div className="depart-title">Last Name:</div>
                                 <div className="depart"><input OnChange={(e) => handleSurnameChange(e, passengerIndex)} type="text" id="last-name" name="last-name" required/></div>
                             </div>
-                            {/* <div className="flight-box">
+                            <div className="flight-box" style={{ flex: 1 }}>
                                 <div className="time-title">ID Number:</div>
                                 <div className="time"><input type="text" id="id-number" name="id-number" required/></div>
                           </div>
-                                <div className="flight-box">
+                                <div className="flight-box" style={{ flex: 1 }}>
                                 <div className="arrive-title">Birth Date:</div>
                                 <div className="arrive"><input type="date" id="birth-date" name="birth-date" required/></div>
-                            </div> */}
+                            </div>
                             
                         </div>
 

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flight Booking Payment</title>
+  <link rel="stylesheet" href="pay.css">
+  <link rel="stylesheet" href="third.css">
+  <link rel="stylesheet" href="secondary.css">
+</head>
+<body>
+  <nav>
+    <div class="nav_logo">Your Logo</div>
+    <ul class="nav_links">
+      <li class="link"><a href="#">Home</a></li>
+      <li class="link"><a href="#">Flights</a></li>
+      <li class="link"><a href="#">Hotels</a></li>
+      <li class="link"><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <div class="section-header">
+      <h1>Flight Booking Summary</h1>
+    </div>
+    <div class="flight-details">
+      <!-- Display flight details here from the booking summary -->
+    </div>
+
+    <div class="payment-info">
+      <h2>Payment Information</h2>
+      <div class="card-icon" tabindex="0">
+        <span class="cvv">CVV: XXX</span>
+        <span class="expiration">Expiration Date: XX/XX</span>
+        <span class="card-number">XXXX-XXXX-XXXX-XXXX</span>
+      </div>
+      <div class="white-box">
+        <div class="information-container">
+          <div class="user-info">
+            <label for="cardNumber">Card Number</label>
+            <input type="text" id="cardNumber" placeholder="XXXX-XXXX-XXXX-XXXX" required>
+          </div>
+          <div class="user-info">
+            <label for="cardHolderName">Card Holder Name</label>
+            <input type="text" id="cardHolderName" placeholder="Enter the card holder's name" required>
+          </div>
+          <div class="user-info">
+            <label for="expirationDate">Expiration Date</label>
+            <input type="text" id="expirationDate" placeholder="MM/YY" required>
+          </div>
+          <div class="user-info">
+            <label for="cvv">CVV Code</label>
+            <input type="text" id="cvv" placeholder="XXX" required>
+          </div>
+        </div>
+        <div class="user-information">
+          <div class="user-info">
+            <input type="checkbox" id="acceptRules" required>
+            <label for="acceptRules">I accept the rules</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="passenger-form">
+      <div class="form-group">
+        <button type="button">Continue with Payment</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer_container">
+      <div class="footer_col">
+        <h3>Company</h3>
+        <p>About</p>
+        <p>Terms of Service</p>
+        <p>Privacy Policy</p>
+        <p>Contact</p>
+      </div>
+      <div class="footer_col">
+        <h3>Support</h3>
+        <p>FAQ</p>
+        <p>Help Center</p>
+        <p>Product Tour</p>
+      </div>
+      <div class="footer_col">
+        <h3>Follow Us</h3>
+        <p>Facebook</p>
+        <p>Twitter</p>
+        <p>Instagram</p>
+      </div>
+      <div class="footer_col">
+        <h4>Subscribe to Our Newsletter</h4>
+        <p>Receive exclusive offers and the latest news directly in your inbox.</p>
+        <div class="form-group">
+          <input type="email" placeholder="Enter your email" required>
+          <button type="submit">Subscribe</button>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
