@@ -1,3 +1,39 @@
+.navbar {
+   
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        background: #2c3855;
+        box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.4);
+
+
+        .nav_logo {
+            padding-left:10%;
+            padding-top: 0.7%;
+            padding-bottom: 0.7%;;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #f3f4f6;
+        }
+
+        img {
+            width: 300px;
+            height: 100px;
+            cursor: pointer;
+        }
+
+        .nav_links {
+            padding-right: 10%;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+}
+
+
 .shoppingSummary-container {
     display: flex;
     flex-direction: column;
@@ -5,8 +41,12 @@
     .shoppingSummary__container-navbar {
         nav {
             display: flex;
+            align-items: center;
+            justify-content: space-between;
             width: 100%;
-            background: rgb(74, 204, 255);
+            background: #2c3855;
+            box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.4);
+    
 
             img {
                 width: 300px;
@@ -17,9 +57,13 @@
 
         .shoppingSummary__container-navbar-alt {
             display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            
 
             h3 {
-                margin-left: 100px;
+                padding: 20px;
+                
             }
         }
     }
@@ -29,14 +73,17 @@
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        background: red;
-        height: 100vh;
+        background: rgb(255, 255, 255);
+        height: 70vh;
+        
 
-        h4 {
+        h5 {
             cursor: pointer;
+            margin-top: 50px;
+            color: #3d465c;;
 
             &:hover {
-                background: green;
+                color: #c6a74b;
             }
         }
     }
@@ -49,13 +96,20 @@
         height: auto;
         padding: 20px;
         width: 80%;
-        background: rgb(87, 118, 87);
+        background: rgb(255, 255, 255);
+        box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.1);
+        border-radius: 30px;
+
 
         .shoppingSummary-container-box__list-top {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 40px;
+            gap: 60px;
+            padding: 20px;
+            color: #3d465c;
+            font-weight: 400;
+            
 
             p {
                 font-size: 30px;
@@ -64,21 +118,36 @@
 
         .shoppingSummary-container-box__list-bottom {
             display: flex;
-            background: red;
+            background: rgb(243, 243, 243);
             width: 100%;
             align-items: center;
             justify-content: space-around;
+            border-radius: 10px;
+            margin-bottom: 10px;
 
             .shoppingSummary-container-box__list-name {
                 display: flex;
 
+                
+
                 .name {
                     display: flex;
                     flex-direction: column;
+                    font-size: 18px;
+                    font-weight: 400;
+                    padding-inline: 10px;
+                    padding-top: 15px;
+
+                    .passenger-name{
+                        font-weight: 500;
+                        color: #3d465c;
+                    }
 
                     .name-flex {
                         display: flex;
                         gap: 20px;
+                        font-size: 18px;
+          
                     }
                 }
             }
@@ -89,6 +158,15 @@
                 .surname {
                     display: flex;
                     flex-direction: column;
+                    font-size: 18px;
+                    font-weight: 400;
+                    padding-inline: 10px;
+                    padding-top: 15px;
+
+                    .passenger-name{
+                        font-weight: 500;
+                        color: #3d465c;
+                    }
 
                     .surname-flex {
                         display: flex;
@@ -101,8 +179,15 @@
         .shoppingSummary-container-box__list-passenger {
             display: flex;
             width: 100%;
-            background: green;
+            background: #7a89ad;
             justify-content: space-around;
+            border-radius: 10px;
+            color: white;
+            font-size: 18px;
+            font-weight: 500;
+            padding-inline: 10px;
+            padding-top: 15px;
+            
 
             .shoppingSummary-container-box__list-passengerInfo {
                 display: flex;
