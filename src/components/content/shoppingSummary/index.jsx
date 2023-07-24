@@ -54,7 +54,7 @@ function ShoppingSummary() {
           </ul>
         </nav>
         <div className="shoppingSummary__container-navbar-alt">
-          <h3>Uçuş Bilgileri Özeti</h3>
+          <h3>Flight Information Summary</h3>
         </div>
       </div>
       <div className="shoppingSummary-container-box">
@@ -64,7 +64,7 @@ function ShoppingSummary() {
             <p>{flightTicket.flightNo}</p>
             <p>{flightTicket.depTime}</p>
             <p>{flightTicket.arrTime}</p>
-            <p> Toplam: {totalPassenger} Yolcu </p>
+            <p> Total: {totalPassenger} Passengers </p>
           </div>
 
           <div className="shoppingSummary-container-box__list-bottom">
@@ -72,7 +72,7 @@ function ShoppingSummary() {
               <div className="name">
                 {passName.map((name, index) => (
                   <div className="name-flex">
-                    <p className="passenger-name">Adı:</p>
+                    <p className="passenger-name">First Name:</p>
                     <p key={index}> {name}</p>
                   </div>
                 ))}
@@ -82,7 +82,7 @@ function ShoppingSummary() {
               <div className="surname">
                 {passSurname.map((surname, index) => (
                   <div className="surname-flex">
-                    <p className="passenger-name">Soyadı:</p>
+                    <p className="passenger-name">Last Name:</p>
                     <p key={index}> {surname}</p>
                   </div>
                 ))}
@@ -92,17 +92,17 @@ function ShoppingSummary() {
           <div className="shoppingSummary-container-box__list-passenger">
             <p>{totalPrice} $</p>
             <div className="shoppingSummary-container-box__list-passengerInfo">
-              <p>{passengerInfo.adults} Yetişkin </p>
+              <p>{passengerInfo.adults} Adult </p>
               {passengerInfo.children > 0 && (
-                <p> {`  - ${passengerInfo.children}  Çocuk `}</p>
+                <p> {`  - ${passengerInfo.children}  Child `}</p>
               )}
               {passengerInfo.babies > 0 && (
-                <p> {` - ${passengerInfo.babies}  Bebek`} </p>
+                <p> {` - ${passengerInfo.babies}  Infant`} </p>
               )}
             </div>
           </div>
         </div>
-        <h5 onClick={handleMainPage}>Anasayfaya Dön</h5>
+        <h5 onClick={handleMainPage}>Go Back To The Homepage</h5>
       </div>
     </div>
   );

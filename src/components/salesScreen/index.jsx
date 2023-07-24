@@ -50,13 +50,13 @@ function SalesScreen() {
                 let passengerType = '';
                 switch (i) {
                     case 0:
-                        passengerType = 'Yetişkin';
+                        passengerType = 'Adult';
                         break;
                     case 1:
-                        passengerType = 'Çocuk';
+                        passengerType = 'Child';
                         break;
                     case 2:
-                        passengerType = 'Bebek';
+                        passengerType = 'Infant';
                         break;
                     default:
                         break;
