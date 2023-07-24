@@ -64,26 +64,19 @@ function SalesScreen() {
                 passengerDetails.push(
                     <div key={passengerIndex} className='salesScreen-container-content__box__passDetail'>
                         <div className='passenger-leftInfo'>
-                            <h4>{`${j}. ${passengerType}`}</h4>
+                            <h3>{`${j}. ${passengerType}`}</h3>
+                            <input type='radio' />
+                            <input type='radio' />
                         </div>
-                        <div className="flight-box" style={{ display: 'flex' }}>
-                            <div className="flight-box" style={{ flex: 1 }}>
-                                <div className="no-title">First Name:</div>
-                                <div className="no"><input OnChange={(e) => handleNameChange(e, passengerIndex)}  type="text" id="first-name" name="first-name" required/></div>
+                        <div className='passenger-rightInfo'>
+                            <input onChange={(e) => handleNameChange(e, passengerIndex)} placeholder='İsim' />
+                            <input onChange={(e) => handleSurnameChange(e, passengerIndex)} placeholder='Soyisim' />
+                            <input placeholder='Doğum Tarihi' />
+                            <input placeholder='TC Kimlik no' />
+                            <div className='passenger-rightInfo-detail'>
+                                <input type='radio' />
+                                <p>TC vatandaşı değilim</p>
                             </div>
-                        <div className="flight-box" style={{ flex: 1 }}>
-                                <div className="depart-title">Last Name:</div>
-                                <div className="depart"><input OnChange={(e) => handleSurnameChange(e, passengerIndex)} type="text" id="last-name" name="last-name" required/></div>
-                            </div>
-                            <div className="flight-box" style={{ flex: 1 }}>
-                                <div className="time-title">ID Number:</div>
-                                <div className="time"><input type="text" id="id-number" name="id-number" required/></div>
-                          </div>
-                                <div className="flight-box" style={{ flex: 1 }}>
-                                <div className="arrive-title">Birth Date:</div>
-                                <div className="arrive"><input type="date" id="birth-date" name="birth-date" required/></div>
-                            </div>
-                            
                         </div>
                     </div>
                 );
@@ -158,14 +151,14 @@ function SalesScreen() {
                     <input type='radio' />
                     <p>Şahıs Şirketi</p>
                 </div>
-                
+
                 <h3>Contact Information</h3>
                 <div className="flight-container larger-container" style={{ display: 'flex' }}>
                     <div classNamess="flight-box" style={{ flex: 1 }}>
                         <div className="airline-title">Phone Number:</div>
                         <div className="airline"><input type="text" id="phone-number" name="phone-number" required /></div>
                     </div>
-                    <div className="flight-box"style={{ flex: 1 }}>
+                    <div className="flight-box" style={{ flex: 1 }}>
                         <div className="no-title">Email:</div>
                         <div className="no"><input type="email" id="email" name="email" required /></div>
                     </div>
