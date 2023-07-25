@@ -68,14 +68,15 @@ function SearchItem2() {
         <Button className='searchItem-two__container-button' onClick={handleControlClick} type="button" variant='secondary'>Continue</Button>
         {info &&
           <div className='searchItem-two__container__ports' >
-            <h3>{leavePortExplanation}</h3>
-            <h3>{arrivePortExplanation}</h3>
-            {selectedDateFormatted}
+            <div className='searchItem-two__container__ports-info' >
+              <h3>{leavePortExplanation}</h3>
+              <h3>{arrivePortExplanation}</h3>
+            </div>
             {passName.map((name, index) => {
               if (passSurname[index] === surname && pnrCode[index] === pnr) {
                 return (
                   <div key={index}>
-                    <p>First Name: {name}</p>
+                    <p className='searchItem-two__container__ports-info__firstp'>First Name: {name}</p>
                     <p>Last Name: {surname}</p>
                   </div>
                 );
@@ -83,6 +84,7 @@ function SearchItem2() {
                 return null;
               }
             })}
+            {selectedDateFormatted}
           </div>
         }
       </form>
