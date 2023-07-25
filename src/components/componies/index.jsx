@@ -6,7 +6,7 @@ import flightPorts from "../../assets/flightPorts";
 import passengerInformation from "../../assets/passenger";
 
 import { setFlightTicket, setPassengerInfo } from "../configure";
-
+import Header from "../header";
 import "./index.scss";
 
 function FlyCompanies() {
@@ -68,7 +68,7 @@ function FlyCompanies() {
 
   return (
     <div>
-      <nav className="navbar">
+      {/* <nav className="navbar">
         <div onClick={handleMainPage} className="nav_logo">Fly Pinsoft</div>
         <ul className="nav_links">
           <li className="link" onClick={handleMainPage}>
@@ -84,7 +84,10 @@ function FlyCompanies() {
             <a href="#">Contact Us</a>
           </li>
         </ul>
-      </nav>
+      </nav> */}
+      <Header>
+        {/* Header içeriği burada */}
+      </Header>
       <div className="flyCompanies-container">
         <div className="flyCompanies-container__box-info">
           <div className="flyCompanies-container__box-info-top">
@@ -96,6 +99,7 @@ function FlyCompanies() {
             </p>
             <div className="flyCompanies-container__box-info-city">
               <h3>{leavePortExplanation}</h3>
+              <i class="fas fa-chevron-right"></i>
               <h3>{arrivePortExplanation}</h3>
             </div>
             <div className="flyCompanies-container__box-info__date">
@@ -112,12 +116,12 @@ function FlyCompanies() {
             </div>
           </div>
           <div className="flyCompanies-container__box-info-bottom">
-            <p>{passengerInfo.adults} Adult </p>
+            <span>{passengerInfo.adults} Adult </span>
             {passengerInfo.children > 0 && (
-              <p> {`  - ${passengerInfo.children}  Child `}</p>
+              <span> {`  - ${passengerInfo.children}  Child `}</span>
             )}
             {passengerInfo.babies > 0 && (
-              <p> {` - ${passengerInfo.babies}  Infant`} </p>
+              <span> {` - ${passengerInfo.babies}  Infant`} </span>
             )}
           </div>
         </div>

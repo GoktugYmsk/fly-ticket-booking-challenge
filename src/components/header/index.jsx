@@ -56,7 +56,10 @@ function Header() {
     <>
       <div className="header-container">
         <nav class="header-navbar">
-          <div onClick={handleMainPage} class="nav_logo">Fly Pinsoft</div>
+          <div onClick={handleMainPage} class="nav_logo">
+            <img className='nav_logo_main' src="./img/logo.png" alt="logo" />
+            Fly Pinsoft
+            </div>
           <ul class="nav_links">
             <Nav.Link href="#home">Home</Nav.Link>
             <Nav.Link href="#link">Link</Nav.Link>
