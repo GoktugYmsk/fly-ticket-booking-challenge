@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
 import { useSelector } from 'react-redux';
+
+import Button from 'react-bootstrap/Button';
+
 import flightPorts from '../../../../assets/flightPorts';
 
 import './index.scss';
@@ -55,7 +57,6 @@ function SearchItem2() {
       alert('Soyadı ve PNR kodunuzu kontrol ediniz');
     }
   };
-
 
   return (
     <div className='searchItem-two__container'>

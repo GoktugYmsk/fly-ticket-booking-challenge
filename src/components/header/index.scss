@@ -1,92 +1,88 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
 
 .header-container {
-    position: fixed;
-    width: 100%;
-    z-index: 2;
-    font-family: "Poppins", sans-serif;
+  position: fixed;
+  width: 100%;
+  z-index: 2;
+  font-family: "Poppins", sans-serif;
 
-    
 
-    .header-top-navbar {
 
-        display: flex;
-        align-items: center;
-        background: rgb(192, 192, 192);
-        gap: 20px;
+  .header-top-navbar {
 
-        .header-top-navbar__icon {
-            margin-left: 20px;
-            color: rgb(34, 91, 224);
-        }
+    display: flex;
+    align-items: center;
+    background: rgb(192, 192, 192);
+    gap: 20px;
 
-        .header-top-navbar-close {
-            cursor: pointer;
-        }
+    .header-top-navbar__icon {
+      margin-left: 20px;
+      color: rgb(34, 91, 224);
     }
 
+    .header-top-navbar-close {
+      cursor: pointer;
+    }
+  }
 
 
-    .header-navbar {
-        height: 100px;
-        background-color: #2c3855;
-        margin: auto;
-        padding: 2rem 1rem;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.4);
+
+  .header-navbar {
+    height: 100px;
+    background-color: #2c3855;
+    margin: auto;
+    padding: 2rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.4);
 
 
-        .nav_logo {
-            padding-left: 9%;
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #f3f4f6;
-          }
-          
-          .nav_links {
-            padding-right: 9%;
-            list-style: none;
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            padding-top: 20px;
-            color: white;
+    .nav_logo {
+      padding-left: 9%;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #f3f4f6;
+    }
+
+    .nav_links {
+      padding-right: 9%;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      padding-top: 20px;
+      color: white;
 
 
-              .link a {
-                font-weight: 500;
-                color: #f3f4f6;
-                transition: 0.3s;
-              }
-              
-              .link a:hover {
-                color: #8a8a8a;
-              }
-
-          }
-          
-          
-
+      .link a {
+        font-weight: 500;
+        color: #f3f4f6;
+        transition: 0.3s;
       }
-      
 
-
+      .link a:hover {
+        color: #8a8a8a;
+      }
+    }
+  }
 }
 
 
 .plane {
-    position: fixed;
-    top: 50px;
-    font-size: 40px;
-    transform: translateY(-50%);
-    width: 100px;
-    height: 100px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    transition: left 0.3s ease;
-    z-index: 2;
-}
+  position: fixed;
+  top: 50px;
+  font-size: 40px;
+  transform: translateY(-50%);
+  width: 100px;
+  height: 100px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: left 0.3s ease;
+  z-index: 2;
 
+  .plane-icon {
+    color: white;
+  }
+}

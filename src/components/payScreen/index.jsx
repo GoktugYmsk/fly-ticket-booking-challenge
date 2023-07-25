@@ -1,21 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+
 import Toast from 'react-bootstrap/Toast';
 import Button from '@mui/material/Button';
 import Footer from '../footer';
+
 import { setPnrCode } from '../configure';
+
 import './index.scss';
 
 function PayScreen() {
   const [cvv, setCVV] = useState('');
+  const [popup, setPopup] = useState(false)
   const [cardName, setCardName] = useState('');
   const [expiryYear, setExpiryYear] = useState('');
   const [cardNumber, setCardNumber] = useState('');
   const [isFlipped, setIsFlipped] = useState(false);
-  const [popup, setPopup] = useState(false)
-  const [popupActive, setPopupActive] = useState(false)
   const [expiryMonth, setExpiryMonth] = useState('');
+  const [popupActive, setPopupActive] = useState(false)
   const [selectedOption, setSelectedOption] = useState('');
   const [isAgreementChecked, setIsAgreementChecked] = useState(false);
   const [maskedCardNumber, setMaskedCardNumber] = useState('################');
@@ -24,10 +27,7 @@ function PayScreen() {
   const pnrCode = useSelector((state) => state.passCheck.pnrCode);
   const passSurname = useSelector((state) => state.passCheck.passSurname);
 
-  console.log('denemePnr', pnrCode)
-
   const navigate = useNavigate()
-
   const dispatch = useDispatch()
 
   const totalPassenger = sessionStorage.getItem('totalPassenger')
@@ -41,8 +41,6 @@ function PayScreen() {
       setIsFlipped(false);
     }
   }, [cardNumber, expiryMonth, expiryYear, cardName]);
-
-  console.log(cardName)
 
   const handleCardNumberChange = (e) => {
     const { value } = e.target;
@@ -129,28 +127,23 @@ function PayScreen() {
     navigate('/shopping-summary')
   }
 
-
-  const logo =
-    'https://uploads-ssl.webflow.com/605c9d764f1ef938a009ac98/61e01bfbdd8632a72962edc2_Pinsoft_Yatay_Logo_mavi-for%20animation.svg';
-
   return (
     <>
       <div className={`payScreen__container ${popupActive ? 'payScreen__container-opacity' : 'payScreen__container'}`} >
         <div className="payScreen__container-navbar" >
-        <nav>
-      <div class="nav_logo">Some Booking Inc.</div>
-      <ul class="nav_links">
-        <li class="link"><a href="#">Home</a></li>
-        <li class="link"><a href="#">Book</a></li>
-        <li class="link"><a href="#">Blog</a></li>
-        <li class="link"><a href="#">Contact Us</a></li>
-      </ul>
-    </nav>
+          <nav>
+            <div onClick={handleMainPage} class="nav_logo">Fly Pinsoft</div>
+            <ul class="nav_links">
+              <li class="link"><a href="#">Home</a></li>
+              <li class="link"><a href="#">Book</a></li>
+              <li class="link"><a href="#">Blog</a></li>
+              <li class="link"><a href="#">Contact Us</a></li>
+            </ul>
+          </nav>
           <div className='payScreen__container-navbar-alt' >
             <h3>Payment Details</h3>
           </div>
         </div>
-
         <div className="payScreen-container-list">
           <div className="payScreen-container-box">
             <div className="payScreen-container-cardForm">
@@ -245,9 +238,7 @@ function PayScreen() {
                     checked={isAgreementChecked}
                     onChange={handleAgreementChange}
                   />
-
                 </div>
-
                 <p>I have read and agree to the terms and conditions.</p>
               </div>
               <div className='payScreen-container__paySide' >

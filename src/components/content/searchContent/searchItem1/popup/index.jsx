@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { AiOutlinePlusCircle, AiOutlineMinusCircle } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
-import { setPassengerInfo } from '../../../../configure';
-import Button from '@mui/material/Button';
+
 import { Input } from '@mui/material';
+import Button from '@mui/material/Button';
+import { AiOutlinePlusCircle, AiOutlineMinusCircle } from 'react-icons/ai';
+
+import { setPassengerInfo } from '../../../../configure';
 
 import './index.scss';
 
@@ -81,10 +83,8 @@ function PassengerPopup({ setPopup, setTicketAmount }) {
     }
   }
 
-
   useEffect(() => {
     document.addEventListener('mousedown', handleOutsideClick);
-
     return () => {
       document.removeEventListener('mousedown', handleOutsideClick);
     };

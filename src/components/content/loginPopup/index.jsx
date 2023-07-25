@@ -6,10 +6,8 @@ import "./index.scss";
 const LoginPopup = ({ setIsLogin }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
 
   const navigate = useNavigate()
-
 
   const handleLogin = () => {
     if (email === 'mock@gmail.com' && password === '123456') {
@@ -34,7 +32,6 @@ const LoginPopup = ({ setIsLogin }) => {
       setIsLogin(false)
     }
   }
-
 
   useEffect(() => {
     document.addEventListener('mousedown', handleOutsideClick);
@@ -63,7 +60,6 @@ const LoginPopup = ({ setIsLogin }) => {
               required
             />
           </div>
-          {error && <div>{error}</div>}
           <div className="button-container d-flex justify-content-center">
             <button type="submit" className="login-button">
               Login

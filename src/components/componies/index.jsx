@@ -1,38 +1,31 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import passengerInformation from "../../assets/passenger";
-import flightPorts from "../../assets/flightPorts";
-import { setFlightTicket } from "../configure";
-import { setPassengerInfo } from "../configure";
-import "./index.scss";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+
+import flightPorts from "../../assets/flightPorts";
+import passengerInformation from "../../assets/passenger";
+
+import { setFlightTicket, setPassengerInfo } from "../configure";
+
+import "./index.scss";
 
 function FlyCompanies() {
-  const [formattedSelectedDate, setFormattedSelectedDate] = useState("");
   const [formattedReturnDate, setFormattedReturnDate] = useState("");
+  const [formattedSelectedDate, setFormattedSelectedDate] = useState("");
 
-  const flightPort = useSelector((state) => state.passFlightPort.flightPort);
-  const flightPortArrive = useSelector(
-    (state) => state.passFlightPortArrive.flightPortArrive
-  );
-  const passengerInfo = useSelector((state) => state.passInfo.passengerInfo);
-  const selectedDate = useSelector(
-    (state) => state.optionDateDepp.selectedDate
-  );
   const returnDate = useSelector((state) => state.optionDateArr.returnDate);
-  const refreshPassenger = useSelector(
-    (state) => state.refreshPass.refreshPassenger
-  );
+  const flightPort = useSelector((state) => state.passFlightPort.flightPort);
+  const passengerInfo = useSelector((state) => state.passInfo.passengerInfo);
+  const selectedDate = useSelector((state) => state.optionDateDepp.selectedDate);
+  const refreshPassenger = useSelector((state) => state.refreshPass.refreshPassenger);
+  const flightPortArrive = useSelector((state) => state.passFlightPortArrive.flightPortArrive);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const isLeavePort = flightPorts.ports.find(
-    (item) => item.code === flightPort
-  );
-  const isArrivePort = flightPorts.ports.find(
-    (item) => item.code === flightPortArrive
-  );
+  const selectedDateTimestamp = selectedDate instanceof Date ? selectedDate.getTime() : null;
+
+  const isLeavePort = flightPorts.ports.find((item) => item.code === flightPort); const isArrivePort = flightPorts.ports.find((item) => item.code === flightPortArrive);
 
   const leavePortExplanation = isLeavePort ? isLeavePort.explanation : "";
   const arrivePortExplanation = isArrivePort ? isArrivePort.explanation : "";
@@ -47,8 +40,6 @@ function FlyCompanies() {
     return `${hours}h ${minutes}m`;
   };
 
-  const selectedDateTimestamp =
-    selectedDate instanceof Date ? selectedDate.getTime() : null;
 
   useEffect(() => {
     const selectedDateFormatted =
@@ -78,7 +69,7 @@ function FlyCompanies() {
   return (
     <div>
       <nav className="navbar">
-        <div className="nav_logo">Some Booking Inc.</div>
+        <div onClick={handleMainPage} className="nav_logo">Fly Pinsoft</div>
         <ul className="nav_links">
           <li className="link" onClick={handleMainPage}>
             <a href="#">Home</a>

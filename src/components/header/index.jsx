@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import Container from 'react-bootstrap/Container';
+import { useNavigate } from 'react-router-dom';
+
 import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import { FaBell } from 'react-icons/fa';
 import { FaPlaneDeparture } from 'react-icons/fa';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+
 import Login from '../content/loginPopup';
+
 import './index.scss';
 
 function Header() {
-  const [planePosition, setPlanePosition] = useState(0);
-  const [inform, setInform] = useState(true)
   const [isLogin, setIsLogin] = useState(false);
+  const [planePosition, setPlanePosition] = useState(0);
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,16 +30,6 @@ function Header() {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-
-  const newDate = new Date();
-  const day = newDate.getDate();
-  const month = (newDate.getMonth() + 1).toString().padStart(2, '0');
-  const year = newDate.getFullYear();
-  const date = day + '.' + month + '.' + year;
-
-
-  const logo =
-    'https://uploads-ssl.webflow.com/605c9d764f1ef938a009ac98/61e01bfbdd8632a72962edc2_Pinsoft_Yatay_Logo_mavi-for%20animation.svg';
 
   const handleKeyPress = (e) => {
     if (e.key === 'Escape') {
@@ -56,16 +48,15 @@ function Header() {
     setIsLogin(true);
   };
 
-  // const handleCloseInform = () => {
-  //   setInform(false)
-  // }
+  const handleMainPage = () => {
+    navigate('/')
+  }
 
   return (
     <>
       <div className="header-container">
-
         <nav class="header-navbar">
-          <div class="nav_logo">Some Booking Inc.</div>
+          <div onClick={handleMainPage} class="nav_logo">Fly Pinsoft</div>
           <ul class="nav_links">
             <Nav.Link href="#home">Home</Nav.Link>
             <Nav.Link href="#link">Link</Nav.Link>
@@ -80,7 +71,7 @@ function Header() {
           </ul>
         </nav>
         <div className="plane" style={{ transform: `translateX(${planePosition}px)` }}>
-          <FaPlaneDeparture />
+          <FaPlaneDeparture className='plane-icon' />
         </div>
       </div>
       {isLogin && <Login setIsLogin={setIsLogin} />}

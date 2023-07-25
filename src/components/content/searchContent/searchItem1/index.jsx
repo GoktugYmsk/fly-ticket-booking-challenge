@@ -1,38 +1,38 @@
 import React, { useState, useEffect } from 'react';
-import DateTime from 'react-datetime';
-import PassengerPopup from './popup';
-import { FaExchangeAlt } from 'react-icons/fa';
-import { PiMagnifyingGlassBold } from 'react-icons/pi';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+
+import DateTime from 'react-datetime';
+import PassengerPopup from './popup';
 import Button from 'react-bootstrap/Button';
-import flightPorts from '../../../../assets/flightPorts';
-import { setFlightPort, setFlightPortArrive, setSelectedDate, setReturnDate, setPassName, setPassSurname, setPnrCode } from '../../../configure';
+import { FaExchangeAlt } from 'react-icons/fa';
 import 'react-datetime/css/react-datetime.css';
+import { PiMagnifyingGlassBold } from 'react-icons/pi';
+
+import { setFlightPort, setFlightPortArrive, setSelectedDate, setReturnDate, setPassName, setPassSurname, setPnrCode } from '../../../configure';
+
+import flightPorts from '../../../../assets/flightPorts';
+
 import './index.scss';
 
 function SearchItem1() {
   const [popup, setPopup] = useState(false);
   const [openPorts, setOpenPorts] = useState(false);
   const [isRoundTrip, setIsRoundTrip] = useState(false);
+  const [renderedPorts, setRenderedPorts] = useState([]);
   const [isCalendarOpen, setIsCalendarOpen] = useState(true);
   const [openPortsWhere, setOpenPortsWhere] = useState(false);
+  const [renderedPortsArr, setRenderedPortsArr] = useState([]);
   const [selectedExplanation, setSelectedExplanation] = useState('');
+  const [selectedExplanationRight, setSelectedExplanationRight] = useState('');
   const [selectedExplanationArrive, setSelectedExplanationArrive] = useState('');
   const [ticketAmount, setTicketAmount] = useState({ adults: 1, children: 0, babies: 0 });
-  const [selectedExplanationRight, setSelectedExplanationRight] = useState('');
-  const [renderedPorts, setRenderedPorts] = useState([]);
-  const [renderedPortsArr, setRenderedPortsArr] = useState([]);
 
   const selectedDate = useSelector((state) => state.optionDateDepp.selectedDate);
-  const returnDate = useSelector((state) => state.optionDateArr.returnDate);
-
-  console.log('selectedDate', returnDate)
 
   const flightPortsData = flightPorts.ports;
 
   const navigate = useNavigate();
-
   const dispatch = useDispatch();
 
   const handleSwitchChange = () => {
@@ -74,26 +74,6 @@ function SearchItem1() {
         current.toDate().getMonth() === nextMonth - 1
       ) && current.toDate() >= currentDate;
     };
-
-    // 3 ay için
-
-    // const isValidDate = (current) => {
-    //   const currentDate = new Date();
-    //   const currentMonth = currentDate.getMonth() + 1;
-    //   const currentYear = currentDate.getFullYear();
-
-    //   const nextThreeMonthsDate = new Date();
-    //   nextThreeMonthsDate.setMonth(nextThreeMonthsDate.getMonth() + 3);
-
-    //   const currentMonthYear = current.toDate().getFullYear();
-    //   const currentMonthNum = current.toDate().getMonth() + 1;
-
-    //   return (
-    //     (currentMonthYear > currentYear || (currentMonthYear === currentYear && currentMonthNum >= currentMonth)) &&
-    //     current.toDate() >= currentDate &&
-    //     current.toDate() <= nextThreeMonthsDate
-    //   );
-    // };
 
     return (
       <div className='calendar'>

@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+
 import './index.scss';
 
 function SignUp() {
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
+    const [number, setNumber] = useState();
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('')
-    const [number, setNumber] = useState()
+    const [lastName, setLastName] = useState('');
+    const [password, setPassword] = useState('');
+    const [firstName, setFirstName] = useState('');
 
     const navigate = useNavigate()
 
@@ -33,31 +35,23 @@ function SignUp() {
         navigate('/')
     }
 
-    const logo =
-        'https://uploads-ssl.webflow.com/605c9d764f1ef938a009ac98/61e01bfbdd8632a72962edc2_Pinsoft_Yatay_Logo_mavi-for%20animation.svg';
-
     return (
         <>
-
-        
-            
-        
-           <nav class="header-navbar">
-           <div class="nav_logo">Some Booking Inc.</div>
-      <ul class="nav_links">
-        <Nav.Link href="#home">Home</Nav.Link>
-        <Nav.Link href="#link">Link</Nav.Link>
-        <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-        </NavDropdown>
-        <Nav.Link onClick={handleLogin}>Login</Nav.Link>
-      </ul>
-    </nav>
-
+            <nav class="header-navbar">
+                <div onClick={handleMainPage} class="nav_logo">Fly Pinsoft</div>
+                <ul class="nav_links">
+                    <Nav.Link href="#home">Home</Nav.Link>
+                    <Nav.Link href="#link">Link</Nav.Link>
+                    <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+                        <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+                        <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
+                        <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                        <NavDropdown.Divider />
+                        <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+                    </NavDropdown>
+                    <Nav.Link onClick={handleLogin}>Login</Nav.Link>
+                </ul>
+            </nav>
             <div className="signup-container">
                 <h2>Sign Up</h2>
                 <form onSubmit={handleSubmit}>
@@ -84,9 +78,7 @@ function SignUp() {
                     <button type="submit">Sign Up</button>
                 </form>
                 <p>Already have an account ?<span className='signup-container__login' onClick={handleLogin}>Login</span></p>
-                
             </div>
-            
         </>
     );
 }

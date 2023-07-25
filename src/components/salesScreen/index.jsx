@@ -1,7 +1,9 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { setPassName, setPassSurname, setPassengerInfo } from '../configure';
+
 import './index.scss';
 import './third.css';
 import './secondary.css';
@@ -12,9 +14,6 @@ function SalesScreen() {
     const passName = useSelector((state) => state.passCheck.passName);
     const passSurname = useSelector((state) => state.passCheck.passSurname);
     const refreshPassenger = useSelector((state) => state.refreshPass.refreshPassenger);
-
-    console.log('passName', passName)
-    console.log('passSurname', passSurname)
 
     const totalPassenger = sessionStorage.getItem('totalPassenger');
 
@@ -69,19 +68,19 @@ function SalesScreen() {
                         </div>
                         <div class="flight-box" style={{ flex: 1 }}>
                             <div class="no-title">First Name:</div>
-                            <div class="no"><input onChange={(e) => handleNameChange(e, passengerIndex)} required/></div>
+                            <div class="no"><input onChange={(e) => handleNameChange(e, passengerIndex)} required /></div>
                         </div>
                         <div class="flight-box" style={{ flex: 1 }}>
                             <div class="no-title">Last Name:</div>
-                            <div class="no"><input onChange={(e) => handleSurnameChange(e, passengerIndex)} required/></div>
+                            <div class="no"><input onChange={(e) => handleSurnameChange(e, passengerIndex)} required /></div>
                         </div>
                         <div class="flight-box" style={{ flex: 1 }}>
                             <div class="time-title">ID Number:</div>
-                            <div class="time"><input type="text"/></div>
+                            <div class="time"><input type="text" /></div>
                         </div>
                         <div class="flight-box" style={{ flex: 1 }}>
                             <div class="arrive-title">Birth Date:</div>
-                            <div class="arrive"><input type="date" name="birth-date"/></div>
+                            <div class="arrive"><input type="date" name="birth-date" /></div>
                         </div>
                     </div>
                 );
@@ -95,14 +94,10 @@ function SalesScreen() {
         navigate('/');
     };
 
-    const logo =
-        'https://uploads-ssl.webflow.com/605c9d764f1ef938a009ac98/61e01bfbdd8632a72962edc2_Pinsoft_Yatay_Logo_mavi-for%20animation.svg';
-
     return (
         <>
-
             <nav>
-                <div className="nav_logo">Some Booking Inc.</div>
+                <div onClick={handleMainPage} className="nav_logo">Fly Pinsoft</div>
                 <ul className="nav_links">
                     <li className="link" onClick={handleMainPage}><a href="#">Home</a></li>
                     <li className="link"><a href="#">Book</a></li>
@@ -110,7 +105,6 @@ function SalesScreen() {
                     <li className="link"><a href="#">Contact Us</a></li>
                 </ul>
             </nav>
-
             <div className="container">
                 <div className="section-header">
                     <h3>Flight Information</h3>
@@ -142,10 +136,8 @@ function SalesScreen() {
                     </div>
                 </div>
             </div>
-
             <h3>Passenger Information</h3>
             {renderPassengerDetails()}
-
             <div className='salesScreen-container-content__box__invoice'>
                 <h3>Contact Information</h3>
                 <div className="flight-container larger-container" style={{ display: 'flex' }}>
@@ -158,7 +150,6 @@ function SalesScreen() {
                         <div className="no"><input type="email" id="email" name="email" required /></div>
                     </div>
                 </div>
-
                 <h2>Billing Information</h2>
                 <div className="flight-container larger-container" style={{ display: 'flex' }}>
                     <div className="flight-box" style={{ flex: 1 }}>
@@ -174,7 +165,6 @@ function SalesScreen() {
                         <div className="depart"><input type="text" id="billing-id-number" name="billing-id-number" required /></div>
                     </div>
                 </div>
-
                 <h3>Flight Ticket Insurance</h3>
                 <div className="flight-container larger-container">
                     <div className="flight-box">

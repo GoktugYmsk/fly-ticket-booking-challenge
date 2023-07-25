@@ -12,7 +12,6 @@ const initialState = {
     selectedDate: '',
     returnDate: '',
     refreshPassenger: {},
-
 }
 
 export const configure = createSlice({
@@ -52,7 +51,6 @@ export const configure = createSlice({
         setRefreshPassenger: (state, action) => {
             state.refreshPassenger = action.payload;
         },
-
     }
 })
 

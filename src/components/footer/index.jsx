@@ -1,7 +1,9 @@
 import React from 'react'
+
 import './index.scss'
 
 function Footer() {
+
   return (
 
     <footer class="footer">
@@ -11,7 +13,6 @@ function Footer() {
           <p>
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rem atque ipsa veritatis iure fugit rerum adipisci velit recusandae itaque, placeat perspiciatis accusantium impedit in quasi quisquam quos blanditiis, cupiditate corporis.
           </p>
-
         </div>
         <div class="footer_col">
           <h4>Company</h4>
@@ -23,7 +24,6 @@ function Footer() {
         </div>
         <div class="footer_col">
           <h4>Legal</h4>
-
           <p>Terms & Conditions</p>
           <p>Privacy Policy</p>
         </div>
@@ -35,9 +35,7 @@ function Footer() {
           <p>FAQs</p>
         </div>
       </div>
-
     </footer>
-
   )
 }
 
