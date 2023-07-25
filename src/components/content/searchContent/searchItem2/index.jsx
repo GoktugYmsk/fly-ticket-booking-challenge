@@ -74,8 +74,8 @@ function SearchItem2() {
               if (passSurname[index] === surname && pnrCode[index] === pnr) {
                 return (
                   <div key={index}>
-                    <p>Adı: {name}</p>
-                    <p>Soyadı: {surname}</p>
+                    <p>First Name: {name}</p>
+                    <p>Last Name: {surname}</p>
                   </div>
                 );
               } else {

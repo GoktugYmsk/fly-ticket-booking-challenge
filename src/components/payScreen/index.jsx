@@ -137,11 +137,17 @@ function PayScreen() {
     <>
       <div className={`payScreen__container ${popupActive ? 'payScreen__container-opacity' : 'payScreen__container'}`} >
         <div className="payScreen__container-navbar" >
-          <nav >
-            <img onClick={handleMainPage} src={logo} />
-          </nav>
+        <nav>
+      <div class="nav_logo">Some Booking Inc.</div>
+      <ul class="nav_links">
+        <li class="link"><a href="#">Home</a></li>
+        <li class="link"><a href="#">Book</a></li>
+        <li class="link"><a href="#">Blog</a></li>
+        <li class="link"><a href="#">Contact Us</a></li>
+      </ul>
+    </nav>
           <div className='payScreen__container-navbar-alt' >
-            <h3>Ödeme Bilgileri</h3>
+            <h3>Payment Details</h3>
           </div>
         </div>
 
@@ -154,7 +160,7 @@ function PayScreen() {
                   <div className='payScreen-card__front-top' >
                     <p className='payScreen-card__front-top__number' >{cardName}</p>
                     <div className='payScreen-card__front-bottom' >
-                      <label >Son Kullanma Tarihi:</label>
+                      <label >Expiration Date:</label>
                       <p>{expiryMonth}/{expiryYear}</p>
                     </div>
                   </div>
@@ -168,11 +174,11 @@ function PayScreen() {
               </div>
               {!isFlipped ? (
                 <div className='payScreen-container-cardForm-frontContent' >
-                  <input type="text" value={formatCardNumber(cardNumber)} onChange={handleCardNumberChange} placeholder="Kart Numarası" maxLength="19" />
-                  <input type="text" value={cardName} onChange={handleCardName} placeholder="Kart Üzerindeki İsim" />
+                  <input type="text" value={formatCardNumber(cardNumber)} onChange={handleCardNumberChange} placeholder="Card Number" maxLength="19" />
+                  <input type="text" value={cardName} onChange={handleCardName} placeholder="Name On The Card" />
                   <div className='payScreen-container-cardForm-frontContent-mounth' >
                     <select value={expiryMonth} onChange={handleExpiryMonthChange}>
-                      <option>Ay</option>
+                      <option>Month</option>
                       {Array.from({ length: 12 }, (_, index) => index + 1).map((month) => (
                         <option value={month.toString().padStart(2, '0')} key={month}>
                           {month.toString().padStart(2, '0')}
@@ -180,7 +186,7 @@ function PayScreen() {
                       ))}
                     </select>
                     <select value={expiryYear} onChange={handleExpiryYearChange}>
-                      <option >Yıl</option>
+                      <option >Year</option>
                       {generateYears().map((year) => (
                         <option value={year} key={year}>
                           {year}
@@ -195,7 +201,7 @@ function PayScreen() {
                 </div>
               )}
               <div className='payScreen-container-box__installment' >
-                <h3>Taksit Seçenekleri</h3>
+                <h3>Payment Plan</h3>
                 <div className='payScreen-container-box__installment-inputGroup'>
                   <div>
                     <input
@@ -203,7 +209,7 @@ function PayScreen() {
                       checked={selectedOption === 'option1'}
                       onChange={() => setSelectedOption('option1')}
                     />
-                    <p>Tek çekim</p>
+                    <p>One Time</p>
                   </div>
                   <div>
                     <input
@@ -211,7 +217,7 @@ function PayScreen() {
                       checked={selectedOption === 'option2'}
                       onChange={() => setSelectedOption('option2')}
                     />
-                    <p>3 Ay</p>
+                    <p>3 Months</p>
                   </div>
                   <div>
                     <input
@@ -219,7 +225,7 @@ function PayScreen() {
                       checked={selectedOption === 'option3'}
                       onChange={() => setSelectedOption('option3')}
                     />
-                    <p>6 Ay</p>
+                    <p>6 Months</p>
                   </div>
                   <div>
                     <input
@@ -227,7 +233,7 @@ function PayScreen() {
                       checked={selectedOption === 'option4'}
                       onChange={() => setSelectedOption('option4')}
                     />
-                    <p>9 Ay</p>
+                    <p>9 Months</p>
                   </div>
                 </div>
               </div>
@@ -242,11 +248,11 @@ function PayScreen() {
 
                 </div>
 
-                <p>Pinsoft işlem kurallarını okudum ve Kabul ediyorum</p>
+                <p>I have read and agree to the terms and conditions.</p>
               </div>
               <div className='payScreen-container__paySide' >
-                <h3 className='payScreen-container-h3' >Toplam ödenecek tutar {totalPrice} $</h3>
-                <Button className='approvalButton' onClick={handleApprovalClick} variant='secondary'>Ödemeyi Tamamla</Button>
+                <h3 className='payScreen-container-h3' >Total Due {totalPrice} $</h3>
+                <Button className='approvalButton' onClick={handleApprovalClick} variant='secondary'>Finish & Pay Now</Button>
               </div>
             </div>
           </div>
@@ -257,16 +263,16 @@ function PayScreen() {
           <Toast onClose={() => setPopup(false)} show={popup} >
             <Toast.Body className='popup-content' >
               <div className="popup-content__box">
-                <p>Satın alma işlemini başarıyla tamamladınız!</p>
+                <p>Your Purchase Was Successful!</p>
                 {pnrCode.map((item, key) => (
                   <div className='popup-content__box-pnr' key={key}>
-                    <p>Soyisim: {passSurname[key]}</p>
+                    <p>Last Name: {passSurname[key]}</p>
                     <p>PNR NO: {item}</p>
                   </div>
                 ))}
                 <div className="popup-content-button">
-                  <Button className='popup-content-button__main' onClick={handleMainPage}>Anasayfaya Dön</Button>
-                  <Button className='popup-content-button__summary' onClick={handleSummaryClick}>uçuş Bilgilerimi Görüntüle</Button>
+                  <Button className='popup-content-button__main' onClick={handleMainPage}>Go Back To Homepage</Button>
+                  <Button className='popup-content-button__summary' onClick={handleSummaryClick}>Show My Flight Informations</Button>
                 </div>
               </div>
             </Toast.Body>

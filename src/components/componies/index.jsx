@@ -44,7 +44,7 @@ function FlyCompanies() {
   const formatTime = (time) => {
     const hours = time.getUTCHours();
     const minutes = time.getUTCMinutes();
-    return `${hours} saat ${minutes} dakika`;
+    return `${hours}h ${minutes}m`;
   };
 
   const selectedDateTimestamp =
@@ -101,7 +101,7 @@ function FlyCompanies() {
               className="flyCompanies-container__box-info-top-p"
               onClick={handleMainPageClick}
             >
-              Yeniden Uçuş Ara
+              Search Again
             </p>
             <div className="flyCompanies-container__box-info-city">
               <h3>{leavePortExplanation}</h3>
@@ -109,24 +109,24 @@ function FlyCompanies() {
             </div>
             <div className="flyCompanies-container__box-info__date">
               <div className="flyCompanies-container__box-info__date-depp">
-                <p>Gidiş</p>
+                <p>Depart</p>
                 {formattedSelectedDate}
               </div>
               {formattedReturnDate && (
                 <div className="flyCompanies-container__box-info__date-return">
-                  <p>Dönüş</p>
+                  <p>Return</p>
                   {formattedReturnDate}
                 </div>
               )}
             </div>
           </div>
           <div className="flyCompanies-container__box-info-bottom">
-            <p>{passengerInfo.adults} Yetişkin </p>
+            <p>{passengerInfo.adults} Adult </p>
             {passengerInfo.children > 0 && (
-              <p> {`  - ${passengerInfo.children}  Çocuk `}</p>
+              <p> {`  - ${passengerInfo.children}  Child `}</p>
             )}
             {passengerInfo.babies > 0 && (
-              <p> {` - ${passengerInfo.babies}  Bebek`} </p>
+              <p> {` - ${passengerInfo.babies}  Infant`} </p>
             )}
           </div>
         </div>
@@ -147,27 +147,27 @@ function FlyCompanies() {
                     className="flyCompanies-container__box"
                   >
                     <div className="flyCompanies-container__box-airline">
-                      <h4>Havayolu</h4>
+                      <h4>Airline</h4>
                       <p>{item.airline}</p>
                     </div>
                     <div className="flyCompanies-container__box-flightNo">
-                      <h4>Kuyruk No</h4>
+                      <h4>Tail No</h4>
                       <p>{item.flightNo}</p>
                     </div>
                     <div className="flyCompanies-container__box-depTime">
-                      <h4>Kalkış</h4>
+                      <h4>Depart</h4>
                       <p>{item.depTime}</p>
                     </div>
                     <div className="flyCompanies-container__box-flightDuration">
-                      <h4>Süre</h4>
+                      <h4>Duration</h4>
                       <p>{formatTime(flightDuration)}</p>
                     </div>
                     <div className="flyCompanies-container__box-arrTime">
-                      <h4>Varış</h4>
+                      <h4>Arrive</h4>
                       <p>{item.arrTime}</p>
                     </div>
                     <div className="flyCompanies-container__box-amount">
-                      <h4>Fiyat(kişi)</h4>
+                      <h4>Price(per)</h4>
                       <p>{item.priceDetail.salesPrice.amount} $</p>
                     </div>
                   </div>
@@ -176,7 +176,7 @@ function FlyCompanies() {
             })
           ) : (
             <div className="flyCompanies-container__box-notFound">
-              <h2>Uçuş Bulunamadı</h2>
+              <h2>Flight Not Found</h2>
             </div>
           )}
         </div>

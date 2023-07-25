@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
+
 .navbar {
    
         display: flex;
@@ -6,6 +8,7 @@
         width: 100%;
         background: #2c3855;
         box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.4);
+        font-family: "Poppins", sans-serif;
 
 
         .nav_logo {
@@ -29,6 +32,7 @@
             display: flex;
             align-items: center;
             gap: 2rem;
+            padding-top: 15px;
         }
 
 }
@@ -40,6 +44,7 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
+    font-family: "Poppins", sans-serif;
 
     .flyCompanies-container__box-info {
         display: flex;
