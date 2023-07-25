@@ -1,4 +1,5 @@
 import React from 'react'
+
 import CarouselComponent from './carousel'
 import SearchContent from './searchContent'
 
