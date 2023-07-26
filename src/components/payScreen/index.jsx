@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Toast from 'react-bootstrap/Toast';
 import Button from '@mui/material/Button';
 import Footer from '../footer';
+import Header from "../header";
 
 import { setPnrCode } from '../configure';
 
@@ -131,18 +132,9 @@ function PayScreen() {
     <>
       <div className={`payScreen__container ${popupActive ? 'payScreen__container-opacity' : 'payScreen__container'}`} >
         <div className="payScreen__container-navbar" >
-          <nav>
-            <div onClick={handleMainPage} class="nav_logo">Fly Pinsoft</div>
-            <ul class="nav_links">
-              <li class="link"><a href="#">Home</a></li>
-              <li class="link"><a href="#">Book</a></li>
-              <li class="link"><a href="#">Blog</a></li>
-              <li class="link"><a href="#">Contact Us</a></li>
-            </ul>
-          </nav>
-          <div className='payScreen__container-navbar-alt' >
-            <h3>Payment Details</h3>
-          </div>
+          <Header>
+            {/* Header içeriği burada */}
+          </Header>
         </div>
         <div className="payScreen-container-list">
           <div className="payScreen-container-box">
@@ -197,7 +189,7 @@ function PayScreen() {
                 <h3>Payment Plan</h3>
                 <div className='payScreen-container-box__installment-inputGroup'>
                   <div>
-                    <input
+                    <input className='input-radio'
                       type='radio'
                       checked={selectedOption === 'option1'}
                       onChange={() => setSelectedOption('option1')}
@@ -205,7 +197,7 @@ function PayScreen() {
                     <p>One Time</p>
                   </div>
                   <div>
-                    <input
+                    <input className='input-radio'
                       type='radio'
                       checked={selectedOption === 'option2'}
                       onChange={() => setSelectedOption('option2')}
@@ -213,7 +205,7 @@ function PayScreen() {
                     <p>3 Months</p>
                   </div>
                   <div>
-                    <input
+                    <input className='input-radio'
                       type='radio'
                       checked={selectedOption === 'option3'}
                       onChange={() => setSelectedOption('option3')}
@@ -221,7 +213,7 @@ function PayScreen() {
                     <p>6 Months</p>
                   </div>
                   <div>
-                    <input
+                    <input className='input-radio'
                       type='radio'
                       checked={selectedOption === 'option4'}
                       onChange={() => setSelectedOption('option4')}

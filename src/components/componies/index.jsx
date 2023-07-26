@@ -8,6 +8,12 @@ import passengerInformation from "../../assets/passenger";
 import { setFlightTicket, setPassengerInfo } from "../configure";
 import Header from "../header";
 import "./index.scss";
+import MyImage from './arrow.png';
+
+
+
+
+
 
 function FlyCompanies() {
   const [formattedReturnDate, setFormattedReturnDate] = useState("");
@@ -24,6 +30,7 @@ function FlyCompanies() {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const imagePath = MyImage;
 
   const selectedDateTimestamp = selectedDate instanceof Date ? selectedDate.getTime() : null;
 
@@ -84,6 +91,7 @@ function FlyCompanies() {
       <Header>
         {/* Header içeriği burada */}
       </Header>
+      
       <div className="flyCompanies-container">
         <div className="flyCompanies-container__box-info">
           <div className="flyCompanies-container__box-info-top">
@@ -91,9 +99,9 @@ function FlyCompanies() {
               <p className="flyCompanies-container__box-info-top-p" onClick={handleMainPageClick}>Search Again</p>
             </div>
             <div className="flyCompanies-container__box-info-city">
-              <h3>{leavePortExplanation}</h3>
+              <h3 className="first-h3">{leavePortExplanation}</h3>
               <i class="fas fa-chevron-right"></i>
-              <h3>{arrivePortExplanation}</h3>
+              <h3 className="second-h3">{arrivePortExplanation}</h3>
             </div>
             <div className="flyCompanies-container__box-info__date">
               <div className="flyCompanies-container__box-info__date-depp">
@@ -134,23 +142,26 @@ function FlyCompanies() {
                       <h4>Airline</h4>
                       <p>{item.airline}</p>
                     </div>
-                    <div className="flyCompanies-container__box-flightNo">
+                    <div className="flyCompanies-container__box-flightNo partner">
                       <h4>Tail No</h4>
                       <p>{item.flightNo}</p>
                     </div>
-                    <div className="flyCompanies-container__box-depTime">
+                    <div className="arrowIcon partner">
+                      <img className="arrowIcon" src={imagePath} alt="Ok İkonu" />
+                    </div>
+                    <div className="flyCompanies-container__box-depTime partner">
                       <h4>Depart</h4>
                       <p>{item.depTime}</p>
                     </div>
-                    <div className="flyCompanies-container__box-flightDuration">
+                    <div className="flyCompanies-container__box-flightDuration partner">
                       <h4>Duration</h4>
                       <p>{formatTime(flightDuration)}</p>
                     </div>
-                    <div className="flyCompanies-container__box-arrTime">
+                    <div className="flyCompanies-container__box-arrTime partner">
                       <h4>Arrive</h4>
                       <p>{item.arrTime}</p>
                     </div>
-                    <div className="flyCompanies-container__box-amount">
+                    <div className="flyCompanies-container__box-amount partner">
                       <h4>Price(per)</h4>
                       <p>{item.priceDetail.salesPrice.amount} $</p>
                     </div>
@@ -172,9 +183,7 @@ function FlyCompanies() {
           <div>
             <h2>Return Flights</h2>
             {filteredReturnFlights.length > 0 ? (
-              <div className="flyCompanies-container-content">
-                <div className="flyCompanies-container__return-flights">
-                  {filteredReturnFlights.map((item, key) => {
+                  filteredReturnFlights.map((item, key) => {
                     const depTime = new Date(`1970-01-01T${item.depTime}`);
                     const arrTime = new Date(`1970-01-01T${item.arrTime}`);
                     const flightDuration = new Date(arrTime - depTime);
@@ -208,10 +217,8 @@ function FlyCompanies() {
                           </div>
                         </div>
                       </div>
-                    );
-                  })}
-                </div>
-              </div>
+                  );
+                })
             ) : (
               <div className="flyCompanies-container-content">
                 <div className="flyCompanies-container__return-flights">
@@ -223,7 +230,7 @@ function FlyCompanies() {
         )}
       </div>
     </div>
-  );
+  )
 }
 
 export default FlyCompanies;
