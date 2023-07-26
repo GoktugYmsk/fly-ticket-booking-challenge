@@ -595,6 +595,17 @@
                     &:hover {
                         background: rgb(243, 246, 248);
                     }
+                    
+                    .arrowIcon{
+                        .fa-arrow-right{
+                            width: 40px;
+                            font-size: 20px;
+                            color: #536aa0;
+                        }
+                    }
+                    h4{
+                        display: none;
+                    }
                 }
                 
 

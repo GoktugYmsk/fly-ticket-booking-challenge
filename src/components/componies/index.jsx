@@ -132,6 +132,10 @@ function FlyCompanies() {
                       <h4>Tail No</h4>
                       <p>{item.flightNo}</p>
                     </div>
+                    <img className="arrowIcon" src="./arrow.png" alt="logo" />
+                    <div className="arrowIcon">
+                      <img className="arrowIcon" src="arrow.png" alt="logo" />
+                    </div>
                     <div className="flyCompanies-container__box-depTime">
                       <h4>Depart</h4>
                       <p>{item.depTime}</p>
