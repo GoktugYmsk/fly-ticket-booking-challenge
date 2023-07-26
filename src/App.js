@@ -10,6 +10,7 @@ import SalesScreen from './components/salesScreen';
 import CustomComponent from './components/CustomComponent';
 import SearchContent from './components/content/searchContent';
 import ShoppingSummary from './components/content/shoppingSummary';
+import ChairScreen from './components/chairScreen';
 
 import './App.css'
 
@@ -27,6 +28,7 @@ function App() {
         <Route path="/fly-companies" element={<FlyCompanies />} />
         <Route path="/sales-screen" element={<SalesScreen />} />
         <Route path="/shopping-summary" element={<ShoppingSummary />} />
+        <Route path="/seat-screen" element={<ChairScreen />} />
       </Routes>
     </div>
   );

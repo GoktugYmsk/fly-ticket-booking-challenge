@@ -40,7 +40,6 @@ function FlyCompanies() {
     return `${hours}h ${minutes}m`;
   };
 
-
   useEffect(() => {
     const selectedDateFormatted =
       selectedDate instanceof Date ? selectedDate.toDateString() : "";
@@ -171,6 +170,7 @@ function FlyCompanies() {
             </div>
           )}
         </div>
+
       </div>
     </div>
   );
