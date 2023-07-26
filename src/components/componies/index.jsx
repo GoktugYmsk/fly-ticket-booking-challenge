@@ -13,8 +13,6 @@ import MyImage from './arrow.png';
 
 
 
-
-
 function FlyCompanies() {
   const [formattedReturnDate, setFormattedReturnDate] = useState("");
   const [formattedSelectedDate, setFormattedSelectedDate] = useState("");
@@ -71,7 +69,7 @@ function FlyCompanies() {
       setSelectedDepartFlight(item);
     } else if (!selectedReturnFlight) {
       setSelectedReturnFlight(item);
-      if (selectedDepartFlight && selectedDepartFlight) {
+      if (selectedDepartFlight) {
         dispatch(setFlightTicket({ ...selectedDepartFlight, selectedDate: selectedDateTimestamp }));
         navigate("/sales-screen");
       }
