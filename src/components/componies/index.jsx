@@ -181,7 +181,10 @@ function FlyCompanies() {
         <div style={{ marginBottom: "30px" }}></div>
 
         {/* Part 4: Return Flights */}
-        <h2>Return Flights</h2>
+        {returnDate && 
+        <div>
+
+<h2>Return Flights</h2>
         {filteredReturnFlights.length > 0 ? (
           <div className="flyCompanies-container-content">
             <div className="flyCompanies-container__return-flights">
@@ -230,6 +233,9 @@ function FlyCompanies() {
             </div>
           </div>
         )}
+          
+        </div>
+        }
       </div>
     </div>
   );
