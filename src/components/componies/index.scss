@@ -71,11 +71,12 @@
                 height: 100%;
                 padding: 20px;
                 grid-template-columns: 20% 45% 35%;
-                grid-template-rows: 25% 55% 20%;
+                grid-template-rows: 25% 25% 30% 20%;
                 margin: auto;
                 grid-template-areas:             
                         "A A C"
-                        ". . C"
+                        "B B C"
+                        "B B C"
                         "B B C";
                 
 
@@ -110,17 +111,33 @@
                     display: grid;
                     grid-column-gap: 2%;
                     grid-template-columns: 40% 10% 40%;
+                    grid-template-rows: 33% 33% 33%;
+                    
+                    grid-template-areas:             
+                        "A A ."
+                        "B B ."
+                        "C C .";
 
+                    .first-h3{
+                        grid-area: A;
+                        text-align: start;
+                    }
                     .fa-chevron-right{
+                        grid-area: B;
                         color: rgb(240, 90, 40);
                         border: 1px solid rgb(240, 90, 40);
                         padding: 6px 8px;
                         border-radius: 100%;
                         transform: scale(0.7);
+                        transform: rotate(90deg);
+                    }
+                    .second-h3{
+                        grid-area: C;
+                        text-align: start;
                     }
 
                     h3{
-                        font-size: 13px;
+                        font-size: calc(3vh - 8px);
                         font-weight: bold;
                         padding-top: 6px;
                     }
@@ -190,11 +207,11 @@
                     box-shadow: 1px 1px 20px rgba(154, 154, 154, 0.1);
                     border-radius: 10px;
                     color: #3d465c;
-                    grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+                    grid-template-columns: 19% 1% 10% 10% 10% 10% 10% 10% 3% 17%;
                     grid-template-rows: 30% 40% 30%;
                     grid-template-areas:             
-                    "A . . . E E . . . G"
-                    "A . D C C C C F . G"
+                    "A A A . E E . . . G"
+                    ". . D C C C C F . G"
                     "B . . . . . . . . G";
 
                     &:hover {
@@ -202,9 +219,8 @@
                     }
 
                     .partner{
-                        font-size: 13px;
+                        font-size: 12px;
                         justify-content: center;
-                        
                         display: flex;
                         p{
                             align-items: center;
@@ -227,7 +243,8 @@
                     }
                     .arrowIcon{
                         grid-area: C;
-                        width: 100%;
+                        width: 90%;
+                        margin: auto;
                     }
                     .flyCompanies-container__box-depTime{
                         grid-area: D;
@@ -249,7 +266,7 @@
                     .flyCompanies-container__box-amount{
                         grid-area: G;
                         width: 100%;
-                        font-size: large;
+                        font-size: 13px;
                         font-weight: bold;
                     }
 

@@ -4,9 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { setPassName, setPassSurname, setPassengerInfo } from '../configure';
 
+import Header from "../header";
 import './index.scss';
-import './third.css';
-import './secondary.css';
 
 function SalesScreen() {
     const flightTicket = useSelector((state) => state.passTicket.flightTicket);
@@ -96,15 +95,9 @@ function SalesScreen() {
 
     return (
         <>
-            <nav>
-                <div onClick={handleMainPage} className="nav_logo">Fly Pinsoft</div>
-                <ul className="nav_links">
-                    <li className="link" onClick={handleMainPage}><a href="#">Home</a></li>
-                    <li className="link"><a href="#">Book</a></li>
-                    <li className="link"><a href="#">Blog</a></li>
-                    <li className="link"><a href="#">Contact Us</a></li>
-                </ul>
-            </nav>
+            <Header>
+                {/* Header içeriği burada */}
+            </Header>
             <div className="container">
                 <div className="section-header">
                     <h3>Flight Information</h3>
@@ -136,11 +129,17 @@ function SalesScreen() {
                     </div>
                 </div>
             </div>
-            <h3>Passenger Information</h3>
-            {renderPassengerDetails()}
+
+            
+            
             <div className='salesScreen-container-content__box__invoice'>
-                <h3>Contact Information</h3>
+                <div className='flight-container'>
+                    <h3>Passenger Information</h3>
+                    {renderPassengerDetails()}
+                </div>
+                
                 <div className="flight-container larger-container" style={{ display: 'flex' }}>
+                    <h3>Contact Information</h3>
                     <div classNamess="flight-box" style={{ flex: 1 }}>
                         <div className="airline-title">Phone Number:</div>
                         <div className="airline"><input type="text" id="phone-number" name="phone-number" required /></div>
@@ -150,8 +149,9 @@ function SalesScreen() {
                         <div className="no"><input type="email" id="email" name="email" required /></div>
                     </div>
                 </div>
-                <h2>Billing Information</h2>
+                
                 <div className="flight-container larger-container" style={{ display: 'flex' }}>
+                    <h2>Billing Information</h2>
                     <div className="flight-box" style={{ flex: 1 }}>
                         <div className="airline-title">Name:</div>
                         <div className="airline"><input type="text" id="billing-name" name="billing-name" required /></div>
@@ -165,19 +165,13 @@ function SalesScreen() {
                         <div className="depart"><input type="text" id="billing-id-number" name="billing-id-number" required /></div>
                     </div>
                 </div>
-                <h3>Flight Ticket Insurance</h3>
-                <div className="flight-container larger-container">
-                    <div className="flight-box">
-                        <div className="airline-title">Insurance:</div>
-                        <div className="airline">
-                            <label for="insurance">
-                                <input type="checkbox" id="insurance" name="insurance" />
-                                Yes, I want flight ticket insurance
-                            </label>
-                        </div>
-                    </div>
+                <div className="insurance">
+                    <label for="insurance-label">
+                        <input type="checkbox" id="insurance" name="insurance" />
+                        <span>Yes, I want flight ticket insurance</span>
+                    </label>
                 </div>
-                <div className="section_container submit-container" onClick={handlePayScreenClick}>
+                <div className="section_container" onClick={handlePayScreenClick}>
                     <button type="submit" class="btn">Payment</button>
                 </div>
             </div>

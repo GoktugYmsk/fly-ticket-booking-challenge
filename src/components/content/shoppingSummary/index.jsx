@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setPassName, setPassengerInfo } from "../../configure";
-
+import Header from "../../header";
 import "./index.scss";
 
 function ShoppingSummary() {
@@ -22,8 +22,6 @@ function ShoppingSummary() {
   const totalPassenger = sessionStorage.getItem("totalPassenger");
   const totalPrice = flightTicket.priceDetail.basePrice.amount * totalPassenger;
 
-  const logo =
-    "https://uploads-ssl.webflow.com/605c9d764f1ef938a009ac98/61e01bfbdd8632a72962edc2_Pinsoft_Yatay_Logo_mavi-for%20animation.svg";
 
   const handleMainPage = () => {
     dispatch(setPassengerInfo(refreshPassenger));
@@ -31,28 +29,13 @@ function ShoppingSummary() {
   };
 
   return (
+
     <div className="shoppingSummary-container">
+      <Header>
+          {/* Header içeriği burada */}
+        </Header>
       <div className="shoppingSummary__container-navbar">
-        {/* <nav>
-          <img onClick={handleMainPage} src={logo} />
-  </nav> */}
-        <nav className="navbar">
-          <div className="nav_logo">Some Booking Inc.</div>
-          <ul className="nav_links">
-            <li className="link" onClick={handleMainPage}>
-              <a href="#">Home</a>
-            </li>
-            <li className="link">
-              <a href="#">Book</a>
-            </li>
-            <li className="link">
-              <a href="#">Blog</a>
-            </li>
-            <li className="link">
-              <a href="#">Contact Us</a>
-            </li>
-          </ul>
-        </nav>
+        
         <div className="shoppingSummary__container-navbar-alt">
           <h3>Flight Information Summary</h3>
         </div>

@@ -102,9 +102,9 @@ function FlyCompanies() {
               <p className="flyCompanies-container__box-info-top-p" onClick={handleMainPageClick}>Search Again</p>
             </div>
             <div className="flyCompanies-container__box-info-city">
-              <h3>{leavePortExplanation}</h3>
+              <h3 className="first-h3">{leavePortExplanation}</h3>
               <i class="fas fa-chevron-right"></i>
-              <h3>{arrivePortExplanation}</h3>
+              <h3 className="second-h3">{arrivePortExplanation}</h3>
             </div>
             <div className="flyCompanies-container__box-info__date">
               <div className="flyCompanies-container__box-info__date-depp">
@@ -183,9 +183,9 @@ function FlyCompanies() {
         <div className="flyCompanies-container__box-info">
           <div className="flyCompanies-container__box-info-top">
             <div className="flyCompanies-container__box-info-city">
-              <h3>{arrivePortExplanation}</h3>
+              <h3 className="first-h3">{arrivePortExplanation}</h3>
               <i class="fas fa-chevron-right"></i>
-              <h3>{leavePortExplanation}</h3>
+              <h3 className="second-h3">{leavePortExplanation}</h3>
             </div>
             <div className="flyCompanies-container__box-info__date">
               
