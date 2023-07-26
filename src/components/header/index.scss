@@ -1,88 +1,284 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
 
-.header-container {
-  position: fixed;
-  width: 100%;
-  z-index: 2;
-  font-family: "Poppins", sans-serif;
 
+@media (max-width: 767px) {
 
-
-  .header-top-navbar {
-
-    display: flex;
-    align-items: center;
-    background: rgb(192, 192, 192);
-    gap: 20px;
-
-    .header-top-navbar__icon {
-      margin-left: 20px;
-      color: rgb(34, 91, 224);
-    }
-
-    .header-top-navbar-close {
-      cursor: pointer;
-    }
-  }
-
-
-
-  .header-navbar {
-    height: 100px;
-    background-color: #2c3855;
-    margin: auto;
-    padding: 2rem 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.4);
-
-
-    .nav_logo {
-      padding-left: 9%;
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: #f3f4f6;
-    }
-
-    .nav_links {
-      padding-right: 9%;
-      list-style: none;
+  .header-container {
+    position: relative;
+    width: 100%;
+    z-index: 2;
+    font-family: "Poppins", sans-serif;
+  
+  
+  
+    .header-top-navbar {
+  
       display: flex;
       align-items: center;
-      gap: 2rem;
-      padding-top: 20px;
-      color: white;
-
-
-      .link a {
-        font-weight: 500;
+      background: rgb(192, 192, 192);
+      gap: 20px;
+  
+      .header-top-navbar__icon {
+        margin-left: 20px;
+        color: rgb(34, 91, 224);
+      }
+  
+      .header-top-navbar-close {
+        cursor: pointer;
+      }
+    }
+  
+  
+  
+    .header-navbar {
+      height: 80px;
+      background-color: #2c3855;
+      margin: auto;
+      padding: 2rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.4);
+  
+  
+      .nav_logo {
+        font-size: 0;
+        font-weight: 20%;
         color: #f3f4f6;
-        transition: 0.3s;
+  
+        .nav_logo_main{
+          width: 70px;
+          overflow: visible;
+        }
       }
-
-      .link a:hover {
-        color: #8a8a8a;
+  
+      .nav_links {
+        list-style: none;
+        display: flex;
+        align-items: center;
+        gap: 5%;
+        padding-top: 20px;
+        color: white;
+  
+  
+        .link a {
+          font-weight: 500;
+          color: #f3f4f6;
+          transition: 0.3s;
+        }
+  
+        .link a:hover {
+          color: #8a8a8a;
+        }
       }
+    }
+  }
+  
+  
+  .plane {
+    position: fixed;
+    top: 50px;
+    font-size: 40px;
+    transform: translateY(-50%);
+    width: 100px;
+    height: 100px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: left 0.3s ease;
+    z-index: 2;
+    display: none;
+  
+    .plane-icon {
+      color: white;
     }
   }
 }
 
+@media (min-width: 768px) and (max-width: 1023px) {
 
-.plane {
-  position: fixed;
-  top: 50px;
-  font-size: 40px;
-  transform: translateY(-50%);
-  width: 100px;
-  height: 100px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  transition: left 0.3s ease;
-  z-index: 2;
+  .header-container {
+    position: fixed;
+    width: 100%;
+    z-index: 2;
+    font-family: "Poppins", sans-serif;
+  
+  
+  
+    .header-top-navbar {
+  
+      display: flex;
+      align-items: center;
+      background: rgb(192, 192, 192);
+      gap: 20px;
+  
+      .header-top-navbar__icon {
+        margin-left: 20px;
+        color: rgb(34, 91, 224);
+      }
+  
+      .header-top-navbar-close {
+        cursor: pointer;
+      }
+    }
+  
+  
+  
+    .header-navbar {
+      height: 80px;
+      background-color: #2c3855;
+      margin: auto;
+      padding: 2rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.4);
+  
+  
+      .nav_logo {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #f3f4f6;
+  
+        .nav_logo_main{
+          width: 10%;
+        }
+      }
+  
+      .nav_links {
+        padding-right: 9%;
+        list-style: none;
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        padding-top: 20px;
+        color: white;
+  
+  
+        .link a {
+          font-weight: 500;
+          color: #f3f4f6;
+          transition: 0.3s;
+        }
+  
+        .link a:hover {
+          color: #8a8a8a;
+        }
+      }
+    }
+  }
+  
+  
+  .plane {
+    position: fixed;
+    top: 50px;
+    font-size: 40px;
+    transform: translateY(-50%);
+    width: 100px;
+    height: 100px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: left 0.3s ease;
+    z-index: 2;
+    display: none;
+  
+    .plane-icon {
+      color: white;
+    }
+  }
+}
 
-  .plane-icon {
-    color: white;
+@media (min-width: 1024px) {
+
+  .header-container {
+    position: fixed;
+    width: 100%;
+    z-index: 2;
+    font-family: "Poppins", sans-serif;
+  
+  
+  
+    .header-top-navbar {
+  
+      display: flex;
+      align-items: center;
+      background: rgb(192, 192, 192);
+      gap: 20px;
+  
+      .header-top-navbar__icon {
+        margin-left: 20px;
+        color: rgb(34, 91, 224);
+      }
+  
+      .header-top-navbar-close {
+        cursor: pointer;
+      }
+    }
+  
+  
+  
+    .header-navbar {
+      height: 100px;
+      background-color: #2c3855;
+      margin: auto;
+      padding: 2rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.4);
+  
+  
+      .nav_logo {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #f3f4f6;
+  
+        .nav_logo_main{
+          width: 10%;
+        }
+      }
+  
+      .nav_links {
+        padding-right: 9%;
+        list-style: none;
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        padding-top: 20px;
+        color: white;
+  
+  
+        .link a {
+          font-weight: 500;
+          color: #f3f4f6;
+          transition: 0.3s;
+        }
+  
+        .link a:hover {
+          color: #8a8a8a;
+        }
+      }
+    }
+  }
+  
+  
+  .plane {
+    position: fixed;
+    top: 50px;
+    font-size: 40px;
+    transform: translateY(-50%);
+    width: 100px;
+    height: 100px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: left 0.3s ease;
+    z-index: 2;
+    display: none;
+  
+    .plane-icon {
+      color: white;
+    }
   }
 }
