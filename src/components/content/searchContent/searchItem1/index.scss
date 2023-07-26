@@ -243,16 +243,18 @@ $mainRed: #F05A28;
     .searchItem-one__container-place__ports {
 
         display: flex;
-        position: relative;
+        position: fixed;
         align-items: center;
         flex-direction: column !important;
         overflow: auto;
+        margin-top: -200px;
         height: 200px;
         width: 200px;
         opacity: 2;
         background: white;
         border-radius: 10px;
         padding-top: 10px;
+        box-shadow: 4px 4px 10px rgba(93, 93, 93, 0.285);
 
 
 
@@ -272,16 +274,18 @@ $mainRed: #F05A28;
     .searchItem-one__container-place__ports-right {
         display: flex;
         align-items: center;
-        position: relative;
-        left: 50px;
+        position: fixed;
+        left: 40%;
         flex-direction: column !important;
         overflow: auto;
+        margin-top: -200px;
         height: 200px;
         width: 200px;
         opacity: 2;
         background: white;
         border-radius: 10px;
         padding-top: 10px;
+        box-shadow: 4px 4px 10px rgba(93, 93, 93, 0.285);
 
         div{
             border-bottom: 1px solid rgba(219, 219, 219, 0.692);
@@ -541,6 +545,8 @@ $mainRed: #F05A28;
         opacity: 2;
         background: white;
         border-radius: 10px;
+        box-shadow: 4px 4px 10px rgba(93, 93, 93, 0.285);
+        margin-top: -30px;
 
         div{
             border-bottom: 1px solid rgba(219, 219, 219, 0.692);
@@ -567,6 +573,8 @@ $mainRed: #F05A28;
         opacity: 2;
         background: white;
         border-radius: 10px;
+        box-shadow: 4px 4px 10px rgba(93, 93, 93, 0.285);
+        margin-top: -30px;
 
         div{
             border-bottom: 1px solid rgba(219, 219, 219, 0.692);
@@ -831,6 +839,8 @@ $mainRed: #F05A28;
         border-radius: 10px;
         padding-top: 10px;
         scrollbar-width: 3px;
+        box-shadow: 4px 4px 10px rgba(93, 93, 93, 0.285);
+        margin-top: -30px;
         
 
 
@@ -853,7 +863,8 @@ $mainRed: #F05A28;
         opacity: 2;
         background: white;
         border-radius: 10px;
-        scrollbar-width: 3px;
+        box-shadow: 4px 4px 10px rgba(93, 93, 93, 0.285);
+        margin-top: -30px;
 
         p {
             background: white;

@@ -15,6 +15,7 @@ $mainRed: #F05A28;
         background: white;
         border-radius: 10px;
         padding: 15px;
+        box-shadow: 4px 4px 10px rgba(93, 93, 93, 0.285);
     
         button{
             margin-top: 10px;
@@ -96,11 +97,13 @@ $mainRed: #F05A28;
         position: relative;
         flex-direction: column;
         text-align: left;
-        left: 40%;
+        left: 43%;
         width: 50%;
         background: white;
         border-radius: 10px;
         padding: 15px;
+        box-shadow: 4px 4px 10px rgba(93, 93, 93, 0.285);
+        margin-top: -30px;
     
         button{
             margin-top: 10px;
@@ -184,9 +187,11 @@ $mainRed: #F05A28;
         text-align: left;
         left: 55%;
         width: 40%;
+        margin-top: -30px;
         background: white;
         border-radius: 10px;
         padding: 10px;
+        box-shadow: 4px 4px 10px rgba(93, 93, 93, 0.285);
     
         button{
             margin-top: 10px;

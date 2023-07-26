@@ -1,13 +1,13 @@
 @media (max-width: 767px) {
     .carousel__container{
-        clip-path: polygon(0 0, 100% 0, 75% 100%, 25% 100%);
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 75%, 0 100%); 
       
     }
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
     .carousel__container{
-        clip-path: polygon(0 0, 100% 0, 75% 100%, 25% 100%);
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 75%, 0 100%); 
         margin-top: 80px;
       
     }
