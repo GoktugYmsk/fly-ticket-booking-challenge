@@ -12,6 +12,8 @@ import "./index.scss";
 function FlyCompanies() {
   const [formattedReturnDate, setFormattedReturnDate] = useState("");
   const [formattedSelectedDate, setFormattedSelectedDate] = useState("");
+  const [selectedDepartFlight, setSelectedDepartFlight] = useState(null);
+  const [selectedReturnFlight, setSelectedReturnFlight] = useState(null);
 
   const returnDate = useSelector((state) => state.optionDateArr.returnDate);
   const flightPort = useSelector((state) => state.passFlightPort.flightPort);
@@ -57,8 +59,15 @@ function FlyCompanies() {
   };
 
   const handleTicketClick = (item) => {
-    dispatch(setFlightTicket({ ...item, selectedDate: selectedDateTimestamp }));
-    navigate("/sales-screen");
+    if (!selectedDepartFlight) {
+      setSelectedDepartFlight(item);
+    } else if (!selectedReturnFlight) {
+      setSelectedReturnFlight(item);
+      if (selectedDepartFlight) {
+        dispatch(setFlightTicket({ ...selectedDepartFlight, selectedDate: selectedDateTimestamp }));
+        navigate("/sales-screen");
+      }
+    }
   };
 
   const handleMainPage = () => {
@@ -66,14 +75,12 @@ function FlyCompanies() {
     navigate("/");
   };
 
-  // Step 1: Filter the return flights based on selected departure and arrival ports
   const filteredReturnFlights = passengerInformation.returnLegs.filter((item) => {
     return item.depPort === flightPortArrive && item.arrPort === flightPort;
   });
 
   return (
     <div>
-
       <Header>
         {/* Header içeriği burada */}
       </Header>
@@ -112,7 +119,6 @@ function FlyCompanies() {
           </div>
         </div>
 
-        {/* Part 3: Depart Flights */}
         <h2>Depart Flights</h2>
         <div className="flyCompanies-container-content">
           {filteredPorts.length > 0 ? (
@@ -123,7 +129,7 @@ function FlyCompanies() {
 
               return (
                 <div className="flyCompanies-container-content-container" key={key}>
-                  <div onClick={() => handleTicketClick(item)} className="flyCompanies-container__box">
+                  <div onClick={() => handleTicketClick(item)} className={`flyCompanies-container__box ${selectedDepartFlight === item ? 'selected' : ''}`}>
                     <div className="flyCompanies-container__box-airline">
                       <h4>Airline</h4>
                       <p>{item.airline}</p>
@@ -159,14 +165,11 @@ function FlyCompanies() {
           )}
         </div>
 
-
-        {/* Add spacing here */}
         <div style={{ marginBottom: "30px" }}></div>
 
         {/* Part 4: Return Flights */}
-        {returnDate &&
+        {returnDate && (
           <div>
-
             <h2>Return Flights</h2>
             {filteredReturnFlights.length > 0 ? (
               <div className="flyCompanies-container-content">
@@ -178,7 +181,7 @@ function FlyCompanies() {
 
                     return (
                       <div className="flyCompanies-container-content-container" key={key}>
-                        <div onClick={() => handleTicketClick(item)} className="flyCompanies-container__box">
+                        <div onClick={() => handleTicketClick(item)} className={`flyCompanies-container__box ${selectedReturnFlight === item ? 'selected' : ''}`}>
                           <div className="flyCompanies-container__box-airline">
                             <h4>Airline</h4>
                             <p>{item.airline}</p>
@@ -216,13 +219,11 @@ function FlyCompanies() {
                 </div>
               </div>
             )}
-
           </div>
-        }
+        )}
       </div>
     </div>
   );
 }
 
 export default FlyCompanies;
-

@@ -209,7 +209,7 @@ function SearchItem1() {
       navigate('/fly-companies');
     }
     else {
-      alert('Lütfen nerden ve nereye havaalanlarını seçin.');
+      alert('Please pick "from" and "to" destionations.');
     }
   };
 
@@ -360,6 +360,7 @@ function SearchItem1() {
           </div>
         )}
       </div>
+
     </>
   );
 }
