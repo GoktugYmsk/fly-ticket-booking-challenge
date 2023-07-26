@@ -91,12 +91,9 @@ function FlyCompanies() {
       <div className="flyCompanies-container">
         <div className="flyCompanies-container__box-info">
           <div className="flyCompanies-container__box-info-top">
-            <p
-              className="flyCompanies-container__box-info-top-p"
-              onClick={handleMainPageClick}
-            >
-              Search Again
-            </p>
+          <div class="flyCompanies-container__box-info-top-div">
+            <p className="flyCompanies-container__box-info-top-p" onClick={handleMainPageClick}>Search Again</p>
+          </div>
             <div className="flyCompanies-container__box-info-city">
               <h3>{leavePortExplanation}</h3>
               <i class="fas fa-chevron-right"></i>
