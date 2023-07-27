@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { setPassName, setPassengerInfo, setReturnDate } from "../../configure";
 import Header from "../../header";
 import "./index.scss";
+import MyImage from './arrow.png';
 
 function ShoppingSummary() {
   const flightTicket = useSelector((state) => state.passTicket.flightTicket);
@@ -21,6 +22,8 @@ function ShoppingSummary() {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const imagePath = MyImage;
 
   console.log(passName);
 
@@ -49,11 +52,12 @@ function ShoppingSummary() {
       <div className="shoppingSummary-container-box">
         <div className="shoppingSummary-container-box__list">
           <div className="shoppingSummary-container-box__list-top">
-            <p>{flightTicket.airline}</p>
-            <p>{flightTicket.flightNo}</p>
-            <p>{flightTicket.depTime}</p>
-            <p>{flightTicket.arrTime}</p>
-            <p> Total: {totalPassenger} Passengers </p>
+            <p className="list-top-a">{flightTicket.airline}</p>
+            <p className="list-top-b">{flightTicket.flightNo}</p>
+            <p className="list-top-c">{flightTicket.depTime}</p>
+            <p className="list-top-d">{flightTicket.arrTime}</p>
+            <p className="list-top-e">{totalPassenger} Passengers </p>
+            <img className="list-top-x" src={imagePath} alt="Ok İkonu" />
           </div>
 
           <div className="shoppingSummary-container-box__list-bottom">
@@ -62,7 +66,7 @@ function ShoppingSummary() {
                 {passName.map((name, index) => (
                   <div className="name-flex">
                     <p className="passenger-name">First Name:</p>
-                    <p key={index}> {name}</p>
+                    <p key={index}> &nbsp;{name}&nbsp;</p>
                   </div>
                 ))}
               </div>
@@ -72,7 +76,7 @@ function ShoppingSummary() {
                 {passSurname.map((surname, index) => (
                   <div className="surname-flex">
                     <p className="passenger-name">Last Name:</p>
-                    <p key={index}> {surname}</p>
+                    <p key={index}> &nbsp;{surname}&nbsp;</p>
                   </div>
                 ))}
               </div>
