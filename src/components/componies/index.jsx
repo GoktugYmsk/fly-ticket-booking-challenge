@@ -102,11 +102,7 @@ function FlyCompanies() {
 
   return (
     <div>
-
-      <Header>
-        {/* Header içeriği burada */}
-      </Header>
-
+      <Header />
       <div className="flyCompanies-container">
         <div className="flyCompanies-container__box-info">
           <div className="flyCompanies-container__box-info-top">
