@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Header from '../header';
 import { setSeat } from '../configure';
@@ -12,6 +12,14 @@ function SeatScreen() {
     const [reservedSeats, setReservedSeats] = useState([]);
     const [popup, setPopup] = useState(false);
     const [seatArr, setSeatArr] = useState([]);
+    const [deneme, setDeneme] = useState({})
+
+
+    const passName = useSelector((state) => state.passCheck.passName);
+    const passSurname = useSelector((state) => state.passCheck.passSurname);
+
+    console.log('deneme', deneme)
+
 
     const totalPassenger = sessionStorage.getItem('totalPassenger');
 
@@ -30,6 +38,7 @@ function SeatScreen() {
             const seat = { row, seatNumber };
             setSelectedSeat(seat);
             setSeatArr([...seatArr, seat]);
+            setDeneme({ seat })
         }
     };
 
@@ -135,7 +144,34 @@ function SeatScreen() {
                         <div className='legend_item'><div className='legend_box_empty'></div><span>Empty</span></div>
                     </div>
                     <div className='info_box_group'>
-                        <div className='info_box'><h2>First Class</h2><p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi magni necessitatibus, sint quos commodi alias placeat dignissimos veritatis, architecto quod quia repellat neque inventore pariatur vel beatae magnam esse id.</p></div>
+                        <div className='info_box'><h2>First Class</h2>
+                            <div>
+                                {passName?.map((name, index) => {
+                                    if (passSurname[index]) {
+                                        return (
+                                            <div key={index}>
+                                                <p className='searchItem-two__container__ports-info__firstp'>First Name: {name}</p>
+                                            </div>
+                                        );
+                                    } else {
+                                        return null;
+                                    }
+                                })}
+                                {passSurname?.map((name, index) => {
+                                    return (
+                                        <div key={index}>
+                                            <p className='searchItem-two__container__ports-info__firstp'>First Name: {name}</p>
+                                        </div>
+                                    );
+                                })}
+                                {deneme &&
+                                    <div>
+                                        <p> Row {deneme?.seat?.row}</p>
+                                        <p> Colum {deneme?.seat?.seatNumber}</p>
+                                    </div>
+                                }
+                            </div>
+                        </div>
                         <div className='info_box'><h2>Bussiness Class</h2><p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non minima distinctio facere doloremque nesciunt dicta temporibus sed officiis. Eius libero illo alias doloribus soluta, officiis animi ipsum ea repellat non?</p></div>
                         <div className='info_box'><h2>Economy Class</h2><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corrupti nisi eligendi culpa deleniti pariatur ducimus tempore expedita corporis libero, aut repellendus repudiandae iusto facilis omnis. Doloremque facilis pariatur aliquid in.</p></div>
                     </div>
