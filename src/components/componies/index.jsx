@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import Expedition from "../expedition";
 
 import flightPorts from "../../assets/flightPorts";
 import passengerInformation from "../../assets/passenger";
@@ -24,6 +25,7 @@ function FlyCompanies() {
   const flightTicketReturn = useSelector((state) => state.passTicket.flightTicketReturn);
   const refreshPassenger = useSelector((state) => state.refreshPass.refreshPassenger);
   const flightPortArrive = useSelector((state) => state.passFlightPortArrive.flightPortArrive);
+  const [expedition, setExpedetion] = useState(false)
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -64,6 +66,7 @@ function FlyCompanies() {
 
   const handleTicketClick = (item) => {
     dispatch(setFlightTicket({ ...item, selectedDate: selectedDateTimestamp }));
+    setExpedetion(true)
     setDepartSelect(true)
 
   };
@@ -183,7 +186,6 @@ function FlyCompanies() {
 
         {returnDate &&
           <div>
-
             <h2>Return Flights</h2>
             {filteredReturnFlights.length > 0 ? (
               <div className="flyCompanies-container-content">
@@ -237,6 +239,9 @@ function FlyCompanies() {
           </div>
         }
       </div>
+      {/* {expedition &&
+        <Expedition />
+      } */}
     </div>
   );
 }
