@@ -235,12 +235,21 @@
     margin-top: 300px;
 }
 
-.seat-popup {
+.seat-popup__bottom {
+    display: flex;
+    flex-direction: column;
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 40%;
+    left: 40%;
+    width: 400px;
+    height: 400px;
     padding: 16px;
-    background-color: #fff;
-    border: 1px solid #ccc;
+    color: black;
+    z-index: 999;
+    background: red;
+    border: 1px solid rgb(148, 128, 37);
+}
+
+.seat-reserve {
+    cursor: none;
 }

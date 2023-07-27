@@ -17,6 +17,8 @@ function SeatScreen() {
 
     console.log('seatArr', seatArr)
 
+    console.log('popup', popup)
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -106,6 +108,14 @@ function SeatScreen() {
         <>
             <Header className='header'>
             </Header><div className='chairScreen-container-content'>
+                {popup && (
+                    <div className='seat-popup__bottom'>
+                        <h2>Seat Info:</h2>
+                        <p>Row: {selectedSeat.row}</p>
+                        <p>SeatNumber: {selectedSeat.seatNumber}</p>
+                        <button onClick={handleReservation}>Devam Et</button>
+                    </div>
+                )}
                 <div className='upper_div'>
                     <h2>Choose Your Seat</h2>
                     <button >Skip</button>
@@ -135,14 +145,6 @@ function SeatScreen() {
                 </div>
             </div>
 
-            {popup && (
-                <div className='seat-popup__bottom'>
-                    <h2>Seat Info:</h2>
-                    <p>Row: {selectedSeat.row}</p>
-                    <p>SeatNumber: {selectedSeat.seatNumber}</p>
-                    <button onClick={handleReservation}>Devam Et</button>
-                </div>
-            )}
             <Footer className='footer' />
         </>
     );
