@@ -1,24 +1,21 @@
+
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import Header from '../header';
 import { setSeat } from '../configure';
+import Footer from '../footer';
 import './index.scss';
 
 function SeatScreen() {
-
-    const rightFlap = 'https://web.flypgs.com/img/wing.svg?a3a604d6d5194901185d1db932b59498';
-
-
     const [selectedSeat, setSelectedSeat] = useState(null);
     const [reservedSeats, setReservedSeats] = useState([]);
     const [popup, setPopup] = useState(false);
     const [seatArr, setSeatArr] = useState([]);
 
-
     const totalPassenger = sessionStorage.getItem('totalPassenger');
 
     console.log('seatArr', seatArr)
-
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -68,7 +65,6 @@ function SeatScreen() {
         };
     }, []);
 
-
     function renderSeatsSecond() {
         const rows = [];
         for (let j = 1; j <= 33; j++) {
@@ -91,7 +87,6 @@ function SeatScreen() {
                     </React.Fragment>
                 );
             }
-
             rows.push(<div className='seat-row' key={j}>{rowSeats}</div>);
         }
         return rows;
@@ -107,11 +102,14 @@ function SeatScreen() {
 
     return (
         <>
-            <div className='chairScreen-container'>
-                <div className='chairScreen-container-content'>
-                    <div className='flapleft'>
-                        <img src={rightFlap} alt='flapleft' />
-                    </div>
+            <Header className='header'>
+            </Header><div className='chairScreen-container-content'>
+                <div className='upper_div'>
+                    <h2>Choose Your Seat</h2>
+                    <button >Skip</button>
+                </div>
+                <div class="line_horizontal"></div>
+                <div className='middle_div'>
                     <div className='chairScreen-container__box'>
                         <div className='chairScreen-container__box-passengerSide-first'>
                             <div className='chairScreen-container__box-passengerSide-second'>
@@ -119,19 +117,22 @@ function SeatScreen() {
                             </div>
                         </div>
                     </div>
-                    <div className='flapright'>
-                        <img src={rightFlap} alt='flapright' />
+                    <img className='plane_top_view' src="https://www.delta.com/content/dam/delta-www/responsive/airports-aircraft/Boeing/LOPA/757-200-75d-seat-map-static-mobile.png" alt="plane" />
+                    <div className='legend'><div className='legend_item'><div className='legend_box_taken'></div><span>Taken</span></div>
+                        <div className='legend_item'><div className='legend_box_selected'></div><span>Selected</span></div>
+                        <div className='legend_item'><div className='legend_box_empty'></div><span>Empty</span></div>
+                    </div>
+                    <div className='info_box_group'>
+                        <div className='info_box'><h2>First Class</h2><p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi magni necessitatibus, sint quos commodi alias placeat dignissimos veritatis, architecto quod quia repellat neque inventore pariatur vel beatae magnam esse id.</p></div>
+                        <div className='info_box'><h2>Bussiness Class</h2><p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non minima distinctio facere doloremque nesciunt dicta temporibus sed officiis. Eius libero illo alias doloribus soluta, officiis animi ipsum ea repellat non?</p></div>
+                        <div className='info_box'><h2>Economy Class</h2><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corrupti nisi eligendi culpa deleniti pariatur ducimus tempore expedita corporis libero, aut repellendus repudiandae iusto facilis omnis. Doloremque facilis pariatur aliquid in.</p></div>
                     </div>
                 </div>
-            </div>
-            {popup && (
-                <div className='seat-popup'>
-                    <h2>Seat Info:</h2>
-                    <p>Row: {selectedSeat.row}</p>
-                    <p>SeatNumber: {selectedSeat.seatNumber}</p>
-                    <button onClick={handleReservation}>Devam Et</button>
+                <div className='lower_div'>
+                    <button >Go To The Payment</button>
                 </div>
-            )}
+            </div>
+            <Footer className='footer' />
         </>
     );
 }
