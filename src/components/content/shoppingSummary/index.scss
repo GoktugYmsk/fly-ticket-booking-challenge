@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
 
+<<<<<<< HEAD
 .navbar {
     font-family: "Poppins", sans-serif;
 
@@ -36,14 +37,181 @@
         padding-top: 15px;
     }
 
+=======
+@media (max-width: 767px) {
+
+
+    .shoppingSummary-container {
+        font-family: "Poppins", sans-serif;
+        display: flex;
+        flex-direction: column;
+    
+        .shoppingSummary__container-navbar {
+            nav {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+                background: #2c3855;
+                box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.4);
+        
+    
+                img {
+                    width: 300px;
+                    height: 100px;
+                    cursor: pointer;
+                }
+            }
+    
+            .shoppingSummary__container-navbar-alt {
+                display: flex;
+                justify-content: center;
+                margin-top: 20px;
+                
+    
+                h3 {
+                    padding: 20px;
+                    
+                }
+            }
+        }
+    
+        .shoppingSummary-container-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background: rgb(255, 255, 255);
+            height: 70vh;
+            
+    
+            h5 {
+                cursor: pointer;
+                margin-top: 50px;
+                color: #3d465c;;
+    
+                &:hover {
+                    color: #c6a74b;
+                }
+            }
+        }
+    
+        .shoppingSummary-container-box__list {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            height: auto;
+            padding: 20px;
+            width: 90%;
+            background: rgb(255, 255, 255);
+            box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 30px;
+            margin-bottom: 50px;
+    
+    
+            .shoppingSummary-container-box__list-top {
+                display: grid;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                padding: 5px;
+                color: #3d465c;
+                font-weight: 400;
+                
+    
+                p {
+                    font-size: 18px;
+                }
+            }
+    
+            .shoppingSummary-container-box__list-bottom {
+                display: flex;
+                background: rgb(243, 243, 243);
+                width: 100%;
+                align-items: center;
+                justify-content: space-around;
+                border-radius: 10px;
+                margin-bottom: 10px;
+    
+                .shoppingSummary-container-box__list-name {
+                    display: flex;
+    
+                    
+    
+                    .name {
+                        display: flex;
+                        flex-direction: column;
+                        font-size: 18px;
+                        font-weight: 400;
+                        padding-inline: 10px;
+                        padding-top: 15px;
+    
+                        .passenger-name{
+                            font-weight: 500;
+                            color: #3d465c;
+                        }
+    
+                        .name-flex {
+                            display: flex;
+                            gap: 20px;
+                            font-size: 18px;
+              
+                        }
+                    }
+                }
+    
+                .shoppingSummary-container-box__list-surName {
+                    display: flex;
+    
+                    .surname {
+                        display: flex;
+                        flex-direction: column;
+                        font-size: 18px;
+                        font-weight: 400;
+                        padding-inline: 10px;
+                        padding-top: 15px;
+    
+                        .passenger-name{
+                            font-weight: 500;
+                            color: #3d465c;
+                        }
+    
+                        .surname-flex {
+                            display: flex;
+                            gap: 20px;
+                        }
+                    }
+                }
+            }
+    
+            .shoppingSummary-container-box__list-passenger {
+                display: flex;
+                width: 100%;
+                background: rgb(240, 90, 40);;
+                justify-content: space-around;
+                border-radius: 10px;
+                color: white;
+                font-size: 18px;
+                font-weight: 500;
+                padding-inline: 10px;
+                padding-top: 15px;
+                
+    
+                .shoppingSummary-container-box__list-passengerInfo {
+                    display: flex;
+                }
+            }
+    
+        }
+    }
+>>>>>>> 6418d8406c75e5e06ac1552bfeca44afa0b1bf75
 }
 
+@media (min-width: 768px) and (max-width: 1023px) {
 
-.shoppingSummary-container {
-    font-family: "Poppins", sans-serif;
-    display: flex;
-    flex-direction: column;
 
+<<<<<<< HEAD
     .shoppingSummary__container-navbar {
         nav {
             display: flex;
@@ -91,27 +259,48 @@
 
             &:hover {
                 color: #c6a74b;
+=======
+    .shoppingSummary-container {
+        font-family: "Poppins", sans-serif;
+        display: flex;
+        flex-direction: column;
+    
+        .shoppingSummary__container-navbar {
+            nav {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+                background: #2c3855;
+                box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.4);
+        
+    
+                img {
+                    width: 300px;
+                    height: 100px;
+                    cursor: pointer;
+                }
+            }
+    
+            .shoppingSummary__container-navbar-alt {
+                display: flex;
+                justify-content: center;
+                margin-top: 20px;
+                
+    
+                h3 {
+                    padding: 20px;
+                    
+                }
+>>>>>>> 6418d8406c75e5e06ac1552bfeca44afa0b1bf75
             }
         }
-    }
-
-    .shoppingSummary-container-box__list {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        height: auto;
-        padding: 20px;
-        width: 80%;
-        background: rgb(255, 255, 255);
-        box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.1);
-        border-radius: 30px;
-
-
-        .shoppingSummary-container-box__list-top {
+    
+        .shoppingSummary-container-box {
             display: flex;
             align-items: center;
             justify-content: center;
+<<<<<<< HEAD
             gap: 60px;
             padding: 20px;
             color: #3d465c;
@@ -120,14 +309,28 @@
 
             p {
                 font-size: 25px;
+=======
+            flex-direction: column;
+            background: rgb(255, 255, 255);
+            height: 70vh;
+            
+    
+            h5 {
+                cursor: pointer;
+                margin-top: 50px;
+                color: #3d465c;;
+    
+                &:hover {
+                    color: #c6a74b;
+                }
+>>>>>>> 6418d8406c75e5e06ac1552bfeca44afa0b1bf75
             }
         }
-
-        .shoppingSummary-container-box__list-bottom {
+    
+        .shoppingSummary-container-box__list {
             display: flex;
-            background: rgb(243, 243, 243);
-            width: 100%;
             align-items: center;
+<<<<<<< HEAD
             justify-content: space-around;
             border-radius: 10px;
             margin-bottom: 10px;
@@ -161,19 +364,75 @@
                     }
 
                     .name-flex {
-                        display: flex;
-                        gap: 20px;
-                        font-size: 18px;
-
-                    }
+=======
+            justify-content: center;
+            flex-direction: column;
+            height: auto;
+            padding: 20px;
+            width: 80%;
+            background: rgb(255, 255, 255);
+            box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 30px;
+    
+    
+            .shoppingSummary-container-box__list-top {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 20px;
+                padding: 10px;
+                color: #3d465c;
+                
+    
+                p {
+                    font-size: 20px;
                 }
             }
-
-            .shoppingSummary-container-box__list-surName {
+    
+            .shoppingSummary-container-box__list-bottom {
                 display: flex;
-
-                .surname {
+                background: rgb(243, 243, 243);
+                width: 100%;
+                align-items: center;
+                justify-content: space-around;
+                border-radius: 10px;
+                margin-bottom: 10px;
+    
+                .shoppingSummary-container-box__list-name {
                     display: flex;
+    
+                    
+    
+                    .name {
+>>>>>>> 6418d8406c75e5e06ac1552bfeca44afa0b1bf75
+                        display: flex;
+                        flex-direction: column;
+                        font-size: 18px;
+<<<<<<< HEAD
+
+=======
+                        font-weight: 400;
+                        padding-inline: 10px;
+                        padding-top: 15px;
+    
+                        .passenger-name{
+                            font-weight: 500;
+                            color: #3d465c;
+                        }
+    
+                        .name-flex {
+                            display: flex;
+                            gap: 20px;
+                            font-size: 18px;
+              
+                        }
+>>>>>>> 6418d8406c75e5e06ac1552bfeca44afa0b1bf75
+                    }
+                }
+    
+                .shoppingSummary-container-box__list-surName {
+                    display: flex;
+<<<<<<< HEAD
                     flex-direction: column;
                     font-size: 18px;
                     font-weight: 400;
@@ -186,11 +445,30 @@
                     }
 
                     .surname-flex {
+=======
+    
+                    .surname {
+>>>>>>> 6418d8406c75e5e06ac1552bfeca44afa0b1bf75
                         display: flex;
-                        gap: 20px;
+                        flex-direction: column;
+                        font-size: 18px;
+                        font-weight: 400;
+                        padding-inline: 10px;
+                        padding-top: 15px;
+    
+                        .passenger-name{
+                            font-weight: 500;
+                            color: #3d465c;
+                        }
+    
+                        .surname-flex {
+                            display: flex;
+                            gap: 20px;
+                        }
                     }
                 }
             }
+<<<<<<< HEAD
         }
 
         .shoppingSummary-container-box__list-passenger {
@@ -207,9 +485,195 @@
 
 
             .shoppingSummary-container-box__list-passengerInfo {
+=======
+    
+            .shoppingSummary-container-box__list-passenger {
+>>>>>>> 6418d8406c75e5e06ac1552bfeca44afa0b1bf75
                 display: flex;
+                width: 100%;
+                background: rgb(240, 90, 40);;
+                justify-content: space-around;
+                border-radius: 10px;
+                color: white;
+                font-size: 18px;
+                font-weight: 500;
+                padding-inline: 10px;
+                padding-top: 15px;
+                
+    
+                .shoppingSummary-container-box__list-passengerInfo {
+                    display: flex;
+                }
+            }
+    
+        }
+    }
+}
+
+@media (min-width: 1024px) {
+
+
+    .shoppingSummary-container {
+        font-family: "Poppins", sans-serif;
+        display: flex;
+        flex-direction: column;
+    
+        .shoppingSummary__container-navbar {
+            nav {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+                background: #2c3855;
+                box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.4);
+        
+    
+                img {
+                    width: 300px;
+                    height: 100px;
+                    cursor: pointer;
+                }
+            }
+    
+            .shoppingSummary__container-navbar-alt {
+                display: flex;
+                justify-content: center;
+                margin-top: 20px;
+                
+    
+                h3 {
+                    padding: 20px;
+                    
+                }
             }
         }
-
+    
+        .shoppingSummary-container-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background: rgb(255, 255, 255);
+            height: 70vh;
+            
+    
+            h5 {
+                cursor: pointer;
+                margin-top: 50px;
+                color: #3d465c;;
+    
+                &:hover {
+                    color: #c6a74b;
+                }
+            }
+        }
+    
+        .shoppingSummary-container-box__list {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            height: auto;
+            padding: 20px;
+            width: 80%;
+            background: rgb(255, 255, 255);
+            box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 30px;
+    
+    
+            .shoppingSummary-container-box__list-top {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 60px;
+                padding: 20px;
+                color: #3d465c;
+                font-weight: 400;
+                
+    
+                p {
+                    font-size: 25px;
+                }
+            }
+    
+            .shoppingSummary-container-box__list-bottom {
+                display: flex;
+                background: rgb(243, 243, 243);
+                width: 100%;
+                align-items: center;
+                justify-content: space-around;
+                border-radius: 10px;
+                margin-bottom: 10px;
+    
+                .shoppingSummary-container-box__list-name {
+                    display: flex;
+    
+                    
+    
+                    .name {
+                        display: flex;
+                        flex-direction: column;
+                        font-size: 18px;
+                        font-weight: 400;
+                        padding-inline: 10px;
+                        padding-top: 15px;
+    
+                        .passenger-name{
+                            font-weight: 500;
+                            color: #3d465c;
+                        }
+    
+                        .name-flex {
+                            display: flex;
+                            gap: 20px;
+                            font-size: 18px;
+              
+                        }
+                    }
+                }
+    
+                .shoppingSummary-container-box__list-surName {
+                    display: flex;
+    
+                    .surname {
+                        display: flex;
+                        flex-direction: column;
+                        font-size: 18px;
+                        font-weight: 400;
+                        padding-inline: 10px;
+                        padding-top: 15px;
+    
+                        .passenger-name{
+                            font-weight: 500;
+                            color: #3d465c;
+                        }
+    
+                        .surname-flex {
+                            display: flex;
+                            gap: 20px;
+                        }
+                    }
+                }
+            }
+    
+            .shoppingSummary-container-box__list-passenger {
+                display: flex;
+                width: 100%;
+                background: rgb(240, 90, 40);;
+                justify-content: space-around;
+                border-radius: 10px;
+                color: white;
+                font-size: 18px;
+                font-weight: 500;
+                padding-inline: 10px;
+                padding-top: 15px;
+                
+    
+                .shoppingSummary-container-box__list-passengerInfo {
+                    display: flex;
+                }
+            }
+    
+        }
     }
 }

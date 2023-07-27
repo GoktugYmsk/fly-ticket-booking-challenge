@@ -1,9 +1,322 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
 
 
+@media (max-width: 763px) {
+    .navbar {
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        background: #2c3855;
+        box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.4);
+        font-family: "Poppins", sans-serif;
 
 
-@media (max-width: 899px) {
+        .nav_logo {
+            padding-left: 10%;
+            padding-top: 0.7%;
+            padding-bottom: 0.7%;
+            ;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #f3f4f6;
+        }
+
+        img {
+            width: 300px;
+            height: 100px;
+            cursor: pointer;
+        }
+
+        .nav_links {
+            padding-right: 10%;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            padding-top: 15px;
+        }
+
+    }
+
+    .flyCompanies-container {
+        display: flex;
+        background: rgb(255, 255, 255);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        top: 60px;
+        font-family: "Poppins", sans-serif;
+
+
+        .flyCompanies-container__box-info {
+            display: grid;
+            align-items: center;
+            background: rgb(255, 255, 255);
+            margin-top: 30px;
+            height: 250px !important;
+            width: 90%;
+            margin: auto;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            border: 1px solid rgba(189, 189, 189, 0.347);
+            box-shadow: 1px 1px 20px rgba(154, 154, 154, 0.1);
+            grid-template-rows: 80% 20%;
+
+            .flyCompanies-container__box-info-top {
+                display: grid;
+                flex-direction: column;
+                width: 100%;
+                height: 100%;
+                padding: 20px;
+                grid-template-columns: 20% 45% 35%;
+                grid-template-rows: 25% 25% 30% 20%;
+                margin: auto;
+                grid-template-areas:
+                    "A A C"
+                    "B B C"
+                    "B B C"
+                    "B B C";
+
+
+                .flyCompanies-container__box-info-top-div {
+                    box-sizing: border-box;
+                    width: 100%;
+
+                    .flyCompanies-container__box-info-top-p {
+                        cursor: pointer;
+                        color: white;
+                        grid-area: A;
+                        background: rgb(240, 90, 40);
+                        padding: 5px;
+                        font-size: 10px;
+                        border-radius: 5px;
+                        height: auto;
+                        width: 100%;
+
+                        &:hover {
+                            background: #536aa0;
+                        }
+                    }
+
+                }
+
+                .flyCompanies-container__box-info-city {
+                    grid-area: B;
+                    text-align: center;
+                    align-items: center;
+                    width: 100%;
+                    justify-content: center;
+                    display: grid;
+                    grid-column-gap: 2%;
+                    grid-template-columns: 40% 10% 40%;
+                    grid-template-rows: 33% 33% 33%;
+
+                    grid-template-areas:
+                        "A A ."
+                        "B B ."
+                        "C C .";
+
+                    .first-h3 {
+                        grid-area: A;
+                        text-align: start;
+                    }
+
+                    .fa-chevron-right {
+                        grid-area: B;
+                        color: rgb(240, 90, 40);
+                        border: 1px solid rgb(240, 90, 40);
+                        padding: 6px 8px;
+                        border-radius: 100%;
+                        transform: scale(0.7);
+                        transform: rotate(90deg);
+                    }
+
+                    .second-h3 {
+                        grid-area: C;
+                        text-align: start;
+                    }
+
+                    h3 {
+                        font-size: calc(3vh - 8px);
+                        font-weight: bold;
+                        padding-top: 6px;
+                    }
+                }
+
+
+                .flyCompanies-container__box-info__date {
+                    display: grid;
+                    grid-template-rows: 50% 50%;
+                    grid-area: C;
+                    text-align: end;
+
+                    .flyCompanies-container__box-info__date-depp {
+                        display: grid;
+                        font-size: 12px;
+
+                        p {
+                            font-weight: bold;
+                            margin-bottom: 0px !important;
+                        }
+                    }
+
+                    .flyCompanies-container__box-info__date-return {
+                        display: grid;
+                        font-size: 12px;
+
+                        p {
+                            font-weight: bold;
+                            margin-bottom: 0px !important;
+                        }
+                    }
+                }
+
+            }
+
+            .flyCompanies-container__box-info-bottom {
+                text-align: end;
+                padding-top: 3px;
+                padding-right: 20px;
+                float: right;
+                list-style-type: none;
+                font-weight: bold;
+                font-style: oblique;
+                border-top: 1px dashed rgb(184, 184, 184);
+                height: auto;
+            }
+
+        }
+
+        .flyCompanies-container-content {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+            height: auto;
+
+            .flyCompanies-container-content-container {
+
+                .flyCompanies-container__box {
+                    display: grid;
+                    align-items: center;
+                    cursor: pointer;
+                    background: white;
+                    bottom: 15px !important;
+                    height: 100px !important;
+                    padding: 5px;
+                    width: 100%;
+                    margin: auto;
+                    border: 1px solid rgba(189, 189, 189, 0.347);
+                    box-shadow: 1px 1px 20px rgba(154, 154, 154, 0.1);
+                    border-radius: 10px;
+                    color: #3d465c;
+                    grid-template-columns: 19% 1% 10% 10% 10% 10% 10% 10% 3% 17%;
+                    grid-template-rows: 30% 40% 30%;
+                    grid-template-areas:
+                        "A A A . E E . . . G"
+                        ". . D C C C C F . G"
+                        "B . . . . . . . . G";
+
+                    &:hover {
+                        background: rgb(243, 246, 248);
+                    }
+
+                    .partner {
+                        font-size: 12px;
+                        justify-content: center;
+                        display: flex;
+
+                        p {
+                            align-items: center;
+                            margin-bottom: 0px !important;
+                            padding: 5px;
+                        }
+                    }
+
+
+                    .flyCompanies-container__box-airline {
+                        grid-area: A;
+                        font-weight: bold;
+                        width: 100%;
+
+                    }
+
+                    .flyCompanies-container__box-flightNo {
+                        grid-area: B;
+                        width: 100%;
+                        color: #acacac;
+                    }
+
+                    .arrowIcon {
+                        grid-area: C;
+                        width: 90%;
+                        margin: auto;
+                    }
+
+                    .flyCompanies-container__box-depTime {
+                        grid-area: D;
+                        width: 100%;
+                        color: rgb(73, 73, 73);
+                    }
+
+                    .flyCompanies-container__box-flightDuration {
+                        grid-area: E;
+                        bottom: 0px !important;
+                        font-weight: bold;
+                        color: #a0a0a0;
+                        width: 100%;
+                    }
+
+                    .flyCompanies-container__box-arrTime {
+                        grid-area: F;
+                        width: 100%;
+                        color: rgb(73, 73, 73);
+                    }
+
+                    .flyCompanies-container__box-amount {
+                        grid-area: G;
+                        width: 100%;
+                        font-size: 13px;
+                        font-weight: bold;
+                    }
+
+
+                    h4 {
+                        display: none;
+                    }
+                }
+
+                .flyCompanies-container__box.selected {
+                    background-color: rgb(240, 90, 40);
+                    color: white;
+
+                    p {
+                        color: white;
+                    }
+                }
+
+            }
+
+            .flyCompanies-container__box-notFound {
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                background: white;
+                margin-top: 30px;
+                height: 100px !important;
+                width: 1000px;
+                gap: 20px;
+            }
+
+        }
+    }
+
+}
+
+@media (min-width: 764px) and (max-width: 899px) {
 
     .navbar {
 
@@ -50,7 +363,7 @@
         align-items: center;
         justify-content: center;
         position: relative;
-        top: 200px;
+        top: 100px;
         font-family: "Poppins", sans-serif;
 
 
@@ -73,49 +386,55 @@
                 flex-direction: column;
                 width: 100%;
                 padding: 20px;
-                grid-template-columns: 25% 50% 25%;
+                grid-template-columns: 20% 50% 30%;
                 margin: auto;
                 grid-template-areas:
                     "A B C"
                     ". . D";
 
 
-                .flyCompanies-container__box-info-top-p {
-                    cursor: pointer;
-                    color: white;
-                    grid-area: A;
-                    background: rgb(240, 90, 40);
-                    padding: 10px 10px 0px 10px;
-                    font-size: 15px;
-                    border-radius: 5px;
-                    width: 60%;
-                    min-height: 55%;
-                    max-height: 65%;
+                .flyCompanies-container__box-info-top-div {
+                    width: 80%;
+
+                    .flyCompanies-container__box-info-top-p {
+                        cursor: pointer;
+                        color: white;
+                        grid-area: A;
+                        background: rgb(240, 90, 40);
+                        padding: 10px;
+                        font-size: 12px;
+                        border-radius: 5px;
+                        height: auto;
+                        width: 100%;
 
 
-                    &:hover {
-                        background: #536aa0;
+                        &:hover {
+                            background: #536aa0;
+                        }
                     }
+
                 }
 
                 .flyCompanies-container__box-info-city {
                     grid-area: B;
                     text-align: center;
-                    display: flex;
                     align-items: center;
+                    width: 100%;
                     justify-content: center;
-                    gap: 6%;
+                    display: grid;
+                    grid-column-gap: 5%;
+                    grid-template-areas:
+                        "A B C";
 
                     .fa-chevron-right {
                         color: rgb(240, 90, 40);
                         border: 1px solid rgb(240, 90, 40);
-                        padding: 11px 15px;
+                        padding: 6px 8px;
                         border-radius: 100%;
                     }
 
                     h3 {
-                        width: 47%;
-
+                        font-size: medium;
                     }
                 }
 
@@ -173,22 +492,101 @@
             .flyCompanies-container-content-container {
 
                 .flyCompanies-container__box {
-                    display: flex;
+                    display: grid;
                     align-items: center;
-                    justify-content: space-around;
                     cursor: pointer;
                     background: white;
-                    margin-top: 15px;
+                    bottom: 15px !important;
                     height: 100px !important;
-                    width: 1000px;
-                    gap: 10px;
+                    padding: 5px;
+                    width: 100%;
+                    margin: auto;
                     border: 1px solid rgba(189, 189, 189, 0.347);
                     box-shadow: 1px 1px 20px rgba(154, 154, 154, 0.1);
                     border-radius: 10px;
                     color: #3d465c;
+                    grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+                    grid-template-rows: 30% 40% 30%;
+                    grid-template-areas:
+                        "A . . . E E . . . G"
+                        "A . D C C C C F . G"
+                        "B . . . . . . . . G";
 
                     &:hover {
                         background: rgb(243, 246, 248);
+                    }
+
+                    .partner {
+                        font-size: 13px;
+                        justify-content: center;
+
+                        display: flex;
+
+                        p {
+                            align-items: center;
+                            margin-bottom: 0px !important;
+                            padding: 5px;
+                        }
+                    }
+
+
+                    .flyCompanies-container__box-airline {
+                        grid-area: A;
+                        font-weight: bold;
+                        width: 100%;
+
+                    }
+
+                    .flyCompanies-container__box-flightNo {
+                        grid-area: B;
+                        width: 100%;
+                        color: #acacac;
+                    }
+
+                    .arrowIcon {
+                        grid-area: C;
+                        width: 100%;
+                    }
+
+                    .flyCompanies-container__box-depTime {
+                        grid-area: D;
+                        width: 100%;
+                        color: rgb(73, 73, 73);
+                    }
+
+                    .flyCompanies-container__box-flightDuration {
+                        grid-area: E;
+                        bottom: 0px !important;
+                        font-weight: bold;
+                        color: #a0a0a0;
+                        width: 100%;
+                    }
+
+                    .flyCompanies-container__box-arrTime {
+                        grid-area: F;
+                        width: 100%;
+                        color: rgb(73, 73, 73);
+                    }
+
+                    .flyCompanies-container__box-amount {
+                        grid-area: G;
+                        width: 100%;
+                        font-size: large;
+                        font-weight: bold;
+                    }
+
+
+                    h4 {
+                        display: none;
+                    }
+                }
+
+                .flyCompanies-container__box.selected {
+                    background-color: rgb(240, 90, 40);
+                    color: white;
+
+                    p {
+                        color: white;
                     }
                 }
 
@@ -381,24 +779,104 @@
             height: auto;
 
             .flyCompanies-container-content-container {
+                width: 80%;
 
                 .flyCompanies-container__box {
-                    display: flex;
+                    display: grid;
                     align-items: center;
-                    justify-content: space-around;
                     cursor: pointer;
                     background: white;
-                    margin-top: 15px;
+                    bottom: 15px !important;
                     height: 100px !important;
-                    width: 1000px;
-                    gap: 10px;
+                    padding: 5px;
+                    width: 100%;
+                    margin: auto;
                     border: 1px solid rgba(189, 189, 189, 0.347);
                     box-shadow: 1px 1px 20px rgba(154, 154, 154, 0.1);
                     border-radius: 10px;
                     color: #3d465c;
+                    grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+                    grid-template-rows: 30% 40% 30%;
+                    grid-template-areas:
+                        "A . . . E E . . . G"
+                        "A . D C C C C F . G"
+                        "B . . . . . . . . G";
 
                     &:hover {
                         background: rgb(243, 246, 248);
+                    }
+
+                    .partner {
+                        font-size: 13px;
+                        justify-content: center;
+
+                        display: flex;
+
+                        p {
+                            align-items: center;
+                            margin-bottom: 0px !important;
+                            padding: 5px;
+                        }
+                    }
+
+
+                    .flyCompanies-container__box-airline {
+                        grid-area: A;
+                        font-weight: bold;
+                        width: 100%;
+
+                    }
+
+                    .flyCompanies-container__box-flightNo {
+                        grid-area: B;
+                        width: 100%;
+                        color: #acacac;
+                    }
+
+                    .arrowIcon {
+                        grid-area: C;
+                        width: 100%;
+                    }
+
+                    .flyCompanies-container__box-depTime {
+                        grid-area: D;
+                        width: 100%;
+                        color: rgb(73, 73, 73);
+                    }
+
+                    .flyCompanies-container__box-flightDuration {
+                        grid-area: E;
+                        bottom: 0px !important;
+                        font-weight: bold;
+                        color: #a0a0a0;
+                        width: 100%;
+                    }
+
+                    .flyCompanies-container__box-arrTime {
+                        grid-area: F;
+                        width: 100%;
+                        color: rgb(73, 73, 73);
+                    }
+
+                    .flyCompanies-container__box-amount {
+                        grid-area: G;
+                        width: 100%;
+                        font-size: large;
+                        font-weight: bold;
+                    }
+
+
+                    h4 {
+                        display: none;
+                    }
+                }
+
+                .flyCompanies-container__box.selected {
+                    background-color: rgb(240, 90, 40);
+                    color: white;
+
+                    p {
+                        color: white;
                     }
                 }
 
@@ -497,23 +975,24 @@
                     ". . D";
 
 
-                .flyCompanies-container__box-info-top-p {
-                    cursor: pointer;
-                    color: white;
-                    grid-area: A;
-                    background: rgb(240, 90, 40);
-                    padding: 10px 10px 0px 10px;
-                    font-size: 15px;
-                    border-radius: 5px;
-                    width: 60%;
-                    min-height: 55%;
-                    max-height: 65%;
+                .flyCompanies-container__box-info-top-div {
+                    .flyCompanies-container__box-info-top-p {
+                        cursor: pointer;
+                        color: white;
+                        grid-area: A;
+                        background-color: rgb(240, 90, 40);
+                        padding: 10px;
+                        font-size: 11px;
+                        border-radius: 5px;
+                        width: 60%;
 
 
-                    &:hover {
-                        background: #536aa0;
+                        &:hover {
+                            background: #536aa0;
+                        }
                     }
                 }
+
 
                 .flyCompanies-container__box-info-city {
                     grid-area: B;
@@ -588,27 +1067,106 @@
             height: auto;
 
             .flyCompanies-container-content-container {
+                width: 80%;
 
                 .flyCompanies-container__box {
-                    display: flex;
+                    display: grid;
                     align-items: center;
-                    justify-content: space-around;
                     cursor: pointer;
                     background: white;
-                    margin-top: 15px;
+                    bottom: 15px !important;
                     height: 100px !important;
-                    width: 1000px;
-                    gap: 10px;
+                    padding: 5px;
+                    width: 100%;
+                    margin: auto;
                     border: 1px solid rgba(189, 189, 189, 0.347);
                     box-shadow: 1px 1px 20px rgba(154, 154, 154, 0.1);
                     border-radius: 10px;
                     color: #3d465c;
+                    grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+                    grid-template-rows: 30% 40% 30%;
+                    grid-template-areas:
+                        "A . . . E E . . . G"
+                        "A . D C C C C F . G"
+                        "B . . . . . . . . G";
 
                     &:hover {
                         background: rgb(243, 246, 248);
                     }
+
+                    .partner {
+                        font-size: 13px;
+                        justify-content: center;
+
+                        display: flex;
+
+                        p {
+                            align-items: center;
+                            margin-bottom: 0px !important;
+                            padding: 5px;
+                        }
+                    }
+
+
+                    .flyCompanies-container__box-airline {
+                        grid-area: A;
+                        font-weight: bold;
+                        width: 100%;
+
+                    }
+
+                    .flyCompanies-container__box-flightNo {
+                        grid-area: B;
+                        width: 100%;
+                        color: #acacac;
+                    }
+
+                    .arrowIcon {
+                        grid-area: C;
+                        width: 100%;
+                    }
+
+                    .flyCompanies-container__box-depTime {
+                        grid-area: D;
+                        width: 100%;
+                        color: rgb(73, 73, 73);
+                    }
+
+                    .flyCompanies-container__box-flightDuration {
+                        grid-area: E;
+                        bottom: 0px !important;
+                        font-weight: bold;
+                        color: #a0a0a0;
+                        width: 100%;
+                    }
+
+                    .flyCompanies-container__box-arrTime {
+                        grid-area: F;
+                        width: 100%;
+                        color: rgb(73, 73, 73);
+                    }
+
+                    .flyCompanies-container__box-amount {
+                        grid-area: G;
+                        width: 100%;
+                        font-size: large;
+                        font-weight: bold;
+                    }
+
+
+                    h4 {
+                        display: none;
+                    }
                 }
 
+                .flyCompanies-container__box.selected {
+                    background-color: rgb(240, 90, 40);
+                    color: white;
+
+                    p {
+                        color: white;
+                    }
+                }
 
             }
 

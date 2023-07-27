@@ -5,6 +5,7 @@ import Expedition from "../expedition";
 
 import flightPorts from "../../assets/flightPorts";
 import passengerInformation from "../../assets/passenger";
+import MyImage from './arrow.png';
 
 import { setFlightTicket, setPassengerInfo, setFlightTicketReturn } from "../configure";
 import Header from "../header";
@@ -97,9 +98,15 @@ function FlyCompanies() {
 
   }, [departSelect, returnSelect])
 
+  const imagePath = MyImage;
+
   return (
     <div>
-      <Header />
+
+      <Header>
+        {/* Header içeriği burada */}
+      </Header>
+
       <div className="flyCompanies-container">
         <div className="flyCompanies-container__box-info">
           <div className="flyCompanies-container__box-info-top">
@@ -107,9 +114,9 @@ function FlyCompanies() {
               <p className="flyCompanies-container__box-info-top-p" onClick={handleMainPageClick}>Search Again</p>
             </div>
             <div className="flyCompanies-container__box-info-city">
-              <h3>{leavePortExplanation}</h3>
+              <h3 className="first-h3">{leavePortExplanation}</h3>
               <i class="fas fa-chevron-right"></i>
-              <h3>{arrivePortExplanation}</h3>
+              <h3 className="second-h3">{arrivePortExplanation}</h3>
             </div>
             <div className="flyCompanies-container__box-info__date">
               <div className="flyCompanies-container__box-info__date-depp">
@@ -135,7 +142,7 @@ function FlyCompanies() {
           </div>
         </div>
 
-        <h2>Depart Flights</h2>
+        {/* Part 3: Depart Flights */}
         <div className="flyCompanies-container-content">
           {filteredPorts.length > 0 ? (
             filteredPorts.map((item, key) => {
@@ -144,29 +151,33 @@ function FlyCompanies() {
               const flightDuration = new Date(arrTime - depTime);
 
               return (
-                <div className={`flyCompanies-container-content-container ${departSelect ? 'departSelected' : ''}`} key={key}>
+
+                <div className={`flyCompanies-container-content-container ${departSelect ? 'selected' : ''}`} key={key}>
                   <div onClick={() => handleTicketClick(item)} className="flyCompanies-container__box">
-                    <div className="flyCompanies-container__box-airline">
+                    <div className="flyCompanies-container__box-airline partner">
                       <h4>Airline</h4>
                       <p>{item.airline}</p>
                     </div>
-                    <div className="flyCompanies-container__box-flightNo">
+                    <div className="flyCompanies-container__box-flightNo partner">
                       <h4>Tail No</h4>
                       <p>{item.flightNo}</p>
                     </div>
-                    <div className="flyCompanies-container__box-depTime">
+                    <div className="arrowIcon partner">
+                      <img className="arrowIcon" src={imagePath} alt="Ok İkonu" />
+                    </div>
+                    <div className="flyCompanies-container__box-depTime partner">
                       <h4>Depart</h4>
                       <p>{item.depTime}</p>
                     </div>
-                    <div className="flyCompanies-container__box-flightDuration">
+                    <div className="flyCompanies-container__box-flightDuration partner">
                       <h4>Duration</h4>
                       <p>{formatTime(flightDuration)}</p>
                     </div>
-                    <div className="flyCompanies-container__box-arrTime">
+                    <div className="flyCompanies-container__box-arrTime partner">
                       <h4>Arrive</h4>
                       <p>{item.arrTime}</p>
                     </div>
-                    <div className="flyCompanies-container__box-amount">
+                    <div className="flyCompanies-container__box-amount partner">
                       <h4>Price(per)</h4>
                       <p>{item.priceDetail.salesPrice.amount} $</p>
                     </div>
@@ -182,69 +193,88 @@ function FlyCompanies() {
         </div>
 
 
-        <div style={{ marginBottom: "30px" }}></div>
+        <div className="flyCompanies-container__box-info">
+          <div className="flyCompanies-container__box-info-top">
+            <div className="flyCompanies-container__box-info-city">
+              <h3 className="first-h3">{arrivePortExplanation}</h3>
+              <i class="fas fa-chevron-right"></i>
+              <h3 className="second-h3">{leavePortExplanation}</h3>
+            </div>
+            <div className="flyCompanies-container__box-info__date">
 
-        {returnDate &&
-          <div>
-            <h2>Return Flights</h2>
-            {filteredReturnFlights.length > 0 ? (
-              <div className="flyCompanies-container-content">
-                <div className="flyCompanies-container__return-flights">
-                  {filteredReturnFlights.map((item, key) => {
-                    const depTime = new Date(`1970-01-01T${item.depTime}`);
-                    const arrTime = new Date(`1970-01-01T${item.arrTime}`);
-                    const flightDuration = new Date(arrTime - depTime);
-
-                    return (
-                      <div className={`flyCompanies-container-content-container ${returnSelect ? 'returnSelected' : ''} `} key={key}>
-                        <div onClick={() => handleTicketClickReturn(item)} className="flyCompanies-container__box">
-                          <div className="flyCompanies-container__box-airline">
-                            <h4>Airline</h4>
-                            <p>{item.airline}</p>
-                          </div>
-                          <div className="flyCompanies-container__box-flightNo">
-                            <h4>Tail No</h4>
-                            <p>{item.flightNo}</p>
-                          </div>
-                          <div className="flyCompanies-container__box-depTime">
-                            <h4>Depart</h4>
-                            <p>{item.depTime}</p>
-                          </div>
-                          <div className="flyCompanies-container__box-flightDuration">
-                            <h4>Duration</h4>
-                            <p>{formatTime(flightDuration)}</p>
-                          </div>
-                          <div className="flyCompanies-container__box-arrTime">
-                            <h4>Arrive</h4>
-                            <p>{item.arrTime}</p>
-                          </div>
-                          <div className="flyCompanies-container__box-amount">
-                            <h4>Price(per)</h4>
-                            <p>{item.priceDetail.salesPrice.amount} $</p>
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })}
+              {formattedReturnDate && (
+                <div className="flyCompanies-container__box-info__date-return">
+                  <p>Return</p>
+                  {formattedReturnDate}
                 </div>
-              </div>
-            ) : (
-              <div className="flyCompanies-container-content">
-                <div className="flyCompanies-container__return-flights">
-                  <h2>No Return Flights</h2>
-                </div>
-              </div>
-            )}
-
+              )}
+            </div>
           </div>
-        }
+          <div className="flyCompanies-container__box-info-bottom">
+            <span>{passengerInfo.adults} Adult </span>
+            {passengerInfo.children > 0 && (
+              <span> {`  - ${passengerInfo.children}  Child `}</span>
+            )}
+            {passengerInfo.babies > 0 && (
+              <span> {` - ${passengerInfo.babies}  Infant`} </span>
+            )}
+          </div>
+        </div>
+
+
+        {/* Add spacing here */}
+        <div className="flyCompanies-container-content">
+          {filteredReturnFlights.length > 0 ? (
+            filteredReturnFlights.map((item, key) => {
+              const depTime = new Date(`1970-01-01T${item.depTime}`);
+              const arrTime = new Date(`1970-01-01T${item.arrTime}`);
+              const flightDuration = new Date(arrTime - depTime);
+
+              return (
+                <div className={`flyCompanies-container-content-container ${returnSelect ? 'selected' : ''} `} key={key}>
+                  <div onClick={() => handleTicketClickReturn(item)} className="flyCompanies-container__box">
+                    <div className="flyCompanies-container__box-airline partner">
+                      <h4>Airline</h4>
+                      <p>{item.airline}</p>
+                    </div>
+                    <div className="flyCompanies-container__box-flightNo partner">
+                      <h4>Tail No</h4>
+                      <p>{item.flightNo}</p>
+                    </div>
+                    <div className="arrowIcon partner">
+                      <img className="arrowIcon" src={imagePath} alt="Ok İkonu" />
+                    </div>
+                    <div className="flyCompanies-container__box-depTime partner">
+                      <h4>Depart</h4>
+                      <p>{item.depTime}</p>
+                    </div>
+                    <div className="flyCompanies-container__box-flightDuration partner">
+                      <h4>Duration</h4>
+                      <p>{formatTime(flightDuration)}</p>
+                    </div>
+                    <div className="flyCompanies-container__box-arrTime partner">
+                      <h4>Arrive</h4>
+                      <p>{item.arrTime}</p>
+                    </div>
+                    <div className="flyCompanies-container__box-amount partner">
+                      <h4>Price(per)</h4>
+                      <p>{item.priceDetail.salesPrice.amount} $</p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })
+          ) : (
+            <div className="flyCompanies-container-content">
+              <div className="flyCompanies-container__return-flights">
+                <h2>No Return Flights</h2>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
-      {/* {expedition &&
-        <Expedition />
-      } */}
     </div>
-  );
+  )
 }
 
 export default FlyCompanies;
-

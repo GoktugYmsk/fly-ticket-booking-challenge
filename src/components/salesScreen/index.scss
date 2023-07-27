@@ -1,162 +1,140 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
 
-.sales__container-navbar {
+
+* {
     font-family: "Poppins", sans-serif;
-    nav {
-        display: flex;
-        width: 100%;
-        background: rgb(74, 204, 255);
-
-        img {
-            width: 300px;
-            height: 100px;
-            cursor: pointer;
-        }
-    }
-
-    .sales__container-navbar-alt {
-        display: flex;
-
-        h3 {
-            margin-left: 100px;
-        }
-    }
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.salesScreen-container {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    height: 100vh;
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: #f3f4f6;
 
-    .salesScreen-container-content {
-        display: flex;
-        flex-direction: column;
-        background: green;
-        width: 1000px;
-        align-items: center;
-        height: 700px !important;
-        overflow: auto;
-        padding: 20px;
-        gap: 20px;
-
-        .salesScreen-container-content__box {
-            display: flex;
-            align-items: center;
-            width: 100%;
-            height: 300px !important;
-            padding: 20px;
-            justify-content: space-between;
-            background: red;
-        }
-
-        .salesScreen-container-content__box__price {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            height: 300px !important;
-            padding: 20px;
-            background: rgb(0, 255, 30);
-        }
-
-        .salesScreen-container-content__box__passDetail {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-            height: 100px;
-            padding: 20px;
-            background: rgb(113, 42, 42);
-
-            .passenger-leftInfo {
-                background: red;
-            }
-
-            .passenger-rightInfo {
-                display: flex;
-                align-content: center;
-                gap: 20px;
-
-                input {
-                    height: 40px;
-                    width: 130px;
+    .flight-contanier{
+        .passenger-leftInfo{
+            .flight-box{
+                flex: 1;
+                padding: 10px;
+                span{
+                    background-color: #7693d8;
+                    padding: 2px;
+                    border-radius: 10%;
                 }
-
-                .passenger-rightInfo-detail {
-
-                    input {
-                        width: 15px;
-                        height: 15px;
-                    }
+                .no-title{
+                    font-weight: bold;
+                    color: #3d465c;
+                }
+                .no{
+                    margin-top: 5px;
+                    color: #1f1e21;
                 }
             }
-        }
-
-        .salesScreen-container-content__box__contact {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-            height: 100px;
-            padding: 20px;
-            background: rgb(69, 113, 42);
-
-            .salesScreen-container-content__box__contact-top {
-                .salesScreen-container-content__box-contact-mail-phone {
-                    display: flex;
-
-                    input {
-                        width: 100px;
-                    }
-                }
-
-                .salesScreen-container-content__box-campains {
-                    display: flex;
-                }
-            }
-
-        }
-
-        .salesScreen-container-content__box__invoice {
-            display: flex;
-            align-items: center;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 100%;
-            height: 500px !important;
-            padding: 20px;
-            background: rgb(109, 113, 42);
-
-            .salesScreen-container-content__box__invoice-input {
-                display: flex;
-            }
-        }
-
-        .salesScreen-container-content__box__insurance {
-            display: flex;
-            align-items: center;
-            flex-direction: column;
-            width: 100%;
-            height: 500px !important;
-            padding: 20px;
-            background: rgb(109, 113, 42);
-
-            .salesScreen-container-content__box__insurance-content {
-                display: flex;
-                justify-content: space-between;
-            }
-
-
         }
     }
 
-    .payScreen-h4 {
-        cursor: pointer;
 
-        &:hover {
-            background: red;
+
+    .container{
+
+        max-width: 800px;
+        margin: auto;
+        padding: 2rem;
+        text-align: center;
+
+        .section-header{
+            margin-bottom: 2rem;
+            h1 {
+                font-size: 2rem;
+                font-weight: 600;
+                color: #333333;
+            }
+
+        }
+        .flight-info-container{
+
+            display: flex; /* Set the container as flex */
+            flex-wrap: wrap; /* In case the items exceed the container's width */
+            justify-content: center;
+            margin-top: 80px;
+
+            .flight-info{
+                margin: 0.5rem;
+                display: flex;
+            }
+
+            .info-label{
+                font-weight: 600;
+                color: #3d465c;
+
+            }
+            .info-value{
+                color: #c6a74b;
+            }
         }
     }
 
+
+
+    .salesScreen-container-content__box__invoice{
+        .flight-container{
+            font-family: "Poppins", sans-serif;
+            width: 88%;
+            margin: auto;
+            min-height: 10rem;
+            display: grid;
+            align-items: center;
+            padding: 15px;
+            margin-bottom: 20px;
+            justify-content: center;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(189, 189, 189, 0.347);
+            box-shadow: 1px 1px 20px rgba(154, 154, 154, 0.1);
+            
+
+            .flight-box{
+                flex: 1;
+                padding: 10px;
+
+                span{
+                    background-color: #7693d8;
+                    padding: 2px;
+                    border-radius: 10%;
+                }
+                .airline-title{
+                    font-weight: bold;
+                    font-size: large;
+                    color: #3d465c;
+                }
+                .airline{
+                    margin-top: 5px;
+                    color: #c6a74b;
+                    font-size: large;
+                }
+            }
+        }
+        .larger-container{
+
+        }
+        .insurance{
+            .insurance-label{
+
+            }
+        }
+        .section_container{
+            max-width: 1200px;
+            margin: auto;
+            padding: 5rem 1rem;
+            display: flex;
+            justify-content: flex-end; /* Align items to the right */
+            margin-top: 2rem;
+
+            .btn{
+
+            }
+        }
+    }
 }
