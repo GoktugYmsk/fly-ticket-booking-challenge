@@ -66,19 +66,22 @@ function SeatScreen() {
 
     function renderSeatsSecond() {
         const rows = [];
-        for (let j = 1; j <= 33; j++) {
+        for (let j = 1; j <= 23; j++) {
             const rowSeats = [];
             for (let i = 1; i <= 6; i++) {
                 const isReserved = reservedSeats.some(seat => seat.row === j && seat.seatNumber === i);
                 const isSelected = seatArr.some(seat => seat.row === j && seat.seatNumber === i);
-                const seatClassName = `seat ${isReserved ? 'reserved' : ''}${isSelected ? 'selected' : ''}`;
+                const seatStyle = {
+                    backgroundColor: isReserved ? 'rgb(44, 56, 85)' : isSelected ? 'rgb(83, 106, 160)' : 'rgb(240, 105, 60)',
+                };
+
                 rowSeats.push(
                     <React.Fragment key={i}>
                         <div
-                            className={seatClassName}
+                            className='seat'
                             key={`seat-${j}-${i}`}
                             onClick={() => handleSeatClick(j, i)}
-                            style={{ cursor: isReserved ? 'none' : 'pointer' }}
+                            style={seatStyle}
                         >
                             {i}
                         </div>
@@ -90,6 +93,7 @@ function SeatScreen() {
         }
         return rows;
     }
+
     useEffect(() => {
         if (seatArr.length === parseInt(totalPassenger)) {
             setPopup(true);
@@ -97,7 +101,6 @@ function SeatScreen() {
             setPopup(false);
         }
     }, [seatArr.length, totalPassenger]);
-
 
     return (
         <>
