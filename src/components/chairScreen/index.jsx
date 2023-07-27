@@ -1,8 +1,12 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import './index.scss';
+import Header from "../header";
+import Footer from "../footer";
+
 
 const reservedSeats = [
     { row: 1, seatNumber: 3 },
@@ -11,7 +15,14 @@ const reservedSeats = [
 
 function ChairScreen() {
     const [selectedSeat, setSelectedSeat] = useState(null);
-    const rigthFlap = 'https://web.flypgs.com/img/wing.svg?a3a604d6d5194901185d1db932b59498';
+    
+
+    const navigate = useNavigate();
+
+    const handlePayScreenClick = () => {
+        navigate('/pay-screen');
+    };
+
 
     const handleSeatClick = (row, seatNumber) => {
         setSelectedSeat({ row, seatNumber });
@@ -27,15 +38,16 @@ function ChairScreen() {
 
     function renderSeatsSecond() {
         const rows = [];
-        for (let j = 1; j <= 33; j++) {
+        for (let j = 1; j <= 23; j++) {
             const rowSeats = [];
             for (let i = 1; i <= 6; i++) {
                 const isReserved = isSeatReserved(j, i);
                 const isSelected = selectedSeat?.row === j && selectedSeat?.seatNumber === i && !isReserved;
                 const seatStyle = {
-                    backgroundColor: isReserved ? 'red' : isSelected ? 'red' : 'green',
+                    backgroundColor: isReserved ? 'rgb(44, 56, 85)' : isSelected ? 'rgb(83, 106, 160)' : 'rgb(240, 105, 60)',
                 };
-
+               
+                  
                 rowSeats.push(
                     <React.Fragment key={i}>
                         <div className='seat' key={`seat-${j}-${i}`} onClick={() => handleSeatClick(j, i)} style={seatStyle}>
@@ -51,11 +63,16 @@ function ChairScreen() {
     }
 
     return (
-        <div className='chairScreen-container'>
-            <div className='chairScreen-container-content'>
-                <div className='flapleft'>
-                    <img src={rigthFlap} alt='flapleft' />
-                </div>
+
+
+        <><Header className='header'>
+        </Header><div className='chairScreen-container-content'>
+            <div className='upper_div'>
+                 <h2>Choose Your Seat</h2>
+                 <button  onClick={handlePayScreenClick}>Skip</button>
+            </div>
+            <div class="line_horizontal"></div>
+            <div className='middle_div'>
                 <div className='chairScreen-container__box'>
                     <div className='chairScreen-container__box-passengerSide-first'>
                         <div className='chairScreen-container__box-passengerSide-second'>
@@ -63,11 +80,23 @@ function ChairScreen() {
                         </div>
                     </div>
                 </div>
-                <div className='flapright'>
-                    <img src={rigthFlap} alt='flapright' />
+                <img className='plane_top_view' src="https://www.delta.com/content/dam/delta-www/responsive/airports-aircraft/Boeing/LOPA/757-200-75d-seat-map-static-mobile.png" alt="plane" />
+                <div className='legend'><div className='legend_item'><div className='legend_box_taken'></div><span>Taken</span></div>
+                                        <div className='legend_item'><div className='legend_box_selected'></div><span>Selected</span></div>
+                                        <div className='legend_item'><div className='legend_box_empty'></div><span>Empty</span></div>
                 </div>
+              
+                <div className='info_box_group'>
+                    <div className='info_box'><h2>First Class</h2><p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi magni necessitatibus, sint quos commodi alias placeat dignissimos veritatis, architecto quod quia repellat neque inventore pariatur vel beatae magnam esse id.</p></div>
+                    <div className='info_box'><h2>Bussiness Class</h2><p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non minima distinctio facere doloremque nesciunt dicta temporibus sed officiis. Eius libero illo alias doloribus soluta, officiis animi ipsum ea repellat non?</p></div>
+                    <div className='info_box'><h2>Economy Class</h2><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corrupti nisi eligendi culpa deleniti pariatur ducimus tempore expedita corporis libero, aut repellendus repudiandae iusto facilis omnis. Doloremque facilis pariatur aliquid in.</p></div>
+                </div>
+                
             </div>
-        </div>
+            <div className='lower_div'><button  onClick={handlePayScreenClick}>Go To The Payment</button></div>
+                
+        </div> <Footer className='footer'>
+        </Footer></>
     );
 }
 

@@ -34,7 +34,7 @@ function SalesScreen() {
     }
 
     const handlePayScreenClick = () => {
-        navigate('/pay-screen');
+        navigate('/seat-screen');
     };
 
     const totalPrice = flightTicket.priceDetail.basePrice.amount * totalPassenger;
