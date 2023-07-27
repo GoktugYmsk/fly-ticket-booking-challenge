@@ -384,16 +384,10 @@
             justify-content: center;
             flex-direction: column;
             background: rgb(255, 255, 255);
-<<<<<<< HEAD
-            height: 70vh;
-
-
-=======
             min-height: 70vh;
             margin: 100px 0px;
-            
-    
->>>>>>> 9465ada503c62306aa0ccc0298fdce0491afef33
+
+
             h5 {
                 cursor: pointer;
                 margin-top: 50px;
@@ -427,44 +421,44 @@
                 height: 150px;
                 justify-content: center;
                 color: #3d465c;
-<<<<<<< HEAD
-                font-weight: 400;
-
-
-=======
                 grid-template-columns: 15% 10% 15% 45% 15%;
                 grid-template-rows: 25% 50% 25%;
                 grid-template-areas:
                     "a . c x d "
                     ". . c x d "
                     "b e e e . ";
-                
-    
-                .list-top-a{
+
+
+                .list-top-a {
                     grid-area: a;
                     font-weight: bold;
                 }
-                .list-top-b{
+
+                .list-top-b {
                     grid-area: b;
                     color: rgb(173, 176, 181);
                 }
-                .list-top-c{
+
+                .list-top-c {
                     grid-area: c;
                     color: rgb(173, 176, 181);
                 }
-                .list-top-d{
+
+                .list-top-d {
                     grid-area: d;
                     color: rgb(173, 176, 181);
                 }
-                .list-top-e{
+
+                .list-top-e {
                     grid-area: e;
                     font-weight: bold;
                 }
-                .list-top-x{
+
+                .list-top-x {
                     grid-area: x;
                     width: 100%;
                 }
->>>>>>> 9465ada503c62306aa0ccc0298fdce0491afef33
+
                 p {
                     text-align: center;
                     font-size: 23px;
@@ -478,95 +472,61 @@
                 align-items: center;
                 border-radius: 10px;
                 margin-bottom: 10px;
-<<<<<<< HEAD
-
-                .shoppingSummary-container-box__list-name {
-                    display: flex;
-
-
-
-=======
                 grid-template-columns: 50% 50%;
-                border:1px solid rgba(202,208,219,0.4);
-    
+                border: 1px solid rgba(202, 208, 219, 0.4);
+
                 .shoppingSummary-container-box__list-name {
                     width: 100%;
-    
->>>>>>> 9465ada503c62306aa0ccc0298fdce0491afef33
+
                     .name {
                         font-size: 18px;
                         font-weight: 400;
-<<<<<<< HEAD
-                        padding-inline: 10px;
-                        padding-top: 15px;
 
-                        .passenger-name {
-                            font-weight: 500;
-                            color: #3d465c;
-                        }
-
-=======
-    
->>>>>>> 9465ada503c62306aa0ccc0298fdce0491afef33
                         .name-flex {
                             display: flex;
                             gap: 20px;
                             font-size: 18px;
-<<<<<<< HEAD
-
-=======
                             justify-content: end;
                             padding: 10px 0px;
-                            border-bottom:1px dashed rgba(202,208,219,0.7);
+                            border-bottom: 1px dashed rgba(202, 208, 219, 0.7);
                             border-bottom-left-radius: 10px;
 
-                            p{
+                            p {
                                 margin-bottom: 0px !important;
                             }
-                            .passenger-name{
+
+                            .passenger-name {
                                 font-weight: 500;
                                 color: #3d465c;
                                 display: none;
                             }
-                            
+
                         }
-    
+
                         .surname-flex {
                             display: flex;
                             gap: 20px;
 
-                            .passenger-name{
+                            .passenger-name {
                                 font-weight: 500;
                                 color: #3d465c;
                             }
->>>>>>> 9465ada503c62306aa0ccc0298fdce0491afef33
                         }
                     }
                 }
 
                 .shoppingSummary-container-box__list-surName {
                     display: flex;
-<<<<<<< HEAD
-
-=======
                     width: 100%;
-    
->>>>>>> 9465ada503c62306aa0ccc0298fdce0491afef33
+
                     .surname {
                         display: flex;
                         flex-direction: column;
                         width: 100%;
                         font-size: 18px;
                         font-weight: 400;
-<<<<<<< HEAD
-                        padding-inline: 10px;
-                        padding-top: 15px;
 
                         .passenger-name {
-=======
-    
-                        .passenger-name{
->>>>>>> 9465ada503c62306aa0ccc0298fdce0491afef33
                             font-weight: 500;
                             color: #3d465c;
                             display: none;
@@ -576,9 +536,10 @@
                             display: flex;
                             gap: 20px;
                             padding: 10px 0px;
-                            border-bottom:1px dashed rgba(202,208,219,0.7);
+                            border-bottom: 1px dashed rgba(202, 208, 219, 0.7);
                             border-bottom-right-radius: 10px;
-                            p{
+
+                            p {
                                 margin-bottom: 0px !important;
                             }
                         }
