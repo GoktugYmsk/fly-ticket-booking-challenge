@@ -36,7 +36,6 @@ function SeatScreen() {
         if (selectedSeat) {
             const updatedReservedSeats = [...reservedSeats, selectedSeat];
             localStorage.setItem('seat', JSON.stringify(updatedReservedSeats));
-
             setSelectedSeat(null);
             setReservedSeats(updatedReservedSeats);
             dispatch(setSeat({ selectedSeat }));
@@ -132,6 +131,15 @@ function SeatScreen() {
                     <button >Go To The Payment</button>
                 </div>
             </div>
+
+            {popup && (
+                <div className='seat-popup__bottom'>
+                    <h2>Seat Info:</h2>
+                    <p>Row: {selectedSeat.row}</p>
+                    <p>SeatNumber: {selectedSeat.seatNumber}</p>
+                    <button onClick={handleReservation}>Devam Et</button>
+                </div>
+            )}
             <Footer className='footer' />
         </>
     );
