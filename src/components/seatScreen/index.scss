@@ -140,6 +140,11 @@
     color: red;
 }
 
+.seat.selected {
+    background: red;
+    color: rgb(0, 255, 119);
+}
+
 .seat-popup {
     position: fixed;
     top: 50%;

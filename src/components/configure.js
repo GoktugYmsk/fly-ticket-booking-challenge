@@ -13,7 +13,7 @@ const initialState = {
     selectedDate: '',
     returnDate: '',
     refreshPassenger: {},
-    seat: {},
+    seat: [],
 }
 
 export const configure = createSlice({

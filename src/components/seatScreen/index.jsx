@@ -5,13 +5,24 @@ import { setSeat } from '../configure';
 import './index.scss';
 
 function SeatScreen() {
+
     const rightFlap = 'https://web.flypgs.com/img/wing.svg?a3a604d6d5194901185d1db932b59498';
+
+
     const [selectedSeat, setSelectedSeat] = useState(null);
     const [reservedSeats, setReservedSeats] = useState([]);
-    const [popup, setPopup] = useState(false)
+    const [popup, setPopup] = useState(false);
+    const [seatArr, setSeatArr] = useState([]);
+
+
+    const totalPassenger = sessionStorage.getItem('totalPassenger');
+
+    console.log('seatArr', seatArr)
+
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
 
     const handleSeatClick = (row, seatNumber) => {
         const isReserved = reservedSeats.some(seat => seat.row === row && seat.seatNumber === seatNumber);
@@ -19,9 +30,10 @@ function SeatScreen() {
             dispatch(setSeat(''));
             const seat = { row, seatNumber };
             setSelectedSeat(seat);
-            setPopup(true)
+            setSeatArr([...seatArr, seat]);
         }
     };
+
 
     const handleReservation = () => {
         if (selectedSeat) {
@@ -31,7 +43,7 @@ function SeatScreen() {
             setSelectedSeat(null);
             setReservedSeats(updatedReservedSeats);
             dispatch(setSeat({ selectedSeat }));
-            navigate('/pay-screen')
+            navigate('/pay-screen');
         }
     };
 
@@ -41,8 +53,10 @@ function SeatScreen() {
         dispatch(setSeat(storedReservedSeats));
     }, [dispatch]);
 
+
     const handleKeyPress = (e) => {
         if (e.key === 'Escape') {
+            setSeatArr([])
             setPopup(false);
         }
     };
@@ -54,13 +68,14 @@ function SeatScreen() {
         };
     }, []);
 
+
     function renderSeatsSecond() {
         const rows = [];
         for (let j = 1; j <= 33; j++) {
             const rowSeats = [];
             for (let i = 1; i <= 6; i++) {
                 const isReserved = reservedSeats.some(seat => seat.row === j && seat.seatNumber === i);
-                const isSelected = selectedSeat && selectedSeat.row === j && selectedSeat.seatNumber === i;
+                const isSelected = seatArr.some(seat => seat.row === j && seat.seatNumber === i);
                 const seatClassName = `seat ${isReserved ? 'reserved' : ''}${isSelected ? 'selected' : ''}`;
                 rowSeats.push(
                     <React.Fragment key={i}>
@@ -76,10 +91,19 @@ function SeatScreen() {
                     </React.Fragment>
                 );
             }
+
             rows.push(<div className='seat-row' key={j}>{rowSeats}</div>);
         }
         return rows;
     }
+    useEffect(() => {
+        if (seatArr.length === parseInt(totalPassenger)) {
+            setPopup(true);
+        } else {
+            setPopup(false);
+        }
+    }, [seatArr.length, totalPassenger]);
+
 
     return (
         <>

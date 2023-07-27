@@ -6,7 +6,7 @@ import Toast from 'react-bootstrap/Toast';
 import Button from '@mui/material/Button';
 import Footer from '../footer';
 
-import { setPnrCode, setReturnDate } from '../configure';
+import { setPassengerInfo, setPnrCode, setReturnDate } from '../configure';
 
 import './index.scss';
 
@@ -26,6 +26,8 @@ function PayScreen() {
   const flightTicket = useSelector((state) => state.passTicket.flightTicket);
   const pnrCode = useSelector((state) => state.passCheck.pnrCode);
   const passSurname = useSelector((state) => state.passCheck.passSurname);
+
+  const refreshPassenger = useSelector((state) => state.refreshPass.refreshPassenger);
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -120,6 +122,7 @@ function PayScreen() {
 
   const handleMainPage = () => {
     dispatch(setReturnDate(''))
+    dispatch(setPassengerInfo(refreshPassenger));
     setPopupActive(false)
     navigate('/')
   }
