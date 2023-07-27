@@ -9,7 +9,7 @@ import { FaExchangeAlt } from 'react-icons/fa';
 import 'react-datetime/css/react-datetime.css';
 import { PiMagnifyingGlassBold } from 'react-icons/pi';
 
-import { setFlightPort, setFlightPortArrive, setSelectedDate, setReturnDate, setPassName, setPassSurname, setPnrCode } from '../../../configure';
+import { setFlightPort, setFlightPortArrive, setSelectedDate, setReturnDate, setPassName, setPassSurname, setPnrCode, setFlightTicketReturn } from '../../../configure';
 
 import flightPorts from '../../../../assets/flightPorts';
 
@@ -29,6 +29,7 @@ function SearchItem1() {
   const [ticketAmount, setTicketAmount] = useState({ adults: 1, children: 0, babies: 0 });
 
   const selectedDate = useSelector((state) => state.optionDateDepp.selectedDate);
+  const returnDate = useSelector((state) => state.optionDateArr.returnDate);
 
   const flightPortsData = flightPorts.ports;
 
@@ -207,6 +208,9 @@ function SearchItem1() {
       dispatch(setPassSurname(''))
       sessionStorage.setItem('totalPassenger', totalPassenger);
       navigate('/fly-companies');
+      if (!returnDate) {
+        dispatch(setFlightTicketReturn(''))
+      }
     }
     else {
       alert('Lütfen nerden ve nereye havaalanlarını seçin.');

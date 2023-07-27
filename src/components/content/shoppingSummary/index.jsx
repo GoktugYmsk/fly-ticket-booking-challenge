@@ -10,6 +10,11 @@ function ShoppingSummary() {
   const passengerInfo = useSelector((state) => state.passInfo.passengerInfo);
   const passSurname = useSelector((state) => state.passCheck.passSurname);
   const passName = useSelector((state) => state.passCheck.passName);
+
+  const seat = useSelector((state) => state.seatReserve.seat);
+
+  console.log('seat', seat)
+
   const refreshPassenger = useSelector(
     (state) => state.refreshPass.refreshPassenger
   );
@@ -86,6 +91,13 @@ function ShoppingSummary() {
                     <p key={index}> {surname}</p>
                   </div>
                 ))}
+              </div>
+            </div>
+            <div className="passenger-seat" >
+              <p>Seat No:</p>
+              <div className="passenger-seat__info" >
+                <p> Row {seat.selectedSeat.row}</p>
+                <p> Colum {seat.selectedSeat.seatNumber}</p>
               </div>
             </div>
           </div>

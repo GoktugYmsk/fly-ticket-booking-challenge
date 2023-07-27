@@ -6,7 +6,7 @@ import Toast from 'react-bootstrap/Toast';
 import Button from '@mui/material/Button';
 import Footer from '../footer';
 
-import { setPnrCode } from '../configure';
+import { setPnrCode, setReturnDate } from '../configure';
 
 import './index.scss';
 
@@ -119,6 +119,7 @@ function PayScreen() {
   };
 
   const handleMainPage = () => {
+    dispatch(setReturnDate(''))
     setPopupActive(false)
     navigate('/')
   }

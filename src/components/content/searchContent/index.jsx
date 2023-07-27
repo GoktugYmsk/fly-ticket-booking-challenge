@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { FaPlaneDeparture, FaMapMarkerAlt, FaPlane, FaHotel, FaCheck } from 'react-icons/fa';
-import { setPassName, setPassSurname, setRefreshPassenger } from '../../configure';
+import { setRefreshPassenger } from '../../configure';
 
 import SearchItem1 from './searchItem1';
 import SearchItem2 from './searchItem2';

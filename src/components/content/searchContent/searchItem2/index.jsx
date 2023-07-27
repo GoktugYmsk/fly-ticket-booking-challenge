@@ -12,8 +12,9 @@ function SearchItem2() {
   const [info, setInfo] = useState(false)
   const [surname, setSurname] = useState('');
 
-  const passName = useSelector((state) => state.passCheck.passName);
+  const seat = useSelector((state) => state.seatReserve.seat);
   const pnrCode = useSelector((state) => state.passCheck.pnrCode);
+  const passName = useSelector((state) => state.passCheck.passName);
   const passSurname = useSelector((state) => state.passCheck.passSurname);
   const flightPort = useSelector((state) => state.passFlightPort.flightPort);
   const selectedDate = useSelector((state) => state.optionDateDepp.selectedDate);
@@ -26,6 +27,8 @@ function SearchItem2() {
   const arrivePortExplanation = isArrivePort ? isArrivePort.explanation : '';
 
   console.log('passunasoc', passSurname, pnrCode);
+
+  console.log('passNameSearch', passName)
 
   const selectedDateFormatted = selectedDate instanceof Date ? selectedDate.toDateString() : '';
 
@@ -72,7 +75,12 @@ function SearchItem2() {
               <h3>{leavePortExplanation}</h3>
               <h3>{arrivePortExplanation}</h3>
             </div>
-            {passName.map((name, index) => {
+            <div className='passenger-seat' >
+              <p>Seat No:</p>
+              <p> Row {seat.selectedSeat.row}</p>
+              <p> Colum {seat.selectedSeat.seatNumber}</p>
+            </div>
+            {passName?.map((name, index) => {
               if (passSurname[index] === surname && pnrCode[index] === pnr) {
                 return (
                   <div key={index}>

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import flightPorts from "../../assets/flightPorts";
 import passengerInformation from "../../assets/passenger";
 
-import { setFlightTicket, setPassengerInfo } from "../configure";
+import { setFlightTicket, setPassengerInfo, setFlightTicketReturn } from "../configure";
 import Header from "../header";
 import "./index.scss";
 
@@ -13,10 +13,15 @@ function FlyCompanies() {
   const [formattedReturnDate, setFormattedReturnDate] = useState("");
   const [formattedSelectedDate, setFormattedSelectedDate] = useState("");
 
+  const [departSelect, setDepartSelect] = useState(false)
+  const [returnSelect, setReturnSelect] = useState(false)
+
   const returnDate = useSelector((state) => state.optionDateArr.returnDate);
   const flightPort = useSelector((state) => state.passFlightPort.flightPort);
   const passengerInfo = useSelector((state) => state.passInfo.passengerInfo);
   const selectedDate = useSelector((state) => state.optionDateDepp.selectedDate);
+  const flightTicket = useSelector((state) => state.passTicket.flightTicket);
+  const flightTicketReturn = useSelector((state) => state.passTicket.flightTicketReturn);
   const refreshPassenger = useSelector((state) => state.refreshPass.refreshPassenger);
   const flightPortArrive = useSelector((state) => state.passFlightPortArrive.flightPortArrive);
 
@@ -24,6 +29,7 @@ function FlyCompanies() {
   const navigate = useNavigate();
 
   const selectedDateTimestamp = selectedDate instanceof Date ? selectedDate.getTime() : null;
+  const selectedDateTimestampArrive = returnDate instanceof Date ? returnDate.getTime() : null;
 
   const isLeavePort = flightPorts.ports.find((item) => item.code === flightPort);
   const isArrivePort = flightPorts.ports.find((item) => item.code === flightPortArrive);
@@ -58,25 +64,39 @@ function FlyCompanies() {
 
   const handleTicketClick = (item) => {
     dispatch(setFlightTicket({ ...item, selectedDate: selectedDateTimestamp }));
-    navigate("/sales-screen");
+    setDepartSelect(true)
+
   };
+
+  const handleTicketClickReturn = (item) => {
+    dispatch(setFlightTicketReturn({ ...item, returnDate: selectedDateTimestampArrive }));
+    setReturnSelect(true)
+  }
 
   const handleMainPage = () => {
     dispatch(setPassengerInfo(refreshPassenger));
     navigate("/");
   };
 
-  // Step 1: Filter the return flights based on selected departure and arrival ports
   const filteredReturnFlights = passengerInformation.returnLegs.filter((item) => {
     return item.depPort === flightPortArrive && item.arrPort === flightPort;
   });
 
+  useEffect(() => {
+    if (returnDate) {
+      if (departSelect && returnSelect) {
+        navigate("/sales-screen");
+      }
+    }
+    else if (departSelect) {
+      navigate('/sales-screen')
+    }
+
+  }, [departSelect, returnSelect])
+
   return (
     <div>
-
-      <Header>
-        {/* Header içeriği burada */}
-      </Header>
+      <Header />
       <div className="flyCompanies-container">
         <div className="flyCompanies-container__box-info">
           <div className="flyCompanies-container__box-info-top">
@@ -112,7 +132,6 @@ function FlyCompanies() {
           </div>
         </div>
 
-        {/* Part 3: Depart Flights */}
         <h2>Depart Flights</h2>
         <div className="flyCompanies-container-content">
           {filteredPorts.length > 0 ? (
@@ -122,7 +141,7 @@ function FlyCompanies() {
               const flightDuration = new Date(arrTime - depTime);
 
               return (
-                <div className="flyCompanies-container-content-container" key={key}>
+                <div className={`flyCompanies-container-content-container ${departSelect ? 'departSelected' : ''}`} key={key}>
                   <div onClick={() => handleTicketClick(item)} className="flyCompanies-container__box">
                     <div className="flyCompanies-container__box-airline">
                       <h4>Airline</h4>
@@ -160,10 +179,8 @@ function FlyCompanies() {
         </div>
 
 
-        {/* Add spacing here */}
         <div style={{ marginBottom: "30px" }}></div>
 
-        {/* Part 4: Return Flights */}
         {returnDate &&
           <div>
 
@@ -177,8 +194,8 @@ function FlyCompanies() {
                     const flightDuration = new Date(arrTime - depTime);
 
                     return (
-                      <div className="flyCompanies-container-content-container" key={key}>
-                        <div onClick={() => handleTicketClick(item)} className="flyCompanies-container__box">
+                      <div className={`flyCompanies-container-content-container ${returnSelect ? 'returnSelected' : ''} `} key={key}>
+                        <div onClick={() => handleTicketClickReturn(item)} className="flyCompanies-container__box">
                           <div className="flyCompanies-container__box-airline">
                             <h4>Airline</h4>
                             <p>{item.airline}</p>

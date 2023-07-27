@@ -1,0 +1,151 @@
+.chairScreen-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: green;
+    height: 100%;
+    padding: 60px;
+
+    .chairScreen-container-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgb(0, 255, 204);
+        position: relative;
+        top: 200px;
+
+        .flapleft {
+            transform: scaleX(-1);
+        }
+
+        .chairScreen-container__box {
+            display: flex;
+            flex-direction: column;
+            background: black;
+            padding: 20px;
+            position: relative;
+
+            clip-path: polygon(50% 0%, 0 100px, 0 100%, 100% 100%, 100% 100px);
+
+            .chairScreen-container__box__plane {
+                background: red;
+                border-radius: 50%;
+                position: relative;
+                clip-path: ellipse(100px 50px at 50% 0);
+            }
+
+            .chairScreen-container__box-passengerSide-first {
+                display: flex;
+                flex-direction: column;
+                margin-top: 330px;
+                gap: 10px;
+
+                h3 {
+                    color: wheat;
+                }
+
+                p {
+                    color: wheat;
+                }
+
+                .first-seat {
+                    display: flex;
+
+                    .seat {
+                        width: 50px;
+                        height: 50px;
+                        margin: 5px;
+                        background-color: rgb(219, 161, 161);
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        font-weight: bold;
+                        font-size: 14px;
+                        cursor: pointer;
+
+                        &:nth-child(3) {
+                            margin-right: 40px;
+                        }
+                    }
+                }
+            }
+
+            .chairScreen-container__box-passengerSide-second {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+
+                h3 {
+                    color: wheat;
+                }
+
+                p {
+                    color: white;
+                }
+
+                .second-seat {
+                    display: flex;
+                    flex-direction: column;
+
+                    .seat {
+                        width: 50px;
+                        height: 50px;
+                        margin: 5px;
+                        background-color: rgb(188, 124, 124);
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        font-weight: bold;
+                        font-size: 14px;
+                        cursor: pointer;
+                    }
+
+                    .seat-gap {
+                        margin-right: 40px;
+                    }
+
+                    .seat-row {
+                        display: flex;
+                        flex-direction: row;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.seat-row {
+    display: flex;
+    align-items: center;
+}
+
+.seat {
+    padding: 8px;
+    margin: 2px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.seat-gap {
+    width: 16px;
+}
+
+.seat.reserved {
+    background-color: red;
+    color: #fff;
+}
+
+.seat.reserved {
+    background: red;
+    color: red;
+}
+
+.seat-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 16px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+}
