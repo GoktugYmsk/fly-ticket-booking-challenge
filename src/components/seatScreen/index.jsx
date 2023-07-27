@@ -8,14 +8,19 @@ function SeatScreen() {
     const rightFlap = 'https://web.flypgs.com/img/wing.svg?a3a604d6d5194901185d1db932b59498';
     const [selectedSeat, setSelectedSeat] = useState(null);
     const [reservedSeats, setReservedSeats] = useState([]);
+    const [popup, setPopup] = useState(false)
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const handleSeatClick = (row, seatNumber) => {
-        dispatch(setSeat(''));
-        const seat = { row, seatNumber };
-        setSelectedSeat(seat);
+        const isReserved = reservedSeats.some(seat => seat.row === row && seat.seatNumber === seatNumber);
+        if (!isReserved) {
+            dispatch(setSeat(''));
+            const seat = { row, seatNumber };
+            setSelectedSeat(seat);
+            setPopup(true)
+        }
     };
 
     const handleReservation = () => {
@@ -36,6 +41,18 @@ function SeatScreen() {
         dispatch(setSeat(storedReservedSeats));
     }, [dispatch]);
 
+    const handleKeyPress = (e) => {
+        if (e.key === 'Escape') {
+            setPopup(false);
+        }
+    };
+
+    useEffect(() => {
+        window.addEventListener('keydown', handleKeyPress);
+        return () => {
+            window.removeEventListener('keydown', handleKeyPress);
+        };
+    }, []);
 
     function renderSeatsSecond() {
         const rows = [];
@@ -44,12 +61,14 @@ function SeatScreen() {
             for (let i = 1; i <= 6; i++) {
                 const isReserved = reservedSeats.some(seat => seat.row === j && seat.seatNumber === i);
                 const isSelected = selectedSeat && selectedSeat.row === j && selectedSeat.seatNumber === i;
+                const seatClassName = `seat ${isReserved ? 'reserved' : ''}${isSelected ? 'selected' : ''}`;
                 rowSeats.push(
                     <React.Fragment key={i}>
                         <div
-                            className={`seat ${isReserved ? 'reserved' : ''}${isSelected ? 'selected' : ''}`}
+                            className={seatClassName}
                             key={`seat-${j}-${i}`}
                             onClick={() => handleSeatClick(j, i)}
+                            style={{ cursor: isReserved ? 'none' : 'pointer' }}
                         >
                             {i}
                         </div>
@@ -81,7 +100,7 @@ function SeatScreen() {
                     </div>
                 </div>
             </div>
-            {selectedSeat && (
+            {popup && (
                 <div className='seat-popup'>
                     <h2>Seat Info:</h2>
                     <p>Row: {selectedSeat.row}</p>
