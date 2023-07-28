@@ -153,8 +153,6 @@ function ShoppingSummary() {
           <div className="passenger-seat" >
             <p>Seat No:</p>
             <div className="passenger-seat__info" >
-              {/* <p> Row {seat.selectedSeat.row}</p>
-              <p> Colum {seat.selectedSeat.seatNumber}</p> */}
             </div>
           </div>
         </div>

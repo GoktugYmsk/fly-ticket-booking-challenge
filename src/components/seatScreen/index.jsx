@@ -42,12 +42,21 @@ function SeatScreen() {
         }
     };
 
+    const getAlphabeticRow = (numericRow) => {
+        const alphabeticRow = String.fromCharCode(65 + numericRow - 1);
+        return alphabeticRow;
+    };
+
     const handleReservation = () => {
         if (selectedSeat) {
             const updatedReservedSeats = [...reservedSeats, ...seatArr];
             localStorage.setItem('seat', JSON.stringify(updatedReservedSeats));
+            const seatArrWithAlphabeticRow = seatArr.map((seat) => ({
+                row: getAlphabeticRow(seat.row),
+                seatNumber: seat.seatNumber,
+            }));
             setSelectedSeat(null);
-            dispatch(setSeat([seatArr]));
+            dispatch(setSeat([seatArrWithAlphabeticRow]));
             setPopup(false);
             navigate('/pay-screen');
         }
@@ -110,7 +119,12 @@ function SeatScreen() {
                     </React.Fragment>
                 );
             }
-            rows.push(<div className='seat-row' key={j}>{rowSeats}</div>);
+            rows.push(
+                <div className='seat-row' key={j}>
+                    <div className='row-number'>{getAlphabeticRow(j)}</div>
+                    {rowSeats}
+                </div>
+            );
         }
         return rows;
     }
