@@ -29,6 +29,8 @@ function SearchItem2() {
   console.log('passunasoc', passSurname, pnrCode);
   console.log('pnrCode', pnrCode)
 
+  console.log('SEAT-2', seat[0])
+
   console.log('passNameSearch', passName)
 
   const selectedDateFormatted = selectedDate instanceof Date ? selectedDate.toDateString() : '';
@@ -70,41 +72,36 @@ function SearchItem2() {
           <input onChange={handlePnrChange} type="text" placeholder='PNR Code' />
         </div>
         <Button className='searchItem-two__container-button' onClick={handleControlClick} type="button" variant='secondary'>Continue</Button>
-        {info &&
-          <div className='searchItem-two__container__ports' >
+        {info && (
+          < div className='searchItem-two__container__ports' >
             <div className='searchItem-two__container__ports-info' >
               <h3>{leavePortExplanation}</h3>
               <h3>{arrivePortExplanation}</h3>
             </div>
-            <div className='passenger-seat' >
-              {seat.map((itemArray, index) => (
-                <div key={index}>
-                  {itemArray.map((item, innerIndex) => (
-                    <div key={`${index}-${innerIndex}`}>
-                      <p>Row: {item.row}</p>
-                      <p>Column: {item.seatNumber}</p>
+            <div className='passenger-seat'>
+              {passName?.map((name, passIndex) => {
+                if (passSurname[passIndex] === surname && pnrCode[passIndex] === pnr) {
+                  return (
+                    <div key={passIndex}>
+                      {seat.map((seat, key) => (
+                        <div key={key} >
+                          <p>İsim: {name}</p>
+                          <p>Soyisim: {surname}</p>
+                          <p>Sıra: {seat[passIndex].row}</p>
+                          <p>Kolon: {seat[passIndex].seatNumber}</p>
+                        </div>
+                      ))}
                     </div>
-                  ))}
-                </div>
-              ))}
-            </div>
-            {passName?.map((name, index) => {
-              if (passSurname[index] === surname && pnrCode[index] === pnr) {
-                return (
-                  <div key={index}>
-                    <p className='searchItem-two__container__ports-info__firstp'>First Name: {name}</p>
-                    <p>Last Name: {surname}</p>
-                  </div>
-                );
-              } else {
+                  );
+                }
                 return null;
-              }
-            })}
+              })}
+            </div>
             {selectedDateFormatted}
           </div>
-        }
-      </form>
-    </div>
+        )}
+      </form >
+    </div >
   );
 }
 

@@ -30,6 +30,12 @@ function SeatScreen() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+
+    const getAlphabeticSeatNumber = (numericSeatNumber) => {
+        const alphabeticSeatNumber = String.fromCharCode(64 + numericSeatNumber);
+        return alphabeticSeatNumber;
+    };
+
     const handleSeatClick = (row, seatNumber) => {
         const isReserved = reservedSeats.some(seatInfo => seatInfo.row === row && seatInfo.seatNumber === seatNumber);
         if (!isReserved) {
@@ -37,7 +43,9 @@ function SeatScreen() {
             const seatTotal = { row, seatNumber };
             setSelectedSeat(seatTotal);
             setSeatArr([...seatArr, seatTotal]);
-            setDeneme([...deneme, seatTotal]);
+            const alphabeticSeatNumber = getAlphabeticSeatNumber(seatNumber);
+            const seatTotalSeat = { row, seatNumber: alphabeticSeatNumber };
+            setDeneme([...deneme, seatTotalSeat]);
 
         }
     };
