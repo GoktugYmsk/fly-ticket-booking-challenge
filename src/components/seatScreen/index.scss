@@ -253,3 +253,23 @@
 .seat-reserve {
     cursor: none;
 }
+
+.info_box-list {
+    display: flex;
+
+    .info_box-passengerSeat-box {
+        .info_box-passengerSeat-box__header {
+            display: flex;
+        }
+
+        .info_box-passengerSeat-box__list {
+            display: flex;
+        }
+    }
+
+
+    .info_box-passengerSeat-box {
+        background: red;
+        z-index: 99;
+    }
+}

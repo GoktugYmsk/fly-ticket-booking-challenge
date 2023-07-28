@@ -12,7 +12,7 @@ function SeatScreen() {
     const [reservedSeats, setReservedSeats] = useState([]);
     const [popup, setPopup] = useState(false);
     const [seatArr, setSeatArr] = useState([]);
-    const [deneme, setDeneme] = useState({})
+    const [deneme, setDeneme] = useState([])
 
 
     const passName = useSelector((state) => state.passCheck.passName);
@@ -23,6 +23,8 @@ function SeatScreen() {
 
     const totalPassenger = sessionStorage.getItem('totalPassenger');
 
+    const seatLocale = JSON.parse(localStorage.getItem('seat')) || [];
+
     console.log('seatArr', seatArr)
 
     console.log('popup', popup)
@@ -32,33 +34,36 @@ function SeatScreen() {
 
 
     const handleSeatClick = (row, seatNumber) => {
-        const isReserved = reservedSeats.some(seat => seat.row === row && seat.seatNumber === seatNumber);
+        const isReserved = seatLocale.some(seatInfo => seatInfo.row === row && seatInfo.seatNumber === seatNumber);
         if (!isReserved) {
             dispatch(setSeat(''));
-            const seat = { row, seatNumber };
-            setSelectedSeat(seat);
-            setSeatArr([...seatArr, seat]);
-            setDeneme({ seat })
+            const seatTotal = { row, seatNumber };
+            setSelectedSeat(seatTotal);
+            setSeatArr([...seatArr, seatTotal]);
+            setDeneme([...deneme, seatTotal]);
+
         }
     };
-
 
     const handleReservation = () => {
         if (selectedSeat) {
-            const updatedReservedSeats = [...reservedSeats, selectedSeat];
+            const updatedReservedSeats = [...seatLocale, seatArr];
             localStorage.setItem('seat', JSON.stringify(updatedReservedSeats));
             setSelectedSeat(null);
             setReservedSeats(updatedReservedSeats);
-            dispatch(setSeat({ selectedSeat }));
-            navigate('/pay-screen');
+            dispatch(setSeat(updatedReservedSeats));
+            setPopup(false)
+            // navigate('/pay-screen');
         }
     };
+
 
     useEffect(() => {
         const storedReservedSeats = JSON.parse(localStorage.getItem('seat')) || [];
         setReservedSeats(storedReservedSeats);
         dispatch(setSeat(storedReservedSeats));
     }, [dispatch]);
+
 
 
     const handleKeyPress = (e) => {
@@ -106,12 +111,12 @@ function SeatScreen() {
     }
 
     useEffect(() => {
-        if (seatArr.length === parseInt(totalPassenger)) {
+        if (deneme.length === parseInt(totalPassenger)) {
             setPopup(true);
         } else {
             setPopup(false);
         }
-    }, [seatArr.length, totalPassenger]);
+    }, [deneme.length, totalPassenger]);
 
     return (
         <>
@@ -119,9 +124,7 @@ function SeatScreen() {
             </Header><div className='chairScreen-container-content'>
                 {popup && (
                     <div className='seat-popup__bottom'>
-                        <h2>Seat Info:</h2>
-                        <p>Row: {selectedSeat.row}</p>
-                        <p>SeatNumber: {selectedSeat.seatNumber}</p>
+                        <p>koltuk seçimini onaylıyor musunuz ?</p>
                         <button onClick={handleReservation}>Devam Et</button>
                     </div>
                 )}
@@ -144,33 +147,52 @@ function SeatScreen() {
                         <div className='legend_item'><div className='legend_box_empty'></div><span>Empty</span></div>
                     </div>
                     <div className='info_box_group'>
-                        <div className='info_box'><h2>First Class</h2>
-                            <div>
-                                {passName?.map((name, index) => {
-                                    if (passSurname[index]) {
+                        <div className='info_box'>
+                            <h2>First Class</h2>
+                            <div className='info_box-list' >
+                                <div className='info_box-list-name' >
+                                    <p>First Name:</p>
+                                    {passName?.map((name, index) => {
+                                        if (passSurname[index]) {
+                                            return (
+                                                <div key={index}>
+                                                    <p className='searchItem-two__container__ports-info__firstp'>{name}</p>
+                                                </div>
+                                            );
+                                        } else {
+                                            return null;
+                                        }
+                                    })}
+                                </div>
+                                <div className='info_box-list-surname' >
+                                    <p>First Surname:</p>
+                                    {passSurname?.map((name, index) => {
                                         return (
                                             <div key={index}>
-                                                <p className='searchItem-two__container__ports-info__firstp'>First Name: {name}</p>
+                                                <p className='searchItem-two__container__ports-info__firstp'>{name}</p>
                                             </div>
                                         );
-                                    } else {
-                                        return null;
-                                    }
-                                })}
-                                {passSurname?.map((name, index) => {
-                                    return (
-                                        <div key={index}>
-                                            <p className='searchItem-two__container__ports-info__firstp'>First Name: {name}</p>
+                                    })}
+                                </div>
+                                <div className='info_box-passengerSeat'>
+                                    {deneme && (
+                                        <div className='info_box-passengerSeat-box' >
+                                            <div className='info_box-passengerSeat-box__header' >
+                                                <p>Row</p>
+                                                <p>Column</p>
+                                            </div>
+                                            {deneme.map((item, key) => (
+                                                <div className='info_box-passengerSeat-box__list' key={key}>
+                                                    <p>{item?.row}</p>
+                                                    <p>  {item?.seatNumber}</p>
+                                                </div>
+                                            ))}
                                         </div>
-                                    );
-                                })}
-                                {deneme &&
-                                    <div>
-                                        <p> Row {deneme?.seat?.row}</p>
-                                        <p> Colum {deneme?.seat?.seatNumber}</p>
-                                    </div>
-                                }
+                                    )}
+                                </div>
+
                             </div>
+
                         </div>
                         <div className='info_box'><h2>Bussiness Class</h2><p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non minima distinctio facere doloremque nesciunt dicta temporibus sed officiis. Eius libero illo alias doloribus soluta, officiis animi ipsum ea repellat non?</p></div>
                         <div className='info_box'><h2>Economy Class</h2><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corrupti nisi eligendi culpa deleniti pariatur ducimus tempore expedita corporis libero, aut repellendus repudiandae iusto facilis omnis. Doloremque facilis pariatur aliquid in.</p></div>
