@@ -4,15 +4,18 @@ import { useNavigate } from 'react-router-dom';
 import Nav from 'react-bootstrap/Nav';
 import { FaPlaneDeparture } from 'react-icons/fa';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { setReturnDate } from '../configure';
 
 import Login from '../content/loginPopup';
 
 import './index.scss';
+import { useDispatch } from 'react-redux';
 
 function Header() {
   const [isLogin, setIsLogin] = useState(false);
   const [planePosition, setPlanePosition] = useState(0);
 
+  const dispatch = useDispatch()
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -49,6 +52,7 @@ function Header() {
   };
 
   const handleMainPage = () => {
+    dispatch(setReturnDate(''))
     navigate('/')
   }
 
