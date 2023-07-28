@@ -83,10 +83,6 @@ function ShoppingSummary() {
             <div className="passenger-seat">
               <p>Seat No:</p>
               <div className="passenger-seat__info">
-                <div className='passenger-seat__info__header'>
-                  <p>Row</p>
-                  <p>Column</p>
-                </div>
                 <div>
                   {seat.map((itemArray, index) => (
                     <div key={index}>

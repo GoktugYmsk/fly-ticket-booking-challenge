@@ -42,8 +42,9 @@ function SeatScreen() {
         }
     };
 
+
     const getAlphabeticRow = (numericRow) => {
-        const alphabeticRow = String.fromCharCode(65 + numericRow - 1);
+        const alphabeticRow = String.fromCharCode(64 + numericRow);
         return alphabeticRow;
     };
 
@@ -51,10 +52,12 @@ function SeatScreen() {
         if (selectedSeat) {
             const updatedReservedSeats = [...reservedSeats, ...seatArr];
             localStorage.setItem('seat', JSON.stringify(updatedReservedSeats));
+
             const seatArrWithAlphabeticRow = seatArr.map((seat) => ({
-                row: getAlphabeticRow(seat.row),
-                seatNumber: seat.seatNumber,
+                row: seat.row,
+                seatNumber: getAlphabeticRow(seat.seatNumber),
             }));
+
             setSelectedSeat(null);
             dispatch(setSeat([seatArrWithAlphabeticRow]));
             setPopup(false);
@@ -99,10 +102,18 @@ function SeatScreen() {
         for (let j = 1; j <= 23; j++) {
             const rowSeats = [];
             for (let i = 1; i <= 6; i++) {
-                const isReserved = reservedSeats.some(seat => seat.row === j && seat.seatNumber === i);
-                const isSelected = seatArr.some(seat => seat.row === j && seat.seatNumber === i);
+                const isReserved = reservedSeats.some(
+                    (seat) => seat.row === j && seat.seatNumber === i
+                );
+                const isSelected = seatArr.some(
+                    (seat) => seat.row === j && seat.seatNumber === i
+                );
                 const seatStyle = {
-                    backgroundColor: isReserved ? 'rgb(44, 56, 85)' : isSelected ? 'rgb(83, 106, 160)' : 'rgb(240, 105, 60)',
+                    backgroundColor: isReserved
+                        ? 'rgb(44, 56, 85)'
+                        : isSelected
+                            ? 'rgb(83, 106, 160)'
+                            : 'rgb(240, 105, 60)',
                 };
 
                 rowSeats.push(
@@ -113,7 +124,7 @@ function SeatScreen() {
                             onClick={() => handleSeatClick(j, i)}
                             style={seatStyle}
                         >
-                            {i}
+                            {getAlphabeticRow(i)}
                         </div>
                         {i === 3 && <div className='seat-gap' key={`gap-${j}-${i}`} />}
                     </React.Fragment>
@@ -121,14 +132,13 @@ function SeatScreen() {
             }
             rows.push(
                 <div className='seat-row' key={j}>
-                    <div className='row-number'>{getAlphabeticRow(j)}</div>
+                    <div className='row-number'>{j}</div>
                     {rowSeats}
                 </div>
             );
         }
         return rows;
     }
-
     return (
         <>
             <Header className='header'>
