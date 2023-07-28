@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -14,27 +13,25 @@ function SeatScreen() {
     const [seatArr, setSeatArr] = useState([]);
     const [deneme, setDeneme] = useState([])
 
-
     const passName = useSelector((state) => state.passCheck.passName);
     const passSurname = useSelector((state) => state.passCheck.passSurname);
 
-    console.log('deneme', deneme)
+    const seat = useSelector((state) => state.seatReserve.seat);
 
+    console.log('SEATCONTROL', seat);
 
     const totalPassenger = sessionStorage.getItem('totalPassenger');
 
-    const seatLocale = JSON.parse(localStorage.getItem('seat')) || [];
-
-    console.log('seatArr', seatArr)
-
-    console.log('popup', popup)
+    // useEffect(() => {
+    //     const seatLocale = JSON.parse(localStorage.getItem('seat')) || [];
+    //     setReservedSeats(seatLocale);
+    // }, [seat]);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-
     const handleSeatClick = (row, seatNumber) => {
-        const isReserved = seatLocale.some(seatInfo => seatInfo.row === row && seatInfo.seatNumber === seatNumber);
+        const isReserved = reservedSeats.some(seatInfo => seatInfo.row === row && seatInfo.seatNumber === seatNumber);
         if (!isReserved) {
             dispatch(setSeat(''));
             const seatTotal = { row, seatNumber };
@@ -47,28 +44,28 @@ function SeatScreen() {
 
     const handleReservation = () => {
         if (selectedSeat) {
-            const updatedReservedSeats = [...seatLocale, seatArr];
+            const updatedReservedSeats = [...reservedSeats, ...seatArr];
             localStorage.setItem('seat', JSON.stringify(updatedReservedSeats));
             setSelectedSeat(null);
-            setReservedSeats(updatedReservedSeats);
-            dispatch(setSeat(updatedReservedSeats));
-            setPopup(false)
-            // navigate('/pay-screen');
+            dispatch(setSeat([seatArr]));
+            setPopup(false);
+            navigate('/pay-screen');
         }
     };
 
 
     useEffect(() => {
-        const storedReservedSeats = JSON.parse(localStorage.getItem('seat')) || [];
-        setReservedSeats(storedReservedSeats);
-        dispatch(setSeat(storedReservedSeats));
-    }, [dispatch]);
+        const seatLocale = JSON.parse(localStorage.getItem('seat')) || [];
+        setReservedSeats(seatLocale);
+        console.log('reservedSeats', reservedSeats);
+    }, [popup]);
 
 
 
     const handleKeyPress = (e) => {
         if (e.key === 'Escape') {
-            setSeatArr([])
+            setSeatArr([]);
+            setDeneme('')
             setPopup(false);
         }
     };
@@ -79,6 +76,14 @@ function SeatScreen() {
             window.removeEventListener('keydown', handleKeyPress);
         };
     }, []);
+
+    useEffect(() => {
+        if (deneme.length === parseInt(totalPassenger)) {
+            setPopup(true);
+        } else {
+            setPopup(false);
+        }
+    }, [deneme.length, totalPassenger]);
 
     function renderSeatsSecond() {
         const rows = [];
@@ -109,14 +114,6 @@ function SeatScreen() {
         }
         return rows;
     }
-
-    useEffect(() => {
-        if (deneme.length === parseInt(totalPassenger)) {
-            setPopup(true);
-        } else {
-            setPopup(false);
-        }
-    }, [deneme.length, totalPassenger]);
 
     return (
         <>

@@ -27,6 +27,7 @@ function SearchItem2() {
   const arrivePortExplanation = isArrivePort ? isArrivePort.explanation : '';
 
   console.log('passunasoc', passSurname, pnrCode);
+  console.log('pnrCode', pnrCode)
 
   console.log('passNameSearch', passName)
 
@@ -76,9 +77,16 @@ function SearchItem2() {
               <h3>{arrivePortExplanation}</h3>
             </div>
             <div className='passenger-seat' >
-              <p>Seat No:</p>
-              <p> Row {seat.selectedSeat.row}</p>
-              <p> Colum {seat.selectedSeat.seatNumber}</p>
+              {seat.map((itemArray, index) => (
+                <div key={index}>
+                  {itemArray.map((item, innerIndex) => (
+                    <div key={`${index}-${innerIndex}`}>
+                      <p>Row: {item.row}</p>
+                      <p>Column: {item.seatNumber}</p>
+                    </div>
+                  ))}
+                </div>
+              ))}
             </div>
             {passName?.map((name, index) => {
               if (passSurname[index] === surname && pnrCode[index] === pnr) {

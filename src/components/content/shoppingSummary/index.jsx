@@ -101,7 +101,6 @@ function ShoppingSummary() {
                 </div>
               </div>
             </div>
-
           </div>
           <div className="shoppingSummary-container-box__list-passenger">
             <p>{totalPrice} $</p>
