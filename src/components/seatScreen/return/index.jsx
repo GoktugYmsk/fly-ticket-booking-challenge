@@ -176,7 +176,7 @@ function Return() {
                             style={seatStyle}
                         >
                             
-                            {isReserved? <AiOutlineClose /> : isSelected? <BsFillPersonFill  color="white"/> : getAlphabeticRow(i)}
+                            {isSelected? <BsFillPersonFill  color="white"/> : getAlphabeticRow(i)}
                         </div>
                         {i === 3 && <div className='row-number'>{j}</div>}
                     </React.Fragment>
