@@ -16,12 +16,13 @@ const rootReducer = combineReducers({
     passCheck: configure,
     refreshPass: configure,
     seatReserve: configure,
+    portsData: configure
 });
 
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist: ['passAmount', 'passFlightPort', 'passFlightPortArrive', 'optionDateDepp', 'optionDateArr', 'passInfo', 'passTicket', 'passCheck', 'refreshPass', 'seatReserve'],
+    whitelist: ['passAmount', 'passFlightPort', 'passFlightPortArrive', 'optionDateDepp', 'optionDateArr', 'passInfo', 'passTicket', 'passCheck', 'refreshPass', 'seatReserve', 'portsData'],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

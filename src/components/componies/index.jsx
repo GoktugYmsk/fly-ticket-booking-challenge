@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Expedition from "../expedition";
 
-import flightPorts from "../../assets/flightPorts";
 import passengerInformation from "../../assets/passenger";
 import MyImage from './arrow.png';
 
@@ -26,6 +25,7 @@ function FlyCompanies() {
   const flightTicketReturn = useSelector((state) => state.passTicket.flightTicketReturn);
   const refreshPassenger = useSelector((state) => state.refreshPass.refreshPassenger);
   const flightPortArrive = useSelector((state) => state.passFlightPortArrive.flightPortArrive);
+  const fligthPortData = useSelector((state) => state.portsData.fligthPortData);
   const [expedition, setExpedetion] = useState(false)
 
   console.log('returnDate', returnDate)
@@ -36,8 +36,8 @@ function FlyCompanies() {
   const selectedDateTimestamp = selectedDate instanceof Date ? selectedDate.getTime() : null;
   const selectedDateTimestampArrive = returnDate instanceof Date ? returnDate.getTime() : null;
 
-  const isLeavePort = flightPorts.ports.find((item) => item.code === flightPort);
-  const isArrivePort = flightPorts.ports.find((item) => item.code === flightPortArrive);
+  const isLeavePort = fligthPortData.data.find((item) => item.code === flightPort);
+  const isArrivePort = fligthPortData.data.find((item) => item.code === flightPortArrive);
 
   const leavePortExplanation = isLeavePort ? isLeavePort.explanation : "";
   const arrivePortExplanation = isArrivePort ? isArrivePort.explanation : "";

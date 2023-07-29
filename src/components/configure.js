@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+
+
 const initialState = {
     passengerAmount: {},
     flightPort: '',
@@ -15,6 +17,7 @@ const initialState = {
     refreshPassenger: {},
     seat: [],
     seatReturn: [],
+    fligthPortData: [],
 }
 
 export const configure = createSlice({
@@ -63,9 +66,12 @@ export const configure = createSlice({
         setSeatReturn: (state, action) => {
             state.seatReturn = action.payload;
         },
+        setFlightPortData: (state, action) => {
+            state.fligthPortData = action.payload;
+        },
     }
 })
 
-export const { setPassengerAmount, setFlightPort, setFlightPortArrive, setSelectedDate, setPassengerInfo, setFlightTicket, setPassSurname, setPnrCode, setPassName, setReturnDate, setRefreshPassenger, setSeat, setFlightTicketReturn, setSeatReturn } = configure.actions
+export const { setPassengerAmount, setFlightPort, setFlightPortArrive, setSelectedDate, setPassengerInfo, setFlightTicket, setPassSurname, setPnrCode, setPassName, setReturnDate, setRefreshPassenger, setSeat, setFlightTicketReturn, setSeatReturn, setFlightPortData } = configure.actions
 
 export default configure.reducer

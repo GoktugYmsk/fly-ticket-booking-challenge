@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 
 import Button from 'react-bootstrap/Button';
 
-import flightPorts from '../../../../assets/flightPorts';
 
 import './index.scss';
 
@@ -19,9 +18,10 @@ function SearchItem2() {
   const flightPort = useSelector((state) => state.passFlightPort.flightPort);
   const selectedDate = useSelector((state) => state.optionDateDepp.selectedDate);
   const flightPortArrive = useSelector((state) => state.passFlightPortArrive.flightPortArrive);
+  const fligthPortData = useSelector((state) => state.optionDateArr.fligthPortData);
 
-  const isLeavePort = flightPorts.ports.find((item) => item.code === flightPort);
-  const isArrivePort = flightPorts.ports.find((item) => item.code === flightPortArrive);
+  const isLeavePort = fligthPortData.data.find((item) => item.code === flightPort);
+  const isArrivePort = fligthPortData.data.find((item) => item.code === flightPortArrive);
 
   const leavePortExplanation = isLeavePort ? isLeavePort.explanation : '';
   const arrivePortExplanation = isArrivePort ? isArrivePort.explanation : '';

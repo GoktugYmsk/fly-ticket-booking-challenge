@@ -11,8 +11,6 @@ import { PiMagnifyingGlassBold } from 'react-icons/pi';
 
 import { setFlightPort, setFlightPortArrive, setSelectedDate, setReturnDate, setPassName, setPassSurname, setPnrCode, setFlightTicketReturn } from '../../../configure';
 
-import flightPorts from '../../../../assets/flightPorts';
-
 import './index.scss';
 
 function SearchItem1() {
@@ -30,8 +28,10 @@ function SearchItem1() {
 
   const selectedDate = useSelector((state) => state.optionDateDepp.selectedDate);
   const returnDate = useSelector((state) => state.optionDateArr.returnDate);
+  const fligthPortData = useSelector((state) => state.portsData.fligthPortData);
 
-  const flightPortsData = flightPorts.ports;
+
+  console.log('SEARCHfligthPortData', fligthPortData)
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -218,7 +218,7 @@ function SearchItem1() {
   };
 
   const handlePortClick = (explanationCode) => {
-    const selectedPort = flightPortsData.find((port) => port.code === explanationCode);
+    const selectedPort = fligthPortData.data.find((port) => port.code === explanationCode);
     if (selectedPort) {
       setSelectedExplanation(selectedPort.explanation);
       dispatch(setFlightPort(selectedPort.code));
@@ -228,7 +228,7 @@ function SearchItem1() {
   };
 
   const handlePortClickRigth = (explanationCode) => {
-    const selectedPortArrive = flightPortsData.find((port) => port.code === explanationCode);
+    const selectedPortArrive = fligthPortData.data.find((port) => port.code === explanationCode);
     if (selectedPortArrive) {
       setSelectedExplanationArrive(selectedPortArrive.explanation)
       dispatch(setFlightPortArrive(selectedPortArrive.code));
@@ -270,7 +270,7 @@ function SearchItem1() {
 
   useEffect(() => {
     const inputValue = selectedExplanation.toLowerCase();
-    const filteredPorts = flightPortsData.filter((port) =>
+    const filteredPorts = fligthPortData.data.filter((port) =>
       port.explanation.toLowerCase().includes(inputValue)
     );
 
@@ -285,7 +285,7 @@ function SearchItem1() {
 
   useEffect(() => {
     const inputValueArrive = selectedExplanationArrive.toLocaleLowerCase()
-    const filteredPortsArrive = flightPortsData.filter((port) =>
+    const filteredPortsArrive = fligthPortData.data.filter((port) =>
       port.explanation.toLowerCase().includes(inputValueArrive));
 
     const updatePortsArr = filteredPortsArrive.map((port, key) => (

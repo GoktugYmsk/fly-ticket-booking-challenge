@@ -1,27 +1,37 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { setFlightPortData } from './components/configure';
+import { useDispatch } from 'react-redux';
 
-function deneme() {
+function Deneme() {
+    const apiUrl = 'http://webapi-dev.eba-j3p8idgy.eu-north-1.elasticbeanstalk.com/api/airports/getall';
+    const [airports, setAirports] = useState([]);
 
-    const axios = require('axios');
+    const dispatch = useDispatch()
 
-    const apiUrl = 'http://webapi-dev.eba-j3p8idgy.eu-north-1.elasticbeanstalk.com/api/baseprices/getall';
-
-    axios.get(apiUrl)
-        .then(response => {
-            // İstek başarılı olduğunda burası çalışır
-            console.log('Veriler:', response.data);
-        })
-        .catch(error => {
-            // İstek hata ile sonuçlanırsa burası çalışır
-            console.error('Hata:', error);
-        });
-
+    useEffect(() => {
+        axios.get(apiUrl)
+            .then(response => {
+                setAirports(response.data.data);
+                dispatch(setFlightPortData(response.data))
+            })
+            .catch(error => {
+                console.error('Hata:', error);
+            });
+    }, []);
 
     return (
         <div>
-
+            <h1>Havaalanları</h1>
+            <ul>
+                {airports.map(airport => (
+                    <li key={airport.id}>
+                        {airport.explanation}
+                    </li>
+                ))}
+            </ul>
         </div>
-    )
+    );
 }
 
-export default deneme
+export default Deneme;
