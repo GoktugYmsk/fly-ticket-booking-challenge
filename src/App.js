@@ -11,7 +11,7 @@ import CustomComponent from './components/CustomComponent';
 import SearchContent from './components/content/searchContent';
 import ShoppingSummary from './components/content/shoppingSummary';
 import SeatScreen from './components/seatScreen';
-// import Deneme from './deneme';
+import Deneme from './deneme';
 
 import './App.css'
 
@@ -30,7 +30,7 @@ function App() {
         <Route path="/sales-screen" element={<SalesScreen />} />
         <Route path="/shopping-summary" element={<ShoppingSummary />} />
         <Route path="/seat-screen" element={<SeatScreen />} />
-        {/* <Route path="/deneme" element={<Deneme />} /> */}
+        <Route path="/deneme" element={<Deneme />} />
       </Routes>
     </div>
   );

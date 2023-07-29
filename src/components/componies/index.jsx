@@ -53,8 +53,7 @@ function FlyCompanies() {
   };
 
   useEffect(() => {
-    const selectedDateFormatted =
-      selectedDate instanceof Date ? selectedDate.toDateString() : "";
+    const selectedDateFormatted = selectedDate instanceof Date ? selectedDate.toDateString() : "";
     setFormattedSelectedDate(selectedDateFormatted);
 
     const returnDateFormatted = returnDate instanceof Date ? returnDate.toDateString() : "";

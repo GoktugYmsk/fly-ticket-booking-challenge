@@ -15,6 +15,7 @@ function ShoppingSummary() {
   const flightTicketReturn = useSelector((state) => state.passTicket.flightTicketReturn);
 
   const seat = useSelector((state) => state.seatReserve.seat);
+  const seatReturn = useSelector((state) => state.seatReserve.seatReturn);
 
   console.log('flightTicketReturn', flightTicketReturn)
 
@@ -30,7 +31,6 @@ function ShoppingSummary() {
 
   const totalPassenger = sessionStorage.getItem("totalPassenger");
   const totalPrice = flightTicket.priceDetail.basePrice.amount * totalPassenger;
-
 
   const handleMainPage = () => {
     dispatch(setPassengerInfo(refreshPassenger));
@@ -123,47 +123,59 @@ function ShoppingSummary() {
             <p className="list-top-d">{flightTicketReturn.arrTime}</p>
             <p className="list-top-e">{totalPassenger} Passengers </p>
             <img className="list-top-x" src={imagePath} alt="Ok İkonu" />
+            <div className="shoppingSummary-container-box__list-bottom">
+              <div className="shoppingSummary-container-box__list-name">
+                <div className="name">
+                  {passName.map((name, index) => (
+                    <div className="name-flex">
+                      <p className="passenger-name">First Name:</p>
+                      <p key={index}> &nbsp;{name}&nbsp;</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="shoppingSummary-container-box__list-surName">
+                <div className="surname">
+                  {passSurname.map((surname, index) => (
+                    <div className="surname-flex">
+                      <p className="passenger-name">Last Name:</p>
+                      <p key={index}> &nbsp;{surname}&nbsp;</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="passenger-seat" >
+                <p>Seat No:</p>
+                <div className="passenger-seat__info" >
+                  <div>
+                    {seatReturn.map((itemArray, index) => (
+                      <div key={index}>
+                        {itemArray.map((item, innerIndex) => (
+                          <div key={`${index}-${innerIndex}`}>
+                            <p>Row: {item.row}</p>
+                            <p>Column: {item.seatNumber}</p>
+                          </div>
+                        ))}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="shoppingSummary-container-box__list-passenger">
+              <p>{totalPrice} $</p>
+              <div className="shoppingSummary-container-box__list-passengerInfo">
+                <p>{passengerInfo.adults} Adult </p>
+                {passengerInfo.children > 0 && (
+                  <p> {`  - ${passengerInfo.children}  Child `}</p>
+                )}
+                {passengerInfo.babies > 0 && (
+                  <p> {` - ${passengerInfo.babies}  Infant`} </p>
+                )}
+              </div>
+            </div>
           </div>
         }
-        <div className="shoppingSummary-container-box__list-bottom">
-          <div className="shoppingSummary-container-box__list-name">
-            <div className="name">
-              {passName.map((name, index) => (
-                <div className="name-flex">
-                  <p className="passenger-name">First Name:</p>
-                  <p key={index}> &nbsp;{name}&nbsp;</p>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="shoppingSummary-container-box__list-surName">
-            <div className="surname">
-              {passSurname.map((surname, index) => (
-                <div className="surname-flex">
-                  <p className="passenger-name">Last Name:</p>
-                  <p key={index}> &nbsp;{surname}&nbsp;</p>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="passenger-seat" >
-            <p>Seat No:</p>
-            <div className="passenger-seat__info" >
-            </div>
-          </div>
-        </div>
-        <div className="shoppingSummary-container-box__list-passenger">
-          <p>{totalPrice} $</p>
-          <div className="shoppingSummary-container-box__list-passengerInfo">
-            <p>{passengerInfo.adults} Adult </p>
-            {passengerInfo.children > 0 && (
-              <p> {`  - ${passengerInfo.children}  Child `}</p>
-            )}
-            {passengerInfo.babies > 0 && (
-              <p> {` - ${passengerInfo.babies}  Infant`} </p>
-            )}
-          </div>
-        </div>
       </div>
     </div>
   );
