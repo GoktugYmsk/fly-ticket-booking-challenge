@@ -1,15 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import "./index.scss";
 
-const LoginPopup = () => {
+const LoginPopup = ({ setIsLogin }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
 
   const navigate = useNavigate()
-
 
   const handleLogin = () => {
     if (email === 'mock@gmail.com' && password === '123456') {
@@ -29,12 +27,26 @@ const LoginPopup = () => {
     navigate('/Signup')
   }
 
+  const handleOutsideClick = (event) => {
+    if (!event.target.closest('.login__container-popup')) {
+      setIsLogin(false)
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleOutsideClick);
+
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, []);
+
   return (
     <>
       <div className="login__container-popup ">
         <form onSubmit={handleLogin}>
           <div className="form-group mb-3">
-            <label htmlFor="email">E-mail</label>
+            <label htmlFor="email">Email</label>
             <input type="email" id="email" className="form-control" value={email} onChange={handleUserChange} required />
           </div>
           <div className="form-group mb-3">
@@ -48,7 +60,6 @@ const LoginPopup = () => {
               required
             />
           </div>
-          {error && <div>{error}</div>}
           <div className="button-container d-flex justify-content-center">
             <button type="submit" className="login-button">
               Login
@@ -56,7 +67,7 @@ const LoginPopup = () => {
           </div>
           <br />
           <div>
-            <p>Don't have an account? <span onClick={handleSignup} className="signup-button" >Sign Up</span></p>
+            <p>Don't have an account ? <span onClick={handleSignup} className="signup-button" >Sign Up</span></p>
           </div>
         </form>
       </div>

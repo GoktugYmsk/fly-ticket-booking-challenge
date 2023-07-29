@@ -1,25 +1,49 @@
 import React, { useState, useEffect } from 'react';
-import Button from 'react-bootstrap/Button';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+
+import Toast from 'react-bootstrap/Toast';
+import Button from '@mui/material/Button';
+import Footer from '../footer';
+import Header from "../header";
+
+import { setPassengerInfo, setPnrCode, setReturnDate } from '../configure';
+
 import './index.scss';
 
 function PayScreen() {
-  const [cardNumber, setCardNumber] = useState('');
-  const [maskedCardNumber, setMaskedCardNumber] = useState('################');
-  const [expiryMonth, setExpiryMonth] = useState('');
-  const [expiryYear, setExpiryYear] = useState('');
-  const [cardName, setCardName] = useState('');
   const [cvv, setCVV] = useState('');
+  const [popup, setPopup] = useState(false)
+  const [cardName, setCardName] = useState('');
+  const [expiryYear, setExpiryYear] = useState('');
+  const [cardNumber, setCardNumber] = useState('');
   const [isFlipped, setIsFlipped] = useState(false);
+  const [expiryMonth, setExpiryMonth] = useState('');
+  const [popupActive, setPopupActive] = useState(false)
+  const [selectedOption, setSelectedOption] = useState('');
+  const [isAgreementChecked, setIsAgreementChecked] = useState(false);
+  const [maskedCardNumber, setMaskedCardNumber] = useState('################');
+
+  const flightTicket = useSelector((state) => state.passTicket.flightTicket);
+  const pnrCode = useSelector((state) => state.passCheck.pnrCode);
+  const passSurname = useSelector((state) => state.passCheck.passSurname);
+
+  const refreshPassenger = useSelector((state) => state.refreshPass.refreshPassenger);
+
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const totalPassenger = sessionStorage.getItem('totalPassenger')
+
+  const totalPrice = flightTicket.priceDetail.basePrice.amount * totalPassenger
 
   useEffect(() => {
-    if (cardNumber.length === 16 && expiryMonth !== '' && expiryYear !== '' && cardName === 'Göktuğ Yumuşak') {
+    if (cardNumber.length === 16 && expiryMonth !== '' && expiryYear !== '' && cardName === 'Fly Pinsoft') {
       setIsFlipped(true);
     } else {
       setIsFlipped(false);
     }
   }, [cardNumber, expiryMonth, expiryYear, cardName]);
-
-  console.log(cardName)
 
   const handleCardNumberChange = (e) => {
     const { value } = e.target;
@@ -64,67 +88,188 @@ function PayScreen() {
     return years;
   };
 
-  const handleApprovalClick = () => {
-    if (cvv === '001') {
-      alert('Ödeme Başarıyla Tamamlandı')
+  const generatePnrNumber = () => {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let pnr = '';
+    for (let i = 0; i < 6; i++) {
+      pnr += characters.charAt(Math.floor(Math.random() * characters.length));
     }
+    return pnr;
+  };
+
+  const handleAgreementChange = () => {
+    setIsAgreementChecked(!isAgreementChecked);
+  };
+
+  const handleApprovalClick = () => {
+    if (cvv === '001' && isAgreementChecked) {
+      setPopupActive(true);
+      setPopup(true);
+      const pnrCodes = [];
+      for (let passengerIndex = 1; passengerIndex <= totalPassenger; passengerIndex++) {
+        const pnrCode = generatePnrNumber();
+        pnrCodes.push(pnrCode);
+      }
+
+      dispatch(setPnrCode(pnrCodes));
+    }
+    else if (cvv != '001') {
+      alert('cvv kodunu kontrol ediniz')
+    }
+    else if (!isAgreementChecked) {
+      alert('Pinsoft işlem kurallarınız kabul ediniz !')
+    }
+  };
+
+  const handleMainPage = () => {
+    dispatch(setReturnDate(''))
+    dispatch(setPassengerInfo(refreshPassenger));
+    setPopupActive(false)
+    navigate('/')
   }
 
+  const handleSummaryClick = () => {
+    navigate('/shopping-summary')
+  }
 
   return (
-    <div className="payScreen-container">
-      <div className="payScreen-container-cardForm">
-        <div className={`payScreen-card ${isFlipped ? 'flipped' : ''}`}>
-          <div className="payScreen-card__front">
-            <div>
-              <label>Kart Numarası:</label>
-              <p className="payScreen-card__front-number">{formatCardNumber(maskedCardNumber)}</p>
-            </div>
-
-            <p>{cardName}</p>
-            <div>
-              <label>Son Kullanma Tarihi:</label>
-              <p>{expiryMonth}/{expiryYear}</p>
-            </div>
-          </div>
-          <div className="payScreen-card__back">
-            <div>
-              <div className="payScreen-card__back__bant" ></div>
-              <input className="payScreen-card__back-input" type="text" placeholder="cvv" value={cvv} onChange={(e) => setCVV(e.target.value)} maxLength="3" />
+    <>
+      <div className={`payScreen__container ${popupActive ? 'payScreen__container-opacity' : 'payScreen__container'}`} >
+        <div className="payScreen__container-navbar" >
+          <Header>
+            {/* Header içeriği burada */}
+          </Header>
+        </div>
+        <div className="payScreen-container-list">
+          <div className="payScreen-container-box">
+            <div className="payScreen-container-cardForm">
+              <div className={`payScreen-card ${isFlipped ? 'flipped' : ''}`}>
+                <div className="payScreen-card__front">
+                  <p className="payScreen-card__front-number">{formatCardNumber(maskedCardNumber)}</p>
+                  <div className='payScreen-card__front-top' >
+                    <p className='payScreen-card__front-top__number' >{cardName}</p>
+                    <div className='payScreen-card__front-bottom' >
+                      <label >Expiration Date:</label>
+                      <p>{expiryMonth}/{expiryYear}</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="payScreen-card__back">
+                  <div>
+                    <div className="payScreen-card__back__bant" ></div>
+                    <input className="payScreen-card__back-input" type="text" placeholder="cvv" value={cvv} onChange={(e) => setCVV(e.target.value)} maxLength="3" />
+                  </div>
+                </div>
+              </div>
+              {!isFlipped ? (
+                <div className='payScreen-container-cardForm-frontContent' >
+                  <input type="text" value={formatCardNumber(cardNumber)} onChange={handleCardNumberChange} placeholder="Card Number" maxLength="19" />
+                  <input type="text" value={cardName} onChange={handleCardName} placeholder="Name On The Card" />
+                  <div className='payScreen-container-cardForm-frontContent-mounth' >
+                    <select value={expiryMonth} onChange={handleExpiryMonthChange}>
+                      <option>Month</option>
+                      {Array.from({ length: 12 }, (_, index) => index + 1).map((month) => (
+                        <option value={month.toString().padStart(2, '0')} key={month}>
+                          {month.toString().padStart(2, '0')}
+                        </option>
+                      ))}
+                    </select>
+                    <select value={expiryYear} onChange={handleExpiryYearChange}>
+                      <option >Year</option>
+                      {generateYears().map((year) => (
+                        <option value={year} key={year}>
+                          {year}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+              ) : (
+                <div className='payScreen-container-cvvSide' >
+                  <input type="text" placeholder="cvv" value={cvv} onChange={(e) => setCVV(e.target.value)} maxLength="3" />
+                </div>
+              )}
+              <div className='payScreen-container-box__installment' >
+                <h3>Payment Plan</h3>
+                <div className='payScreen-container-box__installment-inputGroup'>
+                  <div>
+                    <input className='input-radio'
+                      type='radio'
+                      checked={selectedOption === 'option1'}
+                      onChange={() => setSelectedOption('option1')}
+                    />
+                    <p>One Time</p>
+                  </div>
+                  <div>
+                    <input className='input-radio'
+                      type='radio'
+                      checked={selectedOption === 'option2'}
+                      onChange={() => setSelectedOption('option2')}
+                    />
+                    <p>3 Months</p>
+                  </div>
+                  <div>
+                    <input className='input-radio'
+                      type='radio'
+                      checked={selectedOption === 'option3'}
+                      onChange={() => setSelectedOption('option3')}
+                    />
+                    <p>6 Months</p>
+                  </div>
+                  <div>
+                    <input className='input-radio'
+                      type='radio'
+                      checked={selectedOption === 'option4'}
+                      onChange={() => setSelectedOption('option4')}
+                    />
+                    <p>9 Months</p>
+                  </div>
+                </div>
+              </div>
+              <div className='payScreen-container-cardForm-check' >
+                <div className='payScreen-container-cardForm-check-control'>
+                  <input
+                    className='payScreen-container-cardForm-checkBox'
+                    type='checkbox'
+                    checked={isAgreementChecked}
+                    onChange={handleAgreementChange}
+                  />
+                </div>
+                <p>I have read and agree to the terms and conditions.</p>
+              </div>
+              <div className='payScreen-container__paySide' >
+                <h3 className='payScreen-container-h3' >Total Due {totalPrice} $</h3>
+                <Button className='approvalButton' onClick={handleApprovalClick} variant='secondary'>Finish & Pay Now</Button>
+              </div>
             </div>
           </div>
         </div>
-        {!isFlipped ? (
-          <div>
-            <input type="text" value={formatCardNumber(cardNumber)} onChange={handleCardNumberChange} maxLength="19" />
-            <div>
-              <select value={expiryMonth} onChange={handleExpiryMonthChange}>
-                <option value="">Ay</option>
-                {Array.from({ length: 12 }, (_, index) => index + 1).map((month) => (
-                  <option value={month.toString().padStart(2, '0')} key={month}>
-                    {month.toString().padStart(2, '0')}
-                  </option>
-                ))}
-              </select>
-              <select value={expiryYear} onChange={handleExpiryYearChange}>
-                <option value="">Yıl</option>
-                {generateYears().map((year) => (
-                  <option value={year} key={year}>
-                    {year}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <input type="text" value={cardName} onChange={handleCardName} placeholder="Kart Üzerindeki İsim" />
-          </div>
-        ) : (
-          <div className='payScreen-container-cvvSide' >
-            <input type="text" placeholder="cvv" value={cvv} onChange={(e) => setCVV(e.target.value)} maxLength="3" />
-            <Button className='approvalButton' onClick={handleApprovalClick} variant='secondary'>Onaylıyor musunuz ?</Button>
-          </div>
-        )}
       </div>
-    </div>
+      {popup && (
+        <div className="toast-container">
+          <Toast onClose={() => setPopup(false)} show={popup} >
+            <Toast.Body className='popup-content' >
+              <div className="popup-content__box">
+                <p>Your Purchase Was Successful!</p>
+                {pnrCode.map((item, key) => (
+                  <div className='popup-content__box-pnr' key={key}>
+                    <p>Last Name: {passSurname[key]}</p>
+                    <p>PNR NO: {item}</p>
+                  </div>
+                ))}
+                <div className="popup-content-button">
+                  <Button className='popup-content-button__main' onClick={handleMainPage}>Go Back To Homepage</Button>
+                  <Button className='popup-content-button__summary' onClick={handleSummaryClick}>Show My Flight Informations</Button>
+                </div>
+              </div>
+            </Toast.Body>
+          </Toast>
+        </div>
+      )}
+      <div className={`footerContainer ${popupActive ? 'footer-opacity' : ''} `} >
+        <Footer />
+      </div>
+    </>
   );
 }
 

@@ -1,0 +1,140 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
+
+
+* {
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: #f3f4f6;
+
+    .flight-contanier{
+        .passenger-leftInfo{
+            .flight-box{
+                flex: 1;
+                padding: 10px;
+                span{
+                    background-color: #7693d8;
+                    padding: 2px;
+                    border-radius: 10%;
+                }
+                .no-title{
+                    font-weight: bold;
+                    color: #3d465c;
+                }
+                .no{
+                    margin-top: 5px;
+                    color: #1f1e21;
+                }
+            }
+        }
+    }
+
+
+
+    .container{
+
+        max-width: 800px;
+        margin: auto;
+        padding: 2rem;
+        text-align: center;
+
+        .section-header{
+            margin-bottom: 2rem;
+            h1 {
+                font-size: 2rem;
+                font-weight: 600;
+                color: #333333;
+            }
+
+        }
+        .flight-info-container{
+
+            display: flex; /* Set the container as flex */
+            flex-wrap: wrap; /* In case the items exceed the container's width */
+            justify-content: center;
+            margin-top: 80px;
+
+            .flight-info{
+                margin: 0.5rem;
+                display: flex;
+            }
+
+            .info-label{
+                font-weight: 600;
+                color: #3d465c;
+
+            }
+            .info-value{
+                color: #c6a74b;
+            }
+        }
+    }
+
+
+
+    .salesScreen-container-content__box__invoice{
+        .flight-container{
+            font-family: "Poppins", sans-serif;
+            width: 88%;
+            margin: auto;
+            min-height: 10rem;
+            display: grid;
+            align-items: center;
+            padding: 15px;
+            margin-bottom: 20px;
+            justify-content: center;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(189, 189, 189, 0.347);
+            box-shadow: 1px 1px 20px rgba(154, 154, 154, 0.1);
+            
+
+            .flight-box{
+                flex: 1;
+                padding: 10px;
+
+                span{
+                    background-color: #7693d8;
+                    padding: 2px;
+                    border-radius: 10%;
+                }
+                .airline-title{
+                    font-weight: bold;
+                    font-size: large;
+                    color: #3d465c;
+                }
+                .airline{
+                    margin-top: 5px;
+                    color: #c6a74b;
+                    font-size: large;
+                }
+            }
+        }
+        .larger-container{
+
+        }
+        .insurance{
+            .insurance-label{
+
+            }
+        }
+        .section_container{
+            max-width: 1200px;
+            margin: auto;
+            padding: 5rem 1rem;
+            display: flex;
+            justify-content: flex-end; /* Align items to the right */
+            margin-top: 2rem;
+
+            .btn{
+
+            }
+        }
+    }
+}

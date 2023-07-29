@@ -1,35 +1,39 @@
 import React, { useState, useEffect } from 'react';
-import DateTime from 'react-datetime';
-import PassengerPopup from './popup';
-import { FaExchangeAlt } from 'react-icons/fa';
-import { FaCalendarAlt } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+
+import DateTime from 'react-datetime';
+import PassengerPopup from './popup';
 import Button from 'react-bootstrap/Button';
-import flightPorts from '../../../../assets/flightPorts';
-import { setFlightPort, setFlightPortArrive, setSelectedDate } from '../../../configure';
+import { FaExchangeAlt } from 'react-icons/fa';
 import 'react-datetime/css/react-datetime.css';
+import { PiMagnifyingGlassBold } from 'react-icons/pi';
+
+import { setFlightPort, setFlightPortArrive, setSelectedDate, setReturnDate, setPassName, setPassSurname, setPnrCode, setFlightTicketReturn } from '../../../configure';
+
+import flightPorts from '../../../../assets/flightPorts';
+
 import './index.scss';
 
 function SearchItem1() {
   const [popup, setPopup] = useState(false);
   const [openPorts, setOpenPorts] = useState(false);
   const [isRoundTrip, setIsRoundTrip] = useState(false);
+  const [renderedPorts, setRenderedPorts] = useState([]);
   const [isCalendarOpen, setIsCalendarOpen] = useState(true);
   const [openPortsWhere, setOpenPortsWhere] = useState(false);
+  const [renderedPortsArr, setRenderedPortsArr] = useState([]);
   const [selectedExplanation, setSelectedExplanation] = useState('');
+  const [selectedExplanationRight, setSelectedExplanationRight] = useState('');
   const [selectedExplanationArrive, setSelectedExplanationArrive] = useState('');
   const [ticketAmount, setTicketAmount] = useState({ adults: 1, children: 0, babies: 0 });
-  const [selectedExplanationRight, setSelectedExplanationRight] = useState('');
-  const [renderedPorts, setRenderedPorts] = useState([]);
-  const [renderedPortsArr, setRenderedPortsArr] = useState([]);
 
-  const selectedDate = useSelector((state) => state.optionDate.selectedDate);
+  const selectedDate = useSelector((state) => state.optionDateDepp.selectedDate);
+  const returnDate = useSelector((state) => state.optionDateArr.returnDate);
 
   const flightPortsData = flightPorts.ports;
 
   const navigate = useNavigate();
-
   const dispatch = useDispatch();
 
   const handleSwitchChange = () => {
@@ -44,8 +48,17 @@ function SearchItem1() {
     dispatch(setSelectedDate(date._d))
   };
 
+  const handleDateChangeArrive = (date) => {
+    dispatch(setReturnDate(date._d))
+  };
+
   const handleOpenPopup = () => {
     setPopup(true);
+  };
+  const handleExchangeClick = () => {
+    const changePort = selectedExplanation;
+    setSelectedExplanation(selectedExplanationArrive);
+    setSelectedExplanationArrive(changePort);
   };
 
   const renderCalendar = () => {
@@ -86,15 +99,57 @@ function SearchItem1() {
     );
   };
 
+  const renderCalendarRight = () => {
+    const currentMonth = new Date().getMonth() + 1;
+    const nextMonth = currentMonth === 12 ? 1 : currentMonth + 1;
+
+    const isValidDate = (current) => {
+      const currentDate = new Date();
+      const currentMonth = currentDate.getMonth() + 1;
+      const nextMonth = currentMonth === 12 ? 1 : currentMonth + 1;
+
+      return (
+        current.toDate().getMonth() === currentMonth - 1 ||
+        current.toDate().getMonth() === nextMonth - 1
+      ) && current.toDate() >= currentDate;
+    };
+
+    return (
+      <div className='calendar'>
+        <DateTime
+          required
+          value={getNextDay() || selectedDate}
+          onChange={handleDateChangeArrive}
+          dateFormat='DD/MM/YYYY'
+          timeFormat={false}
+          closeOnSelect
+          viewMode='months'
+          isValidDate={isValidDate}
+          renderMonth={(props, month, year) => (
+            <div {...props}>
+              {month === currentMonth || month === nextMonth ? (
+                <div>{`${month}/${year}`}</div>
+              ) : null}
+            </div>
+          )}
+        />
+      </div>
+    );
+  };
+
   const getNextDay = () => {
     const currentDate = new Date();
-    currentDate.setDate(currentDate.getDate() + 1);
+    currentDate.setDate(currentDate.getDate());
     const nextDay = currentDate.getDate();
     const nextMonth = currentDate.getMonth() + 1;
     const nextYear = currentDate.getFullYear();
 
     return `${nextDay} ${getMonthName(nextMonth)} ${nextYear}`;
   };
+
+  useEffect(() => {
+    dispatch(setSelectedDate(new Date()));
+  }, []);
 
   const getMonthName = (month) => {
     const monthNames = [
@@ -114,7 +169,6 @@ function SearchItem1() {
 
     return monthNames[month - 1];
   };
-
 
   const renderPassengerAmount = () => {
     const childCount = ticketAmount.children;
@@ -147,13 +201,19 @@ function SearchItem1() {
 
   console.log(totalPassenger)
 
-  const navigateToExpedition = () => {
+  const navigateToCompanies = () => {
     if (selectedExplanation && selectedExplanationRight) {
+      dispatch(setPnrCode(''))
+      dispatch(setPassName(''))
+      dispatch(setPassSurname(''))
       sessionStorage.setItem('totalPassenger', totalPassenger);
       navigate('/fly-companies');
+      if (!returnDate) {
+        dispatch(setFlightTicketReturn(''))
+      }
     }
     else {
-      alert('Lütfen nerden ve nereye havaalanlarını seçin.');
+      alert('Please pick "from" and "to" destionations.');
     }
   };
 
@@ -191,12 +251,6 @@ function SearchItem1() {
     }
   }, [selectedExplanationRight]);
 
-  useEffect(() => {
-    if (selectedExplanationRight) {
-      setOpenPortsWhere(false);
-    }
-  }, [selectedExplanationRight]);
-
   const handlePortOpenClick = () => {
     setOpenPorts(!openPorts);
   };
@@ -229,7 +283,6 @@ function SearchItem1() {
     setRenderedPorts(updatedRenderedPorts);
   }, [selectedExplanation]);
 
-
   useEffect(() => {
     const inputValueArrive = selectedExplanationArrive.toLocaleLowerCase()
     const filteredPortsArrive = flightPortsData.filter((port) =>
@@ -243,11 +296,6 @@ function SearchItem1() {
     setRenderedPortsArr(updatePortsArr)
   }, [selectedExplanationArrive])
 
-
-  // useEffect(() => {
-  //   sessionStorage.removeItem('filteredPorts')
-  // }, [])
-
   return (
     <>
       <div className='searchItem-one__container'>
@@ -259,48 +307,48 @@ function SearchItem1() {
               onChange={handleSwitchChange}
             />
             <span className='switch-slider'>
-              <p>Tek Yön</p>
-              <p>Gidiş Dönüş</p>
+              <p>One-Way</p>
+              <p>Round-Trip</p>
             </span>
           </label>
         </div>
         <div className='searchItem-one__container__content'>
           <div className='searchItem-one__container-place'>
             <div onClick={handlePortOpenClick} className='searchItem-one__container-place__ports-one'>
-              <p>Nerden</p>
-              <input value={selectedExplanation} onChange={(e) => setSelectedExplanation(e.target.value)} />
+              <input placeholder="From" value={selectedExplanation} onChange={(e) => setSelectedExplanation(e.target.value)} />
               <hr />
             </div>
-            <FaExchangeAlt />
+            <FaExchangeAlt className='exchangeIcon' onClick={handleExchangeClick} />
             <div onClick={handlePortOpenClickRight} className='searchItem-one__container-place__ports-one'>
-              <p>Nereye</p>
-              <input value={selectedExplanationArrive} onChange={(e) => setSelectedExplanationArrive(e.target.value)} />
+              <input placeholder="To" value={selectedExplanationArrive} onChange={(e) => setSelectedExplanationArrive(e.target.value)} />
               <hr />
             </div>
           </div>
           <div className='searchItem-one__container__chose-travelDate'>
             <div className='travel-date' onClick={handleCalendarClick}>
-              <p>Gidiş Tarihi</p>
+              <p>Depart</p>
               <p className='SearchItem-one__container-travelDate'>
                 {isCalendarOpen && renderCalendar()}
               </p>
             </div>
             <div className='searchItem-one__container-return'>
-              <FaCalendarAlt />
-              <p>{isRoundTrip ? 'Gidiş-Dönüş' : 'Tek Yön'}</p>
-              {isRoundTrip && renderCalendar()}
+              <p className='searchItem-one__container-return-p'>{isRoundTrip ? 'Return' : ''}
+                {isRoundTrip && renderCalendarRight()}
+              </p>
             </div>
           </div>
           <div className='searchItem-one__container-passenger-amount'>
-            <h3>Yolcu</h3>
+            <p>Passengers</p>
             {ticketAmount.adults > 0 && (
-              <h2 onClick={handleOpenPopup}>{`${ticketAmount.adults} Yetişkin`}</h2>
+              <h2 onClick={handleOpenPopup}>{`${ticketAmount.adults} Adult`}</h2>
             )}
             {(ticketAmount.children > 0 || ticketAmount.babies > 0) && (
               <h2 onClick={handleOpenPopup}>{renderPassengerAmount()}</h2>
             )}
           </div>
-          <Button onClick={navigateToExpedition} variant='secondary'>Ucuz Uçuş Bileti Ara</Button>
+          <Button className='searchItem-one__search-button' onClick={navigateToCompanies} variant='secondary'>
+            <PiMagnifyingGlassBold />
+          </Button>
         </div>
       </div>
       {popup && <PassengerPopup setTicketAmount={setTicketAmount} setPopup={setPopup} />}
@@ -316,6 +364,7 @@ function SearchItem1() {
           </div>
         )}
       </div>
+
     </>
   );
 }

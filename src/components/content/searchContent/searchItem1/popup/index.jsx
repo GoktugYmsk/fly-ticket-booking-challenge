@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { AiOutlinePlusCircle, AiOutlineMinusCircle } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
+
+import { Input } from '@mui/material';
+import Button from '@mui/material/Button';
+import { AiOutlinePlusCircle, AiOutlineMinusCircle } from 'react-icons/ai';
+
 import { setPassengerInfo } from '../../../../configure';
 
 import './index.scss';
@@ -17,14 +21,14 @@ function PassengerPopup({ setPopup, setTicketAmount }) {
   };
 
   useEffect(() => {
-    const UserTicketAmount = {
+    const userTicketAmount = {
       adults: adultCount,
       children: childCount,
       babies: babyCount
     };
-    console.log(UserTicketAmount);
-    dispatch(setPassengerInfo(UserTicketAmount))
-    setTicketAmount(UserTicketAmount);
+    console.log(userTicketAmount);
+    dispatch(setPassengerInfo(userTicketAmount))
+    setTicketAmount(userTicketAmount);
   }, [adultCount, childCount, babyCount, setTicketAmount]);
 
   const handleAdultIncrement = () => {
@@ -73,46 +77,58 @@ function PassengerPopup({ setPopup, setTicketAmount }) {
   const handleBabyChange = (e) => {
     setBabyCount(e.target.value)
   }
+  const handleOutsideClick = (event) => {
+    if (!event.target.closest('.passengerpopup-container')) {
+      setPopup(false)
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleOutsideClick);
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, []);
 
   return (
     <div className="passengerpopup-container">
       <div className="passengerpopup-container__adult">
-        <p className="passengerpopup-container-p">Yetişkin</p>
+        <p className="passengerpopup-container-p">Adult</p>
         <AiOutlineMinusCircle
           className="passengerpopup-container__minus-icon"
           onClick={handleAdultDecrement}
         />
-        <input type="number" min="1" value={adultCount} onChange={handleAdultChange} />
+        <Input type="number" min="1" value={adultCount} onChange={handleAdultChange} />
         <AiOutlinePlusCircle
           className="passengerpopup-container__plus-icon"
           onClick={handleAdultIncrement}
         />
       </div>
       <div className="passengerpopup-container__child">
-        <p className="passengerpopup-container-p">Çocuk (2-12 Yaş)</p>
+        <p className="passengerpopup-container-p">Child (2-12 Years)</p>
         <AiOutlineMinusCircle
           className="passengerpopup-container__minus-icon"
           onClick={handleChildDecrement}
         />
-        <input type="number" min="0" value={childCount} onChange={handleChildChange} />
+        <Input type="number" min="0" value={childCount} onChange={handleChildChange} />
         <AiOutlinePlusCircle
           className="passengerpopup-container__plus-icon"
           onClick={handleChildIncrement}
         />
       </div>
       <div className="passengerpopup-container__baby">
-        <p className="passengerpopup-container-p">Bebek (0-2 Yaş)</p>
+        <p className="passengerpopup-container-p">Infant (0-2 Years)</p>
         <AiOutlineMinusCircle
           className="passengerpopup-container__minus-icon"
           onClick={handleBabyDecrement}
         />
-        <input type="number" min="0" value={babyCount} onChange={handleBabyChange} />
+        <Input type="number" min="0" value={babyCount} onChange={handleBabyChange} />
         <AiOutlinePlusCircle
           className="passengerpopup-container__plus-icon"
           onClick={handleBabyIncrement}
         />
       </div>
-      <button onClick={handleCloseClick}>Tamam</button>
+      <Button onClick={handleCloseClick}>Apply</Button>
     </div>
   );
 }

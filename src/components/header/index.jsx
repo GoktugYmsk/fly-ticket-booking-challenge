@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import Container from 'react-bootstrap/Container';
+import { useNavigate } from 'react-router-dom';
+
 import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import { FaBell } from 'react-icons/fa';
 import { FaPlaneDeparture } from 'react-icons/fa';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import { setReturnDate } from '../configure';
+
 import Login from '../content/loginPopup';
+
 import './index.scss';
+import { useDispatch } from 'react-redux';
 
 function Header() {
-  const [planePosition, setPlanePosition] = useState(0);
-  const [inform, setInform] = useState(true)
   const [isLogin, setIsLogin] = useState(false);
+  const [planePosition, setPlanePosition] = useState(0);
+
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,16 +33,6 @@ function Header() {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-
-  const newDate = new Date();
-  const day = newDate.getDate();
-  const month = (newDate.getMonth() + 1).toString().padStart(2, '0');
-  const year = newDate.getFullYear();
-  const date = day + '.' + month + '.' + year;
-
-
-  const logo =
-    'https://uploads-ssl.webflow.com/605c9d764f1ef938a009ac98/61e01bfbdd8632a72962edc2_Pinsoft_Yatay_Logo_mavi-for%20animation.svg';
 
   const handleKeyPress = (e) => {
     if (e.key === 'Escape') {
@@ -56,48 +51,37 @@ function Header() {
     setIsLogin(true);
   };
 
-  // const handleCloseInform = () => {
-  //   setInform(false)
-  // }
+  const handleMainPage = () => {
+    dispatch(setReturnDate(''))
+    navigate('/')
+  }
 
   return (
     <>
       <div className="header-container">
-        {inform &&
-          <div className="header-top-navbar">
-            <FaBell className="header-top-navbar__icon" />
-            {date}
-            <p>18 Yaş Altı Misafirlerin Suudi Arabistan'a Seyahat Şartı Hakkında</p>
-            <p>Daha Fazla →</p>
-            {/* <p className='header-top-navbar-close' onClick={handleCloseInform} >x</p> */}
+        <nav class="header-navbar">
+          <div onClick={handleMainPage} class="nav_logo">
+            <img className='nav_logo_main' src="./img/logo.png" alt="logo" />
+            Fly Pinsoft
           </div>
-        }
-        <Navbar expand="lg" className="bg-body-tertiary">
-          <img className="header-logo" src={logo} alt="Logo" />
-          <Container className="header-bootstrap-container">
-            <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="me-auto">
-                <Nav.Link href="#home">Home</Nav.Link>
-                <Nav.Link href="#link">Link</Nav.Link>
-                <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                  <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-                </NavDropdown>
-                <Nav.Link onClick={handleLogin}>Giriş Yap</Nav.Link>
-              </Nav>
-            </Navbar.Collapse>
-          </Container>
-        </Navbar>
+          <ul class="nav_links">
+            <Nav.Link href="#home">Home</Nav.Link>
+            <Nav.Link href="#link">Link</Nav.Link>
+            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+            </NavDropdown>
+            <Nav.Link onClick={handleLogin}>Login</Nav.Link>
+          </ul>
+        </nav>
         <div className="plane" style={{ transform: `translateX(${planePosition}px)` }}>
-          <FaPlaneDeparture />
+          <FaPlaneDeparture className='plane-icon' />
         </div>
       </div>
-      {isLogin && <Login />}
+      {isLogin && <Login setIsLogin={setIsLogin} />}
     </>
   );
 }

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { FaPlaneDeparture, FaMapMarkerAlt, FaPlane, FaHotel } from 'react-icons/fa';
-import { Outlet } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { FaPlaneDeparture, FaMapMarkerAlt, FaPlane, FaHotel, FaCheck } from 'react-icons/fa';
+import { setRefreshPassenger } from '../../configure';
 
 import SearchItem1 from './searchItem1';
 import SearchItem2 from './searchItem2';
@@ -8,9 +8,19 @@ import SearchItem3 from './searchItem3';
 import SearchItem4 from './searchItem4';
 
 import './index.scss';
+import { useDispatch, useSelector } from 'react-redux';
 
 function SearchContent() {
+  const [adultCount, setAdultCount] = useState(1);
+  const [childCount, setChildCount] = useState(0);
+  const [babyCount, setBabyCount] = useState(0);
   const [selectedItem, setSelectedItem] = useState('one');
+
+  const passName = useSelector((state) => state.passCheck.passName);
+
+  console.log('passName', passName)
+
+  const dispatch = useDispatch()
 
   const handleItemClick = (item) => {
     setSelectedItem(item);
@@ -27,6 +37,22 @@ function SearchContent() {
     content = <SearchItem4 />;
   }
 
+  // useEffect(() => {
+  //   dispatch(setPassName(''))
+  //   dispatch(setPassSurname(''))
+  // }, [])
+
+
+  const userTicketAmount = {
+    adults: adultCount,
+    children: childCount,
+    babies: babyCount
+  };
+
+  useEffect(() => {
+    dispatch(setRefreshPassenger(userTicketAmount))
+  }, [])
+
   return (
     <div className='SearchContent-container'>
       <div className='SearchContent-container__menu'>
@@ -36,13 +62,13 @@ function SearchContent() {
             onClick={() => handleItemClick('one')}
           >
             <FaPlaneDeparture className='SearchContent-container__icon' />
-            <p>Ucuz Uçak Bileti Ara</p>
+            <p>Search For Flights</p>
           </div>
           <div
             className={`SearchContent-container__menu-Item__two ${selectedItem === 'two' ? 'SearchContent-container-item__active' : ''}`}
             onClick={() => handleItemClick('two')}
           >
-            <FaMapMarkerAlt className='SearchContent-container__icon' />
+            <FaCheck className='SearchContent-container__icon' />
             <p>Online Check-In</p>
           </div>
           <div
@@ -50,14 +76,14 @@ function SearchContent() {
             onClick={() => handleItemClick('three')}
           >
             <FaPlane className='SearchContent-container__icon' />
-            <p>Uçuşunu Yönet</p>
+            <p>Manage Your Flight</p>
           </div>
           <div
             className={`SearchContent-container__menu-Item__four ${selectedItem === 'four' ? 'SearchContent-container-item__active' : ''}`}
             onClick={() => handleItemClick('four')}
           >
             <FaHotel className='SearchContent-container__icon' />
-            <p>Araç Kiralama / Konaklama</p>
+            <p>Car Rental / Hotels</p>
           </div>
         </div>
       </div>

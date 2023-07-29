@@ -1,0 +1,132 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
+
+
+
+@media (max-width: 767px) {
+
+  .footer {
+    background-color: #ffffff;
+    width: 100%;
+    font-family: "Poppins", sans-serif;
+  
+    .footer_container {
+      display: grid;
+      grid-template-columns: 100%;
+      grid-gap: 25px;
+    }
+  
+    .footer_col {
+      
+      h3 {
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #333333;
+      }
+      
+      h4 {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #333333;
+      }
+      
+      p {
+        color: #767268;
+        cursor: pointer;
+        transition: 0.3s;
+        margin: -1px;
+        
+        &:hover {
+          color: #333333;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+
+  .footer {
+    background-color: #ffffff;
+    padding: 5rem;
+    font-family: "Poppins", sans-serif;
+  
+    .footer_container {
+      display: grid;
+      grid-template-columns: 2fr repeat(3, 1fr);
+      gap: 5rem;
+    }
+  
+    .footer_col {
+      h3 {
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #333333;
+      }
+      
+      h4 {
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #333333;
+      }
+      
+      p {
+        margin-bottom: 1rem;
+        color: #767268;
+        cursor: pointer;
+        transition: 0.3s;
+        
+        &:hover {
+          color: #333333;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+
+  .footer {
+    background-color: #ffffff;
+    padding: 50px;
+    font-family: "Poppins", sans-serif;
+    
+  
+    .footer_container {
+      display: grid;
+      grid-template-columns: 2fr repeat(3, 1fr);
+      gap: 4rem;
+    }
+  
+    .footer_col {
+      h3 {
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #333333;
+      }
+      
+      h4 {
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #333333;
+      }
+      
+      p {
+        margin-bottom: 1rem;
+        color: #767268;
+        cursor: pointer;
+        transition: 0.3s;
+        
+        &:hover {
+          color: #333333;
+        }
+      }
+    }
+  }
+}
