@@ -75,20 +75,17 @@ function SearchItem2() {
         {info && (
           < div className='searchItem-two__container__ports' >
             <div className='searchItem-two__container__ports-info' >
-              <h3>{leavePortExplanation}</h3>
-              <h3>{arrivePortExplanation}</h3>
+              <p>{leavePortExplanation}</p><i class="fas fa-chevron-right"></i><p>{arrivePortExplanation}</p>
             </div>
             <div className='passenger-seat'>
               {passName?.map((name, passIndex) => {
                 if (passSurname[passIndex] === surname && pnrCode[passIndex] === pnr) {
                   return (
-                    <div key={passIndex}>
+                    <div className='passenger-seat-div1' key={passIndex}>
                       {seat.map((seat, key) => (
-                        <div key={key} >
-                          <p>İsim: {name}</p>
-                          <p>Soyisim: {surname}</p>
-                          <p>Sıra: {seat[passIndex].row}</p>
-                          <p>Kolon: {seat[passIndex].seatNumber}</p>
+                        <div className='passenger-seat-div2' key={key} >
+                          <p className='passenger-seat-div2-p'>{name} {surname}</p>
+                          <p>{seat[passIndex].row}/{seat[passIndex].seatNumber}</p>
                         </div>
                       ))}
                     </div>
@@ -97,7 +94,10 @@ function SearchItem2() {
                 return null;
               })}
             </div>
-            {selectedDateFormatted}
+            <div className='passenger-date'>
+              <p>{selectedDateFormatted}</p>
+            </div>
+            
           </div>
         )}
       </form >
