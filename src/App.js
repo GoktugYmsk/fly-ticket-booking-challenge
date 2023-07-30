@@ -19,9 +19,9 @@ import { setCompanyInfo, setCompanyInfoReturn, setFlightPortData } from './compo
 
 function App() {
 
-  const apiUrl = 'https://webapi-dev.eba-j3p8idgy.eu-north-1.elasticbeanstalk.com/api/airports/getall';
-  const apiUrlCompany = 'https://webapi-dev.eba-j3p8idgy.eu-north-1.elasticbeanstalk.com/api/flights/getdepartureflights';
-  const apiUrlCompanyReturn = 'https://webapi-dev.eba-j3p8idgy.eu-north-1.elasticbeanstalk.com/api/flights/getreturnflights';
+  const apiUrl = process.env.FLIGHTONE_URL;
+  const apiUrlCompany = process.env.FLIGHTONE_URL
+  const apiUrlCompanyReturn = process.env.FLIGHTONE_URL
   const flightPortData = useSelector((state) => state.portsData.flightPortData);
   const companyInfo = useSelector((state) => state.portsData.companyInfo);
 
