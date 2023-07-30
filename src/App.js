@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import PayScreen from './components/payScreen';
@@ -14,8 +14,51 @@ import SeatScreen from './components/seatScreen';
 import Deneme from './deneme';
 
 import './App.css'
+import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios';
+import { setCompanyInfo, setFlightPortData } from './components/configure';
 
 function App() {
+
+  const apiUrl = 'http://webapi-dev.eba-j3p8idgy.eu-north-1.elasticbeanstalk.com/api/airports/getall';
+  const apiUrlCompany = 'http://webapi-dev.eba-j3p8idgy.eu-north-1.elasticbeanstalk.com/api/flights/getall';
+  const flightPortData = useSelector((state) => state.portsData.flightPortData);
+  const companyInfo = useSelector((state) => state.portsData.companyInfo);
+
+  console.log('FLİGTHPORTSDATA', flightPortData)
+  console.log('companyInfo', companyInfo)
+
+  const dispatch = useDispatch()
+
+  // axios.get(apiUrl)
+  //   .then(response => {
+  //     dispatch(setFlightPortData(response.data))
+  //     console.log(response.data);
+  //   })
+  //   .catch(error => {
+
+  //     console.error(error);
+  //   });
+
+  useEffect(() => {
+    axios.get(apiUrl)
+      .then(response => {
+        dispatch(setFlightPortData(response.data))
+      })
+      .catch(error => {
+        console.error('Hata:', error);
+      });
+  }, []);
+
+  useEffect(() => {
+    axios.get(apiUrlCompany)
+      .then(response => {
+        dispatch(setCompanyInfo(response.data))
+      })
+      .catch(error => {
+        console.error('Hata:', error);
+      });
+  }, []);
 
   return (
     <div className="App">

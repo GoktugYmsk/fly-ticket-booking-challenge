@@ -18,10 +18,10 @@ function SearchItem2() {
   const flightPort = useSelector((state) => state.passFlightPort.flightPort);
   const selectedDate = useSelector((state) => state.optionDateDepp.selectedDate);
   const flightPortArrive = useSelector((state) => state.passFlightPortArrive.flightPortArrive);
-  const fligthPortData = useSelector((state) => state.optionDateArr.fligthPortData);
+  const flightPortData = useSelector((state) => state.optionDateArr.flightPortData);
 
-  const isLeavePort = fligthPortData.data.find((item) => item.code === flightPort);
-  const isArrivePort = fligthPortData.data.find((item) => item.code === flightPortArrive);
+  const isLeavePort = flightPortData.data.find((item) => item.code === flightPort);
+  const isArrivePort = flightPortData.data.find((item) => item.code === flightPortArrive);
 
   const leavePortExplanation = isLeavePort ? isLeavePort.explanation : '';
   const arrivePortExplanation = isArrivePort ? isArrivePort.explanation : '';

@@ -35,7 +35,7 @@ function PayScreen() {
 
   const totalPassenger = sessionStorage.getItem('totalPassenger')
 
-  const totalPrice = flightTicket.priceDetail.basePrice.amount * totalPassenger
+  const totalPrice = flightTicket.passengerPrices[0].basePrice * totalPassenger
 
   useEffect(() => {
     if (cardNumber.length === 16 && expiryMonth !== '' && expiryYear !== '' && cardName === 'Fly Pinsoft') {

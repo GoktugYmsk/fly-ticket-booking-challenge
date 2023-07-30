@@ -37,7 +37,9 @@ function SalesScreen() {
         navigate('/seat-screen');
     };
 
-    const totalPrice = flightTicket.priceDetail.basePrice.amount * totalPassenger;
+    console.log('flightTicket', flightTicket)
+
+    const totalPrice = flightTicket.passengerPrices[0].basePrice * totalPassenger;
 
     const renderPassengerDetails = () => {
         const passengerDetails = [];
@@ -131,14 +133,14 @@ function SalesScreen() {
                 </div>
             </div>
 
-            
-            
+
+
             <div className='salesScreen-container-content__box__invoice'>
                 <div className='flight-container'>
                     <h3>Passenger Information</h3>
                     {renderPassengerDetails()}
                 </div>
-                
+
                 <div className="flight-container larger-container" style={{ display: 'flex' }}>
                     <h3>Contact Information</h3>
                     <div classNamess="flight-box" style={{ flex: 1 }}>
@@ -150,7 +152,7 @@ function SalesScreen() {
                         <div className="no"><input type="email" id="email" name="email" required /></div>
                     </div>
                 </div>
-                
+
                 <div className="flight-container larger-container" style={{ display: 'flex' }}>
                     <h2>Billing Information</h2>
                     <div className="flight-box" style={{ flex: 1 }}>

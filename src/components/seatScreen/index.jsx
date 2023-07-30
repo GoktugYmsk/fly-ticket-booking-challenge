@@ -19,10 +19,10 @@ function SeatScreen() {
     const flightTicket = useSelector((state) => state.passTicket.flightTicket);
     const flightTicketReturn = useSelector((state) => state.passTicket.flightTicketReturn);
 
-    const fligthPortData = useSelector((state) => state.portsData.fligthPortData);
+    const flightPortData = useSelector((state) => state.portsData.flightPortData);
 
-    const isLeavePort = fligthPortData.data.find((item) => item.code === flightPort);
-    const isArrivePort = fligthPortData.data.find((item) => item.code === flightPortArrive);
+    const isLeavePort = flightPortData.data.find((item) => item.code === flightPort);
+    const isArrivePort = flightPortData.data.find((item) => item.code === flightPortArrive);
 
     const leavePortExplanation = isLeavePort ? isLeavePort.explanation : "";
     const arrivePortExplanation = isArrivePort ? isArrivePort.explanation : "";

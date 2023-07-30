@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Expedition from "../expedition";
 
-import passengerInformation from "../../assets/passenger";
 import MyImage from './arrow.png';
 
 import { setFlightTicket, setPassengerInfo, setFlightTicketReturn, setReturnDate } from "../configure";
@@ -25,7 +24,8 @@ function FlyCompanies() {
   const flightTicketReturn = useSelector((state) => state.passTicket.flightTicketReturn);
   const refreshPassenger = useSelector((state) => state.refreshPass.refreshPassenger);
   const flightPortArrive = useSelector((state) => state.passFlightPortArrive.flightPortArrive);
-  const fligthPortData = useSelector((state) => state.portsData.fligthPortData);
+  const flightPortData = useSelector((state) => state.portsData.flightPortData);
+  const companyInfo = useSelector((state) => state.portsData.companyInfo);
   const [expedition, setExpedetion] = useState(false)
 
   console.log('returnDate', returnDate)
@@ -36,13 +36,13 @@ function FlyCompanies() {
   const selectedDateTimestamp = selectedDate instanceof Date ? selectedDate.getTime() : null;
   const selectedDateTimestampArrive = returnDate instanceof Date ? returnDate.getTime() : null;
 
-  const isLeavePort = fligthPortData.data.find((item) => item.code === flightPort);
-  const isArrivePort = fligthPortData.data.find((item) => item.code === flightPortArrive);
+  const isLeavePort = flightPortData.data.find((item) => item.code === flightPort);
+  const isArrivePort = flightPortData.data.find((item) => item.code === flightPortArrive);
 
   const leavePortExplanation = isLeavePort ? isLeavePort.explanation : "";
   const arrivePortExplanation = isArrivePort ? isArrivePort.explanation : "";
 
-  const filteredPorts = passengerInformation.departureLegs.filter((item) => {
+  const filteredPorts = companyInfo.data.filter((item) => {
     return item.depPort === flightPort && item.arrPort === flightPortArrive;
   });
 
@@ -83,7 +83,7 @@ function FlyCompanies() {
     navigate("/");
   };
 
-  const filteredReturnFlights = passengerInformation.returnLegs.filter((item) => {
+  const filteredReturnFlights = companyInfo.data.filter((item) => {
     return item.depPort === flightPortArrive && item.arrPort === flightPort;
   });
 
@@ -175,7 +175,8 @@ function FlyCompanies() {
                     </div>
                     <div className="flyCompanies-container__box-amount partner">
                       <h4>Price(per)</h4>
-                      <p>{item.priceDetail.salesPrice.amount} $</p>
+                      <p>{item.passengerPrices[0].salesPrice} $</p>
+
                     </div>
                   </div>
                 </div>

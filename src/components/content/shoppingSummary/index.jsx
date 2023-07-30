@@ -30,7 +30,7 @@ function ShoppingSummary() {
   console.log(passName);
 
   const totalPassenger = sessionStorage.getItem("totalPassenger");
-  const totalPrice = flightTicket.priceDetail.basePrice.amount * totalPassenger;
+  const totalPrice = flightTicket.passengerPrices[0].basePrice * totalPassenger;
 
   const handleMainPage = () => {
     dispatch(setPassengerInfo(refreshPassenger));
