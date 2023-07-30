@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import Header from '../../header';
 
 import './index.scss';
 
@@ -37,21 +38,7 @@ function SignUp() {
 
     return (
         <>
-            <nav class="header-navbar">
-                <div onClick={handleMainPage} class="nav_logo">Fly Pinsoft</div>
-                <ul class="nav_links">
-                    <Nav.Link href="#home">Home</Nav.Link>
-                    <Nav.Link href="#link">Link</Nav.Link>
-                    <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                        <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                        <NavDropdown.Divider />
-                        <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-                    </NavDropdown>
-                    <Nav.Link onClick={handleLogin}>Login</Nav.Link>
-                </ul>
-            </nav>
+            <Header />
             <div className="signup-container">
                 <h2>Sign Up</h2>
                 <form onSubmit={handleSubmit}>
