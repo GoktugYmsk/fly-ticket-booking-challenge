@@ -40,8 +40,20 @@ function SeatScreen() {
         <>
             <Header className='header'>
             </Header><div className='chairScreen-container-content'>
-
                 <div className='info_box' >
+                    {
+                        activeDepart &&
+                        <Depart setActiveDepart={setActiveDepart} setActiveReturn={setActiveReturn} />
+                    }
+
+
+                    <div className='info_box' >
+                        {
+
+                            activeReturn &&
+                            <Return />
+                        }
+                    </div>
                     {
                         activeDepart &&
                         <Depart setActiveDepart={setActiveDepart} setActiveReturn={setActiveReturn} />

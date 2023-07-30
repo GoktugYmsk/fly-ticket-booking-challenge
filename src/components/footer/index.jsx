@@ -9,7 +9,7 @@ function Footer() {
     <footer class="footer">
       <div class="section_container footer_container">
         <div class="footer_col">
-          <h3>Our Company</h3>
+          <h3>Fly Pinsoft</h3>
           <p>
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rem atque ipsa veritatis iure fugit rerum adipisci velit recusandae itaque, placeat perspiciatis accusantium impedit in quasi quisquam quos blanditiis, cupiditate corporis.
           </p>

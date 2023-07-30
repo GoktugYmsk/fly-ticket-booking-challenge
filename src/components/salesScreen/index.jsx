@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import MyImage from './arrow.png';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { setPassName, setPassSurname, setPassengerInfo } from '../configure';
@@ -18,6 +19,9 @@ function SalesScreen() {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+
+    const imagePath = MyImage;
 
     const handleNameChange = (e, passengerIndex) => {
         const newName = e.target.value;
@@ -64,25 +68,22 @@ function SalesScreen() {
                 }
 
                 passengerDetails.push(
-                    <div key={passengerIndex} className='flight-contanier' style={{ display: 'flex' }}>
+                    <div key={passengerIndex} className='flight-contanier-box'>
                         <div className='passenger-leftInfo'>
                             <h4>{`${j}. ${passengerType}`}</h4>
                         </div>
-                        <div class="flight-box" style={{ flex: 1 }}>
-                            <div class="no-title">First Name:</div>
-                            <div class="no"><input onChange={(e) => handleNameChange(e, passengerIndex)} required /></div>
+                        <div className="flight-box-name">
+                            <div className="no"><input placeholder="First Name" onChange={(e) => handleNameChange(e, passengerIndex)} required /></div>
                         </div>
-                        <div class="flight-box" style={{ flex: 1 }}>
-                            <div class="no-title">Last Name:</div>
-                            <div class="no"><input onChange={(e) => handleSurnameChange(e, passengerIndex)} required /></div>
+                        <div className="flight-box-surname">
+                            <div className="no"><input placeholder="Last Name" onChange={(e) => handleSurnameChange(e, passengerIndex)} required /></div>
                         </div>
-                        <div class="flight-box" style={{ flex: 1 }}>
-                            <div class="time-title">ID Number:</div>
-                            <div class="time"><input type="text" /></div>
+                        <div className="flight-box-id">
+                            <div className="time"><input placeholder="ID Number" type="text" /></div>
                         </div>
-                        <div class="flight-box" style={{ flex: 1 }}>
-                            <div class="arrive-title">Birth Date:</div>
-                            <div class="arrive"><input type="date" name="birth-date" /></div>
+                        <div className="flight-box-birth">
+                            <div className="arrive-title">Birth Date:</div>
+                            <div className="arrive"><input placeholder="Gidiş tarihini seçiniz." type="date" name="birth-date" /></div>
                         </div>
                     </div>
                 );
@@ -101,34 +102,31 @@ function SalesScreen() {
             <Header>
                 {/* Header içeriği burada */}
             </Header>
-            <div className="container">
-                <div className="section-header">
-                    <h3>Flight Information</h3>
+            <div className="flyCompanies-container-content-container">
+                <div className="info-h3">
                 </div>
-                <div className="flight-info-container" style={{ display: 'flex' }}>
-                    <div className="flight-info" style={{ flex: 1 }}>
-                        <div className="info-label">Airline:</div>
+                <div className="flyCompanies-container__box">
+                    <div className="flyCompanies-container__box-airline partner">
                         <div className="info-value">{flightTicket.airline}</div>
                     </div>
-                    <div className="flight-info" style={{ flex: 1 }}>
-                        <div className="info-label">Flight Number:</div>
+                    <div className="flyCompanies-container__box-flightNo partner">
                         <div className="info-value">{flightTicket.flightNo}</div>
                     </div>
-                    <div className="flight-info" style={{ flex: 1 }}>
-                        <div className="info-label">Departure Time:</div>
-                        <div className="info-value">{flightTicket.depTime}</div>
+                    <div className="arrowIcon partner">
+                        <img className="arrowIcon" src={imagePath} alt="Ok İkonu" />
                     </div>
-                    <div className="flight-info" style={{ flex: 1 }}>
-                        <div className="info-label">Arrival Time:</div>
+                    <div className="flyCompanies-container__box-depTime partner">
                         <div className="info-value">{flightTicket.arrTime}</div>
                     </div>
-                    <div className="flight-info" style={{ flex: 1 }}>
-                        <div className="info-label">Passenger Number:</div>
-                        <div className="info-value">{totalPassenger}</div>
+                    <div className="flyCompanies-container__box-flightDuration partner">
+                        <div className="info-label">Passenger Number : </div>
+                        <div className="info-value"> &nbsp;{totalPassenger}</div>
                     </div>
-                    <div className="flight-info" style={{ flex: 1 }}>
-                        <div className="info-label">Price:</div>
-                        <div className="info-value">{totalPrice}</div>
+                    <div className="flyCompanies-container__box-amount">
+                        <div className="info-value">${totalPrice}</div>
+                    </div>
+                    <div className="flyCompanies-container__box-arrTime partner">
+                        <div className="info-value">{flightTicket.depTime}</div>
                     </div>
                 </div>
             </div>
@@ -136,8 +134,10 @@ function SalesScreen() {
 
 
             <div className='salesScreen-container-content__box__invoice'>
-                <div className='flight-container'>
-                    <h3>Passenger Information</h3>
+                <h3>Passenger Information</h3>
+
+                <div className='flight-passenger-container'>
+
                     {renderPassengerDetails()}
                 </div>
 
@@ -147,25 +147,22 @@ function SalesScreen() {
                         <div className="airline-title">Phone Number:</div>
                         <div className="airline"><input type="text" id="phone-number" name="phone-number" required /></div>
                     </div>
-                    <div className="flight-box" style={{ flex: 1 }}>
-                        <div className="no-title">Email:</div>
-                        <div className="no"><input type="email" id="email" name="email" required /></div>
+                    <div className="flight-box-mail">
+                        <input placeholder="Email" type="email" id="email" name="email" required />
                     </div>
                 </div>
 
-                <div className="flight-container larger-container" style={{ display: 'flex' }}>
-                    <h2>Billing Information</h2>
-                    <div className="flight-box" style={{ flex: 1 }}>
-                        <div className="airline-title">Name:</div>
-                        <div className="airline"><input type="text" id="billing-name" name="billing-name" required /></div>
+                <h3>Billing Information</h3>
+                <div className="flight-larger-container-bill">
+
+                    <div className="flight-box-name">
+                        <input placeholder="Name" type="text" id="billing-name" name="billing-name" required />
                     </div>
-                    <div className="flight-box" style={{ flex: 1 }}>
-                        <div className="no-title">Last Name:</div>
-                        <div className="no"><input type="text" id="billing-last-name" name="billing-last-name" required /></div>
+                    <div className="flight-box-surname">
+                        <input placeholder="Last Name" type="text" id="billing-last-name" name="billing-last-name" required />
                     </div>
-                    <div className="flight-box" style={{ flex: 1 }}>
-                        <div className="depart-title">ID Number:</div>
-                        <div className="depart"><input type="text" id="billing-id-number" name="billing-id-number" required /></div>
+                    <div className="flight-box-id">
+                        <input placeholder="ID Number" type="text" id="billing-id-number" name="billing-id-number" required />
                     </div>
                 </div>
                 <div className="insurance">
