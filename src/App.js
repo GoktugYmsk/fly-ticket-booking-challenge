@@ -41,7 +41,7 @@ function App() {
   //   });
 
   useEffect(() => {
-    axios.get(apiUrl)
+    axios.get(`${apiUrl}/airports/getall`)
       .then(response => {
         dispatch(setFlightPortData(response.data))
       })
@@ -52,8 +52,10 @@ function App() {
 
 
 
+
   useEffect(() => {
-    axios.get(apiUrlCompany)
+    axios.get(`${apiUrlCompany}/flights/getdepartureflights`)
+
       .then(response => {
         dispatch(setCompanyInfo(response.data))
       })
@@ -63,7 +65,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    axios.get(apiUrlCompanyReturn)
+    axios.get(`${apiUrlCompanyReturn}/flights/getreturnflights`)
       .then(response => {
         dispatch(setCompanyInfoReturn(response.data))
       })
