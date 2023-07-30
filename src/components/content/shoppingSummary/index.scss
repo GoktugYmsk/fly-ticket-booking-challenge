@@ -2,7 +2,6 @@
 
 @media (max-width: 767px) {
 
-
     .shoppingSummary-container {
         font-family: "Poppins", sans-serif;
         display: flex;
@@ -33,7 +32,7 @@
 
                 h3 {
                     padding: 20px;
-
+                    display: none;
                 }
             }
         }
@@ -44,7 +43,7 @@
             justify-content: center;
             flex-direction: column;
             background: rgb(255, 255, 255);
-            height: 70vh;
+            min-height: 70vh;
 
 
             h5 {
@@ -54,7 +53,7 @@
                 ;
 
                 &:hover {
-                    color: #c6a74b;
+                    color: #f05a28;
                 }
             }
         }
@@ -67,83 +66,196 @@
             height: auto;
             padding: 20px;
             width: 90%;
+            box-sizing: border-box;
             background: rgb(255, 255, 255);
             box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.1);
             border-radius: 30px;
-            margin-bottom: 50px;
+            margin-bottom: 30px;
+
+            .shoppingSummary-container-box__list-text{
+                color: rgb(61, 70, 92);
+                font-weight: bold;
+                background-color: rgb(243, 243, 243);
+                padding: 10px;
+                width: 100%;
+                border-radius: 10px;
+                border: 1px solid rgba(202, 208, 219, 0.4);
+                margin-top: 0px;
+            }
 
 
             .shoppingSummary-container-box__list-top {
                 display: grid;
                 align-items: center;
+                width: 100%;
+                min-height: 170px;
                 justify-content: center;
-                gap: 10px;
-                padding: 5px;
                 color: #3d465c;
-                font-weight: 400;
+                grid-template-columns: 15% 10% 15% 35% 25%;
+                grid-template-rows: 25% 15% 40% 20%;
+                grid-template-areas:
+                "a a . . . "
+                ". c c . d "
+                ". f f x g "
+                "b e e e . ";
 
+
+                .list-top-a {
+                    grid-area: a;
+                    font-weight: bold;
+                    text-align: left;
+                }
+
+                .list-top-b {
+                    grid-area: b;
+                    text-align: left;
+                    color: rgb(173, 176, 181);
+                }
+
+                .list-top-c {
+                    grid-area: c;
+                    color: rgb(173, 176, 181);
+                    bottom: 0 !important;
+                    margin-bottom: 0px !important;
+                }
+
+                .list-top-d {
+                    grid-area: d;
+                    color: rgb(173, 176, 181);
+                    margin-bottom: 0px !important;
+                }
+
+                .list-top-e {
+                    grid-area: e;
+                    font-weight: bold;
+                    text-align: right;
+                    color: #f05a28;
+                }
+
+                .list-top-f {
+                    grid-area: f;
+                    font-weight: bold;
+                    color: rgb(126, 126, 126);
+                    text-align: right;
+                }
+                .list-top-g {
+                    grid-area: g;
+                    font-weight: bold;
+                    color: rgb(126, 126, 126);
+                    text-align: left;
+                }
+                .list-top-x {
+                    grid-area: x;
+                    width: 100%;
+                    margin-top: -9%;
+                }
 
                 p {
-                    font-size: 18px;
+                    text-align: center;
+                    font-size: 14px;
                 }
             }
 
             .shoppingSummary-container-box__list-bottom {
-                display: flex;
+                display: grid;
                 background: rgb(243, 243, 243);
                 width: 100%;
                 align-items: center;
-                justify-content: space-around;
                 border-radius: 10px;
                 margin-bottom: 10px;
+                grid-template-columns: 25% 40% 35%;
+                border: 1px solid rgba(202, 208, 219, 0.4);
 
                 .shoppingSummary-container-box__list-name {
-                    display: flex;
-
-
+                    width: 100%;
 
                     .name {
-                        display: flex;
-                        flex-direction: column;
                         font-size: 18px;
                         font-weight: 400;
-                        padding-inline: 10px;
-                        padding-top: 15px;
-
-                        .passenger-name {
-                            font-weight: 500;
-                            color: #3d465c;
-                        }
 
                         .name-flex {
                             display: flex;
                             gap: 20px;
                             font-size: 18px;
+                            justify-content: end;
+                            padding: 10px 0px;
+                            border-bottom: 1px dashed rgba(202, 208, 219, 0.7);
+                            border-bottom-left-radius: 10px;
+
+                            p {
+                                margin-bottom: 0px !important;
+                                font-size: 11px;
+                            }
+
+                            .passenger-name {
+                                font-weight: 500;
+                                color: #3d465c;
+                                display: none;
+                            }
 
                         }
+
+                        
                     }
                 }
 
                 .shoppingSummary-container-box__list-surName {
                     display: flex;
+                    width: 100%;
 
                     .surname {
                         display: flex;
                         flex-direction: column;
+                        width: 100%;
                         font-size: 18px;
                         font-weight: 400;
-                        padding-inline: 10px;
-                        padding-top: 15px;
 
                         .passenger-name {
                             font-weight: 500;
                             color: #3d465c;
+                            display: none;
                         }
 
                         .surname-flex {
                             display: flex;
                             gap: 20px;
+                            padding: 10px 0px;
+                            border-bottom: 1px dashed rgba(202, 208, 219, 0.7);
+
+                            p {
+                                margin-bottom: 0px !important;
+                                font-size: 11px;
+                            }
                         }
+                    }
+                }
+
+                .passenger-seat{
+                    display: flex;
+                    float: left;
+                    width: 100%;
+                    height: 100%;
+                    border-bottom-right-radius: 10px;
+                    .passenger-seat__info{
+
+                        display: flex;
+                        flex-direction: column;
+                        width: 100%;
+                        font-size: 11px;
+                        font-weight: 400;
+
+                        .passenger-seat__info-seatNo{
+                            border-bottom: 1px dashed rgba(202, 208, 219, 0.7);
+                            border-bottom-right-radius: 10px;
+                            .passenger-seat__info-seatNo-p{
+                                color: rgb(173, 176, 188);
+                                padding: 10px 0px;
+                                margin-bottom: 0px !important;
+                                
+                            }
+                        }
+
+                        
                     }
                 }
             }
@@ -215,7 +327,8 @@
             justify-content: center;
             flex-direction: column;
             background: rgb(255, 255, 255);
-            height: 70vh;
+            min-height: 70vh;
+            margin: 100px 0px;
 
 
             h5 {
@@ -225,7 +338,7 @@
                 ;
 
                 &:hover {
-                    color: #c6a74b;
+                    color: #f05a28;
                 }
             }
         }
@@ -238,81 +351,202 @@
             height: auto;
             padding: 20px;
             width: 80%;
+            box-sizing: border-box;
             background: rgb(255, 255, 255);
             box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.1);
             border-radius: 30px;
+            margin-bottom: 30px;
+
+            .shoppingSummary-container-box__list-text{
+                color: rgb(61, 70, 92);
+                font-weight: bold;
+                background-color: rgb(243, 243, 243);
+                padding: 10px;
+                width: 100%;
+                border-radius: 10px;
+                border: 1px solid rgba(202, 208, 219, 0.4);
+                margin-top: 0px;
+            }
 
 
             .shoppingSummary-container-box__list-top {
-                display: flex;
+                display: grid;
                 align-items: center;
+                width: 100%;
+                height: 150px;
                 justify-content: center;
-                gap: 20px;
-                padding: 10px;
                 color: #3d465c;
+                grid-template-columns: 15% 10% 15% 40% 20%;
+                grid-template-rows: 25% 40% 15% 20%;
+                grid-template-areas:
+                    "a a c . d "
+                    ". . f x g "
+                    ". . . . . "
+                    "b e e e . ";
 
+
+                .list-top-a {
+                    grid-area: a;
+                    font-weight: bold;
+                    text-align: left;
+                }
+
+                .list-top-b {
+                    grid-area: b;
+                    color: rgb(173, 176, 181);
+                    text-align: left;
+                }
+
+                .list-top-c {
+                    grid-area: c;
+                    color: rgb(173, 176, 181);
+                    bottom: 0 !important;
+                    margin-bottom: 0px !important;
+                }
+
+                .list-top-d {
+                    grid-area: d;
+                    color: rgb(173, 176, 181);
+                    margin-bottom: 0px !important;
+                }
+
+                .list-top-e {
+                    grid-area: e;
+                    font-weight: bold;
+                    color: #f05a28;
+                }
+
+                .list-top-f {
+                    grid-area: f;
+                    font-weight: bold;
+                    color: rgb(126, 126, 126);
+                    text-align: right;
+                }
+                .list-top-g {
+                    grid-area: g;
+                    font-weight: bold;
+                    color: rgb(126, 126, 126);
+                    text-align: left;
+                }
+
+                .list-top-x {
+                    grid-area: x;
+                    width: 100%;
+                    margin-top: -5%;
+                }
 
                 p {
-                    font-size: 20px;
+                    text-align: center;
+                    font-size: 19px;
                 }
             }
 
             .shoppingSummary-container-box__list-bottom {
-                display: flex;
+                display: grid;
                 background: rgb(243, 243, 243);
                 width: 100%;
                 align-items: center;
-                justify-content: space-around;
                 border-radius: 10px;
                 margin-bottom: 10px;
+                grid-template-columns: 25% 40% 35%;
+                border: 1px solid rgba(202, 208, 219, 0.4);
 
                 .shoppingSummary-container-box__list-name {
-                    display: flex;
-
-
+                    width: 100%;
 
                     .name {
-                        display: flex;
-                        flex-direction: column;
                         font-size: 18px;
                         font-weight: 400;
-                        padding-inline: 10px;
-                        padding-top: 15px;
-
-                        .passenger-name {
-                            font-weight: 500;
-                            color: #3d465c;
-                        }
 
                         .name-flex {
                             display: flex;
                             gap: 20px;
                             font-size: 18px;
+                            justify-content: end;
+                            padding: 10px 0px;
+                            border-bottom: 1px dashed rgba(202, 208, 219, 0.7);
+                            border-bottom-left-radius: 10px;
 
+                            p {
+                                margin-bottom: 0px !important;
+                            }
+
+                            .passenger-name {
+                                font-weight: 500;
+                                color: #3d465c;
+                                display: none;
+                            }
+
+                        }
+
+                        .surname-flex {
+                            display: flex;
+                            gap: 20px;
+
+                            .passenger-name {
+                                font-weight: 500;
+                                color: #3d465c;
+                            }
                         }
                     }
                 }
 
                 .shoppingSummary-container-box__list-surName {
                     display: flex;
+                    width: 100%;
 
                     .surname {
                         display: flex;
                         flex-direction: column;
+                        width: 100%;
                         font-size: 18px;
                         font-weight: 400;
-                        padding-inline: 10px;
-                        padding-top: 15px;
 
                         .passenger-name {
                             font-weight: 500;
                             color: #3d465c;
+                            display: none;
                         }
 
                         .surname-flex {
                             display: flex;
                             gap: 20px;
+                            padding: 10px 0px;
+                            border-bottom: 1px dashed rgba(202, 208, 219, 0.7);
+
+                            p {
+                                margin-bottom: 0px !important;
+                            }
                         }
+                    }
+                }
+
+                .passenger-seat{
+                    display: flex;
+                    float: left;
+                    width: 100%;
+                    height: 100%;
+                    border-bottom-right-radius: 10px;
+                    .passenger-seat__info{
+
+                        display: flex;
+                        flex-direction: column;
+                        width: 100%;
+                        font-size: 18px;
+                        font-weight: 400;
+
+                        .passenger-seat__info-seatNo{
+                            border-bottom: 1px dashed rgba(202, 208, 219, 0.7);
+                            border-bottom-right-radius: 10px;
+                            .passenger-seat__info-seatNo-p{
+                                color: rgb(173, 176, 188);
+                                padding: 10px 0px;
+                                margin-bottom: 0px !important;
+                                
+                            }
+                        }
+
+                        
                     }
                 }
             }
@@ -395,7 +629,7 @@
                 ;
 
                 &:hover {
-                    color: #c6a74b;
+                    color: #f05a28;
                 }
             }
         }
@@ -412,56 +646,88 @@
             background: rgb(255, 255, 255);
             box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.1);
             border-radius: 30px;
+            margin-bottom: 30px;
+
+            .shoppingSummary-container-box__list-text{
+                color: rgb(61, 70, 92);
+                font-weight: bold;
+                background-color: rgb(243, 243, 243);
+                padding: 10px;
+                width: 100%;
+                border-radius: 10px;
+                border: 1px solid rgba(202, 208, 219, 0.4);
+                margin-top: 0px;
+            }
 
 
             .shoppingSummary-container-box__list-top {
                 display: grid;
                 align-items: center;
-                width: 90%;
-                height: 150px;
+                width: 95%;
+                min-height: 170px;
                 justify-content: center;
                 color: #3d465c;
                 grid-template-columns: 15% 10% 15% 45% 15%;
-                grid-template-rows: 25% 50% 25%;
+                grid-template-rows: 25% 40% 15% 20%;
                 grid-template-areas:
-                    "a . c x d "
-                    ". . c x d "
+                    "a a c . d "
+                    ". . f x g "
+                    ". . . . . "
                     "b e e e . ";
 
 
                 .list-top-a {
                     grid-area: a;
                     font-weight: bold;
+                    text-align: left;
                 }
 
                 .list-top-b {
                     grid-area: b;
                     color: rgb(173, 176, 181);
+                    text-align: left;
                 }
 
                 .list-top-c {
                     grid-area: c;
                     color: rgb(173, 176, 181);
+                    bottom: 0 !important;
+                    margin-bottom: 0px !important;
                 }
 
                 .list-top-d {
                     grid-area: d;
                     color: rgb(173, 176, 181);
+                    margin-bottom: 0px !important;
                 }
 
                 .list-top-e {
                     grid-area: e;
                     font-weight: bold;
+                    color: #f05a28;
+                }
+                .list-top-f {
+                    grid-area: f;
+                    font-weight: bold;
+                    color: rgb(126, 126, 126);
+                    text-align: right;
+                }
+                .list-top-g {
+                    grid-area: g;
+                    font-weight: bold;
+                    color: rgb(126, 126, 126);
+                    text-align: left;
                 }
 
                 .list-top-x {
                     grid-area: x;
                     width: 100%;
+                    margin-top: -3%;
                 }
 
                 p {
                     text-align: center;
-                    font-size: 23px;
+                    font-size: 19px;
                 }
             }
 
@@ -472,7 +738,7 @@
                 align-items: center;
                 border-radius: 10px;
                 margin-bottom: 10px;
-                grid-template-columns: 50% 50%;
+                grid-template-columns: 30% 35% 35%;
                 border: 1px solid rgba(202, 208, 219, 0.4);
 
                 .shoppingSummary-container-box__list-name {
@@ -537,12 +803,40 @@
                             gap: 20px;
                             padding: 10px 0px;
                             border-bottom: 1px dashed rgba(202, 208, 219, 0.7);
-                            border-bottom-right-radius: 10px;
 
                             p {
                                 margin-bottom: 0px !important;
                             }
                         }
+                    }
+                }
+
+                .passenger-seat{
+                    display: flex;
+                    float: left;
+                    width: 100%;
+                    height: 100%;
+                    border-bottom-right-radius: 10px;
+                    .passenger-seat__info{
+
+                        display: flex;
+                        flex-direction: column;
+                        width: 100%;
+                        font-size: 18px;
+                        font-weight: 400;
+
+                        .passenger-seat__info-seatNo{
+                            border-bottom: 1px dashed rgba(202, 208, 219, 0.7);
+                            border-bottom-right-radius: 10px;
+                            .passenger-seat__info-seatNo-p{
+                                color: rgb(173, 176, 188);
+                                padding: 10px 0px;
+                                margin-bottom: 0px !important;
+                                
+                            }
+                        }
+
+                        
                     }
                 }
             }

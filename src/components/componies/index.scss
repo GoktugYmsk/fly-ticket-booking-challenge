@@ -1069,6 +1069,7 @@
             .flyCompanies-container-content-container {
                 width: 80%;
 
+
                 .flyCompanies-container__box {
                     display: grid;
                     align-items: center;
@@ -1157,18 +1158,16 @@
                     h4 {
                         display: none;
                     }
+
+                
                 }
 
-                .flyCompanies-container__box.selected {
-                    background-color: rgb(240, 90, 40);
-                    color: white;
 
-                    p {
-                        color: white;
-                    }
-                }
+                
+                
 
             }
+            
 
             .flyCompanies-container__box-notFound {
                 display: flex;
