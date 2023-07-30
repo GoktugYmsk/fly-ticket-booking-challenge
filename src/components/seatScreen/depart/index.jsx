@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setSeat } from '../../configure';
-import { BsFillPersonFill } from 'react-icons/bs';
+import { BsFillPersonFill, BsArrowRight } from 'react-icons/bs';
 import { AiOutlineClose } from 'react-icons/ai';
 
 
@@ -284,14 +284,13 @@ function Depart({ setActiveDepart, setActiveReturn }) {
                         <div>
                             {formattedSelectedDate}
                             <div>
-                                <p>{leavePortExplanation}</p>
-                                <p>{arrivePortExplanation}</p>
+                                <p>{leavePortExplanation} <BsArrowRight /> {arrivePortExplanation}</p>
                             </div>
                             <div>
                                 <p className="list-top-a">{flightTicket.airline}</p>
-                                <p className="list-top-b">{flightTicket.flightNo}</p>
-                                <p className="list-top-c">{flightTicket.depTime}</p>
-                                <p className="list-top-d">{flightTicket.arrTime}</p>
+                                <p className="list-top-b">No:  {flightTicket.flightNo}</p>
+                                <p className="list-top-c">Depart:  {flightTicket.depTime}</p>
+                                <p className="list-top-d">Arrive:  {flightTicket.arrTime}</p>
                             </div>
                         </div>
 

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { setSeatReturn } from '../../configure';
 import Header from '../../header';
 import Footer from '../../footer';
-import { BsFillPersonFill } from 'react-icons/bs';
+import { BsFillPersonFill, BsArrowRight } from 'react-icons/bs';
 import { AiOutlineClose } from 'react-icons/ai';
 
 
@@ -271,14 +271,13 @@ function Return() {
                         <div>
                             {formattedReturnDate}
                             <div>
-                                <p>{arrivePortExplanation}</p>
-                                <p>{leavePortExplanation}</p>
+                                <p>{arrivePortExplanation} <BsArrowRight /> {leavePortExplanation}</p>
                             </div>
                             <div>
                                 <p className="list-top-a">{flightTicketReturn.airline}</p>
-                                <p className="list-top-b">{flightTicketReturn.flightNo}</p>
-                                <p className="list-top-c">{flightTicketReturn.depTime}</p>
-                                <p className="list-top-d">{flightTicketReturn.arrTime}</p>
+                                <p className="list-top-b">No: {flightTicketReturn.flightNo}</p>
+                                <p className="list-top-c">Depart:  {flightTicketReturn.depTime}</p>
+                                <p className="list-top-d">Arrive:  {flightTicketReturn.arrTime}</p>
                             </div>
                         </div>
                     </div>

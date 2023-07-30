@@ -4,6 +4,12 @@
 $mainRed: #F05A28;
 
 
+@import '~react-datepicker/dist/react-datepicker.css';
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
+
+$mainRed: #F05A28;
+
+
 @media (max-width: 767px) {
 
     .searchItem-one__container {
@@ -625,8 +631,8 @@ $mainRed: #F05A28;
             right: 0;
             bottom: 0;
             border-radius: 4px;
-            background-color: rgb(244, 246, 248);
-            box-shadow: 2px 2px 4px rgba(93, 93, 93, 0.2);
+            background-color: rgba(140, 140, 140, 0.038);
+            border: 1px solid #e0e0e0;
             -webkit-transition: .4s;
             transition: .4s;
             align-items: center;
@@ -650,9 +656,9 @@ $mainRed: #F05A28;
             height: 26px;
             width: 150px;
             left: 4px;
-            bottom: 4px;
-            background-color: #ffffff4f;
-            box-shadow: 2px 2px 4px rgb(43, 43, 43);
+            bottom: 3px;
+            background-color: rgba(129, 129, 129, 0.355);
+            border: 1px solid #cecece;
             opacity: 0.6;
             -webkit-transition: .4s;
             transition: .4s;
@@ -675,12 +681,10 @@ $mainRed: #F05A28;
         .searchItem-one__container-passenger-amount {
             display: flex;
             flex-direction: column;
-            position: relative;
-            bottom: 10px;
 
             p {
                 font-weight: bold;
-                margin-bottom: 25px;
+                margin-bottom: 7px;
             }
 
 
@@ -689,8 +693,8 @@ $mainRed: #F05A28;
                 font-size: 15px;
                 font-weight: 320;
                 margin-bottom: 32px;
-                background-color: rgb(244, 246, 248);
-                box-shadow: 2px 2px 4px rgba(93, 93, 93, 0.2);
+                background-color: rgb(255, 255, 255);
+                border: 1px solid #e0e0e0;
                 padding: 8px;
                 border-radius: 4px;
             }
@@ -710,10 +714,11 @@ $mainRed: #F05A28;
                 justify-content: space-evenly;
                 gap: 20px;
                 width: 300px;
+                margin-bottom: 25px;
 
                 p {
                     font-weight: bold;
-                    margin-bottom: 18px;
+                    margin-bottom: 7px;
 
                 }
 
@@ -722,14 +727,16 @@ $mainRed: #F05A28;
                     flex-direction: column;
                     align-content: center;
                     justify-content: center;
-                    position: relative;
-                    bottom: 10px;
                     width: 130px;
                     cursor: pointer;
 
 
                     .calendar {
                         width: 125px;
+
+                        input {
+                            background-color: #fbfbfb;
+                        }
                     }
                 }
 
@@ -737,8 +744,6 @@ $mainRed: #F05A28;
                     display: flex;
                     align-items: center;
                     justify-content: space-around;
-                    position: relative;
-                    bottom: 10px;
                     width: 130px;
                     margin-left: 30px;
 
@@ -746,13 +751,17 @@ $mainRed: #F05A28;
 
 
                     .calendar {
-                        margin-top: 18px;
+                        margin-top: 7px;
                         width: 125px;
+
+                        input {
+                            background-color: #fbfbfb;
+                        }
 
                     }
 
                     p {
-                        margin-bottom: 18px;
+                        margin-bottom: 7px;
                     }
                 }
             }
@@ -766,6 +775,7 @@ $mainRed: #F05A28;
                 justify-content: space-around;
 
                 width: 300px;
+                height: 100%;
                 color: black;
 
                 p {
@@ -791,8 +801,8 @@ $mainRed: #F05A28;
                         background-color: transparent;
                         border-radius: 0;
                         color: #000000;
-                        background-color: rgb(244, 246, 248);
-                        box-shadow: 2px 2px 4px rgba(93, 93, 93, 0.2);
+                        background-color: rgb(255, 255, 255);
+                        border: 1px solid #e0e0e0;
                         padding: 8px;
                         border-radius: 4px;
 
