@@ -41,7 +41,7 @@ function SalesScreen() {
         navigate('/seat-screen');
     };
 
-    const totalPrice = flightTicket.priceDetail.basePrice.amount * totalPassenger;
+    const totalPrice = flightTicket.passengerPrices[0].basePrice * totalPassenger;
 
     const renderPassengerDetails = () => {
         const passengerDetails = [];

@@ -7,10 +7,6 @@ import Footer from "../../footer";
 import "./index.scss";
 import MyImage from './arrow.png';
 
-<<<<<<< HEAD
-
-=======
->>>>>>> Göktuğ
 
 
 function ShoppingSummary() {
@@ -21,13 +17,9 @@ function ShoppingSummary() {
   const refreshPassenger = useSelector((state) => state.refreshPass.refreshPassenger);
   const flightTicketReturn = useSelector((state) => state.passTicket.flightTicketReturn);
 
-<<<<<<< HEAD
 
   const flightPortData = useSelector((state) => state.portsData.flightPortData);
-=======
-  const flightPortData = useSelector((state) => state.portsData.flightPortData);
 
->>>>>>> Göktuğ
   const seat = useSelector((state) => state.seatReserve.seat);
   const seatReturn = useSelector((state) => state.seatReserve.seatReturn);
 
