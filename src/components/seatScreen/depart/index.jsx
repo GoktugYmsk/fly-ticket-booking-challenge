@@ -4,26 +4,26 @@ import { useNavigate } from 'react-router-dom';
 import { setSeat } from '../../configure';
 import { BsFillPersonFill } from 'react-icons/bs';
 import { AiOutlineClose } from 'react-icons/ai';
-import flightPorts from '../../../assets/flightPorts';
 
 
 
 function Depart({ setActiveDepart, setActiveReturn }) {
 
-    
-    
+
+
     const [formattedSelectedDate, setFormattedSelectedDate] = useState("");
-    
+
+    const flightPortData = useSelector((state) => state.portsData.flightPortData);
 
     const selectedDate = useSelector((state) => state.optionDateDepp.selectedDate);
-   
+
     const flightPort = useSelector((state) => state.passFlightPort.flightPort);
     const flightPortArrive = useSelector((state) => state.passFlightPortArrive.flightPortArrive);
     const flightTicket = useSelector((state) => state.passTicket.flightTicket);
- 
 
-    const isLeavePort = flightPorts.ports.find((item) => item.code === flightPort);
-    const isArrivePort = flightPorts.ports.find((item) => item.code === flightPortArrive);
+
+    const isLeavePort = flightPortData.data.find((item) => item.code === flightPort);
+    const isArrivePort = flightPortData.data.find((item) => item.code === flightPortArrive);
 
     const leavePortExplanation = isLeavePort ? isLeavePort.explanation : "";
     const arrivePortExplanation = isArrivePort ? isArrivePort.explanation : "";
@@ -32,14 +32,14 @@ function Depart({ setActiveDepart, setActiveReturn }) {
         const selectedDateFormatted = selectedDate instanceof Date ? selectedDate.toDateString() : "";
         setFormattedSelectedDate(selectedDateFormatted);
 
-        
+
     }, [selectedDate]);
 
 
 
 
 
-    
+
     const [selectedSeat, setSelectedSeat] = useState(null);
     const [reservedSeats, setReservedSeats] = useState([]);
     const [popup, setPopup] = useState(false);
@@ -183,8 +183,8 @@ function Depart({ setActiveDepart, setActiveReturn }) {
                             onClick={() => handleSeatClick(j, i)}
                             style={seatStyle}
                         >
-                            
-                            {isSelected? <BsFillPersonFill  color="white"/> : getAlphabeticRow(i)}
+
+                            {isSelected ? <BsFillPersonFill color="white" /> : getAlphabeticRow(i)}
                         </div>
                         {i === 3 && <div className='row-number'>{j}</div>}
                     </React.Fragment>
@@ -201,82 +201,80 @@ function Depart({ setActiveDepart, setActiveReturn }) {
     return (
         <>
             {popup && (
-                    <div className='seat-popup__bottom'>
-                        <p>Do you approve the seat selection ?</p>
-                        <button onClick={handleReservation}>Yes</button>
-                    </div>
-                )}
-                <div className='upper_div'>
-                    <h1>Choose Your Seat</h1>
-                    <button >Skip</button>
+                <div className='seat-popup__bottom'>
+                    <p>Do you approve the seat selection ?</p>
+                    <button onClick={handleReservation}>Yes</button>
                 </div>
-                
-                <div className='middle_div'>
-                    <div className='chairScreen-container__box'>
-                        <div className='chairScreen-container__box-passengerSide-first'>
-                            <div className='chairScreen-container__box-passengerSide-second'>
-                                <div className='second-seat'>{renderSeatsSecond()}</div>
-                            </div>
+            )}
+            <div className='upper_div'>
+                <h1>Choose Your Seat</h1>
+                <button >Skip</button>
+            </div>
+
+            <div className='middle_div'>
+                <div className='chairScreen-container__box'>
+                    <div className='chairScreen-container__box-passengerSide-first'>
+                        <div className='chairScreen-container__box-passengerSide-second'>
+                            <div className='second-seat'>{renderSeatsSecond()}</div>
                         </div>
                     </div>
-                    <img className='plane_top_view' src="https://www.delta.com/content/dam/delta-www/responsive/airports-aircraft/Boeing/LOPA/757-200-75d-seat-map-static-mobile.png" alt="plane" />
-                    <div className='legend'><div className='legend_item'><div className='legend_box_reserved'></div><span>Reserved</span></div>
-                        <div className='legend_item'><div className='legend_box_selected'></div><span>Selected</span></div>
-                        <div className='legend_item'><div className='legend_box_empty'></div><span>Empty</span></div>
-                    </div>
-                    <div className='info_box_group'>
-                        <div className='info_box'>
+                </div>
+                <img className='plane_top_view' src="https://www.delta.com/content/dam/delta-www/responsive/airports-aircraft/Boeing/LOPA/757-200-75d-seat-map-static-mobile.png" alt="plane" />
+                <div className='legend'><div className='legend_item'><div className='legend_box_reserved'></div><span>Reserved</span></div>
+                    <div className='legend_item'><div className='legend_box_selected'></div><span>Selected</span></div>
+                    <div className='legend_item'><div className='legend_box_empty'></div><span>Empty</span></div>
+                </div>
+                <div className='info_box_group'>
+                    <div className='info_box'>
 
-                            
-
-                            <h3>Passengers</h3>
-                            <div className='info_box-list' >
-                                <div className='info_box-list-name' >
-                                    <p>First Name:</p>
-                                    {passName?.map((name, index) => {
-                                        if (passSurname[index]) {
-                                            return (
-                                                <div key={index}>
-                                                    <p className='searchItem-two__container__ports-info__firstp'>{name}</p>
-                                                </div>
-                                            );
-                                        } else {
-                                            return null;
-                                        }
-                                    })}
-                                </div>
-                                <div className='info_box-list-surname' >
-                                    <p>Last Name:</p>
-                                    {passSurname?.map((name, index) => {
+                        <h3>Passengers</h3>
+                        <div className='info_box-list' >
+                            <div className='info_box-list-name' >
+                                <p>First Name:</p>
+                                {passName?.map((name, index) => {
+                                    if (passSurname[index]) {
                                         return (
                                             <div key={index}>
                                                 <p className='searchItem-two__container__ports-info__firstp'>{name}</p>
                                             </div>
                                         );
-                                    })}
-                                </div>
-                                <div className='info_box-passengerSeat'>
-                                    {deneme && (
-                                        <div className='info_box-passengerSeat-box' >
-                                            <div className='info_box-passengerSeat-box__header' >
-                                                <p>Seat:</p>
-                                                
-                                            </div>
-                                            {deneme.map((item, key) => (
-                                                <div className='info_box-passengerSeat-box__list' key={key}>
-                                                    
-                                                    <p>  {item?.row}-{item?.seatNumber}</p>
-                                                </div>
-                                            ))}
+                                    } else {
+                                        return null;
+                                    }
+                                })}
+                            </div>
+                            <div className='info_box-list-surname' >
+                                <p>Last Name:</p>
+                                {passSurname?.map((name, index) => {
+                                    return (
+                                        <div key={index}>
+                                            <p className='searchItem-two__container__ports-info__firstp'>{name}</p>
                                         </div>
-                                    )}
-                                </div>
+                                    );
+                                })}
+                            </div>
+                            <div className='info_box-passengerSeat'>
+                                {deneme && (
+                                    <div className='info_box-passengerSeat-box' >
+                                        <div className='info_box-passengerSeat-box__header' >
+                                            <p>Seat:</p>
 
+                                        </div>
+                                        {deneme.map((item, key) => (
+                                            <div className='info_box-passengerSeat-box__list' key={key}>
+
+                                                <p>  {item?.row}-{item?.seatNumber}</p>
+                                            </div>
+                                        ))}
+                                    </div>
+                                )}
                             </div>
 
                         </div>
-                        
-                        <div className='info_box' id='boxbox'><h3>Flight Summary</h3><br/>
+
+                    </div>
+
+                    <div className='info_box' id='boxbox'><h3>Flight Summary</h3><br />
                         <div>
                             {formattedSelectedDate}
                             <div>
@@ -290,10 +288,10 @@ function Depart({ setActiveDepart, setActiveReturn }) {
                                 <p className="list-top-d">{flightTicket.arrTime}</p>
                             </div>
                         </div>
-                        
-                        </div>
+
                     </div>
                 </div>
+            </div>
         </>
     );
 }
