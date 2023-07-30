@@ -31,6 +31,8 @@ function SearchItem1() {
   const flightPortData = useSelector((state) => state.portsData.flightPortData);
 
 
+  console.log('SEARCHfligthPortData', flightPortData)
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 

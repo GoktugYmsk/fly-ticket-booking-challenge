@@ -132,7 +132,7 @@
       padding: 2rem 1rem;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: space-around;
       box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.4);
 
 
@@ -236,6 +236,9 @@
         font-weight: 600;
         color: #f3f4f6;
         cursor: pointer;
+
+        position: relative;
+        right: 80px !important;
 
         .nav_logo_main {
           width: 10%;

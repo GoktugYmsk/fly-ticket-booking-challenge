@@ -50,6 +50,8 @@ function App() {
       });
   }, []);
 
+
+
   useEffect(() => {
     axios.get(apiUrlCompany)
       .then(response => {
