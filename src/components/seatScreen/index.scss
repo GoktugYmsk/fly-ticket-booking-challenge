@@ -308,26 +308,7 @@
     font-weight: lighter;
 
 }
-.letter-row{
-    
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    flex-direction: row;
-    gap: 40px;
-    
-    
 
-    p{
-        color: black;
-        display: flex;
-        
-        padding-left: 0px;
-        align-items: center;
-        justify-content: center;
-        letter-spacing: 7px;
-    }
-}
 
 
 }
@@ -992,6 +973,7 @@
         .middle_div {
             display:grid;
             position: relative;
+            overflow: hidden;
 
     
             .plane_top_view {
@@ -1302,6 +1284,7 @@
         .middle_div {
             display:grid;
             position: relative;
+            overflow: hidden;
 
     
             .plane_top_view {
