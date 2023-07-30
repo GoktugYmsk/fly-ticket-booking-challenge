@@ -11,17 +11,17 @@ import CustomComponent from './components/CustomComponent';
 import SearchContent from './components/content/searchContent';
 import ShoppingSummary from './components/content/shoppingSummary';
 import SeatScreen from './components/seatScreen';
-import Deneme from './deneme';
 
 import './App.css'
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-import { setCompanyInfo, setFlightPortData } from './components/configure';
+import { setCompanyInfo, setCompanyInfoReturn, setFlightPortData } from './components/configure';
 
 function App() {
 
   const apiUrl = 'http://webapi-dev.eba-j3p8idgy.eu-north-1.elasticbeanstalk.com/api/airports/getall';
-  const apiUrlCompany = 'http://webapi-dev.eba-j3p8idgy.eu-north-1.elasticbeanstalk.com/api/flights/getall';
+  const apiUrlCompany = 'http://webapi-dev.eba-j3p8idgy.eu-north-1.elasticbeanstalk.com/api/flights/getdepartureflights';
+  const apiUrlCompanyReturn = 'http://webapi-dev.eba-j3p8idgy.eu-north-1.elasticbeanstalk.com/api/flights/getreturnflights';
   const flightPortData = useSelector((state) => state.portsData.flightPortData);
   const companyInfo = useSelector((state) => state.portsData.companyInfo);
 
@@ -62,6 +62,16 @@ function App() {
       });
   }, []);
 
+  useEffect(() => {
+    axios.get(apiUrlCompanyReturn)
+      .then(response => {
+        dispatch(setCompanyInfoReturn(response.data))
+      })
+      .catch(error => {
+        console.error('Hata:', error);
+      });
+  }, []);
+
   return (
     <div className="App">
       <Routes>
@@ -75,7 +85,6 @@ function App() {
         <Route path="/sales-screen" element={<SalesScreen />} />
         <Route path="/shopping-summary" element={<ShoppingSummary />} />
         <Route path="/seat-screen" element={<SeatScreen />} />
-        <Route path="/deneme" element={<Deneme />} />
       </Routes>
     </div>
   );

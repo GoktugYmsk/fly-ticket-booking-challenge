@@ -5,7 +5,7 @@ $mainRed: #F05A28;
 
 
 @media (max-width: 767px) {
-    
+
     .searchItem-one__container {
 
 
@@ -79,22 +79,22 @@ $mainRed: #F05A28;
             transform: translateX(140px);
         }
 
-        
+
 
         .searchItem-one__container__content {
             display: grid;
             align-items: center;
             height: auto;
             justify-content: space-around;
-            grid-template-areas:             
-                    "A A"      
-                    "B B"
-                    "C D";
+            grid-template-areas:
+                "A A"
+                "B B"
+                "C D";
 
             .searchItem-one__container-passenger-amount {
-            display: flex;
-            flex-direction: column;
-            grid-area: C;
+                display: flex;
+                flex-direction: column;
+                grid-area: C;
 
 
                 p {
@@ -134,7 +134,7 @@ $mainRed: #F05A28;
                     justify-content: center;
                     width: 130px;
                     cursor: pointer;
-                    
+
 
 
                     .calendar {
@@ -214,6 +214,7 @@ $mainRed: #F05A28;
 
                 }
             }
+
             .searchItem-one__search-button {
                 height: 50px;
                 width: 100%;
@@ -226,18 +227,18 @@ $mainRed: #F05A28;
                 cursor: pointer;
                 transition: 0.3s;
                 grid-area: D;
-                
-    
+
+
                 &:hover {
                     background-color: #536aa0;
                 }
-    
-    
+
+
             }
         }
 
 
-        
+
     }
 
     .searchItem-one__container-place__ports {
@@ -258,9 +259,10 @@ $mainRed: #F05A28;
 
 
 
-        div{
+        div {
             border-bottom: 1px solid rgba(219, 219, 219, 0.692);
             width: 100%;
+
             p {
                 padding-top: 5px;
                 text-align: center !important;
@@ -287,9 +289,10 @@ $mainRed: #F05A28;
         padding-top: 10px;
         box-shadow: 4px 4px 10px rgba(93, 93, 93, 0.285);
 
-        div{
+        div {
             border-bottom: 1px solid rgba(219, 219, 219, 0.692);
             width: 100%;
+
             p {
                 padding-top: 5px;
                 text-align: center !important;
@@ -304,7 +307,7 @@ $mainRed: #F05A28;
 
 @media (min-width: 768px) and (max-width: 1023px) {
 
-    
+
     .searchItem-one__container {
 
         .switch {
@@ -548,9 +551,10 @@ $mainRed: #F05A28;
         box-shadow: 4px 4px 10px rgba(93, 93, 93, 0.285);
         margin-top: -30px;
 
-        div{
+        div {
             border-bottom: 1px solid rgba(219, 219, 219, 0.692);
             width: 100%;
+
             p {
                 padding-top: 5px;
                 text-align: center !important;
@@ -576,9 +580,10 @@ $mainRed: #F05A28;
         box-shadow: 4px 4px 10px rgba(93, 93, 93, 0.285);
         margin-top: -30px;
 
-        div{
+        div {
             border-bottom: 1px solid rgba(219, 219, 219, 0.692);
             width: 100%;
+
             p {
                 padding-top: 5px;
                 text-align: center !important;
@@ -588,12 +593,12 @@ $mainRed: #F05A28;
             }
         }
 
-        
+
     }
 }
 
 @media (min-width: 1024px) {
-        
+
     .searchItem-one__container {
 
         .switch {
@@ -670,6 +675,8 @@ $mainRed: #F05A28;
         .searchItem-one__container-passenger-amount {
             display: flex;
             flex-direction: column;
+            position: relative;
+            bottom: 10px;
 
             p {
                 font-weight: bold;
@@ -715,6 +722,8 @@ $mainRed: #F05A28;
                     flex-direction: column;
                     align-content: center;
                     justify-content: center;
+                    position: relative;
+                    bottom: 10px;
                     width: 130px;
                     cursor: pointer;
 
@@ -728,6 +737,8 @@ $mainRed: #F05A28;
                     display: flex;
                     align-items: center;
                     justify-content: space-around;
+                    position: relative;
+                    bottom: 10px;
                     width: 130px;
                     margin-left: 30px;
 
@@ -841,7 +852,7 @@ $mainRed: #F05A28;
         scrollbar-width: 3px;
         box-shadow: 4px 4px 10px rgba(93, 93, 93, 0.285);
         margin-top: -30px;
-        
+
 
 
         p {

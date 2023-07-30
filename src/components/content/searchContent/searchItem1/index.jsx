@@ -332,7 +332,8 @@ function SearchItem1() {
               </p>
             </div>
             <div className='searchItem-one__container-return'>
-              <p className='searchItem-one__container-return-p'>{isRoundTrip ? 'Return' : ''}
+              <p className='searchItem-one__container-return-p'>
+                {isRoundTrip ? 'Return' : ''}
                 {isRoundTrip && renderCalendarRight()}
               </p>
             </div>

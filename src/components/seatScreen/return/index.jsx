@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { setSeatReturn } from '../../configure';
 import Header from '../../header';
 import Footer from '../../footer';
-import { BsFillPersonFill, BsArrowRight } from 'react-icons/bs';
+import { BsFillPersonFill } from 'react-icons/bs';
 import { AiOutlineClose } from 'react-icons/ai';
 
 
@@ -16,7 +16,6 @@ function Return() {
     const [formattedReturnDate, setFormattedReturnDate] = useState("");
 
     const flightPortData = useSelector((state) => state.portsData.flightPortData);
-
     const selectedDate = useSelector((state) => state.optionDateDepp.selectedDate);
     const returnDate = useSelector((state) => state.optionDateArr.returnDate);
     const flightPort = useSelector((state) => state.passFlightPort.flightPort);
@@ -269,13 +268,14 @@ function Return() {
                         <div>
                             {formattedReturnDate}
                             <div>
-                                <p>{arrivePortExplanation} <BsArrowRight /> {leavePortExplanation}</p>
+                                <p>{arrivePortExplanation}</p>
+                                <p>{leavePortExplanation}</p>
                             </div>
                             <div>
                                 <p className="list-top-a">{flightTicketReturn.airline}</p>
-                                <p className="list-top-b">No: {flightTicketReturn.flightNo}</p>
-                                <p className="list-top-c">Depart:  {flightTicketReturn.depTime}</p>
-                                <p className="list-top-d">Arrive:  {flightTicketReturn.arrTime}</p>
+                                <p className="list-top-b">{flightTicketReturn.flightNo}</p>
+                                <p className="list-top-c">{flightTicketReturn.depTime}</p>
+                                <p className="list-top-d">{flightTicketReturn.arrTime}</p>
                             </div>
                         </div>
                     </div>

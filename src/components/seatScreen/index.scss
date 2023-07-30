@@ -1,321 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
 
 
-@media (min-width: 1200px){
-
-.chairScreen-container-content {
-
-    font-family: "Poppins", sans-serif;
-    background: white;
-    position: relative;
-    top: 200px;
-
-    .upper_div {
-        display: flex;
-        gap: 40.5%;
-        margin-left: 19.5%;
-        color: rgb(44, 56, 85);
-
-        
-        button {
-            color: white;
-            font-size: larger;
-            margin-right: 10%;
-            padding: 10px 40px;
-            background-color: rgb(240, 105, 60, 0.8);
-            border-radius: 10px;
-            border: none;
-            cursor: pointer;
-            transition: 0.3s;
-
-            &:hover {
-                background-color: rgba(255, 64, 0, 0.8);
-            }
-        }
-
-    }
-
-   
-    .middle_div {
-        display: grid;
-        gap: 1500px;
-
-
-        .plane_top_view {
-            margin-top: 120px;
-            width: 63%;
-            height: 1800px;
-            display: inline-block;
-            position: relative;
-            left: 0;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
-            clip-path: inset(0px -15px 0px 0px);
-            border: none;
-
-
-        }
-
-
-        .legend {
-
-            position: absolute;
-            top: 500px;
-            left: 5%;
-
-
-            .legend_item {
-                display: flex;
-                gap: 10px;
-                margin-bottom: 25px;
-
-                .legend_box_reserved {
-                    width: 15px;
-                    height: 15px;
-                    border-radius: 100%;
-                    background-color: rgb(44, 56, 85);
-                }
-
-                .legend_box_selected {
-                    width: 15px;
-                    height: 15px;
-                    border-radius: 100%;
-                    background-color: rgb(83, 106, 160);
-                }
-
-                .legend_box_empty {
-                    width: 15px;
-                    height: 15px;
-                    border-radius: 100%;
-                    background-color: rgb(240, 105, 60);
-                }
-            }
-        }
-
-
-        .chairScreen-container__box {
-
-            position: absolute;
-            left: 23.8%;
-            top: 20.1%;
-            z-index: 1;
-            background-color: #f6f6f7;
-            padding: 5px;
-            color: #FFFFFF;
-            font-weight: bold;
-            width: 15.26%;
-            height: 1130px;
-
-
-
-
-            .chairScreen-container__box-passengerSide-first {
-                display: flex;
-                flex-direction: column;
-                margin-top: 20px;
-                gap: 10px;
-
-
-            }
-
-            .chairScreen-container__box-passengerSide-second {
-                display: flex;
-                flex-direction: column;
-                gap: 10px;
-
-                h3 {
-                    color: wheat;
-                }
-
-                p {
-                    color: white;
-                }
-
-                .second-seat {
-                    display: flex;
-                    flex-direction: column;
-
-                    .seat,.seat.isReserved {
-                        width: 30px;
-                        height: 35px;
-                        margin: 6px 4px;
-                        background-color: #ccc;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        font-weight: bold;
-                        font-size: 14px;
-                        cursor: pointer;
-                        border-radius: 15%;
-
-                        &:hover {
-                            background-color: rgb(255, 64, 0);
-                        }
-                    }
-                    .seat.isReserved{
-                        cursor: default;
-                    }
-
-                    .seat-gap {
-                        margin-right: 30px;
-                    }
-
-                    .seat-row {
-                        display: flex;
-                        flex-direction: row;
-                    }
-
-                }
-            }
-
-
-        }
-
-
-
-
-        .info_box_group {
-            position: absolute;
-            width: 37%;
-            height: 1800px;
-            top: 135px;
-            left: 63%;
-            display: flex;
-            flex-direction: column;
-
-
-            .info_box {
-                color: white;
-                overflow-y: auto;
-                height: 720px;
-                margin: 60px;
-                background-color: rgb(44, 56, 85, 0.8);
-                box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.2);
-                border-radius: 1rem;
-                transition: 0.3s;
-
-                &:hover {
-                    background-color: rgb(44, 56, 85, 0.9);
-                }
-
-                h3 {
-                    padding-top: 20px;
-                }
-
-                p {
-                    padding: 30px;
-                }   
-                &:first-child{
-                    color: black;
-                    margin: 40px;
-                    height: 800px;
-                    background-color: rgb(205, 205, 205, 0.7);
-                    &:hover {
-                        background-color: rgb(205, 205, 205, 0.9);
-                    }
-                }
-            }
-            
-
-        }
-    }
-
-    .lower_div {
-        button {
-            margin-top: 200px;
-            margin-left: 900px;
-            padding: 10px 20px;
-            color: white;
-            background-color: rgb(240, 105, 60, 0.8);
-            border-radius: 8px;
-            border: none;
-            cursor: pointer;
-            transition: 0.3s;
-
-            &:hover {
-                background-color: rgba(255, 64, 0, 0.8);
-            }
-        }
-    }
-
-}
-
-.footer {
-    margin-top: 400px;
-    padding-top: 150px;
-    background-color: #f3f4f6;
-    box-shadow: 0px -10px 100px rgba(0, 0, 0, 0.1);
-}
-
-.seat-popup__bottom {
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    align-items: center;
-    justify-content: center;
-    top: 40%;
-    left: 37%;
-    width: 400px;
-    height: 200px;
-    padding: 16px;
-    color: white;
-    z-index: 999;
-    background: rgb(44, 56, 85);
-    border-radius: 0.5rem;
-
-    button{
-        margin-top: 20px;
-        padding: 5px 15px;
-        background-color: #bababa;
-        transition: 0.3s;
-        border-radius: 0.5rem;
-        border: none;
-        &:hover{
-            background-color: white;
-        }
-    }
-}
-
-
-
-
-.info_box-list {
-    display: flex;
-
-    .searchItem-two__container__ports-info__firstp{
-        font-weight:600;
-        color: rgb(44, 56, 85);
-    }
-
-    .info_box-passengerSeat-box {
-       
-        .info_box-passengerSeat-box__list {
-            font-weight:600;
-            color: rgb(69, 87, 131);
-        }
-    }
-
-
-   
-}
-
-.row-number {
-    
-    color: rgba(0, 0, 0, 0.6);
-    align-items: center;
-    justify-content: center;
-    width: 45px;
-    padding-top: 12px;
-    font-weight: lighter;
-
-}
-
-
-
-}
-
-
-
-@media (max-width: 1200px){
+@media (min-width: 1200px) {
 
     .chairScreen-container-content {
 
@@ -323,14 +9,14 @@
         background: white;
         position: relative;
         top: 200px;
-    
+
         .upper_div {
             display: flex;
-            gap: 35%;
-            margin-left: 15%;
+            gap: 40.5%;
+            margin-left: 19.5%;
             color: rgb(44, 56, 85);
-    
-            
+
+
             button {
                 color: white;
                 font-size: larger;
@@ -341,60 +27,61 @@
                 border: none;
                 cursor: pointer;
                 transition: 0.3s;
-    
+
                 &:hover {
                     background-color: rgba(255, 64, 0, 0.8);
                 }
             }
-    
+
         }
-    
 
-    
+
         .middle_div {
-            display:grid;
-            position: relative;
+            display: grid;
+            gap: 1500px;
 
-    
+
             .plane_top_view {
                 margin-top: 120px;
-                width: 70%;
+                width: 63%;
                 height: 1800px;
                 display: inline-block;
                 position: relative;
-                left: 15%;
+                left: 0;
+                box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
+                clip-path: inset(0px -15px 0px 0px);
                 border: none;
-    
-    
+
+
             }
-    
-    
+
+
             .legend {
-    
+
                 position: absolute;
                 top: 500px;
-                left: 20%;
-    
-    
+                left: 5%;
+
+
                 .legend_item {
                     display: flex;
                     gap: 10px;
                     margin-bottom: 25px;
-    
+
                     .legend_box_reserved {
                         width: 15px;
                         height: 15px;
                         border-radius: 100%;
                         background-color: rgb(44, 56, 85);
                     }
-    
+
                     .legend_box_selected {
                         width: 15px;
                         height: 15px;
                         border-radius: 100%;
                         background-color: rgb(83, 106, 160);
                     }
-    
+
                     .legend_box_empty {
                         width: 15px;
                         height: 15px;
@@ -403,51 +90,52 @@
                     }
                 }
             }
-    
-    
+
+
             .chairScreen-container__box {
-    
+
                 position: absolute;
-                left: 41.5%;
-                top: 12%;
+                left: 23.8%;
+                top: 20.1%;
                 z-index: 1;
                 background-color: #f6f6f7;
                 padding: 5px;
                 color: #FFFFFF;
                 font-weight: bold;
-                width: 17%;
+                width: 15.26%;
                 height: 1130px;
-    
-    
-    
-    
+
+
+
+
                 .chairScreen-container__box-passengerSide-first {
                     display: flex;
                     flex-direction: column;
                     margin-top: 20px;
                     gap: 10px;
-    
-    
+
+
                 }
-    
+
                 .chairScreen-container__box-passengerSide-second {
                     display: flex;
                     flex-direction: column;
                     gap: 10px;
-    
+
                     h3 {
                         color: wheat;
                     }
-    
+
                     p {
                         color: white;
                     }
-    
+
                     .second-seat {
                         display: flex;
                         flex-direction: column;
-    
-                        .seat,.seat.isReserved {
+
+                        .seat,
+                        .seat.isReserved {
                             width: 30px;
                             height: 35px;
                             margin: 6px 4px;
@@ -459,78 +147,82 @@
                             font-size: 14px;
                             cursor: pointer;
                             border-radius: 15%;
-    
+
                             &:hover {
                                 background-color: rgb(255, 64, 0);
                             }
                         }
-                        .seat.isReserved{
+
+                        .seat.isReserved {
                             cursor: default;
                         }
-    
+
                         .seat-gap {
                             margin-right: 30px;
                         }
-    
+
                         .seat-row {
                             display: flex;
                             flex-direction: row;
                         }
+
                     }
                 }
-    
-    
+
+
             }
-    
-    
-    
-    
+
+
+
+
             .info_box_group {
-                
-                display: grid;
-                grid-template-columns: 3fr repeat(1, 2fr);
+                position: absolute;
+                width: 37%;
+                height: 1800px;
+                top: 135px;
+                left: 63%;
+                display: flex;
                 flex-direction: column;
-                left: 10%;
-    
+
+
                 .info_box {
                     color: white;
                     overflow-y: auto;
-                    height: 700px;
-                    margin-top: 60px;
-                    margin-right: 80px;
-
+                    height: 720px;
+                    margin: 60px;
                     background-color: rgb(44, 56, 85, 0.8);
                     box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.2);
                     border-radius: 1rem;
                     transition: 0.3s;
-    
+
                     &:hover {
                         background-color: rgb(44, 56, 85, 0.9);
                     }
-    
+
                     h3 {
                         padding-top: 20px;
                     }
-    
+
                     p {
                         padding: 30px;
-                    }   
-                    &:first-child{
+                    }
+
+                    &:first-child {
                         color: black;
-                        margin: 80px;
-                        margin-top: 60px;
+                        margin: 40px;
                         height: 800px;
                         background-color: rgb(205, 205, 205, 0.7);
+
                         &:hover {
                             background-color: rgb(205, 205, 205, 0.9);
                         }
                     }
                 }
-                
-    
+
+
             }
         }
-    
+
         .lower_div {
             button {
                 margin-top: 200px;
@@ -542,22 +234,359 @@
                 border: none;
                 cursor: pointer;
                 transition: 0.3s;
-    
+
                 &:hover {
                     background-color: rgba(255, 64, 0, 0.8);
                 }
             }
         }
-    
+
     }
-    
+
     .footer {
         margin-top: 400px;
         padding-top: 150px;
         background-color: #f3f4f6;
         box-shadow: 0px -10px 100px rgba(0, 0, 0, 0.1);
     }
-    
+
+    .seat-popup__bottom {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        align-items: center;
+        justify-content: center;
+        top: 40%;
+        left: 40%;
+        width: 400px;
+        height: 200px;
+        padding: 16px;
+        color: white;
+        z-index: 999;
+        background: rgb(44, 56, 85);
+        border-radius: 0.5rem;
+
+        button {
+            margin-top: 20px;
+            padding: 5px 15px;
+            background-color: #bababa;
+            transition: 0.3s;
+            border-radius: 0.5rem;
+            border: none;
+
+            &:hover {
+                background-color: white;
+            }
+        }
+    }
+
+
+
+
+    .info_box-list {
+        display: flex;
+
+        .searchItem-two__container__ports-info__firstp {
+            font-weight: 600;
+            color: rgb(44, 56, 85);
+        }
+
+        .info_box-passengerSeat-box {
+
+            .info_box-passengerSeat-box__list {
+                font-weight: 600;
+                color: rgb(69, 87, 131);
+            }
+        }
+
+
+
+    }
+
+    .row-number {
+
+        color: rgba(0, 0, 0, 0.6);
+        align-items: center;
+        justify-content: center;
+        width: 45px;
+        padding-top: 12px;
+        font-weight: lighter;
+
+    }
+
+    .letter-row {
+
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        flex-direction: row;
+        gap: 40px;
+
+
+
+        p {
+            color: black;
+            display: flex;
+
+            padding-left: 0px;
+            align-items: center;
+            justify-content: center;
+            letter-spacing: 7px;
+        }
+    }
+
+
+}
+
+
+
+@media (max-width: 1200px) {
+
+    .chairScreen-container-content {
+
+        font-family: "Poppins", sans-serif;
+        background: white;
+        position: relative;
+        top: 200px;
+
+        .upper_div {
+            display: flex;
+            gap: 35%;
+            margin-left: 15%;
+            color: rgb(44, 56, 85);
+
+
+            button {
+                color: white;
+                font-size: larger;
+                margin-right: 10%;
+                padding: 10px 40px;
+                background-color: rgb(240, 105, 60, 0.8);
+                border-radius: 10px;
+                border: none;
+                cursor: pointer;
+                transition: 0.3s;
+
+                &:hover {
+                    background-color: rgba(255, 64, 0, 0.8);
+                }
+            }
+
+        }
+
+
+
+        .middle_div {
+            display: grid;
+            position: relative;
+
+
+            .plane_top_view {
+                margin-top: 120px;
+                width: 70%;
+                height: 1800px;
+                display: inline-block;
+                position: relative;
+                left: 15%;
+                border: none;
+
+
+            }
+
+
+            .legend {
+
+                position: absolute;
+                top: 500px;
+                left: 20%;
+
+
+                .legend_item {
+                    display: flex;
+                    gap: 10px;
+                    margin-bottom: 25px;
+
+                    .legend_box_reserved {
+                        width: 15px;
+                        height: 15px;
+                        border-radius: 100%;
+                        background-color: rgb(44, 56, 85);
+                    }
+
+                    .legend_box_selected {
+                        width: 15px;
+                        height: 15px;
+                        border-radius: 100%;
+                        background-color: rgb(83, 106, 160);
+                    }
+
+                    .legend_box_empty {
+                        width: 15px;
+                        height: 15px;
+                        border-radius: 100%;
+                        background-color: rgb(240, 105, 60);
+                    }
+                }
+            }
+
+
+            .chairScreen-container__box {
+
+                position: absolute;
+                left: 41.5%;
+                top: 12%;
+                z-index: 1;
+                background-color: #f6f6f7;
+                padding: 5px;
+                color: #FFFFFF;
+                font-weight: bold;
+                width: 17%;
+                height: 1130px;
+
+
+
+
+                .chairScreen-container__box-passengerSide-first {
+                    display: flex;
+                    flex-direction: column;
+                    margin-top: 20px;
+                    gap: 10px;
+
+
+                }
+
+                .chairScreen-container__box-passengerSide-second {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+
+                    h3 {
+                        color: wheat;
+                    }
+
+                    p {
+                        color: white;
+                    }
+
+                    .second-seat {
+                        display: flex;
+                        flex-direction: column;
+
+                        .seat,
+                        .seat.isReserved {
+                            width: 30px;
+                            height: 35px;
+                            margin: 6px 4px;
+                            background-color: #ccc;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            font-weight: bold;
+                            font-size: 14px;
+                            cursor: pointer;
+                            border-radius: 15%;
+
+                            &:hover {
+                                background-color: rgb(255, 64, 0);
+                            }
+                        }
+
+                        .seat.isReserved {
+                            cursor: default;
+                        }
+
+                        .seat-gap {
+                            margin-right: 30px;
+                        }
+
+                        .seat-row {
+                            display: flex;
+                            flex-direction: row;
+                        }
+                    }
+                }
+
+
+            }
+
+
+
+
+            .info_box_group {
+
+                display: grid;
+                grid-template-columns: 3fr repeat(1, 2fr);
+                flex-direction: column;
+                left: 10%;
+
+                .info_box {
+                    color: white;
+                    overflow-y: auto;
+                    height: 700px;
+                    margin-top: 60px;
+                    margin-right: 80px;
+
+                    background-color: rgb(44, 56, 85, 0.8);
+                    box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.2);
+                    border-radius: 1rem;
+                    transition: 0.3s;
+
+                    &:hover {
+                        background-color: rgb(44, 56, 85, 0.9);
+                    }
+
+                    h3 {
+                        padding-top: 20px;
+                    }
+
+                    p {
+                        padding: 30px;
+                    }
+
+                    &:first-child {
+                        color: black;
+                        margin: 80px;
+                        margin-top: 60px;
+                        height: 800px;
+                        background-color: rgb(205, 205, 205, 0.7);
+
+                        &:hover {
+                            background-color: rgb(205, 205, 205, 0.9);
+                        }
+                    }
+                }
+
+
+            }
+        }
+
+        .lower_div {
+            button {
+                margin-top: 200px;
+                margin-left: 900px;
+                padding: 10px 20px;
+                color: white;
+                background-color: rgb(240, 105, 60, 0.8);
+                border-radius: 8px;
+                border: none;
+                cursor: pointer;
+                transition: 0.3s;
+
+                &:hover {
+                    background-color: rgba(255, 64, 0, 0.8);
+                }
+            }
+        }
+
+    }
+
+    .footer {
+        margin-top: 400px;
+        padding-top: 150px;
+        background-color: #f3f4f6;
+        box-shadow: 0px -10px 100px rgba(0, 0, 0, 0.1);
+    }
+
     .seat-popup__bottom {
         display: flex;
         flex-direction: column;
@@ -573,61 +602,62 @@
         z-index: 999;
         background: rgb(44, 56, 85);
         border-radius: 0.5rem;
-    
-        button{
+
+        button {
             margin-top: 20px;
             padding: 5px 15px;
             background-color: #bababa;
             transition: 0.3s;
             border-radius: 0.5rem;
             border: none;
-            &:hover{
+
+            &:hover {
                 background-color: white;
             }
         }
     }
-    
-    
-    
-    
+
+
+
+
     .info_box-list {
         display: flex;
-    
-        .searchItem-two__container__ports-info__firstp{
-            font-weight:600;
+
+        .searchItem-two__container__ports-info__firstp {
+            font-weight: 600;
             color: rgb(44, 56, 85);
         }
-    
+
         .info_box-passengerSeat-box {
-           
+
             .info_box-passengerSeat-box__list {
-                font-weight:600;
+                font-weight: 600;
                 color: rgb(69, 87, 131);
             }
         }
-    
-    
-       
+
+
+
     }
-    
+
     .row-number {
-        
+
         color: rgba(0, 0, 0, 0.6);
         align-items: center;
         justify-content: center;
         width: 45px;
         padding-top: 12px;
         font-weight: lighter;
-    
+
     }
-    
-    
+
+
 
 
 }
 
 
-@media (max-width: 950px){
+@media (max-width: 950px) {
 
     .chairScreen-container-content {
 
@@ -635,14 +665,14 @@
         background: white;
         position: relative;
         top: 200px;
-    
+
         .upper_div {
             display: flex;
             gap: 25%;
             margin-left: 10%;
             color: rgb(44, 56, 85);
-    
-            
+
+
             button {
                 color: white;
                 font-size: larger;
@@ -653,21 +683,21 @@
                 border: none;
                 cursor: pointer;
                 transition: 0.3s;
-    
+
                 &:hover {
                     background-color: rgba(255, 64, 0, 0.8);
                 }
             }
-    
-        }
-    
 
-    
+        }
+
+
+
         .middle_div {
-            display:grid;
+            display: grid;
             position: relative;
 
-    
+
             .plane_top_view {
                 margin-top: 120px;
                 width: 100%;
@@ -676,37 +706,37 @@
                 position: relative;
                 left: 0;
                 border: none;
-    
-    
+
+
             }
-    
-    
+
+
             .legend {
-    
+
                 position: absolute;
                 top: 500px;
                 left: 10%;
-    
-    
+
+
                 .legend_item {
                     display: flex;
                     gap: 10px;
                     margin-bottom: 25px;
-    
+
                     .legend_box_reserved {
                         width: 15px;
                         height: 15px;
                         border-radius: 100%;
                         background-color: rgb(44, 56, 85);
                     }
-    
+
                     .legend_box_selected {
                         width: 15px;
                         height: 15px;
                         border-radius: 100%;
                         background-color: rgb(83, 106, 160);
                     }
-    
+
                     .legend_box_empty {
                         width: 15px;
                         height: 15px;
@@ -715,13 +745,13 @@
                     }
                 }
             }
-    
-    
+
+
             .chairScreen-container__box {
-    
+
                 position: absolute;
                 left: 38%;
-                top: 9%;
+                top: 9.5%;
                 z-index: 1;
                 background-color: #f6f6f7;
                 padding: 5px;
@@ -729,37 +759,38 @@
                 font-weight: bold;
                 width: 24%;
                 height: 1130px;
-    
-    
-    
-    
+
+
+
+
                 .chairScreen-container__box-passengerSide-first {
                     display: flex;
                     flex-direction: column;
                     margin-top: 20px;
                     gap: 10px;
-    
-    
+
+
                 }
-    
+
                 .chairScreen-container__box-passengerSide-second {
                     display: flex;
                     flex-direction: column;
                     gap: 10px;
-    
+
                     h3 {
                         color: wheat;
                     }
-    
+
                     p {
                         color: white;
                     }
-    
+
                     .second-seat {
                         display: flex;
                         flex-direction: column;
-    
-                        .seat,.seat.isReserved {
+
+                        .seat,
+                        .seat.isReserved {
                             width: 30px;
                             height: 35px;
                             margin: 6px 4px;
@@ -771,38 +802,39 @@
                             font-size: 14px;
                             cursor: pointer;
                             border-radius: 15%;
-    
+
                             &:hover {
                                 background-color: rgb(255, 64, 0);
                             }
                         }
-                        .seat.isReserved{
+
+                        .seat.isReserved {
                             cursor: default;
                         }
-    
+
                         .seat-gap {
                             margin-right: 30px;
                         }
-    
+
                         .seat-row {
                             display: flex;
                             flex-direction: row;
                         }
                     }
                 }
-    
-    
+
+
             }
-    
-    
-    
-    
+
+
+
+
             .info_box_group {
-                
+
                 display: block;
-                
-                
-    
+
+
+
                 .info_box {
                     color: white;
                     overflow-y: auto;
@@ -812,34 +844,36 @@
                     box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.2);
                     border-radius: 1rem;
                     transition: 0.3s;
-    
+
                     &:hover {
                         background-color: rgb(44, 56, 85, 0.9);
                     }
-    
+
                     h3 {
                         padding-top: 20px;
                     }
-    
+
                     p {
                         padding: 30px;
-                    }   
-                    &:first-child{
+                    }
+
+                    &:first-child {
                         color: black;
                         margin: 130px;
                         margin-top: 60px;
                         height: 800px;
                         background-color: rgb(205, 205, 205, 0.7);
+
                         &:hover {
                             background-color: rgb(205, 205, 205, 0.9);
                         }
                     }
                 }
-                
-    
+
+
             }
         }
-    
+
         .lower_div {
             button {
                 margin-top: 200px;
@@ -851,22 +885,22 @@
                 border: none;
                 cursor: pointer;
                 transition: 0.3s;
-    
+
                 &:hover {
                     background-color: rgba(255, 64, 0, 0.8);
                 }
             }
         }
-    
+
     }
-    
+
     .footer {
         margin-top: 400px;
         padding-top: 150px;
         background-color: #f3f4f6;
         box-shadow: 0px -10px 100px rgba(0, 0, 0, 0.1);
     }
-    
+
     .seat-popup__bottom {
         display: flex;
         flex-direction: column;
@@ -874,7 +908,7 @@
         align-items: center;
         justify-content: center;
         top: 40%;
-        left: 26%;
+        left: 30%;
         width: 400px;
         height: 200px;
         padding: 16px;
@@ -882,59 +916,60 @@
         z-index: 999;
         background: rgb(44, 56, 85);
         border-radius: 0.5rem;
-    
-        button{
+
+        button {
             margin-top: 20px;
             padding: 5px 15px;
             background-color: #bababa;
             transition: 0.3s;
             border-radius: 0.5rem;
             border: none;
-            &:hover{
+
+            &:hover {
                 background-color: white;
             }
         }
     }
-    
-    
-    
-    
+
+
+
+
     .info_box-list {
         display: flex;
-    
-        .searchItem-two__container__ports-info__firstp{
-            font-weight:600;
+
+        .searchItem-two__container__ports-info__firstp {
+            font-weight: 600;
             color: rgb(44, 56, 85);
         }
-    
+
         .info_box-passengerSeat-box {
-           
+
             .info_box-passengerSeat-box__list {
-                font-weight:600;
+                font-weight: 600;
                 color: rgb(69, 87, 131);
             }
         }
-    
-    
-       
+
+
+
     }
-    
+
     .row-number {
-        
+
         color: rgba(0, 0, 0, 0.6);
         align-items: center;
         justify-content: center;
         width: 45px;
         padding-top: 12px;
         font-weight: lighter;
-    
+
     }
-    
+
 
 
 }
 
-@media (max-width: 700px){
+@media (max-width: 700px) {
 
     .chairScreen-container-content {
 
@@ -942,14 +977,14 @@
         background: white;
         position: relative;
         top: 200px;
-    
+
         .upper_div {
             display: flex;
             gap: 25%;
             margin-left: 10%;
             color: rgb(44, 56, 85);
-    
-            
+
+
             button {
                 color: white;
                 font-size: larger;
@@ -960,65 +995,61 @@
                 border: none;
                 cursor: pointer;
                 transition: 0.3s;
-    
+
                 &:hover {
                     background-color: rgba(255, 64, 0, 0.8);
                 }
             }
-    
+
         }
-    
 
-    
+
+
         .middle_div {
-            display:grid;
+            display: grid;
             position: relative;
-            overflow: hidden;
 
-    
+
             .plane_top_view {
-                
-                width: 150%;
-                left: -25%;
-               
-                
-               
+                margin-top: 120px;
+                width: 100%;
+
+                transform: scale(1.5);
                 display: inline-block;
                 position: relative;
-                
+
                 border: none;
-    
-    
+
+
             }
-    
-    
+
+
             .legend {
-    
+
                 position: absolute;
-                top: 400px;
-                left: 1%;
-    
-    
+                top: 500px;
+                left: 10%;
+
+
                 .legend_item {
-                    font-size: smaller;
                     display: flex;
                     gap: 10px;
                     margin-bottom: 25px;
-    
+
                     .legend_box_reserved {
                         width: 15px;
                         height: 15px;
                         border-radius: 100%;
                         background-color: rgb(44, 56, 85);
                     }
-    
+
                     .legend_box_selected {
                         width: 15px;
                         height: 15px;
                         border-radius: 100%;
                         background-color: rgb(83, 106, 160);
                     }
-    
+
                     .legend_box_empty {
                         width: 15px;
                         height: 15px;
@@ -1027,51 +1058,52 @@
                     }
                 }
             }
-    
-    
+
+
             .chairScreen-container__box {
-    
+
                 position: absolute;
-                left: 32%;
-                top: 10.7%;
+                left: 30.6%;
+                top: 9.6%;
                 z-index: 1;
                 background-color: #f6f6f7;
                 padding: 5px;
                 color: #FFFFFF;
                 font-weight: bold;
-                width: 36%;
+                width: 39%;
                 height: 1130px;
-    
-    
-    
-    
+
+
+
+
                 .chairScreen-container__box-passengerSide-first {
                     display: flex;
                     flex-direction: column;
                     margin-top: 20px;
                     gap: 10px;
-    
-    
+
+
                 }
-    
+
                 .chairScreen-container__box-passengerSide-second {
                     display: flex;
                     flex-direction: column;
                     gap: 10px;
-    
+
                     h3 {
                         color: wheat;
                     }
-    
+
                     p {
                         color: white;
                     }
-    
+
                     .second-seat {
                         display: flex;
                         flex-direction: column;
-    
-                        .seat,.seat.isReserved {
+
+                        .seat,
+                        .seat.isReserved {
                             width: 30px;
                             height: 35px;
                             margin: 6px 4px;
@@ -1083,75 +1115,78 @@
                             font-size: 14px;
                             cursor: pointer;
                             border-radius: 15%;
-    
+
                             &:hover {
                                 background-color: rgb(255, 64, 0);
                             }
                         }
-                        .seat.isReserved{
+
+                        .seat.isReserved {
                             cursor: default;
                         }
-    
+
                         .seat-gap {
                             margin-right: 30px;
                         }
-    
+
                         .seat-row {
                             display: flex;
                             flex-direction: row;
                         }
                     }
                 }
-    
-    
+
+
             }
-    
-    
-    
-    
+
+
+
+
             .info_box_group {
-                
+
                 display: block;
-                
-                
-    
+
+
+
                 .info_box {
                     color: white;
                     overflow-y: auto;
-                    height: 500px;
-                    margin: 60px;
+                    height: 700px;
+                    margin: 160px;
                     background-color: rgb(44, 56, 85, 0.8);
                     box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.2);
                     border-radius: 1rem;
                     transition: 0.3s;
-    
+
                     &:hover {
                         background-color: rgb(44, 56, 85, 0.9);
                     }
-    
+
                     h3 {
                         padding-top: 20px;
                     }
-    
+
                     p {
                         padding: 30px;
-                    }   
-                    &:first-child{
+                    }
+
+                    &:first-child {
                         color: black;
-                        margin: 40px;
+                        margin: 130px;
                         margin-top: 60px;
-                        height: 600px;
+                        height: 800px;
                         background-color: rgb(205, 205, 205, 0.7);
+
                         &:hover {
                             background-color: rgb(205, 205, 205, 0.9);
                         }
                     }
                 }
-                
-    
+
+
             }
         }
-    
+
         .lower_div {
             button {
                 margin-top: 200px;
@@ -1163,22 +1198,22 @@
                 border: none;
                 cursor: pointer;
                 transition: 0.3s;
-    
+
                 &:hover {
                     background-color: rgba(255, 64, 0, 0.8);
                 }
             }
         }
-    
+
     }
-    
+
     .footer {
         margin-top: 400px;
         padding-top: 150px;
         background-color: #f3f4f6;
         box-shadow: 0px -10px 100px rgba(0, 0, 0, 0.1);
     }
-    
+
     .seat-popup__bottom {
         display: flex;
         flex-direction: column;
@@ -1186,376 +1221,61 @@
         align-items: center;
         justify-content: center;
         top: 40%;
-        left: 15%;
-        width: 340px;
+        left: 30%;
+        width: 400px;
         height: 200px;
         padding: 16px;
         color: white;
         z-index: 999;
         background: rgb(44, 56, 85);
         border-radius: 0.5rem;
-    
-        button{
+
+        button {
             margin-top: 20px;
             padding: 5px 15px;
             background-color: #bababa;
             transition: 0.3s;
             border-radius: 0.5rem;
             border: none;
-            &:hover{
+
+            &:hover {
                 background-color: white;
             }
         }
     }
-    
-    
-    
-    
+
+
+
+
     .info_box-list {
         display: flex;
-    
-        .searchItem-two__container__ports-info__firstp{
-            font-weight:600;
+
+        .searchItem-two__container__ports-info__firstp {
+            font-weight: 600;
             color: rgb(44, 56, 85);
         }
-    
+
         .info_box-passengerSeat-box {
-           
+
             .info_box-passengerSeat-box__list {
-                font-weight:600;
+                font-weight: 600;
                 color: rgb(69, 87, 131);
             }
         }
-    
-    
-       
+
+
+
     }
-    
+
     .row-number {
-        
+
         color: rgba(0, 0, 0, 0.6);
         align-items: center;
         justify-content: center;
         width: 45px;
         padding-top: 12px;
         font-weight: lighter;
-    
-    }   
-   
-}
 
-
-@media (max-width: 420px){
-
-    .chairScreen-container-content {
-
-        font-family: "Poppins", sans-serif;
-        background: white;
-        position: relative;
-        top: 200px;
-    
-        .upper_div {
-            display: flex;
-            gap: 25%;
-            margin-left: 10%;
-            color: rgb(44, 56, 85);
-    
-            
-            button {
-                color: white;
-                font-size: larger;
-                margin-right: 10%;
-                padding: 10px 40px;
-                background-color: rgb(240, 105, 60, 0.8);
-                border-radius: 10px;
-                border: none;
-                cursor: pointer;
-                transition: 0.3s;
-    
-                &:hover {
-                    background-color: rgba(255, 64, 0, 0.8);
-                }
-            }
-    
-        }
-    
-
-    
-        .middle_div {
-            display:grid;
-            position: relative;
-            overflow: hidden;
-
-    
-            .plane_top_view {
-                
-                width: 200%;
-                left: -50%;
-               
-                
-               
-                display: inline-block;
-                position: relative;
-                
-                border: none;
-    
-    
-            }
-    
-    
-            .legend {
-    
-                position: absolute;
-                top: 400px;
-                left: 1%;
-    
-    
-                .legend_item {
-                    font-size: x-small;
-                    display: flex;
-                    gap: 10px;
-                    margin-bottom: 25px;
-    
-                    .legend_box_reserved {
-                        width: 15px;
-                        height: 15px;
-                        border-radius: 100%;
-                        background-color: rgb(44, 56, 85);
-                    }
-    
-                    .legend_box_selected {
-                        width: 15px;
-                        height: 15px;
-                        border-radius: 100%;
-                        background-color: rgb(83, 106, 160);
-                    }
-    
-                    .legend_box_empty {
-                        width: 15px;
-                        height: 15px;
-                        border-radius: 100%;
-                        background-color: rgb(240, 105, 60);
-                    }
-                }
-            }
-    
-    
-            .chairScreen-container__box {
-    
-                position: absolute;
-                left: 26%;
-                top: 11%;
-                z-index: 1;
-                background-color: #f6f6f7;
-                padding: 5px;
-                color: #FFFFFF;
-                font-weight: bold;
-                width: 47.9%;
-                height: 1130px;
-    
-    
-    
-    
-                .chairScreen-container__box-passengerSide-first {
-                    display: flex;
-                    flex-direction: column;
-                    margin-top: 20px;
-                    gap: 10px;
-    
-    
-                }
-    
-                .chairScreen-container__box-passengerSide-second {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 10px;
-    
-                    h3 {
-                        color: wheat;
-                    }
-    
-                    p {
-                        color: white;
-                    }
-    
-                    .second-seat {
-                        display: flex;
-                        flex-direction: column;
-    
-                        .seat,.seat.isReserved {
-                            width: 30px;
-                            height: 35px;
-                            margin: 6px 4px;
-                            background-color: #ccc;
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-                            font-weight: bold;
-                            font-size: 14px;
-                            cursor: pointer;
-                            border-radius: 15%;
-    
-                            &:hover {
-                                background-color: rgb(255, 64, 0);
-                            }
-                        }
-                        .seat.isReserved{
-                            cursor: default;
-                        }
-    
-                        .seat-gap {
-                            margin-right: 30px;
-                        }
-    
-                        .seat-row {
-                            display: flex;
-                            flex-direction: row;
-                        }
-                    }
-                }
-    
-    
-            }
-    
-    
-    
-    
-            .info_box_group {
-                
-                display: block;
-                
-                
-    
-                .info_box {
-                    color: white;
-                    overflow-y: auto;
-                    height: 500px;
-                    margin: 0;
-                    margin-top: 40px;
-
-                    background-color: rgb(44, 56, 85, 0.8);
-                    box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.2);
-                    border-radius: 1rem;
-                    transition: 0.3s;
-    
-                    &:hover {
-                        background-color: rgb(44, 56, 85, 0.9);
-                    }
-    
-                    h3 {
-                        padding-top: 20px;
-                    }
-    
-                    p {
-                        padding: 30px;
-                    }   
-                    &:first-child{
-                        color: black;
-                        margin: 0px;
-                        margin-top: 60px;
-                        height: 600px;
-                        background-color: rgb(205, 205, 205, 0.7);
-                        &:hover {
-                            background-color: rgb(205, 205, 205, 0.9);
-                        }
-                    }
-                }
-                
-    
-            }
-        }
-    
-        .lower_div {
-            button {
-                margin-top: 200px;
-                margin-left: 900px;
-                padding: 10px 20px;
-                color: white;
-                background-color: rgb(240, 105, 60, 0.8);
-                border-radius: 8px;
-                border: none;
-                cursor: pointer;
-                transition: 0.3s;
-    
-                &:hover {
-                    background-color: rgba(255, 64, 0, 0.8);
-                }
-            }
-        }
-    
     }
-    
-    .footer {
-        margin-top: 400px;
-        padding-top: 150px;
-        background-color: #f3f4f6;
-        box-shadow: 0px -10px 100px rgba(0, 0, 0, 0.1);
-    }
-    
-    .seat-popup__bottom {
-        display: flex;
-        flex-direction: column;
-        position: fixed;
-        align-items: center;
-        justify-content: center;
-        top: 40%;
-        left: 10%;
-        width: 260px;
-        height: 200px;
-        padding: 16px;
-        color: white;
-        z-index: 999;
-        background: rgb(44, 56, 85);
-        border-radius: 0.5rem;
-    
-        button{
-            margin-top: 20px;
-            padding: 5px 15px;
-            background-color: #bababa;
-            transition: 0.3s;
-            border-radius: 0.5rem;
-            border: none;
-            &:hover{
-                background-color: white;
-            }
-        }
-    }
-    
-    
-    
-    
-    .info_box-list {
-        display: flex;
-    
-        .searchItem-two__container__ports-info__firstp{
-            font-weight:600;
-            color: rgb(44, 56, 85);
-        }
-    
-        .info_box-passengerSeat-box {
-           
-            .info_box-passengerSeat-box__list {
-                font-weight:600;
-                color: rgb(69, 87, 131);
-            }
-        }
-    
-    
-       
-    }
-    
-    .row-number {
-        
-        color: rgba(0, 0, 0, 0.6);
-        align-items: center;
-        justify-content: center;
-        width: 45px;
-        padding-top: 12px;
-        font-weight: lighter;
-    
-    }
-
-
-    
 
 }

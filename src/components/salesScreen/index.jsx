@@ -171,7 +171,7 @@ function SalesScreen() {
                     </label>
                 </div>
                 <div className="section_container" onClick={handlePayScreenClick}>
-                    <button type="submit" class="btn">Payment</button>
+                    <button type="submit" class="btn">Choose Seat</button>
                 </div>
             </div>
         </>

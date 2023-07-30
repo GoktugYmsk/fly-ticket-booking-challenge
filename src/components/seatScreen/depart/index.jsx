@@ -6,14 +6,20 @@ import { BsFillPersonFill, BsArrowRight } from 'react-icons/bs';
 import { AiOutlineClose } from 'react-icons/ai';
 
 
-
 function Depart({ setActiveDepart, setActiveReturn }) {
 
+<<<<<<< HEAD
     const flightPortData = useSelector((state) => state.portsData.flightPortData);
 
     const [formattedSelectedDate, setFormattedSelectedDate] = useState("");
 
+=======
+>>>>>>> Göktuğ
 
+
+    const [formattedSelectedDate, setFormattedSelectedDate] = useState("");
+
+    const flightPortData = useSelector((state) => state.portsData.flightPortData);
     const selectedDate = useSelector((state) => state.optionDateDepp.selectedDate);
 
     const flightPort = useSelector((state) => state.passFlightPort.flightPort);
@@ -35,10 +41,13 @@ function Depart({ setActiveDepart, setActiveReturn }) {
     }, [selectedDate]);
 
 
+<<<<<<< HEAD
 
 
 
 
+=======
+>>>>>>> Göktuğ
     const [selectedSeat, setSelectedSeat] = useState(null);
     const [reservedSeats, setReservedSeats] = useState([]);
     const [popup, setPopup] = useState(false);
@@ -52,6 +61,7 @@ function Depart({ setActiveDepart, setActiveReturn }) {
     const seat = useSelector((state) => state.seatReserve.seat);
 
     console.log('SEATCONTROL', seat);
+    console.log('seatArr', seatArr)
 
 
 
@@ -88,10 +98,34 @@ function Depart({ setActiveDepart, setActiveReturn }) {
             const alphabeticSeatNumber = getAlphabeticSeatNumber(seatNumber);
             const seatTotalSeat = { row, seatNumber: alphabeticSeatNumber };
             setDeneme([...deneme, seatTotalSeat]);
-
         }
     };
 
+    // const autoSelectSeats = () => {
+    //     const numPassengers = parseInt(totalPassenger);
+    //     if (isNaN(numPassengers) || numPassengers <= 0 || reservedSeats.length >= 138) {
+    //         return;
+    //     }
+    //     const newReservedSeats = [];
+    //     for (let row = 1; row <= 23 && newReservedSeats.length < numPassengers; row++) {
+    //         for (let seatNumber = 1; seatNumber <= 6 && newReservedSeats.length < numPassengers; seatNumber++) {
+    //             const isReserved = reservedSeats.some(seatInfo => seatInfo.row === row && seatInfo.seatNumber === seatNumber);
+    //             if (!isReserved) {
+    //                 const alphabeticSeatNumber = getAlphabeticSeatNumber(seatNumber);
+    //                 newReservedSeats.push({ row, seatNumber: alphabeticSeatNumber });
+    //             }
+    //         }
+    //     }
+    //     if (newReservedSeats.length > 0) {
+    //         const updatedReservedSeats = [...reservedSeats, ...newReservedSeats];
+    //         setReservedSeats([updatedReservedSeats]);
+    //         setSelectedSeat(updatedReservedSeats);
+    //         setSeatArr([...seatArr, ...newReservedSeats]);
+    //         setDeneme([...deneme, ...newReservedSeats]);
+    //         dispatch(setSeat([...deneme, ...newReservedSeats]))
+    //         setPopup(true);
+    //     }
+    // };
 
     const getAlphabeticRow = (numericRow) => {
         const alphabeticRow = String.fromCharCode(64 + numericRow);
@@ -102,21 +136,18 @@ function Depart({ setActiveDepart, setActiveReturn }) {
         if (selectedSeat) {
             const updatedReservedSeats = [...reservedSeats, ...seatArr];
             localStorage.setItem('seat', JSON.stringify(updatedReservedSeats));
-
             const seatArrWithAlphabeticRow = seatArr.map((seat) => ({
                 row: seat.row,
                 seatNumber: getAlphabeticRow(seat.seatNumber),
             }));
-
             setSelectedSeat(null);
-            dispatch(setSeat([seatArrWithAlphabeticRow]));
+            dispatch(setSeat([seatArrWithAlphabeticRow]))
             setPopup(false);
             setActiveDepart(false)
             if (formattedReturnDate) {
                 setActiveReturn(true)
             }
             else {
-
                 navigate('/pay-screen');
             }
         }
@@ -130,6 +161,11 @@ function Depart({ setActiveDepart, setActiveReturn }) {
     }, [popup]);
 
 
+    const handleCloseClick = () => {
+        setSeatArr([]);
+        setDeneme('')
+        setPopup(false);
+    }
 
     const handleKeyPress = (e) => {
         if (e.key === 'Escape') {
@@ -203,31 +239,43 @@ function Depart({ setActiveDepart, setActiveReturn }) {
                 <div className='seat-popup__bottom'>
                     <p>Do you approve the seat selection ?</p>
                     <button onClick={handleReservation}>Yes</button>
+<<<<<<< HEAD
+=======
+                    <button onClick={handleCloseClick}>No</button>
+>>>>>>> Göktuğ
+                </div >
+            )
+}
+<div className='upper_div'>
+    <h1>Choose Your Seat</h1>
+<<<<<<< HEAD
+<button >Skip</button>
+=======
+                {/* <button onClick={autoSelectSeats} >Skip</button> */}
+>>>>>>> Göktuğ
+            </div >
+
+    <div className='middle_div'>
+        <div className='chairScreen-container__box'>
+            <div className='chairScreen-container__box-passengerSide-first'>
+                <div className='chairScreen-container__box-passengerSide-second'>
+                    <div className='second-seat'>{renderSeatsSecond()}</div>
                 </div>
-            )}
-            <div className='upper_div'>
-                <h1>Choose Your Seat</h1>
-                <button >Skip</button>
             </div>
-
-            <div className='middle_div'>
-                <div className='chairScreen-container__box'>
-                    <div className='chairScreen-container__box-passengerSide-first'>
-                        <div className='chairScreen-container__box-passengerSide-second'>
-                            <div className='second-seat'>{renderSeatsSecond()}</div>
-                        </div>
-                    </div>
-                </div>
-                <img className='plane_top_view' src="https://www.delta.com/content/dam/delta-www/responsive/airports-aircraft/Boeing/LOPA/757-200-75d-seat-map-static-mobile.png" alt="plane" />
-                <div className='legend'><div className='legend_item'><div className='legend_box_reserved'></div><span>Reserved</span></div>
-                    <div className='legend_item'><div className='legend_box_selected'></div><span>Selected</span></div>
-                    <div className='legend_item'><div className='legend_box_empty'></div><span>Empty</span></div>
-                </div>
-                <div className='info_box_group'>
-                    <div className='info_box'>
+        </div>
+        <img className='plane_top_view' src="https://www.delta.com/content/dam/delta-www/responsive/airports-aircraft/Boeing/LOPA/757-200-75d-seat-map-static-mobile.png" alt="plane" />
+        <div className='legend'><div className='legend_item'><div className='legend_box_reserved'></div><span>Reserved</span></div>
+            <div className='legend_item'><div className='legend_box_selected'></div><span>Selected</span></div>
+            <div className='legend_item'><div className='legend_box_empty'></div><span>Empty</span></div>
+        </div>
+        <div className='info_box_group'>
+            <div className='info_box'>
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> Göktuğ
                         <h3>Passengers</h3>
                         <div className='info_box-list' >
                             <div className='info_box-list-name' >
@@ -243,6 +291,35 @@ function Depart({ setActiveDepart, setActiveReturn }) {
                                         return null;
                                     }
                                 })}
+<<<<<<< HEAD
+                            </div >
+                            <div className='info_box-list-surname' >
+                                <p>Last Name:</p>
+                                {passSurname?.map((name, index) => {
+                                    return (
+                                        <div key={index}>
+                                            <p className='searchItem-two__container__ports-info__firstp'>{name}</p>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                            <div className='info_box-passengerSeat'>
+                                {deneme && (
+                                    <div className='info_box-passengerSeat-box' >
+                                        <div className='info_box-passengerSeat-box__header' >
+                                            <p>Seat:</p>
+
+                                        </div>
+                                        {deneme.map((item, key) => (
+                                            <div className='info_box-passengerSeat-box__list' key={key}>
+
+                                                <p>  {item?.row}-{item?.seatNumber}</p>
+                                            </div>
+                                        ))}
+                                    </div>
+                                )}
+=======
+>>>>>>> Göktuğ
                             </div>
                             <div className='info_box-list-surname' >
                                 <p>Last Name:</p>
@@ -270,28 +347,34 @@ function Depart({ setActiveDepart, setActiveReturn }) {
                                     </div>
                                 )}
                             </div>
+                        </div >
+<<<<<<< HEAD
 
-                        </div>
+                    </div >
 
+=======
                     </div>
-
-                    <div className='info_box' id='boxbox'><h3>Flight Summary</h3><br />
-                        <div>
-                            {formattedSelectedDate}
-                            <div>
-                                <p>{leavePortExplanation} <BsArrowRight /> {arrivePortExplanation}</p>
-                            </div>
-                            <div>
-                                <p className="list-top-a">{flightTicket.airline}</p>
-                                <p className="list-top-b">No:  {flightTicket.flightNo}</p>
-                                <p className="list-top-c">Depart:  {flightTicket.depTime}</p>
-                                <p className="list-top-d">Arrive:  {flightTicket.arrTime}</p>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
+>>>>>>> Göktuğ
+    <div className='info_box' id='boxbox'><h3>Flight Summary</h3><br />
+        <div>
+            {formattedSelectedDate}
+            <div>
+                <p>{leavePortExplanation} <BsArrowRight /> {arrivePortExplanation}</p>
             </div>
+            <div>
+                <p className="list-top-a">{flightTicket.airline}</p>
+                <p className="list-top-b">No:  {flightTicket.flightNo}</p>
+                <p className="list-top-c">Depart:  {flightTicket.depTime}</p>
+                <p className="list-top-d">Arrive:  {flightTicket.arrTime}</p>
+            </div>
+        </div>
+<<<<<<< HEAD
+
+=======
+>>>>>>> Göktuğ
+                    </div >
+                </div >
+            </div >
         </>
     );
 }
