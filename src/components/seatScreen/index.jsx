@@ -39,42 +39,17 @@ function SeatScreen() {
         <>
             <Header className='header'>
             </Header><div className='chairScreen-container-content'>
-                <div className='upper_div'>
-                    <h2>Choose Your Seat</h2>
+                
+            <div className='info_box' >
                     {
-                        activeDepart &&
-                        <div>
-                            {formattedSelectedDate}
-                            <div>
-                                <p>{leavePortExplanation}</p>
-                                <p>{arrivePortExplanation}</p>
-                            </div>
-                            <div>
-                                <p className="list-top-a">{flightTicket.airline}</p>
-                                <p className="list-top-b">{flightTicket.flightNo}</p>
-                                <p className="list-top-c">{flightTicket.depTime}</p>
-                                <p className="list-top-d">{flightTicket.arrTime}</p>
-                            </div>
-                        </div>
+                       
                     }
+
                     {
-                        activeReturn &&
-                        <div>
-                            {formattedReturnDate}
-                            <div>
-                                <p>{arrivePortExplanation}</p>
-                                <p>{leavePortExplanation}</p>
-                            </div>
-                            <div>
-                                <p className="list-top-a">{flightTicketReturn.airline}</p>
-                                <p className="list-top-b">{flightTicketReturn.flightNo}</p>
-                                <p className="list-top-c">{flightTicketReturn.depTime}</p>
-                                <p className="list-top-d">{flightTicketReturn.arrTime}</p>
-                            </div>
-                        </div>
+                        
+                       
                     }
-                </div>
-                <div class="line_horizontal"></div>
+                
                 {
                     activeDepart &&
                     <Depart setActiveDepart={setActiveDepart} setActiveReturn={setActiveReturn} />
@@ -83,6 +58,7 @@ function SeatScreen() {
                     activeReturn &&
                     <Return />
                 }
+                </div>
             </div>
 
             <Footer className='footer' />

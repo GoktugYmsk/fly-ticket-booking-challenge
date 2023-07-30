@@ -2,9 +2,53 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setSeatReturn } from '../../configure';
+import Header from '../../header';
+import Footer from '../../footer';
+import { BsFillPersonFill, BsArrowRight } from 'react-icons/bs';
+import { AiOutlineClose } from 'react-icons/ai';
+import flightPorts from '../../../assets/flightPorts';
+
+
+
+
+
 
 
 function Return() {
+
+    const [activeDepart, setActiveDepart] = useState(true)
+    const [activeReturn, setActiveReturn] = useState(false)
+    const [formattedSelectedDate, setFormattedSelectedDate] = useState("");
+    const [formattedReturnDate, setFormattedReturnDate] = useState("");
+
+    const selectedDate = useSelector((state) => state.optionDateDepp.selectedDate);
+    const returnDate = useSelector((state) => state.optionDateArr.returnDate);
+    const flightPort = useSelector((state) => state.passFlightPort.flightPort);
+    const flightPortArrive = useSelector((state) => state.passFlightPortArrive.flightPortArrive);
+    const flightTicket = useSelector((state) => state.passTicket.flightTicket);
+    const flightTicketReturn = useSelector((state) => state.passTicket.flightTicketReturn);
+
+    const isLeavePort = flightPorts.ports.find((item) => item.code === flightPort);
+    const isArrivePort = flightPorts.ports.find((item) => item.code === flightPortArrive);
+
+    const leavePortExplanation = isLeavePort ? isLeavePort.explanation : "";
+    const arrivePortExplanation = isArrivePort ? isArrivePort.explanation : "";
+
+    useEffect(() => {
+        const selectedDateFormatted = selectedDate instanceof Date ? selectedDate.toDateString() : "";
+        setFormattedSelectedDate(selectedDateFormatted);
+
+        const returnDateFormatted = returnDate instanceof Date ? returnDate.toDateString() : "";
+        setFormattedReturnDate(returnDateFormatted);
+
+    }, [selectedDate, returnDate]);
+
+
+
+
+
+
+
     const [selectedSeat, setSelectedSeat] = useState(null);
     const [reservedSeats, setReservedSeats] = useState([]);
     const [popup, setPopup] = useState(false);
@@ -120,25 +164,26 @@ function Return() {
                         : isSelected
                             ? 'rgb(83, 106, 160)'
                             : 'rgb(240, 105, 60)',
+                    color: 'rgb(255, 255, 255, 0.4)',
                 };
 
                 rowSeats.push(
                     <React.Fragment key={i}>
                         <div
-                            className='seat'
+                            className={`seat ${isReserved ? 'isReserved' : ''}`}
                             key={`seat-${j}-${i}`}
                             onClick={() => handleSeatClick(j, i)}
                             style={seatStyle}
                         >
-                            {getAlphabeticRow(i)}
+                            
+                            {isSelected? <BsFillPersonFill  color="white"/> : getAlphabeticRow(i)}
                         </div>
-                        {i === 3 && <div className='seat-gap' key={`gap-${j}-${i}`} />}
+                        {i === 3 && <div className='row-number'>{j}</div>}
                     </React.Fragment>
                 );
             }
             rows.push(
                 <div className='seat-row' key={j}>
-                    <div className='row-number'>{j}</div>
                     {rowSeats}
                 </div>
             );
@@ -147,77 +192,101 @@ function Return() {
     }
     return (
         <>
-            {popup && (
-                <div className='seat-popup__bottom'>
-                    <p>koltuk seçimini onaylıyor musunuz ?</p>
-                    <button onClick={handleReservation}>Devam Et</button>
+           
+                {popup && (
+                    <div className='seat-popup__bottom'>
+                        <p>Do you approve the seat selection ?</p>
+                        <button onClick={handleReservation}>Yes</button>
+                    </div>
+                )}
+                <div className='upper_div'>
+                    <h1>Choose Your Seat</h1>
+                    <button >Skip</button>
                 </div>
-            )}
-            <div className='middle_div'>
-                <div className='chairScreen-container__box'>
-                    <div className='chairScreen-container__box-passengerSide-first'>
-                        <div className='chairScreen-container__box-passengerSide-second'>
-                            <div className='second-seat'>{renderSeatsSecond()}</div>
+                
+                <div className='middle_div'>
+                    <div className='chairScreen-container__box'>
+                        <div className='chairScreen-container__box-passengerSide-first'>
+                            <div className='chairScreen-container__box-passengerSide-second'>
+                                <div className='second-seat'>{renderSeatsSecond()}</div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <img className='plane_top_view' src="https://www.delta.com/content/dam/delta-www/responsive/airports-aircraft/Boeing/LOPA/757-200-75d-seat-map-static-mobile.png" alt="plane" />
-                <div className='legend'><div className='legend_item'><div className='legend_box_taken'></div><span>Taken</span></div>
-                    <div className='legend_item'><div className='legend_box_selected'></div><span>Selected</span></div>
-                    <div className='legend_item'><div className='legend_box_empty'></div><span>Empty</span></div>
-                </div>
-                <div className='info_box_group'>
-                    <div className='info_box'>
-                        <h2>First Class</h2>
-                        <div className='info_box-list' >
-                            <div className='info_box-list-name' >
-                                <p>First Name:</p>
-                                {passName?.map((name, index) => {
-                                    if (passSurname[index]) {
+                    <img className='plane_top_view' src="https://www.delta.com/content/dam/delta-www/responsive/airports-aircraft/Boeing/LOPA/757-200-75d-seat-map-static-mobile.png" alt="plane" />
+                    <div className='legend'><div className='legend_item'><div className='legend_box_reserved'></div><span>Reserved</span></div>
+                        <div className='legend_item'><div className='legend_box_selected'></div><span>Selected</span></div>
+                        <div className='legend_item'><div className='legend_box_empty'></div><span>Empty</span></div>
+                    </div>
+                    <div className='info_box_group'>
+                        <div className='info_box'>
+
+                            
+
+                            <h3>Passengers</h3>
+                            <div className='info_box-list' >
+                                <div className='info_box-list-name' >
+                                    <p>First Name:</p>
+                                    {passName?.map((name, index) => {
+                                        if (passSurname[index]) {
+                                            return (
+                                                <div key={index}>
+                                                    <p className='searchItem-two__container__ports-info__firstp'>{name}</p>
+                                                </div>
+                                            );
+                                        } else {
+                                            return null;
+                                        }
+                                    })}
+                                </div>
+                                <div className='info_box-list-surname' >
+                                    <p>Last Name:</p>
+                                    {passSurname?.map((name, index) => {
                                         return (
                                             <div key={index}>
                                                 <p className='searchItem-two__container__ports-info__firstp'>{name}</p>
                                             </div>
                                         );
-                                    } else {
-                                        return null;
-                                    }
-                                })}
-                            </div>
-                            <div className='info_box-list-surname' >
-                                <p>First Surname:</p>
-                                {passSurname?.map((name, index) => {
-                                    return (
-                                        <div key={index}>
-                                            <p className='searchItem-two__container__ports-info__firstp'>{name}</p>
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                            <div className='info_box-passengerSeat'>
-                                {deneme && (
-                                    <div className='info_box-passengerSeat-box' >
-                                        <div className='info_box-passengerSeat-box__header' >
-                                            <p>Row</p>
-                                            <p>Column</p>
-                                        </div>
-                                        {deneme.map((item, key) => (
-                                            <div className='info_box-passengerSeat-box__list' key={key}>
-                                                <p>{item?.row}</p>
-                                                <p>  {item?.seatNumber}</p>
+                                    })}
+                                </div>
+                                <div className='info_box-passengerSeat'>
+                                    {deneme && (
+                                        <div className='info_box-passengerSeat-box' >
+                                            <div className='info_box-passengerSeat-box__header' >
+                                                <p>Seat:</p>
+                                                
                                             </div>
-                                        ))}
-                                    </div>
-                                )}
+                                            {deneme.map((item, key) => (
+                                                <div className='info_box-passengerSeat-box__list' key={key}>
+                                                    
+                                                    <p>  {item?.row}-{item?.seatNumber}</p>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
+
                             </div>
 
                         </div>
-
+                        
+                        <div className='info_box'><h3>Flight Summary</h3><br/>
+                        <div>
+                            {formattedReturnDate}
+                            <div>
+                                <p>{arrivePortExplanation} <BsArrowRight/> {leavePortExplanation}</p>
+                            </div>
+                            <div>
+                                <p className="list-top-a">{flightTicketReturn.airline}</p>
+                                <p className="list-top-b">No: {flightTicketReturn.flightNo}</p>
+                                <p className="list-top-c">Depart:  {flightTicketReturn.depTime}</p>
+                                <p className="list-top-d">Arrive:  {flightTicketReturn.arrTime}</p>
+                            </div>
+                        </div>
+                        </div>
                     </div>
-                    <div className='info_box'><h2>Bussiness Class</h2><p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non minima distinctio facere doloremque nesciunt dicta temporibus sed officiis. Eius libero illo alias doloribus soluta, officiis animi ipsum ea repellat non?</p></div>
-                    <div className='info_box'><h2>Economy Class</h2><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corrupti nisi eligendi culpa deleniti pariatur ducimus tempore expedita corporis libero, aut repellendus repudiandae iusto facilis omnis. Doloremque facilis pariatur aliquid in.</p></div>
                 </div>
-            </div>
+                
+            
         </>
     );
 }
