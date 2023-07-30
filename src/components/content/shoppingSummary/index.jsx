@@ -7,8 +7,6 @@ import Footer from "../../footer";
 import "./index.scss";
 import MyImage from './arrow.png';
 
-import flightPorts from "../../../assets/flightPorts";
-
 
 
 function ShoppingSummary() {
@@ -19,6 +17,7 @@ function ShoppingSummary() {
   const refreshPassenger = useSelector((state) => state.refreshPass.refreshPassenger);
   const flightTicketReturn = useSelector((state) => state.passTicket.flightTicketReturn);
 
+  const flightPortData = useSelector((state) => state.portsData.flightPortData);
 
   const seat = useSelector((state) => state.seatReserve.seat);
   const seatReturn = useSelector((state) => state.seatReserve.seatReturn);
@@ -31,8 +30,8 @@ function ShoppingSummary() {
   const flightPort = useSelector((state) => state.passFlightPort.flightPort);
   const flightPortArrive = useSelector((state) => state.passFlightPortArrive.flightPortArrive);
 
-  const isLeavePort = flightPorts.ports.find((item) => item.code === flightPort);
-  const isArrivePort = flightPorts.ports.find((item) => item.code === flightPortArrive);
+  const isLeavePort = flightPortData.data.find((item) => item.code === flightPort);
+  const isArrivePort = flightPortData.data.find((item) => item.code === flightPortArrive);
 
   const leavePortExplanation = isLeavePort ? isLeavePort.explanation : "";
   const arrivePortExplanation = isArrivePort ? isArrivePort.explanation : "";

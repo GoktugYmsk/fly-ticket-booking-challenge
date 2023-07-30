@@ -26,9 +26,12 @@ function FlyCompanies() {
   const flightPortArrive = useSelector((state) => state.passFlightPortArrive.flightPortArrive);
   const flightPortData = useSelector((state) => state.portsData.flightPortData);
   const companyInfo = useSelector((state) => state.portsData.companyInfo);
+  const companyInfoReturn = useSelector((state) => state.portsData.companyInfoReturn);
   const [expedition, setExpedetion] = useState(false)
 
   console.log('returnDate', returnDate)
+
+  console.log('companyInfoReturn', companyInfoReturn)
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -63,6 +66,7 @@ function FlyCompanies() {
 
   const handleMainPageClick = () => {
     dispatch(setPassengerInfo(refreshPassenger));
+    dispatch(setReturnDate(''))
     navigate("/");
   };
 
@@ -80,10 +84,11 @@ function FlyCompanies() {
 
   const handleMainPage = () => {
     dispatch(setPassengerInfo(refreshPassenger));
+
     navigate("/");
   };
 
-  const filteredReturnFlights = companyInfo.data.filter((item) => {
+  const filteredReturnFlights = companyInfoReturn.data.filter((item) => {
     return item.depPort === flightPortArrive && item.arrPort === flightPort;
   });
 
@@ -199,7 +204,6 @@ function FlyCompanies() {
               </div>
               <div className="flyCompanies-container__box-info__date">
 
-
                 <div className="flyCompanies-container__box-info__date-return">
                   <p>Return</p>
                   {formattedReturnDate}
@@ -256,7 +260,7 @@ function FlyCompanies() {
                       </div>
                       <div className="flyCompanies-container__box-amount partner">
                         <h4>Price(per)</h4>
-                        <p>{item.priceDetail.salesPrice.amount} $</p>
+                        <p>{item.passengerPrices[0]?.basePrice} $</p>
                       </div>
                     </div>
                   </div>

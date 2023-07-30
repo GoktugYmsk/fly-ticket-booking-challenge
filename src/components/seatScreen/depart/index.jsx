@@ -36,10 +36,6 @@ function Depart({ setActiveDepart, setActiveReturn }) {
     }, [selectedDate]);
 
 
-
-
-
-
     const [selectedSeat, setSelectedSeat] = useState(null);
     const [reservedSeats, setReservedSeats] = useState([]);
     const [popup, setPopup] = useState(false);
@@ -140,6 +136,12 @@ function Depart({ setActiveDepart, setActiveReturn }) {
         }
     };
 
+    const handleCloseClick = () => {
+        setSeatArr([]);
+        setDeneme('')
+        setPopup(false);
+    }
+
     useEffect(() => {
         window.addEventListener('keydown', handleKeyPress);
         return () => {
@@ -204,11 +206,12 @@ function Depart({ setActiveDepart, setActiveReturn }) {
                 <div className='seat-popup__bottom'>
                     <p>Do you approve the seat selection ?</p>
                     <button onClick={handleReservation}>Yes</button>
+                    <button onClick={handleCloseClick}>No</button>
                 </div>
             )}
             <div className='upper_div'>
                 <h1>Choose Your Seat</h1>
-                <button >Skip</button>
+                <button  >Skip</button>
             </div>
 
             <div className='middle_div'>

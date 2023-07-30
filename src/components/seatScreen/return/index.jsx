@@ -125,6 +125,13 @@ function Return() {
         }
     };
 
+
+    const handleCloseClick = () => {
+        setSeatArr([]);
+        setDeneme('')
+        setPopup(false);
+    }
+
     useEffect(() => {
         window.addEventListener('keydown', handleKeyPress);
         return () => {
@@ -190,6 +197,7 @@ function Return() {
                 <div className='seat-popup__bottom'>
                     <p>Do you approve the seat selection ?</p>
                     <button onClick={handleReservation}>Yes</button>
+                    <button onClick={handleCloseClick}>No</button>
                 </div>
             )}
             <div className='upper_div'>
