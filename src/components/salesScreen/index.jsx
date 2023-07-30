@@ -141,11 +141,12 @@ function SalesScreen() {
                     {renderPassengerDetails()}
                 </div>
 
-                <div className="flight-container larger-container" style={{ display: 'flex' }}>
-                    <h3>Contact Information</h3>
-                    <div classNamess="flight-box" style={{ flex: 1 }}>
-                        <div className="airline-title">Phone Number:</div>
-                        <div className="airline"><input type="text" id="phone-number" name="phone-number" required /></div>
+
+                <h3>Contact Information</h3>
+                <div className="flight-larger-container-contact">
+
+                    <div className="flight-box-no">
+                        <input placeholder="Phone Number" type="text" id="phone-number" name="phone-number" required />
                     </div>
                     <div className="flight-box-mail">
                         <input placeholder="Email" type="email" id="email" name="email" required />
@@ -172,7 +173,7 @@ function SalesScreen() {
                     </label>
                 </div>
                 <div className="section_container" onClick={handlePayScreenClick}>
-                    <button type="submit" class="btn">Payment</button>
+                    <button type="submit" class="btn">Choose Seat</button>
                 </div>
             </div>
         </>

@@ -2,26 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setSeat } from '../../configure';
-<<<<<<< HEAD
-import { BsFillPersonFill } from 'react-icons/bs';
+import { BsFillPersonFill, BsArrowRight } from 'react-icons/bs';
 import { AiOutlineClose } from 'react-icons/ai';
-=======
-import { BsFillPersonFill,BsArrowRight } from 'react-icons/bs';
-import { AiOutlineClose } from 'react-icons/ai';
-import flightPorts from '../../../assets/flightPorts';
->>>>>>> b610e3d74ef8f8412c03d31788d9d97d5aca5a6a
-
 
 
 function Depart({ setActiveDepart, setActiveReturn }) {
 
-<<<<<<< HEAD
 
 
     const [formattedSelectedDate, setFormattedSelectedDate] = useState("");
 
     const flightPortData = useSelector((state) => state.portsData.flightPortData);
-
     const selectedDate = useSelector((state) => state.optionDateDepp.selectedDate);
 
     const flightPort = useSelector((state) => state.passFlightPort.flightPort);
@@ -31,22 +22,6 @@ function Depart({ setActiveDepart, setActiveReturn }) {
 
     const isLeavePort = flightPortData.data.find((item) => item.code === flightPort);
     const isArrivePort = flightPortData.data.find((item) => item.code === flightPortArrive);
-=======
-
-
-    const [formattedSelectedDate, setFormattedSelectedDate] = useState("");
-
-
-    const selectedDate = useSelector((state) => state.optionDateDepp.selectedDate);
-
-    const flightPort = useSelector((state) => state.passFlightPort.flightPort);
-    const flightPortArrive = useSelector((state) => state.passFlightPortArrive.flightPortArrive);
-    const flightTicket = useSelector((state) => state.passTicket.flightTicket);
-
-
-    const isLeavePort = flightPorts.ports.find((item) => item.code === flightPort);
-    const isArrivePort = flightPorts.ports.find((item) => item.code === flightPortArrive);
->>>>>>> b610e3d74ef8f8412c03d31788d9d97d5aca5a6a
 
     const leavePortExplanation = isLeavePort ? isLeavePort.explanation : "";
     const arrivePortExplanation = isArrivePort ? isArrivePort.explanation : "";
@@ -55,21 +30,10 @@ function Depart({ setActiveDepart, setActiveReturn }) {
         const selectedDateFormatted = selectedDate instanceof Date ? selectedDate.toDateString() : "";
         setFormattedSelectedDate(selectedDateFormatted);
 
-<<<<<<< HEAD
 
     }, [selectedDate]);
 
 
-=======
-
-    }, [selectedDate]);
-
-
-
-
-
-
->>>>>>> b610e3d74ef8f8412c03d31788d9d97d5aca5a6a
     const [selectedSeat, setSelectedSeat] = useState(null);
     const [reservedSeats, setReservedSeats] = useState([]);
     const [popup, setPopup] = useState(false);
@@ -83,6 +47,7 @@ function Depart({ setActiveDepart, setActiveReturn }) {
     const seat = useSelector((state) => state.seatReserve.seat);
 
     console.log('SEATCONTROL', seat);
+    console.log('seatArr', seatArr)
 
 
 
@@ -119,10 +84,34 @@ function Depart({ setActiveDepart, setActiveReturn }) {
             const alphabeticSeatNumber = getAlphabeticSeatNumber(seatNumber);
             const seatTotalSeat = { row, seatNumber: alphabeticSeatNumber };
             setDeneme([...deneme, seatTotalSeat]);
-
         }
     };
 
+    // const autoSelectSeats = () => {
+    //     const numPassengers = parseInt(totalPassenger);
+    //     if (isNaN(numPassengers) || numPassengers <= 0 || reservedSeats.length >= 138) {
+    //         return;
+    //     }
+    //     const newReservedSeats = [];
+    //     for (let row = 1; row <= 23 && newReservedSeats.length < numPassengers; row++) {
+    //         for (let seatNumber = 1; seatNumber <= 6 && newReservedSeats.length < numPassengers; seatNumber++) {
+    //             const isReserved = reservedSeats.some(seatInfo => seatInfo.row === row && seatInfo.seatNumber === seatNumber);
+    //             if (!isReserved) {
+    //                 const alphabeticSeatNumber = getAlphabeticSeatNumber(seatNumber);
+    //                 newReservedSeats.push({ row, seatNumber: alphabeticSeatNumber });
+    //             }
+    //         }
+    //     }
+    //     if (newReservedSeats.length > 0) {
+    //         const updatedReservedSeats = [...reservedSeats, ...newReservedSeats];
+    //         setReservedSeats([updatedReservedSeats]);
+    //         setSelectedSeat(updatedReservedSeats);
+    //         setSeatArr([...seatArr, ...newReservedSeats]);
+    //         setDeneme([...deneme, ...newReservedSeats]);
+    //         dispatch(setSeat([...deneme, ...newReservedSeats]))
+    //         setPopup(true);
+    //     }
+    // };
 
     const getAlphabeticRow = (numericRow) => {
         const alphabeticRow = String.fromCharCode(64 + numericRow);
@@ -133,21 +122,18 @@ function Depart({ setActiveDepart, setActiveReturn }) {
         if (selectedSeat) {
             const updatedReservedSeats = [...reservedSeats, ...seatArr];
             localStorage.setItem('seat', JSON.stringify(updatedReservedSeats));
-
             const seatArrWithAlphabeticRow = seatArr.map((seat) => ({
                 row: seat.row,
                 seatNumber: getAlphabeticRow(seat.seatNumber),
             }));
-
             setSelectedSeat(null);
-            dispatch(setSeat([seatArrWithAlphabeticRow]));
+            dispatch(setSeat([seatArrWithAlphabeticRow]))
             setPopup(false);
             setActiveDepart(false)
             if (formattedReturnDate) {
                 setActiveReturn(true)
             }
             else {
-
                 navigate('/pay-screen');
             }
         }
@@ -161,6 +147,11 @@ function Depart({ setActiveDepart, setActiveReturn }) {
     }, [popup]);
 
 
+    const handleCloseClick = () => {
+        setSeatArr([]);
+        setDeneme('')
+        setPopup(false);
+    }
 
     const handleKeyPress = (e) => {
         if (e.key === 'Escape') {
@@ -169,12 +160,6 @@ function Depart({ setActiveDepart, setActiveReturn }) {
             setPopup(false);
         }
     };
-
-    const handleCloseClick = () => {
-        setSeatArr([]);
-        setDeneme('')
-        setPopup(false);
-    }
 
     useEffect(() => {
         window.addEventListener('keydown', handleKeyPress);
@@ -237,7 +222,6 @@ function Depart({ setActiveDepart, setActiveReturn }) {
     return (
         <>
             {popup && (
-<<<<<<< HEAD
                 <div className='seat-popup__bottom'>
                     <p>Do you approve the seat selection ?</p>
                     <button onClick={handleReservation}>Yes</button>
@@ -246,7 +230,7 @@ function Depart({ setActiveDepart, setActiveReturn }) {
             )}
             <div className='upper_div'>
                 <h1>Choose Your Seat</h1>
-                <button  >Skip</button>
+                {/* <button onClick={autoSelectSeats} >Skip</button> */}
             </div>
 
             <div className='middle_div'>
@@ -264,68 +248,17 @@ function Depart({ setActiveDepart, setActiveReturn }) {
                 </div>
                 <div className='info_box_group'>
                     <div className='info_box'>
-
                         <h3>Passengers</h3>
                         <div className='info_box-list' >
                             <div className='info_box-list-name' >
                                 <p>First Name:</p>
                                 {passName?.map((name, index) => {
                                     if (passSurname[index]) {
-=======
-                    <div className='seat-popup__bottom'>
-                        <p>Do you approve the seat selection ?</p>
-                        <button onClick={handleReservation}>Yes</button>
-                    </div>
-                )}
-                <div className='upper_div'>
-                    <h1>Choose Your Seat</h1>
-                    <button >Skip</button>
-                </div>
-
-                <div className='middle_div'>
-                    <div className='chairScreen-container__box'>
-                        <div className='chairScreen-container__box-passengerSide-first'>
-                            <div className='chairScreen-container__box-passengerSide-second'>
-                                <div className='second-seat'>{renderSeatsSecond()}</div>
-                            </div>
-                        </div>
-                    </div>
-                    <img className='plane_top_view' src="https://www.delta.com/content/dam/delta-www/responsive/airports-aircraft/Boeing/LOPA/757-200-75d-seat-map-static-mobile.png" alt="plane" />
-                    <div className='legend'><div className='legend_item'><div className='legend_box_reserved'></div><span>Reserved</span></div>
-                        <div className='legend_item'><div className='legend_box_selected'></div><span>Selected</span></div>
-                        <div className='legend_item'><div className='legend_box_empty'></div><span>Empty</span></div>
-                    </div>
-                    <div className='info_box_group'>
-                        <div className='info_box'>
-
-
-
-                            <h3>Passengers</h3>
-                            <div className='info_box-list' >
-                                <div className='info_box-list-name' >
-                                    <p>First Name:</p>
-                                    {passName?.map((name, index) => {
-                                        if (passSurname[index]) {
-                                            return (
-                                                <div key={index}>
-                                                    <p className='searchItem-two__container__ports-info__firstp'>{name}</p>
-                                                </div>
-                                            );
-                                        } else {
-                                            return null;
-                                        }
-                                    })}
-                                </div>
-                                <div className='info_box-list-surname' >
-                                    <p>Last Name:</p>
-                                    {passSurname?.map((name, index) => {
->>>>>>> b610e3d74ef8f8412c03d31788d9d97d5aca5a6a
                                         return (
                                             <div key={index}>
                                                 <p className='searchItem-two__container__ports-info__firstp'>{name}</p>
                                             </div>
                                         );
-<<<<<<< HEAD
                                     } else {
                                         return null;
                                     }
@@ -352,68 +285,29 @@ function Depart({ setActiveDepart, setActiveReturn }) {
                                             <div className='info_box-passengerSeat-box__list' key={key}>
 
                                                 <p>  {item?.row}-{item?.seatNumber}</p>
-=======
-                                    })}
-                                </div>
-                                            <div className='info_box-passengerSeat'>
-                                                {deneme && (
-                                                    <div className='info_box-passengerSeat-box' >
-                                                        <div className='info_box-passengerSeat-box__header' >
-                                                            <p>Seat:</p>
-
->>>>>>> b610e3d74ef8f8412c03d31788d9d97d5aca5a6a
-                                                        </div>
-                                                        {deneme.map((item, key) => (
-                                                            <div className='info_box-passengerSeat-box__list' key={key}>
-
-                                                                <p>  {item?.row}-{item?.seatNumber}</p>
-                                                            </div>
-                                                        ))}
-                                                    </div>
-                                                )}
                                             </div>
-
-                            </div>
-
-                        </div>
-
-                            <div className='info_box' id='boxbox'><h3>Flight Summary</h3><br />
-                                <div>
-                                    {formattedSelectedDate}
-                                    <div>
-                                        <p>{leavePortExplanation} <BsArrowRight /> {arrivePortExplanation}</p>
+                                        ))}
                                     </div>
-                                    <div>
-                                        <p className="list-top-a">{flightTicket.airline}</p>
-                                        <p className="list-top-b">No:  {flightTicket.flightNo}</p>
-                                        <p className="list-top-c">Depart:  {flightTicket.depTime}</p>
-                                        <p className="list-top-d">Arrive:  {flightTicket.arrTime}</p>
-                                    </div>
-                                </div>
-
+                                )}
                             </div>
                         </div>
-<<<<<<< HEAD
-
-    <div className='info_box' id='boxbox'><h3>Flight Summary</h3><br />
-        <div>
-            {formattedSelectedDate}
-            <div>
-                <p>{leavePortExplanation}</p>
-                <p>{arrivePortExplanation}</p>
+                    </div>
+                    <div className='info_box' id='boxbox'><h3>Flight Summary</h3><br />
+                        <div>
+                            {formattedSelectedDate}
+                            <div>
+                                <p>{leavePortExplanation} <BsArrowRight /> {arrivePortExplanation}</p>
+                            </div>
+                            <div>
+                                <p className="list-top-a">{flightTicket.airline}</p>
+                                <p className="list-top-b">No:  {flightTicket.flightNo}</p>
+                                <p className="list-top-c">Depart:  {flightTicket.depTime}</p>
+                                <p className="list-top-d">Arrive:  {flightTicket.arrTime}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div>
-                <p className="list-top-a">{flightTicket.airline}</p>
-                <p className="list-top-b">{flightTicket.flightNo}</p>
-                <p className="list-top-c">{flightTicket.depTime}</p>
-                <p className="list-top-d">{flightTicket.arrTime}</p>
-            </div>
-        </div>
-
-    </div>
-=======
->>>>>>> b610e3d74ef8f8412c03d31788d9d97d5aca5a6a
-                </div >
         </>
     );
 }

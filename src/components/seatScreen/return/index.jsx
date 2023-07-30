@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { setSeatReturn } from '../../configure';
 import Header from '../../header';
 import Footer from '../../footer';
-import { BsFillPersonFill } from 'react-icons/bs';
+import { BsFillPersonFill, BsArrowRight } from 'react-icons/bs';
 import { AiOutlineClose } from 'react-icons/ai';
 
 
@@ -15,9 +15,7 @@ function Return() {
     const [formattedSelectedDate, setFormattedSelectedDate] = useState("");
     const [formattedReturnDate, setFormattedReturnDate] = useState("");
 
-
     const flightPortData = useSelector((state) => state.portsData.flightPortData);
-    const companyInfo = useSelector((state) => state.portsData.companyInfo);
 
     const selectedDate = useSelector((state) => state.optionDateDepp.selectedDate);
     const returnDate = useSelector((state) => state.optionDateArr.returnDate);
@@ -40,6 +38,7 @@ function Return() {
         setFormattedReturnDate(returnDateFormatted);
 
     }, [selectedDate, returnDate]);
+
 
 
     const [selectedSeat, setSelectedSeat] = useState(null);
@@ -116,6 +115,12 @@ function Return() {
     }, [popup]);
 
 
+    const handleCloseClick = () => {
+        setSeatArr([]);
+        setDeneme('')
+        setPopup(false);
+    }
+
 
     const handleKeyPress = (e) => {
         if (e.key === 'Escape') {
@@ -124,13 +129,6 @@ function Return() {
             setPopup(false);
         }
     };
-
-
-    const handleCloseClick = () => {
-        setSeatArr([]);
-        setDeneme('')
-        setPopup(false);
-    }
 
     useEffect(() => {
         window.addEventListener('keydown', handleKeyPress);
@@ -274,14 +272,13 @@ function Return() {
                         <div>
                             {formattedReturnDate}
                             <div>
-                                <p>{arrivePortExplanation}</p>
-                                <p>{leavePortExplanation}</p>
+                                <p>{arrivePortExplanation} <BsArrowRight /> {leavePortExplanation}</p>
                             </div>
                             <div>
                                 <p className="list-top-a">{flightTicketReturn.airline}</p>
-                                <p className="list-top-b">{flightTicketReturn.flightNo}</p>
-                                <p className="list-top-c">{flightTicketReturn.depTime}</p>
-                                <p className="list-top-d">{flightTicketReturn.arrTime}</p>
+                                <p className="list-top-b">No: {flightTicketReturn.flightNo}</p>
+                                <p className="list-top-c">Depart:  {flightTicketReturn.depTime}</p>
+                                <p className="list-top-d">Arrive:  {flightTicketReturn.arrTime}</p>
                             </div>
                         </div>
                     </div>

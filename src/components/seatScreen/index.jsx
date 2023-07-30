@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+
 import Header from '../header';
 import Depart from './depart';
 import Return from './return';
 import Footer from '../footer';
+
 import './index.scss';
 
 function SeatScreen() {
@@ -46,7 +48,6 @@ function SeatScreen() {
                         <Depart setActiveDepart={setActiveDepart} setActiveReturn={setActiveReturn} />
                     }
 
-
                     <div className='info_box' >
                         {
 
@@ -54,14 +55,6 @@ function SeatScreen() {
                             <Return />
                         }
                     </div>
-                    {
-                        activeDepart &&
-                        <Depart setActiveDepart={setActiveDepart} setActiveReturn={setActiveReturn} />
-                    }
-                    {
-                        activeReturn &&
-                        <Return />
-                    }
                 </div>
             </div>
 
