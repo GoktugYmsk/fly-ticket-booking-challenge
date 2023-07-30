@@ -19,6 +19,7 @@ function ShoppingSummary() {
   const refreshPassenger = useSelector((state) => state.refreshPass.refreshPassenger);
   const flightTicketReturn = useSelector((state) => state.passTicket.flightTicketReturn);
 
+
   const seat = useSelector((state) => state.seatReserve.seat);
   const seatReturn = useSelector((state) => state.seatReserve.seatReturn);
 
@@ -127,24 +128,24 @@ function ShoppingSummary() {
         </div>
 
         {/******************* Return ********************************/}
-        
-        
-        {flightTicketReturn && 
-        
-        <>
-        <div className="shoppingSummary-container-box__list">
-        <h3 className="shoppingSummary-container-box__list-text"><i class="fas fa-chevron-right"></i> Return <i class="fas fa-chevron-left"></i></h3>
-        <div className="shoppingSummary-container-box__list-top">
-              <p className="list-top-a">{flightTicketReturn.airline}</p>
-              <p className="list-top-b">{flightTicketReturn.flightNo}</p>
-              <p className="list-top-c">{flightTicketReturn.depTime}</p>
-              <p className="list-top-d">{flightTicketReturn.arrTime}</p>
-              <p className="list-top-f">{arrivePortExplanation}</p>
-              <p className="list-top-g">{leavePortExplanation}</p>
-              <img className="list-top-x" src={imagePath} alt="Ok İkonu" />
-            </div>
-            <h5 className="shoppingSummary-container-box__list-text"> {totalPassenger} Passengers </h5>
-            <div className="shoppingSummary-container-box__list-bottom">
+
+
+        {flightTicketReturn &&
+
+          <>
+            <div className="shoppingSummary-container-box__list">
+              <h3 className="shoppingSummary-container-box__list-text"><i class="fas fa-chevron-right"></i> Return <i class="fas fa-chevron-left"></i></h3>
+              <div className="shoppingSummary-container-box__list-top">
+                <p className="list-top-a">{flightTicketReturn.airline}</p>
+                <p className="list-top-b">{flightTicketReturn.flightNo}</p>
+                <p className="list-top-c">{flightTicketReturn.depTime}</p>
+                <p className="list-top-d">{flightTicketReturn.arrTime}</p>
+                <p className="list-top-f">{arrivePortExplanation}</p>
+                <p className="list-top-g">{leavePortExplanation}</p>
+                <img className="list-top-x" src={imagePath} alt="Ok İkonu" />
+              </div>
+              <h5 className="shoppingSummary-container-box__list-text"> {totalPassenger} Passengers </h5>
+              <div className="shoppingSummary-container-box__list-bottom">
                 <div className="shoppingSummary-container-box__list-name">
                   <div className="name">
                     {passName.map((name, index) => (
@@ -191,15 +192,15 @@ function ShoppingSummary() {
             </div>
           </>
         }
-        
-        
+
+
         <h5 onClick={handleMainPage}>Go Back To The Homepage</h5>
       </div>
-      
+
       <Footer>
 
       </Footer>
-      
+
     </div>
   );
 }
