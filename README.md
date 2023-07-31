@@ -1,7 +1,26 @@
 # Flight Ticket Booking Project README
 
 ## Project Overview
-The Flight Ticket Booking project is a full-stack application that allows users to book flight tickets. It provides a user-friendly web interface for customers to search for flights, also view available options, and make reservations. The backend is built using ASP.NET Core API, and the data is stored in a PostgreSQL database, and both of them deployed on Amazon Web Services (AWS).
+
+The Flight Ticket Booking project is a full-stack application that enables users to purchase flight tickets with ease. This application provides a user-friendly web interface, allowing customers to search for available flights, view detailed options, and make reservations. The backend of the application is built using ASP.NET Core API, and flight data is securely stored in a PostgreSQL database deployed on Amazon Web Services (AWS).
+
+### Key Features
+
+- User-friendly flight ticket search and reservation system.
+- Listing and detailed display of available flight options.
+- Seamless integration with external applications via the API.
+
+### Technologies and Tools
+
+- Frontend: HTML, SCSS, SASS JavaScript (React.js).
+- Backend: ASP.NET Core API.
+- Database: PostgreSQL.
+- Database Deployment: Amazon Web Services (AWS).
+- Version Control: Git.
+- IDE and Text Editors: Visual Studio 2022, Visual Studio Code, Rider 2023.1.3.
+
+### Why Flight Ticket Booking?
+Flight Ticket Booking project offers a modern solution for users to purchase flight tickets quickly. The application's user-friendly interface, robust backend infrastructure, and scalability advantages provided by AWS make it a preferred choice. Moreover, with its API support, the project can be easily integrated into external applications.
 
 ## Table of Contents
 1. [Project Overview](#project-overview)
