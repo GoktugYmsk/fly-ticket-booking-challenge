@@ -1,44 +1,28 @@
 import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
+import axios from 'axios';
 
 import PayScreen from './components/payScreen';
 import Login from './components/content/login';
 import Expedition from './components/expedition';
+import SeatScreen from './components/seatScreen';
 import FlyCompanies from './components/componies';
 import SignUp from './components/content/register';
 import SalesScreen from './components/salesScreen';
 import CustomComponent from './components/CustomComponent';
 import SearchContent from './components/content/searchContent';
 import ShoppingSummary from './components/content/shoppingSummary';
-import SeatScreen from './components/seatScreen';
 
-import './App.css'
-import { useDispatch, useSelector } from 'react-redux';
-import axios from 'axios';
 import { setCompanyInfo, setCompanyInfoReturn, setFlightPortData } from './components/configure';
+import './App.css'
 
 function App() {
-
-  const apiUrl = 'https://webapi-dev.eba-j3p8idgy.eu-north-1.elasticbeanstalk.com/api/airports/getall';
-  const apiUrlCompany = 'https://webapi-dev.eba-j3p8idgy.eu-north-1.elasticbeanstalk.com/api/flights/getdepartureflights '
-  const apiUrlCompanyReturn = 'https://webapi-dev.eba-j3p8idgy.eu-north-1.elasticbeanstalk.com/api/flights/getreturnflights '
-  const flightPortData = useSelector((state) => state.portsData.flightPortData);
-  const companyInfo = useSelector((state) => state.portsData.companyInfo);
-
-  console.log('FLİGTHPORTSDATA', flightPortData)
-  console.log('companyInfo', companyInfo)
-
   const dispatch = useDispatch()
 
-  // axios.get(apiUrl)
-  //   .then(response => {
-  //     dispatch(setFlightPortData(response.data))
-  //     console.log(response.data);
-  //   })
-  //   .catch(error => {
-
-  //     console.error(error);
-  //   });
+  const apiUrl = 'http://webapi-dev.eba-j3p8idgy.eu-north-1.elasticbeanstalk.com/api/airports/getall';
+  const apiUrlCompany = 'http://webapi-dev.eba-j3p8idgy.eu-north-1.elasticbeanstalk.com/api/flights/getdepartureflights '
+  const apiUrlCompanyReturn = 'http://webapi-dev.eba-j3p8idgy.eu-north-1.elasticbeanstalk.com/api/flights/getreturnflights '
 
   useEffect(() => {
     axios.get(apiUrl)
@@ -52,7 +36,6 @@ function App() {
 
   useEffect(() => {
     axios.get(apiUrlCompany)
-
       .then(response => {
         dispatch(setCompanyInfo(response.data))
       })

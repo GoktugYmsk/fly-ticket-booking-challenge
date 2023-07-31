@@ -1,25 +1,24 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import MyImage from './arrow.png';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { setPassName, setPassSurname, setPassengerInfo } from '../configure';
-
 import Header from "../header";
+import MyImage from './arrow.png';
+
+import { setPassName, setPassSurname } from '../configure';
+
 import './index.scss';
 
 function SalesScreen() {
-    const flightTicket = useSelector((state) => state.passTicket.flightTicket);
-    const passengerInfo = useSelector((state) => state.passInfo.passengerInfo);
     const passName = useSelector((state) => state.passCheck.passName);
     const passSurname = useSelector((state) => state.passCheck.passSurname);
-    const refreshPassenger = useSelector((state) => state.refreshPass.refreshPassenger);
+    const flightTicket = useSelector((state) => state.passTicket.flightTicket);
+    const passengerInfo = useSelector((state) => state.passInfo.passengerInfo);
 
     const totalPassenger = sessionStorage.getItem('totalPassenger');
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
 
     const imagePath = MyImage;
 
@@ -90,16 +89,9 @@ function SalesScreen() {
         return passengerDetails;
     };
 
-    const handleMainPage = () => {
-        dispatch(setPassengerInfo(refreshPassenger));
-        navigate('/');
-    };
-
     return (
         <>
-            <Header>
-                {/* Header içeriği burada */}
-            </Header>
+            <Header />
             <div className="flyCompanies-container-content-container">
                 <div className="info-h3">
                 </div>
@@ -128,21 +120,13 @@ function SalesScreen() {
                     </div>
                 </div>
             </div>
-
-
-
             <div className='salesScreen-container-content__box__invoice'>
                 <h3>Passenger Information</h3>
-
                 <div className='flight-passenger-container'>
-
                     {renderPassengerDetails()}
                 </div>
-
-
                 <h3>Contact Information</h3>
                 <div className="flight-larger-container-contact">
-
                     <div className="flight-box-no">
                         <input placeholder="Phone Number" type="text" id="phone-number" name="phone-number" required />
                     </div>
@@ -150,10 +134,8 @@ function SalesScreen() {
                         <input placeholder="Email" type="email" id="email" name="email" required />
                     </div>
                 </div>
-
                 <h3>Billing Information</h3>
                 <div className="flight-larger-container-bill">
-
                     <div className="flight-box-name">
                         <input placeholder="Name" type="text" id="billing-name" name="billing-name" required />
                     </div>

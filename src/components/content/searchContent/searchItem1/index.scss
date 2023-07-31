@@ -657,12 +657,13 @@ $mainRed: #F05A28;
             width: 150px;
             left: 4px;
             bottom: 3px;
-            background-color: rgba(129, 129, 129, 0.355);
+            background-color: rgba(241, 233, 233, 0.355);
             border: 1px solid #cecece;
             opacity: 0.6;
             -webkit-transition: .4s;
             transition: .4s;
             border-radius: 4px;
+            box-shadow: 2px 2px 3px rgb(99, 97, 97);
             align-items: center;
             justify-content: center;
 

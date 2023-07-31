@@ -8,7 +8,12 @@ import { AiOutlineClose } from 'react-icons/ai';
 
 function Depart({ setActiveDepart, setActiveReturn }) {
 
-
+    const [popup, setPopup] = useState(false);
+    const [seatArr, setSeatArr] = useState([]);
+    const [deneme, setDeneme] = useState([])
+    const [reservedSeats, setReservedSeats] = useState([]);
+    const [selectedSeat, setSelectedSeat] = useState(null);
+    const [formattedReturnDate, setFormattedReturnDate] = useState("");
 
     const [formattedSelectedDate, setFormattedSelectedDate] = useState("");
     const flightPortData = useSelector((state) => state.portsData.flightPortData);
@@ -34,18 +39,6 @@ function Depart({ setActiveDepart, setActiveReturn }) {
 
 
     }, [selectedDate]);
-
-
-
-
-
-
-    const [selectedSeat, setSelectedSeat] = useState(null);
-    const [reservedSeats, setReservedSeats] = useState([]);
-    const [popup, setPopup] = useState(false);
-    const [seatArr, setSeatArr] = useState([]);
-    const [deneme, setDeneme] = useState([])
-    const [formattedReturnDate, setFormattedReturnDate] = useState("");
 
     const passName = useSelector((state) => state.passCheck.passName);
     const passSurname = useSelector((state) => state.passCheck.passSurname);

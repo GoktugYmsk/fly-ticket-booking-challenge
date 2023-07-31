@@ -77,6 +77,7 @@ function PassengerPopup({ setPopup, setTicketAmount }) {
   const handleBabyChange = (e) => {
     setBabyCount(e.target.value)
   }
+
   const handleOutsideClick = (event) => {
     if (!event.target.closest('.passengerpopup-container')) {
       setPopup(false)

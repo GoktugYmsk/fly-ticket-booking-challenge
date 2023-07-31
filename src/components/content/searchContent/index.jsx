@@ -1,24 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { FaPlaneDeparture, FaMapMarkerAlt, FaPlane, FaHotel, FaCheck } from 'react-icons/fa';
-import { setRefreshPassenger } from '../../configure';
+import { useDispatch } from 'react-redux';
+
+import { FaPlaneDeparture, FaPlane, FaHotel, FaCheck } from 'react-icons/fa';
 
 import SearchItem1 from './searchItem1';
 import SearchItem2 from './searchItem2';
 import SearchItem3 from './searchItem3';
 import SearchItem4 from './searchItem4';
 
+import { setRefreshPassenger } from '../../configure';
 import './index.scss';
-import { useDispatch, useSelector } from 'react-redux';
 
 function SearchContent() {
   const [adultCount, setAdultCount] = useState(1);
   const [childCount, setChildCount] = useState(0);
   const [babyCount, setBabyCount] = useState(0);
   const [selectedItem, setSelectedItem] = useState('one');
-
-  const passName = useSelector((state) => state.passCheck.passName);
-
-  console.log('passName', passName)
 
   const dispatch = useDispatch()
 
@@ -36,12 +33,6 @@ function SearchContent() {
   } else if (selectedItem === 'four') {
     content = <SearchItem4 />;
   }
-
-  // useEffect(() => {
-  //   dispatch(setPassName(''))
-  //   dispatch(setPassSurname(''))
-  // }, [])
-
 
   const userTicketAmount = {
     adults: adultCount,
