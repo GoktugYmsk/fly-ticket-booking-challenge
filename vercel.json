@@ -1,0 +1,8 @@
+{
+    "rewrites": [
+        {
+            "source": "/api/(.*)",
+            "destination": "http://webapi-dev.eba-j3p8idgy.eu-north-1.elasticbeanstalk.com/api/$1"
+        }
+    ]
+}

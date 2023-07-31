@@ -20,9 +20,9 @@ import './App.css'
 function App() {
   const dispatch = useDispatch()
 
-  const apiUrl = 'http://webapi-dev.eba-j3p8idgy.eu-north-1.elasticbeanstalk.com/api/airports/getall';
-  const apiUrlCompany = 'http://webapi-dev.eba-j3p8idgy.eu-north-1.elasticbeanstalk.com/api/flights/getdepartureflights '
-  const apiUrlCompanyReturn = 'http://webapi-dev.eba-j3p8idgy.eu-north-1.elasticbeanstalk.com/api/flights/getreturnflights '
+  const apiUrl = '/api/airports/getall';
+  const apiUrlCompany = '/api/flights/getdepartureflights '
+  const apiUrlCompanyReturn = '/api/flights/getreturnflights '
 
   useEffect(() => {
     axios.get(apiUrl)
