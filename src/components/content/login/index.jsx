@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import Nav from 'react-bootstrap/Nav';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import Header from "../../header";
 
 import "./index.scss";
@@ -29,10 +27,6 @@ const LoginPopup = () => {
 
     const handleSignup = () => {
         navigate('/Signup')
-    }
-
-    const handleMainPage = () => {
-        navigate('/')
     }
 
     return (

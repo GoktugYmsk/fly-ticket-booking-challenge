@@ -5,15 +5,15 @@ import MyImage from '../arrow.png';
 
 function DepartTicket({ departSelect, formatTime, handleTicketClick }) {
 
-    const imagePath = MyImage;
     const flightPort = useSelector((state) => state.passFlightPort.flightPort);
     const flightPortArrive = useSelector((state) => state.passFlightPortArrive.flightPortArrive);
     const companyInfo = useSelector((state) => state.portsData.companyInfo);
 
-
-    const filteredPorts = companyInfo.data.filter((item) => {
+    const filteredPorts = companyInfo?.data.filter((item) => {
         return item.depPort === flightPort && item.arrPort === flightPortArrive;
     });
+
+    const imagePath = MyImage;
 
     return (
         <div className="flyCompanies-container-content">

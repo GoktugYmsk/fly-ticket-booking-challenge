@@ -1,51 +1,37 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { setPassName, setPassengerInfo, setReturnDate } from "../../configure";
+
 import Header from "../../header";
 import Footer from "../../footer";
-import "./index.scss";
+
 import MyImage from './arrow.png';
 
+import { setPassengerInfo, setReturnDate } from "../../configure";
 
+import "./index.scss";
 
 function ShoppingSummary() {
-  const flightTicket = useSelector((state) => state.passTicket.flightTicket);
-  const passengerInfo = useSelector((state) => state.passInfo.passengerInfo);
-  const passSurname = useSelector((state) => state.passCheck.passSurname);
+  const seat = useSelector((state) => state.seatReserve.seat);
   const passName = useSelector((state) => state.passCheck.passName);
+  const passSurname = useSelector((state) => state.passCheck.passSurname);
+  const seatReturn = useSelector((state) => state.seatReserve.seatReturn);
+  const passengerInfo = useSelector((state) => state.passInfo.passengerInfo);
+  const flightTicket = useSelector((state) => state.passTicket.flightTicket);
+  const flightPort = useSelector((state) => state.passFlightPort.flightPort);
+  const flightPortData = useSelector((state) => state.portsData.flightPortData);
   const refreshPassenger = useSelector((state) => state.refreshPass.refreshPassenger);
   const flightTicketReturn = useSelector((state) => state.passTicket.flightTicketReturn);
-
-
-  const flightPortData = useSelector((state) => state.portsData.flightPortData);
-
-  const seat = useSelector((state) => state.seatReserve.seat);
-  const seatReturn = useSelector((state) => state.seatReserve.seatReturn);
-
-  console.log('flightTicketReturn', flightTicketReturn)
-
-  console.log('seatDeneme', seat)
-
-
-  const flightPort = useSelector((state) => state.passFlightPort.flightPort);
   const flightPortArrive = useSelector((state) => state.passFlightPortArrive.flightPortArrive);
-
-  const isLeavePort = flightPortData.data.find((item) => item.code === flightPort);
-  const isArrivePort = flightPortData.data.find((item) => item.code === flightPortArrive);
-
-  const leavePortExplanation = isLeavePort ? isLeavePort.explanation : "";
-  const arrivePortExplanation = isArrivePort ? isArrivePort.explanation : "";
-
-
-
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const imagePath = MyImage;
+  const isLeavePort = flightPortData?.data.find((item) => item.code === flightPort);
+  const isArrivePort = flightPortData?.data.find((item) => item.code === flightPortArrive);
 
-  console.log(passName);
+  const leavePortExplanation = isLeavePort ? isLeavePort.explanation : "";
+  const arrivePortExplanation = isArrivePort ? isArrivePort.explanation : "";
 
   const totalPassenger = sessionStorage.getItem("totalPassenger");
   const totalPrice = flightTicket.passengerPrices[0].basePrice * totalPassenger;
@@ -56,13 +42,12 @@ function ShoppingSummary() {
     navigate("/");
   };
 
+  const imagePath = MyImage;
   return (
 
     <div className="shoppingSummary-container">
-      <Header>
-      </Header>
+      <Header />
       <div className="shoppingSummary__container-navbar">
-
         <div className="shoppingSummary__container-navbar-alt">
           <h3>Flight Information Summary</h3>
         </div>
@@ -126,12 +111,8 @@ function ShoppingSummary() {
             </div>
           </div>
         </div>
-
         {/******************* Return ********************************/}
-
-
         {flightTicketReturn &&
-
           <>
             <div className="shoppingSummary-container-box__list">
               <h3 className="shoppingSummary-container-box__list-text"><i class="fas fa-chevron-right"></i> Return <i class="fas fa-chevron-left"></i></h3>
@@ -177,7 +158,8 @@ function ShoppingSummary() {
                     </div>
                   ))}
                 </div>
-              </div><div className="shoppingSummary-container-box__list-passenger">
+              </div>
+              <div className="shoppingSummary-container-box__list-passenger">
                 <p>{totalPrice} $</p>
                 <div className="shoppingSummary-container-box__list-passengerInfo">
                   <p>{passengerInfo.adults} Adult </p>
@@ -192,15 +174,9 @@ function ShoppingSummary() {
             </div>
           </>
         }
-
-
         <h5 onClick={handleMainPage}>Go Back To The Homepage</h5>
       </div>
-
-      <Footer>
-
-      </Footer>
-
+      <Footer />
     </div>
   );
 }

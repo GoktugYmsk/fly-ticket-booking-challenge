@@ -27,7 +27,6 @@ function SearchContentAlt({ setSelectedExplanation,
 }) {
     const [isCalendarOpen, setIsCalendarOpen] = useState(true);
 
-
     const returnDate = useSelector((state) => state.optionDateArr.returnDate);
 
     const dispatch = useDispatch()

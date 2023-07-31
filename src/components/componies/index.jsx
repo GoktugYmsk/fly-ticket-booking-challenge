@@ -30,8 +30,8 @@ function FlyCompanies() {
   const selectedDateTimestamp = selectedDate instanceof Date ? selectedDate.getTime() : null;
   const selectedDateTimestampArrive = returnDate instanceof Date ? returnDate.getTime() : null;
 
-  const isLeavePort = flightPortData.data.find((item) => item.code === flightPort);
-  const isArrivePort = flightPortData.data.find((item) => item.code === flightPortArrive);
+  const isLeavePort = flightPortData?.data.find((item) => item.code === flightPort);
+  const isArrivePort = flightPortData?.data.find((item) => item.code === flightPortArrive);
 
   console.log('isLeavePort', isLeavePort)
   const leavePortExplanation = isLeavePort ? isLeavePort.explanation : "";

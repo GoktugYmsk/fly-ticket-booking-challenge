@@ -1,30 +1,36 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { setSeatReturn } from '../../configure';
-import Header from '../../header';
-import Footer from '../../footer';
-import { BsFillPersonFill, BsArrowRight } from 'react-icons/bs';
-import { AiOutlineClose } from 'react-icons/ai';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { BsFillPersonFill, BsArrowRight } from 'react-icons/bs';
+
+import { setSeatReturn } from '../../configure';
 
 function Return() {
-
-    const [activeDepart, setActiveDepart] = useState(true)
-    const [activeReturn, setActiveReturn] = useState(false)
-    const [formattedSelectedDate, setFormattedSelectedDate] = useState("");
+    const [deneme, setDeneme] = useState([])
+    const [popup, setPopup] = useState(false);
+    const [seatArr, setSeatArr] = useState([]);
+    const [reservedSeats, setReservedSeats] = useState([]);
+    const [selectedSeat, setSelectedSeat] = useState(null);
     const [formattedReturnDate, setFormattedReturnDate] = useState("");
+    const [formattedSelectedDate, setFormattedSelectedDate] = useState("");
 
-    const flightPortData = useSelector((state) => state.portsData.flightPortData);
-    const selectedDate = useSelector((state) => state.optionDateDepp.selectedDate);
+    const passName = useSelector((state) => state.passCheck.passName);
+    const passSurname = useSelector((state) => state.passCheck.passSurname);
     const returnDate = useSelector((state) => state.optionDateArr.returnDate);
     const flightPort = useSelector((state) => state.passFlightPort.flightPort);
-    const flightPortArrive = useSelector((state) => state.passFlightPortArrive.flightPortArrive);
-    const flightTicket = useSelector((state) => state.passTicket.flightTicket);
+    const flightPortData = useSelector((state) => state.portsData.flightPortData);
+    const selectedDate = useSelector((state) => state.optionDateDepp.selectedDate);
     const flightTicketReturn = useSelector((state) => state.passTicket.flightTicketReturn);
+    const flightPortArrive = useSelector((state) => state.passFlightPortArrive.flightPortArrive);
 
-    const isLeavePort = flightPortData.data.find((item) => item.code === flightPort);
-    const isArrivePort = flightPortData.data.find((item) => item.code === flightPortArrive);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const totalPassenger = sessionStorage.getItem('totalPassenger');
+
+    const isLeavePort = flightPortData?.data.find((item) => item.code === flightPort);
+    const isArrivePort = flightPortData?.data.find((item) => item.code === flightPortArrive);
 
     const leavePortExplanation = isLeavePort ? isLeavePort.explanation : "";
     const arrivePortExplanation = isArrivePort ? isArrivePort.explanation : "";
@@ -37,32 +43,6 @@ function Return() {
         setFormattedReturnDate(returnDateFormatted);
 
     }, [selectedDate, returnDate]);
-
-
-
-    const [selectedSeat, setSelectedSeat] = useState(null);
-    const [reservedSeats, setReservedSeats] = useState([]);
-    const [popup, setPopup] = useState(false);
-    const [seatArr, setSeatArr] = useState([]);
-    const [deneme, setDeneme] = useState([])
-
-    const passName = useSelector((state) => state.passCheck.passName);
-    const passSurname = useSelector((state) => state.passCheck.passSurname);
-
-    const seatReturn = useSelector((state) => state.seatReserve.seatReturn);
-
-    console.log('SEATCONTROL', seatReturn);
-
-    const totalPassenger = sessionStorage.getItem('totalPassenger');
-
-    // useEffect(() => {
-    //     const seatLocale = JSON.parse(localStorage.getItem('seatReturn')) || [];
-    //     setReservedSeats(seatLocale);
-    // }, [seat]);
-
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-
 
     const getAlphabeticSeatNumber = (numericSeatNumber) => {
         const alphabeticSeatNumber = String.fromCharCode(64 + numericSeatNumber);
@@ -79,10 +59,8 @@ function Return() {
             const alphabeticSeatNumber = getAlphabeticSeatNumber(seatNumber);
             const seatTotalSeat = { row, seatNumber: alphabeticSeatNumber };
             setDeneme([...deneme, seatTotalSeat]);
-
         }
     };
-
 
     const getAlphabeticRow = (numericRow) => {
         const alphabeticRow = String.fromCharCode(64 + numericRow);
@@ -106,14 +84,11 @@ function Return() {
         }
     };
 
-
     useEffect(() => {
         const seatLocale = JSON.parse(localStorage.getItem('seatReturn')) || [];
         setReservedSeats(seatLocale);
         console.log('reservedSeats', reservedSeats);
     }, [popup]);
-
-
 
     const handleKeyPress = (e) => {
         if (e.key === 'Escape') {
@@ -163,7 +138,6 @@ function Return() {
                             : 'rgb(240, 105, 60)',
                     color: 'rgb(255, 255, 255, 0.4)',
                 };
-
                 rowSeats.push(
                     <React.Fragment key={i}>
                         <div
@@ -189,7 +163,6 @@ function Return() {
     }
     return (
         <>
-
             {popup && (
                 <div className='seat-popup__bottom'>
                     <p>Do you approve the seat selection ?</p>
@@ -201,7 +174,6 @@ function Return() {
                 <h1>Choose Your Seat</h1>
                 <button >Skip</button>
             </div>
-
             <div className='middle_div'>
                 <div className='chairScreen-container__box'>
                     <div className='chairScreen-container__box-passengerSide-first'>
@@ -217,9 +189,6 @@ function Return() {
                 </div>
                 <div className='info_box_group'>
                     <div className='info_box'>
-
-
-
                         <h3>Passengers</h3>
                         <div className='info_box-list' >
                             <div className='info_box-list-name' >
@@ -251,22 +220,17 @@ function Return() {
                                     <div className='info_box-passengerSeat-box' >
                                         <div className='info_box-passengerSeat-box__header' >
                                             <p>Seat:</p>
-
                                         </div>
                                         {deneme.map((item, key) => (
                                             <div className='info_box-passengerSeat-box__list' key={key}>
-
                                                 <p>  {item?.row}-{item?.seatNumber}</p>
                                             </div>
                                         ))}
                                     </div>
                                 )}
                             </div>
-
                         </div>
-
                     </div>
-
                     <div className='info_box'><h3>Flight Summary</h3><br />
                         <div>
                             {formattedReturnDate}
@@ -283,8 +247,6 @@ function Return() {
                     </div>
                 </div>
             </div>
-
-
         </>
     );
 }

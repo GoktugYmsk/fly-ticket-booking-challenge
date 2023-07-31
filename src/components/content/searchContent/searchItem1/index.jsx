@@ -34,12 +34,8 @@ function SearchItem1() {
     dispatch(setSelectedDate(new Date()));
   }, []);
 
-  const totalPassenger = ticketAmount.adults + ticketAmount.children + ticketAmount.babies;
-
-  console.log(totalPassenger)
-
   const handlePortClick = (explanationCode) => {
-    const selectedPort = flightPortData.data.find((port) => port.code === explanationCode);
+    const selectedPort = flightPortData?.data.find((port) => port.code === explanationCode);
     if (selectedPort) {
       setSelectedExplanation(selectedPort.explanation);
       dispatch(setFlightPort(selectedPort.code));
@@ -49,7 +45,7 @@ function SearchItem1() {
   };
 
   const handlePortClickRigth = (explanationCode) => {
-    const selectedPortArrive = flightPortData.data.find((port) => port.code === explanationCode);
+    const selectedPortArrive = flightPortData?.data.find((port) => port.code === explanationCode);
     if (selectedPortArrive) {
       setSelectedExplanationArrive(selectedPortArrive.explanation)
       dispatch(setFlightPortArrive(selectedPortArrive.code));
@@ -82,7 +78,7 @@ function SearchItem1() {
 
   useEffect(() => {
     const inputValue = selectedExplanation.toLowerCase();
-    const filteredPorts = flightPortData.data.filter((port) =>
+    const filteredPorts = flightPortData?.data.filter((port) =>
       port.explanation.toLowerCase().includes(inputValue)
     );
 
@@ -97,7 +93,7 @@ function SearchItem1() {
 
   useEffect(() => {
     const inputValueArrive = selectedExplanationArrive.toLocaleLowerCase()
-    const filteredPortsArrive = flightPortData.data.filter((port) =>
+    const filteredPortsArrive = flightPortData?.data.filter((port) =>
       port.explanation.toLowerCase().includes(inputValueArrive));
 
     const updatePortsArr = filteredPortsArrive.map((port, key) => (

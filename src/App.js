@@ -5,7 +5,6 @@ import axios from 'axios';
 
 import PayScreen from './components/payScreen';
 import Login from './components/content/login';
-import Expedition from './components/expedition';
 import SeatScreen from './components/seatScreen';
 import FlyCompanies from './components/componies';
 import SignUp from './components/content/register';
@@ -60,7 +59,6 @@ function App() {
         <Route path="/" element={<CustomComponent />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<SignUp />} />
-        <Route path='/expedition' element={<Expedition />} />
         <Route path="/search" element={<SearchContent />} />
         <Route path="/pay-screen" element={<PayScreen />} />
         <Route path="/fly-companies" element={<FlyCompanies />} />

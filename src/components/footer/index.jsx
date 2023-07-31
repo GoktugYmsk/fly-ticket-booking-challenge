@@ -5,7 +5,6 @@ import './index.scss'
 function Footer() {
 
   return (
-
     <footer class="footer">
       <div class="section_container footer_container">
         <div class="footer_col">

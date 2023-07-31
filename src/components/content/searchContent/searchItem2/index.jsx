@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 
 import Button from 'react-bootstrap/Button';
 
-
 import './index.scss';
 
 function SearchItem2() {
@@ -17,21 +16,14 @@ function SearchItem2() {
   const passSurname = useSelector((state) => state.passCheck.passSurname);
   const flightPort = useSelector((state) => state.passFlightPort.flightPort);
   const selectedDate = useSelector((state) => state.optionDateDepp.selectedDate);
-  const flightPortArrive = useSelector((state) => state.passFlightPortArrive.flightPortArrive);
   const flightPortData = useSelector((state) => state.optionDateArr.flightPortData);
+  const flightPortArrive = useSelector((state) => state.passFlightPortArrive.flightPortArrive);
 
-  const isLeavePort = flightPortData.data.find((item) => item.code === flightPort);
-  const isArrivePort = flightPortData.data.find((item) => item.code === flightPortArrive);
+  const isLeavePort = flightPortData?.data.find((item) => item.code === flightPort);
+  const isArrivePort = flightPortData?.data.find((item) => item.code === flightPortArrive);
 
   const leavePortExplanation = isLeavePort ? isLeavePort.explanation : '';
   const arrivePortExplanation = isArrivePort ? isArrivePort.explanation : '';
-
-  console.log('passunasoc', passSurname, pnrCode);
-  console.log('pnrCode', pnrCode)
-
-  console.log('SEAT-2', seat[0])
-
-  console.log('passNameSearch', passName)
 
   const selectedDateFormatted = selectedDate instanceof Date ? selectedDate.toDateString() : '';
 
@@ -97,7 +89,7 @@ function SearchItem2() {
             <div className='passenger-date'>
               <p>{selectedDateFormatted}</p>
             </div>
-            
+
           </div>
         )}
       </form >

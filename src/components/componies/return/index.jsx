@@ -11,12 +11,12 @@ function ReturnTicket({ formattedReturnDate, handleTicketClickReturn, returnSele
     const companyInfoReturn = useSelector((state) => state.portsData.companyInfoReturn);
     const flightPortArrive = useSelector((state) => state.passFlightPortArrive.flightPortArrive);
 
-    const filteredReturnFlights = companyInfoReturn.data.filter((item) => {
+    const filteredReturnFlights = companyInfoReturn?.data.filter((item) => {
         return item.depPort === flightPortArrive && item.arrPort === flightPort;
     });
 
-    const isLeavePort = flightPortData.data.find((item) => item.code === flightPort);
-    const isArrivePort = flightPortData.data.find((item) => item.code === flightPortArrive);
+    const isLeavePort = flightPortData?.data.find((item) => item.code === flightPort);
+    const isArrivePort = flightPortData?.data.find((item) => item.code === flightPortArrive);
 
     const leavePortExplanation = isLeavePort ? isLeavePort.explanation : "";
     const arrivePortExplanation = isArrivePort ? isArrivePort.explanation : "";

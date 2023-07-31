@@ -16,26 +16,12 @@ function SeatScreen() {
 
     const selectedDate = useSelector((state) => state.optionDateDepp.selectedDate);
     const returnDate = useSelector((state) => state.optionDateArr.returnDate);
-    const flightPort = useSelector((state) => state.passFlightPort.flightPort);
-    const flightPortArrive = useSelector((state) => state.passFlightPortArrive.flightPortArrive);
-    const flightTicket = useSelector((state) => state.passTicket.flightTicket);
-    const flightTicketReturn = useSelector((state) => state.passTicket.flightTicketReturn);
-
-    const flightPortData = useSelector((state) => state.portsData.flightPortData);
-
-    const isLeavePort = flightPortData.data.find((item) => item.code === flightPort);
-    const isArrivePort = flightPortData.data.find((item) => item.code === flightPortArrive);
-
-    const leavePortExplanation = isLeavePort ? isLeavePort.explanation : "";
-    const arrivePortExplanation = isArrivePort ? isArrivePort.explanation : "";
 
     useEffect(() => {
+        const returnDateFormatted = returnDate instanceof Date ? returnDate.toDateString() : "";
         const selectedDateFormatted = selectedDate instanceof Date ? selectedDate.toDateString() : "";
         setFormattedSelectedDate(selectedDateFormatted);
-
-        const returnDateFormatted = returnDate instanceof Date ? returnDate.toDateString() : "";
         setFormattedReturnDate(returnDateFormatted);
-
     }, [selectedDate, returnDate]);
 
     return (
@@ -47,17 +33,14 @@ function SeatScreen() {
                         activeDepart &&
                         <Depart setActiveDepart={setActiveDepart} setActiveReturn={setActiveReturn} />
                     }
-
                     <div className='info_box' >
                         {
-
                             activeReturn &&
                             <Return />
                         }
                     </div>
                 </div>
             </div>
-
             <Footer className='footer' />
         </>
     );
