@@ -1,70 +1,52 @@
-# Getting Started with Create React App
+# Flight Ticket Booking Project README
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project Overview
 
-## Available Scripts
+The Flight Ticket Booking project is a full-stack application that enables users to purchase flight tickets with ease. This application provides a user-friendly web interface, allowing customers to search for available flights, view detailed options, and make reservations. The backend of the application is built using ASP.NET Core API, and flight data is securely stored in a PostgreSQL database deployed on Amazon Web Services (AWS). The frontend is built with React, SCSS, SASS, and HTML and is deployed on Vercel. 
 
-In the project directory, you can run:
+### Key Features
 
-### `npm start`
+- User-friendly flight ticket search and reservation system.
+- Listing and detailed display of available flight options.
+- Seat selection process for passengers.
+- Payment process using credit card information.
+- Generating random pnr codes.
+- Seamless integration with external applications via the API.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Technologies and Tools
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Frontend: HTML, SCSS, SASS JavaScript (React.js).
+- Backend: ASP.NET Core API.
+- Database: PostgreSQL.
+- Frontend Deployment: Vercel's frontend cloud
+- Backend Deployment: Amazon Web Services (AWS).
+- Version Control: Git.
+- IDE and Text Editors: Visual Studio 2022, Visual Studio Code, Rider 2023.1.3.
 
-### `npm test`
+### Why Flight Ticket Booking?
+Flight Ticket Booking project offers a modern solution for users to purchase flight tickets quickly. The application's user-friendly interface, robust backend infrastructure, and scalability advantages provided by AWS make it a preferred choice. Moreover, with its API support, the project can be easily integrated into external applications.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Table of Contents
+1. [Project Overview](#project-overview)
+2. [Table of Contents](#table-of-contents)
+3. [Prerequisites](#prerequisites)
+4. [Installation](#installation)
+5. [Configuration](#configuration)
+6. [Database Setup](#database-setup)
+7. [API Documentation](#api-documentation)
+8. [Running the Application](#running-the-application)
+9. [Contributing](#contributing)
+10. [License](#license)
 
-### `npm run build`
+## Prerequisites
+Before setting up the project, ensure you have the following dependencies installed:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- [.NET Core SDK](https://dotnet.microsoft.com/download) (version 6.0.0). if you would like to make a change.
+- [Download](https://www.postgresql.org/download/) database if you would like. The database have already been deployed.
+  
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Installation
+To get started with the Flight Ticket Booking project, follow these steps:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Clone the repository: git clone https://github.com/GoktugYmsk/fly-ticket-booking-challenge.git
+2. 
