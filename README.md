@@ -25,4 +25,5 @@ Before setting up the project, ensure you have the following dependencies instal
 ## Installation
 To get started with the Flight Ticket Booking project, follow these steps:
 
-1. Clone the repository:
+1. Clone the repository: git clone https://github.com/GoktugYmsk/fly-ticket-booking-challenge.git
+2. 
