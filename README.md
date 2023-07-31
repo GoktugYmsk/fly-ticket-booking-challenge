@@ -18,8 +18,8 @@ The Flight Ticket Booking project is a full-stack application that allows users 
 ## Prerequisites
 Before setting up the project, ensure you have the following dependencies installed:
 
-- [.NET Core SDK](https://dotnet.microsoft.com/download) (version X.X.X)
-- [PostgreSQL](https://www.postgresql.org/download/) database (version X.X.X)
+- [.NET Core SDK](https://dotnet.microsoft.com/download) (version 6.0.0). if you would like to make a change.
+- [PostgreSQL](https://www.postgresql.org/download/) database if you would like. The database have already been deployed.
 - Amazon Web Services (AWS) account
 
 ## Installation
