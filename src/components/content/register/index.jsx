@@ -16,9 +16,6 @@ function SignUp() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        console.log('Kayıt işlemi: ', firstName, lastName, number, email, password);
-
         setFirstName('');
         setLastName('');
         setNumber('');

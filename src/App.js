@@ -19,9 +19,9 @@ import './App.css'
 function App() {
   const dispatch = useDispatch()
 
-  const apiUrl = '/api/airports/getall';
-  const apiUrlCompany = '/api/flights/getdepartureflights '
-  const apiUrlCompanyReturn = '/api/flights/getreturnflights '
+  const apiUrl = 'https://ticketbooking-42f2c95f9fde.herokuapp.com/api/airports/getall';
+  const apiUrlCompany = 'https://ticketbooking-42f2c95f9fde.herokuapp.com/api/flights/getdepartureflights'
+  const apiUrlCompanyReturn = 'https://ticketbooking-42f2c95f9fde.herokuapp.com/api/flights/getreturnflights'
 
   useEffect(() => {
     axios.get(apiUrl)

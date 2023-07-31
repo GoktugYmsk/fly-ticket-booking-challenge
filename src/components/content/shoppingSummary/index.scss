@@ -29,7 +29,6 @@
                 justify-content: center;
                 margin-top: 20px;
 
-
                 h3 {
                     padding: 20px;
                     display: none;
@@ -72,7 +71,7 @@
             border-radius: 30px;
             margin-bottom: 30px;
 
-            .shoppingSummary-container-box__list-text{
+            .shoppingSummary-container-box__list-text {
                 color: rgb(61, 70, 92);
                 font-weight: bold;
                 background-color: rgb(243, 243, 243);
@@ -94,10 +93,10 @@
                 grid-template-columns: 15% 10% 15% 35% 25%;
                 grid-template-rows: 25% 15% 40% 20%;
                 grid-template-areas:
-                "a a . . . "
-                ". c c . d "
-                ". f f x g "
-                "b e e e . ";
+                    "a a . . . "
+                    ". c c . d "
+                    ". f f x g "
+                    "b e e e . ";
 
 
                 .list-top-a {
@@ -138,12 +137,14 @@
                     color: rgb(126, 126, 126);
                     text-align: right;
                 }
+
                 .list-top-g {
                     grid-area: g;
                     font-weight: bold;
                     color: rgb(126, 126, 126);
                     text-align: left;
                 }
+
                 .list-top-x {
                     grid-area: x;
                     width: 100%;
@@ -195,7 +196,7 @@
 
                         }
 
-                        
+
                     }
                 }
 
@@ -230,13 +231,14 @@
                     }
                 }
 
-                .passenger-seat{
+                .passenger-seat {
                     display: flex;
                     float: left;
                     width: 100%;
                     height: 100%;
                     border-bottom-right-radius: 10px;
-                    .passenger-seat__info{
+
+                    .passenger-seat__info {
 
                         display: flex;
                         flex-direction: column;
@@ -244,18 +246,19 @@
                         font-size: 11px;
                         font-weight: 400;
 
-                        .passenger-seat__info-seatNo{
+                        .passenger-seat__info-seatNo {
                             border-bottom: 1px dashed rgba(202, 208, 219, 0.7);
                             border-bottom-right-radius: 10px;
-                            .passenger-seat__info-seatNo-p{
+
+                            .passenger-seat__info-seatNo-p {
                                 color: rgb(173, 176, 188);
                                 padding: 10px 0px;
                                 margin-bottom: 0px !important;
-                                
+
                             }
                         }
 
-                        
+
                     }
                 }
             }
@@ -357,7 +360,7 @@
             border-radius: 30px;
             margin-bottom: 30px;
 
-            .shoppingSummary-container-box__list-text{
+            .shoppingSummary-container-box__list-text {
                 color: rgb(61, 70, 92);
                 font-weight: bold;
                 background-color: rgb(243, 243, 243);
@@ -422,6 +425,7 @@
                     color: rgb(126, 126, 126);
                     text-align: right;
                 }
+
                 .list-top-g {
                     grid-area: g;
                     font-weight: bold;
@@ -521,13 +525,14 @@
                     }
                 }
 
-                .passenger-seat{
+                .passenger-seat {
                     display: flex;
                     float: left;
                     width: 100%;
                     height: 100%;
                     border-bottom-right-radius: 10px;
-                    .passenger-seat__info{
+
+                    .passenger-seat__info {
 
                         display: flex;
                         flex-direction: column;
@@ -535,18 +540,19 @@
                         font-size: 18px;
                         font-weight: 400;
 
-                        .passenger-seat__info-seatNo{
+                        .passenger-seat__info-seatNo {
                             border-bottom: 1px dashed rgba(202, 208, 219, 0.7);
                             border-bottom-right-radius: 10px;
-                            .passenger-seat__info-seatNo-p{
+
+                            .passenger-seat__info-seatNo-p {
                                 color: rgb(173, 176, 188);
                                 padding: 10px 0px;
                                 margin-bottom: 0px !important;
-                                
+
                             }
                         }
 
-                        
+
                     }
                 }
             }
@@ -606,6 +612,7 @@
 
 
                 h3 {
+                    display: none;
                     padding: 20px;
 
                 }
@@ -648,7 +655,7 @@
             border-radius: 30px;
             margin-bottom: 30px;
 
-            .shoppingSummary-container-box__list-text{
+            .shoppingSummary-container-box__list-text {
                 color: rgb(61, 70, 92);
                 font-weight: bold;
                 background-color: rgb(243, 243, 243);
@@ -706,12 +713,14 @@
                     font-weight: bold;
                     color: #f05a28;
                 }
+
                 .list-top-f {
                     grid-area: f;
                     font-weight: bold;
                     color: rgb(126, 126, 126);
                     text-align: right;
                 }
+
                 .list-top-g {
                     grid-area: g;
                     font-weight: bold;
@@ -811,13 +820,14 @@
                     }
                 }
 
-                .passenger-seat{
+                .passenger-seat {
                     display: flex;
                     float: left;
                     width: 100%;
                     height: 100%;
                     border-bottom-right-radius: 10px;
-                    .passenger-seat__info{
+
+                    .passenger-seat__info {
 
                         display: flex;
                         flex-direction: column;
@@ -825,18 +835,19 @@
                         font-size: 18px;
                         font-weight: 400;
 
-                        .passenger-seat__info-seatNo{
+                        .passenger-seat__info-seatNo {
                             border-bottom: 1px dashed rgba(202, 208, 219, 0.7);
                             border-bottom-right-radius: 10px;
-                            .passenger-seat__info-seatNo-p{
+
+                            .passenger-seat__info-seatNo-p {
                                 color: rgb(173, 176, 188);
                                 padding: 10px 0px;
                                 margin-bottom: 0px !important;
-                                
+
                             }
                         }
 
-                        
+
                     }
                 }
             }

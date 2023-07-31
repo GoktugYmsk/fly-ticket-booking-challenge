@@ -33,7 +33,6 @@ function FlyCompanies() {
   const isLeavePort = flightPortData?.data.find((item) => item.code === flightPort);
   const isArrivePort = flightPortData?.data.find((item) => item.code === flightPortArrive);
 
-  console.log('isLeavePort', isLeavePort)
   const leavePortExplanation = isLeavePort ? isLeavePort.explanation : "";
   const arrivePortExplanation = isArrivePort ? isArrivePort.explanation : "";
 

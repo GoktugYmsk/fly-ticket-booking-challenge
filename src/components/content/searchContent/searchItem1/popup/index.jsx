@@ -26,7 +26,6 @@ function PassengerPopup({ setPopup, setTicketAmount }) {
       children: childCount,
       babies: babyCount
     };
-    console.log(userTicketAmount);
     dispatch(setPassengerInfo(userTicketAmount))
     setTicketAmount(userTicketAmount);
   }, [adultCount, childCount, babyCount, setTicketAmount]);

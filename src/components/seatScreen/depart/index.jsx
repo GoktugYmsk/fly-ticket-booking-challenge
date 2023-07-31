@@ -95,7 +95,6 @@ function Depart({ setActiveDepart, setActiveReturn }) {
     useEffect(() => {
         const seatLocale = JSON.parse(localStorage.getItem('seat')) || [];
         setReservedSeats(seatLocale);
-        console.log('reservedSeats', reservedSeats);
     }, [popup]);
 
     const handleCloseClick = () => {

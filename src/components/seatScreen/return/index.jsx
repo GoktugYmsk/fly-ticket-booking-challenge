@@ -87,7 +87,6 @@ function Return() {
     useEffect(() => {
         const seatLocale = JSON.parse(localStorage.getItem('seatReturn')) || [];
         setReservedSeats(seatLocale);
-        console.log('reservedSeats', reservedSeats);
     }, [popup]);
 
     const handleKeyPress = (e) => {
