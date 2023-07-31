@@ -2,12 +2,15 @@
 
 ## Project Overview
 
-The Flight Ticket Booking project is a full-stack application that enables users to purchase flight tickets with ease. This application provides a user-friendly web interface, allowing customers to search for available flights, view detailed options, and make reservations. The backend of the application is built using ASP.NET Core API, and flight data is securely stored in a PostgreSQL database deployed on Amazon Web Services (AWS).
+The Flight Ticket Booking project is a full-stack application that enables users to purchase flight tickets with ease. This application provides a user-friendly web interface, allowing customers to search for available flights, view detailed options, and make reservations. The backend of the application is built using ASP.NET Core API, and flight data is securely stored in a PostgreSQL database deployed on Amazon Web Services (AWS). The frontend is built with React, SCSS, SASS, and HTML and is deployed on Vercel. 
 
 ### Key Features
 
 - User-friendly flight ticket search and reservation system.
 - Listing and detailed display of available flight options.
+- Seat selection process for passengers.
+- Payment process using credit card information.
+- Generating random pnr codes.
 - Seamless integration with external applications via the API.
 
 ### Technologies and Tools
@@ -15,7 +18,8 @@ The Flight Ticket Booking project is a full-stack application that enables users
 - Frontend: HTML, SCSS, SASS JavaScript (React.js).
 - Backend: ASP.NET Core API.
 - Database: PostgreSQL.
-- Database Deployment: Amazon Web Services (AWS).
+- Frontend Deployment: Vercel's frontend cloud
+- Backend Deployment: Amazon Web Services (AWS).
 - Version Control: Git.
 - IDE and Text Editors: Visual Studio 2022, Visual Studio Code, Rider 2023.1.3.
 
