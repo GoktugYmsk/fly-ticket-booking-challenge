@@ -1,7 +1,7 @@
 # Flight Ticket Booking Project README
 
 ## Project Overview
-The Flight Ticket Booking project is a full-stack application that allows users to book flight tickets. It provides a user-friendly web interface for customers to search for flights, view available options, and make reservations. The backend is built using ASP.NET Core API, and the data is stored in a PostgreSQL database deployed on Amazon Web Services (AWS).
+The Flight Ticket Booking project is a full-stack application that allows users to book flight tickets. It provides a user-friendly web interface for customers to search for flights, also view available options, and make reservations. The backend is built using ASP.NET Core API, and the data is stored in a PostgreSQL database, and both of them deployed on Amazon Web Services (AWS).
 
 ## Table of Contents
 1. [Project Overview](#project-overview)
