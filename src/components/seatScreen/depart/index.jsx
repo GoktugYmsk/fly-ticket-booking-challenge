@@ -13,6 +13,8 @@ function Depart({ setActiveDepart, setActiveReturn }) {
     const [formattedSelectedDate, setFormattedSelectedDate] = useState("");
     const flightPortData = useSelector((state) => state.portsData.flightPortData);
 
+    console.log(flightPortData)
+
     const selectedDate = useSelector((state) => state.optionDateDepp.selectedDate);
 
     const flightPort = useSelector((state) => state.passFlightPort.flightPort);

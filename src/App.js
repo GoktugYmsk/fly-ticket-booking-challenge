@@ -19,9 +19,9 @@ import { setCompanyInfo, setCompanyInfoReturn, setFlightPortData } from './compo
 
 function App() {
 
-  const apiUrl = process.env.FLIGHTONE_URL;
-  const apiUrlCompany = process.env.FLIGHTONE_URL
-  const apiUrlCompanyReturn = process.env.FLIGHTONE_URL
+  const apiUrl = 'http://webapi-dev.eba-j3p8idgy.eu-north-1.elasticbeanstalk.com/api/airports/getall';
+  const apiUrlCompany = 'http://webapi-dev.eba-j3p8idgy.eu-north-1.elasticbeanstalk.com/api/flights/getdepartureflights '
+  const apiUrlCompanyReturn = 'http://webapi-dev.eba-j3p8idgy.eu-north-1.elasticbeanstalk.com/api/flights/getreturnflights '
   const flightPortData = useSelector((state) => state.portsData.flightPortData);
   const companyInfo = useSelector((state) => state.portsData.companyInfo);
 
@@ -41,7 +41,7 @@ function App() {
   //   });
 
   useEffect(() => {
-    axios.get(`${apiUrl}/airports/getall`)
+    axios.get(apiUrl)
       .then(response => {
         dispatch(setFlightPortData(response.data))
       })
@@ -50,11 +50,8 @@ function App() {
       });
   }, []);
 
-
-
-
   useEffect(() => {
-    axios.get(`${apiUrlCompany}/flights/getdepartureflights`)
+    axios.get(apiUrlCompany)
 
       .then(response => {
         dispatch(setCompanyInfo(response.data))
@@ -65,7 +62,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    axios.get(`${apiUrlCompanyReturn}/flights/getreturnflights`)
+    axios.get(apiUrlCompanyReturn)
       .then(response => {
         dispatch(setCompanyInfoReturn(response.data))
       })
