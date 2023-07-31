@@ -7,7 +7,7 @@ import { BsFillPersonFill, BsArrowRight } from 'react-icons/bs';
 import { setSeat } from '../../configure';
 
 function Depart({ setActiveDepart, setActiveReturn }) {
-    const [deneme, setDeneme] = useState([])
+    const [totalSeats, setTotalSeats] = useState([])
     const [popup, setPopup] = useState(false);
     const [seatArr, setSeatArr] = useState([]);
     const [selectedSeat, setSelectedSeat] = useState(null);
@@ -59,7 +59,7 @@ function Depart({ setActiveDepart, setActiveReturn }) {
             setSeatArr([...seatArr, seatTotal]);
             const alphabeticSeatNumber = getAlphabeticSeatNumber(seatNumber);
             const seatTotalSeat = { row, seatNumber: alphabeticSeatNumber };
-            setDeneme([...deneme, seatTotalSeat]);
+            setTotalSeats([...totalSeats, seatTotalSeat]);
         }
     };
 
@@ -99,14 +99,14 @@ function Depart({ setActiveDepart, setActiveReturn }) {
 
     const handleCloseClick = () => {
         setSeatArr([]);
-        setDeneme('')
+        setTotalSeats('')
         setPopup(false);
     }
 
     const handleKeyPress = (e) => {
         if (e.key === 'Escape') {
             setSeatArr([]);
-            setDeneme('')
+            setTotalSeats('')
             setPopup(false);
         }
     };
@@ -119,12 +119,12 @@ function Depart({ setActiveDepart, setActiveReturn }) {
     }, []);
 
     useEffect(() => {
-        if (deneme.length === parseInt(totalPassenger)) {
+        if (totalSeats.length === parseInt(totalPassenger)) {
             setPopup(true);
         } else {
             setPopup(false);
         }
-    }, [deneme.length, totalPassenger]);
+    }, [totalSeats.length, totalPassenger]);
 
     function renderSeatsSecond() {
         const rows = [];
@@ -224,12 +224,12 @@ function Depart({ setActiveDepart, setActiveReturn }) {
                                 })}
                             </div>
                             <div className='info_box-passengerSeat'>
-                                {deneme && (
+                                {totalSeats && (
                                     <div className='info_box-passengerSeat-box' >
                                         <div className='info_box-passengerSeat-box__header' >
                                             <p>Seat:</p>
                                         </div>
-                                        {deneme.map((item, key) => (
+                                        {totalSeats.map((item, key) => (
                                             <div className='info_box-passengerSeat-box__list' key={key}>
                                                 <p>  {item?.row}-{item?.seatNumber}</p>
                                             </div>

@@ -7,7 +7,7 @@ import { BsFillPersonFill, BsArrowRight } from 'react-icons/bs';
 import { setSeatReturn } from '../../configure';
 
 function Return() {
-    const [deneme, setDeneme] = useState([])
+    const [totalSeat, setTotalseat] = useState([])
     const [popup, setPopup] = useState(false);
     const [seatArr, setSeatArr] = useState([]);
     const [reservedSeats, setReservedSeats] = useState([]);
@@ -58,7 +58,7 @@ function Return() {
             setSeatArr([...seatArr, seatTotal]);
             const alphabeticSeatNumber = getAlphabeticSeatNumber(seatNumber);
             const seatTotalSeat = { row, seatNumber: alphabeticSeatNumber };
-            setDeneme([...deneme, seatTotalSeat]);
+            setTotalseat([...totalSeat, seatTotalSeat]);
         }
     };
 
@@ -92,14 +92,14 @@ function Return() {
     const handleKeyPress = (e) => {
         if (e.key === 'Escape') {
             setSeatArr([]);
-            setDeneme('')
+            setTotalseat('')
             setPopup(false);
         }
     };
 
     const handleCloseClick = () => {
         setSeatArr([]);
-        setDeneme('')
+        setTotalseat('')
         setPopup(false);
     }
 
@@ -111,12 +111,12 @@ function Return() {
     }, []);
 
     useEffect(() => {
-        if (deneme.length === parseInt(totalPassenger)) {
+        if (totalSeat.length === parseInt(totalPassenger)) {
             setPopup(true);
         } else {
             setPopup(false);
         }
-    }, [deneme.length, totalPassenger]);
+    }, [totalSeat.length, totalPassenger]);
 
     function renderSeatsSecond() {
         const rows = [];
@@ -215,12 +215,12 @@ function Return() {
                                 })}
                             </div>
                             <div className='info_box-passengerSeat'>
-                                {deneme && (
+                                {totalSeat && (
                                     <div className='info_box-passengerSeat-box' >
                                         <div className='info_box-passengerSeat-box__header' >
                                             <p>Seat:</p>
                                         </div>
-                                        {deneme.map((item, key) => (
+                                        {totalSeat.map((item, key) => (
                                             <div className='info_box-passengerSeat-box__list' key={key}>
                                                 <p>  {item?.row}-{item?.seatNumber}</p>
                                             </div>
