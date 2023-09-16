@@ -239,7 +239,8 @@ function Depart({ setActiveDepart, setActiveReturn }) {
                             </div>
                         </div>
                     </div>
-                    <div className='info_box' id='boxbox'><h3>Flight Summary</h3><br />
+                    <div className='info_box' id='boxbox'><h3>Flight Summary</h3>
+                        <br />
                         <div>
                             {formattedSelectedDate}
                             <div>

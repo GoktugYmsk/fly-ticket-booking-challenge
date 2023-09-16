@@ -81,3 +81,5 @@ export const configure = createSlice({
 export const { setPassengerAmount, setFlightPort, setFlightPortArrive, setSelectedDate, setPassengerInfo, setFlightTicket, setPassSurname, setPnrCode, setPassName, setReturnDate, setRefreshPassenger, setSeat, setFlightTicketReturn, setSeatReturn, setFlightPortData, setCompanyInfo, setCompanyInfoReturn } = configure.actions
 
 export default configure.reducer
+
+
