@@ -2,29 +2,6 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setPassName, setPassSurname } from '../../configure';
 
-function PassengerDetail({ passengerIndex, passengerType, handleNameChange, handleSurnameChange }) {
-    return (
-        <div key={passengerIndex} className='flight-contanier-box'>
-            <div className='passenger-leftInfo'>
-                <h4>{`${passengerIndex}. ${passengerType}`}</h4>
-            </div>
-            <div className="flight-box-name">
-                <div className="no"><input placeholder="First Name" onChange={(e) => handleNameChange(e, passengerIndex)} required /></div>
-            </div>
-            <div className="flight-box-surname">
-                <div className="no"><input placeholder="Last Name" onChange={(e) => handleSurnameChange(e, passengerIndex)} required /></div>
-            </div>
-            <div className="flight-box-id">
-                <div className="time"><input placeholder="ID Number" type="text" /></div>
-            </div>
-            <div className="flight-box-birth">
-                <div className="arrive-title">Birth Date:</div>
-                <div className="arrive"><input placeholder="Gidiş tarihini seçiniz." type="date" name="birth-date" /></div>
-            </div>
-        </div>
-    );
-}
-
 function RenderPassengerDetails() {
     const passName = useSelector((state) => state.passCheck.passName);
     const passSurname = useSelector((state) => state.passCheck.passSurname);
@@ -45,31 +22,40 @@ function RenderPassengerDetails() {
         dispatch(setPassSurname(currentPassSurnames));
     }
 
-    const renderPassengerDetails = () => {
-        const passengerCounts = [passengerInfo.adults, passengerInfo.children, passengerInfo.babies];
+    const passengerCounts = [passengerInfo.adults, passengerInfo.children, passengerInfo.babies];
 
-        return passengerCounts.flatMap((count, i) => {
-            const passengerType = ['Adult', 'Child', 'Infant'][i];
+    const passengerDetails = passengerCounts.flatMap((count, i) => {
+        const passengerType = ['Adult', 'Child', 'Infant'][i];
 
-            return Array.from({ length: count }, (_, j) => {
-                const passengerIndex = passengerCounts.slice(0, i).reduce((acc, c) => acc + c, 0) + j + 1;
+        return Array.from({ length: count }, (_, j) => {
+            const passengerIndex = passengerCounts.slice(0, i).reduce((acc, c) => acc + c, 0) + j + 1;
 
-                return (
-                    <PassengerDetail
-                        key={passengerIndex}
-                        passengerIndex={passengerIndex}
-                        passengerType={passengerType}
-                        handleNameChange={handleNameChange}
-                        handleSurnameChange={handleSurnameChange}
-                    />
-                );
-            });
+            return (
+                <div key={passengerIndex} className='flight-contanier-box'>
+                    <div className='passenger-leftInfo'>
+                        <h4>{`${j + 1}. ${passengerType}`}</h4>
+                    </div>
+                    <div className="flight-box-name">
+                        <div className="no"><input placeholder="First Name" onChange={(e) => handleNameChange(e, passengerIndex)} required /></div>
+                    </div>
+                    <div className="flight-box-surname">
+                        <div className="no"><input placeholder="Last Name" onChange={(e) => handleSurnameChange(e, passengerIndex)} required /></div>
+                    </div>
+                    <div className="flight-box-id">
+                        <div className="time"><input placeholder="ID Number" type="text" /></div>
+                    </div>
+                    <div className="flight-box-birth">
+                        <div className="arrive-title">Birth Date:</div>
+                        <div className="arrive"><input placeholder="Gidiş tarihini seçiniz." type="date" name="birth-date" /></div>
+                    </div>
+                </div>
+            );
         });
-    };
+    });
 
     return (
         <div className='flight-passenger-container'>
-            {renderPassengerDetails()}
+            {passengerDetails}
         </div>
     )
 }
